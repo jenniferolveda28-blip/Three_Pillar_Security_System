@@ -9,6 +9,8 @@ import { createPageUrl } from "../utils";
 import TokenRegistrationForm from '../components/authenticator/TokenRegistrationForm';
 import LinkedAccountsList from '../components/authenticator/LinkedAccountsList';
 import SubscriptionManager from '../components/authenticator/SubscriptionManager';
+import BiometricVerification from '../components/authenticator/BiometricVerification';
+import EmergencyRecovery from '../components/authenticator/EmergencyRecovery';
 import HardwareTokenManager from '../components/authenticator/HardwareTokenManager';
 import AccountRecoveryPanel from '../components/authenticator/AccountRecoveryPanel';
 import BreathalyzerVerification from '../components/authenticator/BreathalyzerVerification';

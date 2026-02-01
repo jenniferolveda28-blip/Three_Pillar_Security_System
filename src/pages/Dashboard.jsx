@@ -14,6 +14,7 @@ import SecurityMonitor from '../components/security/SecurityMonitor';
 import HardwareTokenDisplay from '../components/security/HardwareTokenDisplay';
 import FluctuatingKeyVisualizer from '../components/security/FluctuatingKeyVisualizer';
 import AddUniverseForm from '../components/dashboard/AddUniverseForm';
+import RateLimitMonitor from '../components/dashboard/RateLimitMonitor';
 import UniverseHealthMonitor from '../components/dashboard/UniverseHealthMonitor';
 
 export default function Dashboard() {

@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 
 export default function RequestHistory({ requests }) {
+  const [expandedRequest, setExpandedRequest] = useState(null);
   const statusConfig = {
     success: { icon: CheckCircle2, color: "text-green-600", bg: "bg-green-50" },
     failed: { icon: XCircle, color: "text-red-600", bg: "bg-red-50" },
