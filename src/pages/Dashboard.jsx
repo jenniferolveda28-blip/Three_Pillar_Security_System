@@ -141,8 +141,17 @@ export default function Dashboard() {
           </TabsList>
 
           <TabsContent value="router" className="space-y-6">
+            <APIThreatMonitor requestMetrics={{
+              recentRequests: requests.filter(r => {
+                const created = new Date(r.created_date);
+                return new Date() - created < 60000;
+              }).length,
+              avgLatency: requests.length > 0 ? requests.reduce((sum, r) => sum + (r.latency_ms || 0), 0) / requests.length : 0,
+              errorRate: requests.length > 0 ? (requests.filter(r => r.status === 'failed').length / requests.length) * 100 : 0
+            }} />
+
             <UniversalQueryBox onRequestCreated={() => refetchRequests()} />
-            
+
             <div>
               <h3 className="text-lg font-semibold mb-4">Recent Requests</h3>
               <RequestHistory requests={requests.slice(0, 5)} />
