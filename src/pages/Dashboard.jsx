@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Plus, Sparkles, Globe, History, Key, Link2 } from "lucide-react";
+import { Plus, Sparkles, Globe, History, Key, Link2, Shield, Database } from "lucide-react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import UniverseCard from '../components/dashboard/UniverseCard';
@@ -16,6 +16,9 @@ import FluctuatingKeyVisualizer from '../components/security/FluctuatingKeyVisua
 import AddUniverseForm from '../components/dashboard/AddUniverseForm';
 import RateLimitMonitor from '../components/dashboard/RateLimitMonitor';
 import UniverseHealthMonitor from '../components/dashboard/UniverseHealthMonitor';
+import ThreatDetectionDashboard from '../components/security/ThreatDetectionDashboard';
+import AuditTrailViewer from '../components/security/AuditTrailViewer';
+import SmartCaching from '../components/router/SmartCaching';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -120,7 +123,19 @@ export default function Dashboard() {
               <Key className="w-4 h-4" />
               Security
             </TabsTrigger>
-          </TabsList>
+            <TabsTrigger value="threats" className="flex items-center gap-2">
+              <Shield className="w-4 h-4" />
+              Threats
+            </TabsTrigger>
+            <TabsTrigger value="audit" className="flex items-center gap-2">
+              <History className="w-4 h-4" />
+              Audit
+            </TabsTrigger>
+            <TabsTrigger value="cache" className="flex items-center gap-2">
+              <Database className="w-4 h-4" />
+              Cache
+            </TabsTrigger>
+            </TabsList>
 
           <TabsContent value="router" className="space-y-6">
             <UniversalQueryBox onRequestCreated={() => refetchRequests()} />
@@ -187,7 +202,19 @@ export default function Dashboard() {
             <KeyRotationDisplay keys={keys} />
             <SecurityMonitor logs={securityLogs} />
           </TabsContent>
-        </Tabs>
+
+          <TabsContent value="threats">
+            <ThreatDetectionDashboard />
+          </TabsContent>
+
+          <TabsContent value="audit">
+            <AuditTrailViewer />
+          </TabsContent>
+
+          <TabsContent value="cache">
+            <SmartCaching />
+          </TabsContent>
+          </Tabs>
       </div>
     </div>
   );
