@@ -89,31 +89,31 @@ export default function Dashboard() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-white rounded-xl p-6 border-2 border-indigo-100">
+          <div className="multi-layer-card card-layer-auth rounded-xl p-6 border">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Connected Universes</p>
-                <p className="text-3xl font-bold text-indigo-600">{universes.length}</p>
+                <p className="text-sm text-slate-400">Connected Universes</p>
+                <p className="text-3xl font-bold text-cyan-400">{universes.length}</p>
               </div>
-              <Globe className="w-10 h-10 text-indigo-200" />
+              <Globe className="w-10 h-10 text-cyan-500/50 glow-pulse" />
             </div>
           </div>
-          <div className="bg-white rounded-xl p-6 border-2 border-green-100">
+          <div className="multi-layer-card card-layer-data rounded-xl p-6 border">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Total Requests</p>
-                <p className="text-3xl font-bold text-green-600">{requests.length}</p>
+                <p className="text-sm text-slate-400">Total Requests</p>
+                <p className="text-3xl font-bold text-emerald-400">{requests.length}</p>
               </div>
-              <History className="w-10 h-10 text-green-200" />
+              <History className="w-10 h-10 text-emerald-500/50 glow-pulse" />
             </div>
           </div>
-          <div className="bg-white rounded-xl p-6 border-2 border-purple-100">
+          <div className="multi-layer-card card-layer-monitoring rounded-xl p-6 border">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Active Keys</p>
-                <p className="text-3xl font-bold text-purple-600">{keys.length}</p>
+                <p className="text-sm text-slate-400">Active Keys</p>
+                <p className="text-3xl font-bold text-violet-400">{keys.length}</p>
               </div>
-              <Key className="w-10 h-10 text-purple-200" />
+              <Key className="w-10 h-10 text-violet-500/50 glow-pulse" />
             </div>
           </div>
         </div>
