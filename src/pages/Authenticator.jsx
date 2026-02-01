@@ -3,15 +3,14 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Shield, Link2, CreditCard, Key, ArrowLeft, Wind, Video, Activity } from "lucide-react";
+import { Shield, Link2, CreditCard, Key, ArrowLeft, Wind } from "lucide-react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import TokenRegistrationForm from '../components/authenticator/TokenRegistrationForm';
 import LinkedAccountsList from '../components/authenticator/LinkedAccountsList';
 import SubscriptionManager from '../components/authenticator/SubscriptionManager';
 import BreathalyzerVerification from '../components/authenticator/BreathalyzerVerification';
-import LivenessDetection from '../components/security/LivenessDetection';
-import ContinuousAuthentication from '../components/security/ContinuousAuthentication';
+import GeneticTraitVerifier from '../components/authenticator/GeneticTraitVerifier';
 
 export default function Authenticator() {
   const [activeTab, setActiveTab] = useState('register');
@@ -103,15 +102,7 @@ export default function Authenticator() {
             </TabsTrigger>
             <TabsTrigger value="breathalyzer" className="flex items-center gap-2">
               <Wind className="w-4 h-4" />
-              Breathalyzer
-            </TabsTrigger>
-            <TabsTrigger value="liveness" className="flex items-center gap-2">
-              <Video className="w-4 h-4" />
-              Liveness
-            </TabsTrigger>
-            <TabsTrigger value="continuous" className="flex items-center gap-2">
-              <Activity className="w-4 h-4" />
-              Continuous Auth
+              Breathalyzer Test
             </TabsTrigger>
             </TabsList>
 
@@ -128,24 +119,15 @@ export default function Authenticator() {
           </TabsContent>
 
           <TabsContent value="breathalyzer">
-            <BreathalyzerVerification 
-              token={tokens[0]} 
-              onVerificationComplete={(analysis) => {
-                console.log('Breathalyzer verification complete:', analysis);
-              }}
-            />
-          </TabsContent>
-
-          <TabsContent value="liveness">
-            <LivenessDetection 
-              onVerificationComplete={(result) => {
-                console.log('Liveness verification:', result);
-              }}
-            />
-          </TabsContent>
-
-          <TabsContent value="continuous">
-            <ContinuousAuthentication session={tokens[0]} />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <BreathalyzerVerification 
+                token={tokens[0]} 
+                onVerificationComplete={(analysis) => {
+                  console.log('Breathalyzer verification complete:', analysis);
+                }}
+              />
+              <GeneticTraitVerifier />
+            </div>
           </TabsContent>
           </Tabs>
       </div>
