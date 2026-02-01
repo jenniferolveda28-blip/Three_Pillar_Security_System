@@ -73,19 +73,19 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex gap-2">
-              <Link to={createPageUrl('Analytics')}>
-                <Button variant="outline">
-                  <BarChart3 className="w-4 h-4 mr-2" />
-                  Analytics
-                </Button>
-              </Link>
-              <Link to={createPageUrl('Authenticator')}>
-                <Button variant="outline">
-                  <Link2 className="w-4 h-4 mr-2" />
-                  BioVerify
-                </Button>
-              </Link>
-            </div>
+               <Link to={createPageUrl('Analytics')}>
+                 <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
+                   <BarChart3 className="w-4 h-4 mr-2" />
+                   Analytics
+                 </Button>
+               </Link>
+               <Link to={createPageUrl('Authenticator')}>
+                 <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
+                   <Link2 className="w-4 h-4 mr-2" />
+                   BioVerify
+                 </Button>
+               </Link>
+             </div>
           </div>
         </div>
 
