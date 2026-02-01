@@ -16,6 +16,7 @@ import FluctuatingKeyVisualizer from '../components/security/FluctuatingKeyVisua
 import AddUniverseForm from '../components/dashboard/AddUniverseForm';
 import RateLimitMonitor from '../components/dashboard/RateLimitMonitor';
 import UniverseHealthMonitor from '../components/dashboard/UniverseHealthMonitor';
+import SecureAPIKeyManager from '../components/dashboard/SecureAPIKeyManager';
 import QuantumEncryptionVisualizer from '../components/security/QuantumEncryptionVisualizer';
 import ThreatMapGlobe from '../components/security/ThreatMapGlobe';
 import BiometricLayerVisualizer from '../components/security/BiometricLayerVisualizer';
