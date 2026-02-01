@@ -123,22 +123,22 @@ export default function Dashboard() {
         {/* Main Content */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="mb-6">
-            <TabsTrigger value="router" className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4" />
-              Smart Router
-            </TabsTrigger>
-            <TabsTrigger value="universes" className="flex items-center gap-2">
-              <Globe className="w-4 h-4" />
-              Universes
-            </TabsTrigger>
-            <TabsTrigger value="history" className="flex items-center gap-2">
-              <History className="w-4 h-4" />
-              History
-            </TabsTrigger>
-            <TabsTrigger value="security" className="flex items-center gap-2">
-              <Key className="w-4 h-4" />
-              Security
-            </TabsTrigger>
+            <TabsTrigger value="router" className="flex items-center gap-2 text-slate-300 data-[state=active]:bg-slate-800 data-[state=active]:text-slate-100">
+                 <Sparkles className="w-4 h-4" />
+                 Smart Router
+               </TabsTrigger>
+               <TabsTrigger value="universes" className="flex items-center gap-2 text-slate-300 data-[state=active]:bg-slate-800 data-[state=active]:text-slate-100">
+                 <Globe className="w-4 h-4" />
+                 Universes
+               </TabsTrigger>
+               <TabsTrigger value="history" className="flex items-center gap-2 text-slate-300 data-[state=active]:bg-slate-800 data-[state=active]:text-slate-100">
+                 <History className="w-4 h-4" />
+                 History
+               </TabsTrigger>
+               <TabsTrigger value="security" className="flex items-center gap-2 text-slate-300 data-[state=active]:bg-slate-800 data-[state=active]:text-slate-100">
+                 <Key className="w-4 h-4" />
+                 Security
+               </TabsTrigger>
           </TabsList>
 
           <TabsContent value="router" className="space-y-6">
