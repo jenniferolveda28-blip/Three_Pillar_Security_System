@@ -16,6 +16,7 @@ import FluctuatingKeyVisualizer from '../components/security/FluctuatingKeyVisua
 import AddUniverseForm from '../components/dashboard/AddUniverseForm';
 import RateLimitMonitor from '../components/dashboard/RateLimitMonitor';
 import UniverseHealthMonitor from '../components/dashboard/UniverseHealthMonitor';
+import UniverseHealthMonitor from '../components/dashboard/UniverseHealthMonitor';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');

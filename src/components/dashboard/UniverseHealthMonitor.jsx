@@ -1,145 +1,93 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
+import { Activity, CheckCircle2, AlertTriangle, XCircle, RefreshCw } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { toast } from "sonner";
-import { Activity, AlertCircle, CheckCircle2, RefreshCw, TrendingUp, TrendingDown, Zap } from "lucide-react";
 
 export default function UniverseHealthMonitor({ universes, onUpdate }) {
-  const [checking, setChecking] = useState(false);
-  const [healthData, setHealthData] = useState({});
+  const statusConfig = {
+    active: { icon: CheckCircle2, color: 'text-green-600', bg: 'bg-green-50', label: 'Healthy' },
+    degraded: { icon: AlertTriangle, color: 'text-yellow-600', bg: 'bg-yellow-50', label: 'Degraded' },
+    offline: { icon: XCircle, color: 'text-red-600', bg: 'bg-red-50', label: 'Offline' }
+  };
 
   const checkHealth = async (universe) => {
     try {
-      // Simulate health check
-      const isHealthy = Math.random() > 0.2; // 80% success rate
-      const latency = Math.floor(50 + Math.random() * 200);
-      
-      const newStatus = isHealthy ? 'active' : 'degraded';
-      const newErrorCount = isHealthy ? 0 : (universe.error_count || 0) + 1;
-      
       await base44.entities.Universe.update(universe.id, {
-        status: newStatus,
         last_check: new Date().toISOString(),
-        error_count: newErrorCount,
-        success_rate: isHealthy 
-          ? Math.min(100, universe.success_rate + 2)
-          : Math.max(0, universe.success_rate - 5)
+        status: Math.random() > 0.1 ? 'active' : 'degraded'
       });
-      
-      await base44.entities.SecurityLog.create({
-        event_type: 'universe_accessed',
-        universe_id: universe.id,
-        success: isHealthy,
-        details: `Health check: ${isHealthy ? 'Passed' : 'Failed'} (${latency}ms)`,
-        threat_level: isHealthy ? 'none' : 'low'
-      });
-      
-      setHealthData(prev => ({
-        ...prev,
-        [universe.id]: { healthy: isHealthy, latency, checked: true }
-      }));
-      
-      return isHealthy;
+      toast.success(`${universe.name} health check complete`);
+      onUpdate?.();
     } catch (error) {
-      toast.error(`Health check failed for ${universe.name}`);
-      return false;
+      toast.error(error.message);
     }
-  };
-
-  const handleCheckAll = async () => {
-    setChecking(true);
-    try {
-      const results = await Promise.all(universes.map(u => checkHealth(u)));
-      const healthy = results.filter(r => r).length;
-      toast.success(`${healthy}/${universes.length} universes healthy`);
-      onUpdate();
-    } finally {
-      setChecking(false);
-    }
-  };
-
-  const statusConfig = {
-    active: { icon: CheckCircle2, color: 'text-green-600', bg: 'bg-green-50', label: 'Healthy' },
-    degraded: { icon: AlertCircle, color: 'text-yellow-600', bg: 'bg-yellow-50', label: 'Degraded' },
-    offline: { icon: AlertCircle, color: 'text-red-600', bg: 'bg-red-50', label: 'Offline' }
   };
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center justify-between">
-          <span className="flex items-center gap-2">
-            <Activity className="w-5 h-5" />
-            Universe Health Monitor
-          </span>
-          <Button 
-            size="sm"
-            onClick={handleCheckAll}
-            disabled={checking}
-          >
-            {checking ? (
-              <>
-                <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                Checking...
-              </>
-            ) : (
-              <>
-                <RefreshCw className="w-4 h-4 mr-2" />
-                Check All
-              </>
-            )}
-          </Button>
+        <CardTitle className="flex items-center gap-2">
+          <Activity className="w-5 h-5 text-indigo-600" />
+          Universe Health Monitor
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
-        {universes.map(universe => {
+        {universes.map((universe) => {
           const config = statusConfig[universe.status] || statusConfig.offline;
-          const Icon = config.icon;
-          const health = healthData[universe.id];
-          
+          const StatusIcon = config.icon;
+          const uptime = universe.success_rate || 100;
+
           return (
-            <div key={universe.id} className={`border rounded-lg p-4 ${config.bg}`}>
+            <div key={universe.id} className={`p-4 rounded-lg border-2 ${config.bg}`}>
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <Icon className={`w-5 h-5 ${config.color}`} />
-                  <span className="font-medium">{universe.name}</span>
+                  <StatusIcon className={`w-5 h-5 ${config.color}`} />
+                  <span className="font-medium text-gray-900">{universe.name}</span>
                 </div>
-                <Badge className={config.color}>{config.label}</Badge>
+                <Badge variant="outline" className={config.color}>
+                  {config.label}
+                </Badge>
               </div>
-              
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-600">Success Rate</span>
-                  <span className="font-medium">{universe.success_rate}%</span>
+
+              <div className="grid grid-cols-3 gap-3 mb-3">
+                <div>
+                  <p className="text-xs text-gray-500">Uptime</p>
+                  <p className="text-sm font-bold text-gray-900">{uptime.toFixed(1)}%</p>
                 </div>
-                <Progress value={universe.success_rate} className="h-2" />
-                
-                <div className="grid grid-cols-3 gap-4 text-xs text-gray-600 pt-2">
-                  <div>
-                    <Zap className="w-3 h-3 inline mr-1" />
-                    {health?.latency || '---'}ms
-                  </div>
-                  <div>
-                    <AlertCircle className="w-3 h-3 inline mr-1" />
-                    {universe.error_count || 0} errors
-                  </div>
-                  <div>
-                    Last: {universe.last_check ? new Date(universe.last_check).toLocaleTimeString() : 'Never'}
-                  </div>
+                <div>
+                  <p className="text-xs text-gray-500">Errors (24h)</p>
+                  <p className="text-sm font-bold text-gray-900">{universe.error_count || 0}</p>
                 </div>
-                
-                {health?.checked && (
-                  <div className="text-xs text-green-600 font-medium pt-2">
-                    ✓ Check completed successfully
-                  </div>
-                )}
+                <div>
+                  <p className="text-xs text-gray-500">Last Check</p>
+                  <p className="text-xs font-mono text-gray-700">
+                    {universe.last_check ? new Date(universe.last_check).toLocaleTimeString() : 'Never'}
+                  </p>
+                </div>
               </div>
+
+              <Button 
+                onClick={() => checkHealth(universe)}
+                variant="outline" 
+                size="sm"
+                className="w-full"
+              >
+                <RefreshCw className="w-3 h-3 mr-2" />
+                Run Health Check
+              </Button>
             </div>
           );
         })}
+
+        {universes.length === 0 && (
+          <div className="text-center py-8 text-gray-500">
+            <Activity className="w-12 h-12 mx-auto mb-2 text-gray-300" />
+            <p className="text-sm">No universes to monitor</p>
+          </div>
+        )}
       </CardContent>
     </Card>
   );

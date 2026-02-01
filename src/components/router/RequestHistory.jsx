@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, XCircle, Loader2, Brain, Clock, Repeat } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { CheckCircle2, XCircle, Loader2, Brain, Clock, Repeat, ChevronDown, ChevronUp } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import ResponseViewer from './ResponseViewer';
 
 export default function RequestHistory({ requests }) {
   const [expandedRequest, setExpandedRequest] = useState(null);
@@ -69,13 +71,22 @@ export default function RequestHistory({ requests }) {
                 )}
 
                 {request.response_data && (
-                  <div className="mt-3 p-3 bg-white rounded-lg border">
-                    <pre className="text-xs text-gray-700 whitespace-pre-wrap overflow-auto max-h-48">
-                      {typeof request.response_data === 'string' 
-                        ? request.response_data 
-                        : JSON.stringify(request.response_data, null, 2)}
-                    </pre>
-                  </div>
+                  <>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setExpandedRequest(expandedRequest === request.id ? null : request.id)}
+                      className="w-full justify-between mt-2"
+                    >
+                      <span className="text-sm font-medium">View Full Response</span>
+                      {expandedRequest === request.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    </Button>
+                    {expandedRequest === request.id && (
+                      <div className="mt-3">
+                        <ResponseViewer request={request} />
+                      </div>
+                    )}
+                  </>
                 )}
 
                 {request.error_message && (

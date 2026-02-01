@@ -9,10 +9,6 @@ import { createPageUrl } from "../utils";
 import TokenRegistrationForm from '../components/authenticator/TokenRegistrationForm';
 import LinkedAccountsList from '../components/authenticator/LinkedAccountsList';
 import SubscriptionManager from '../components/authenticator/SubscriptionManager';
-import BiometricVerification from '../components/authenticator/BiometricVerification';
-import EmergencyRecovery from '../components/authenticator/EmergencyRecovery';
-import HardwareTokenManager from '../components/authenticator/HardwareTokenManager';
-import AccountRecoveryPanel from '../components/authenticator/AccountRecoveryPanel';
 import BreathalyzerVerification from '../components/authenticator/BreathalyzerVerification';
 
 export default function Authenticator() {
@@ -33,10 +29,7 @@ export default function Authenticator() {
     queryFn: () => base44.entities.Subscription.list('-created_date'),
   });
 
-  const { data: hardwareTokens = [], refetch: refetchHardwareTokens } = useQuery({
-    queryKey: ['hardwareTokens'],
-    queryFn: () => base44.entities.HardwareToken.list('-created_date'),
-  });
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50">
@@ -106,17 +99,9 @@ export default function Authenticator() {
               <CreditCard className="w-4 h-4" />
               Subscription
             </TabsTrigger>
-            <TabsTrigger value="hardware" className="flex items-center gap-2">
-              <Shield className="w-4 h-4" />
-              Hardware Tokens
-            </TabsTrigger>
-            <TabsTrigger value="recovery" className="flex items-center gap-2">
-              <Shield className="w-4 h-4" />
-              Recovery
-            </TabsTrigger>
             <TabsTrigger value="breathalyzer" className="flex items-center gap-2">
               <Wind className="w-4 h-4" />
-              Breathalyzer
+              Breathalyzer Test
             </TabsTrigger>
             </TabsList>
 
@@ -132,19 +117,11 @@ export default function Authenticator() {
             <SubscriptionManager subscriptions={subscriptions} onUpdate={() => refetchSubscriptions()} />
           </TabsContent>
 
-          <TabsContent value="hardware">
-            <HardwareTokenManager tokens={hardwareTokens} onUpdate={() => refetchHardwareTokens()} />
-          </TabsContent>
-
-          <TabsContent value="recovery">
-            <AccountRecoveryPanel accounts={linkedAccounts} onUpdate={() => refetchAccounts()} />
-          </TabsContent>
-
           <TabsContent value="breathalyzer">
             <BreathalyzerVerification 
               token={tokens[0]} 
               onVerificationComplete={(analysis) => {
-                console.log('Verification complete:', analysis);
+                console.log('Breathalyzer verification complete:', analysis);
               }}
             />
           </TabsContent>

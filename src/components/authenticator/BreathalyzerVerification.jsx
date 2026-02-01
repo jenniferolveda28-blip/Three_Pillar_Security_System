@@ -1,194 +1,223 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { base44 } from "@/api/base44Client";
+import { Badge } from "@/components/ui/badge";
+import { Wind, Droplet, Activity, CheckCircle2, AlertTriangle, Thermometer } from "lucide-react";
 import { toast } from "sonner";
-import { Wind, CheckCircle2, AlertTriangle, Activity, Loader2 } from "lucide-react";
 
 export default function BreathalyzerVerification({ token, onVerificationComplete }) {
   const [isBlowing, setIsBlowing] = useState(false);
-  const [breathAnalysis, setBreathAnalysis] = useState(null);
-  const [progress, setProgress] = useState(0);
-  const [bioSignature, setBioSignature] = useState(null);
+  const [breathProgress, setBreathProgress] = useState(0);
+  const [analysis, setAnalysis] = useState(null);
+  const [stage, setStage] = useState('idle'); // idle, sampling, analyzing, complete
 
-  const simulateBiometricRead = () => {
+  const startBreathTest = () => {
     setIsBlowing(true);
-    setProgress(0);
-    setBreathAnalysis(null);
+    setStage('sampling');
+    setBreathProgress(0);
+    setAnalysis(null);
 
-    const interval = setInterval(() => {
-      setProgress(prev => {
+    // Simulate breath collection
+    const breathInterval = setInterval(() => {
+      setBreathProgress(prev => {
         if (prev >= 100) {
-          clearInterval(interval);
-          analyzeBiometrics();
+          clearInterval(breathInterval);
+          analyzeBreath();
           return 100;
         }
-        return prev + 5;
+        return prev + 1;
       });
-    }, 100);
+    }, 30);
   };
 
-  const analyzeBiometrics = async () => {
-    // Simulate breath analysis
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    const analysis = {
-      biomarkers: {
-        hydrogen: Math.floor(50 + Math.random() * 50),
-        methane: Math.floor(10 + Math.random() * 30),
-        carbon_dioxide: Math.floor(400 + Math.random() * 200),
-        volatile_compounds: Math.floor(100 + Math.random() * 500)
-      },
-      uniqueness_score: 94 + Math.floor(Math.random() * 6),
-      match_confidence: 96 + Math.floor(Math.random() * 4),
-      timestamp: new Date().toISOString()
-    };
-    
-    // Generate unique bio-signature hash
-    const signature = Array.from({ length: 16 }, () => 
-      Math.floor(Math.random() * 16).toString(16)
-    ).join('');
-    
-    setBioSignature(signature.toUpperCase());
-    setBreathAnalysis(analysis);
-    setIsBlowing(false);
+  const analyzeBreath = () => {
+    setStage('analyzing');
+    setTimeout(() => {
+      const mockAnalysis = {
+        dna_markers: {
+          'STR-D3S1358': { value: '15,17', match: true },
+          'STR-vWA': { value: '16,18', match: true },
+          'STR-FGA': { value: '21,24', match: true },
+          'STR-D8S1179': { value: '12,13', match: true },
+          'STR-D21S11': { value: '29,30', match: true }
+        },
+        biomarkers: {
+          temperature: (36.5 + Math.random() * 0.5).toFixed(1),
+          humidity: (85 + Math.random() * 10).toFixed(0),
+          co2_level: (4.5 + Math.random() * 0.5).toFixed(1),
+          unique_proteins: Math.floor(Math.random() * 5) + 18
+        },
+        confidence: 96 + Math.floor(Math.random() * 4),
+        timestamp: new Date().toISOString(),
+        match: true
+      };
 
-    // Log the verification
-    await base44.entities.SecurityLog.create({
-      event_type: 'fingerprint_verified',
-      fingerprint_hash: signature,
-      success: true,
-      details: `Breathalyzer verification completed - ${analysis.match_confidence}% match`,
-      threat_level: 'none'
-    });
-
-    if (analysis.match_confidence > 95) {
-      toast.success('✓ Biometric verification successful!');
-      if (onVerificationComplete) {
-        onVerificationComplete(analysis);
-      }
-    } else {
-      toast.error('Verification failed - please try again');
-    }
+      setAnalysis(mockAnalysis);
+      setStage('complete');
+      setIsBlowing(false);
+      toast.success('Breathalyzer verification complete!');
+      onVerificationComplete?.(mockAnalysis);
+    }, 3000);
   };
 
   return (
-    <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Wind className="w-5 h-5 text-blue-600" />
-          BioVerify Breathalyzer Authentication
-        </CardTitle>
-        <CardDescription>
-          Your unique breath composition acts as an unforgeable biometric signature
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        {!breathAnalysis ? (
-          <div className="space-y-4">
+    <div className="space-y-6">
+      <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Wind className="w-6 h-6 text-blue-600" />
+            BioVerify Breathalyzer Test
+          </CardTitle>
+          <CardDescription>
+            Blow into the device sensor to verify your unique biometric signature
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {stage === 'idle' && (
             <div className="text-center py-8">
-              <div className="w-32 h-32 mx-auto bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center mb-4 relative">
-                {isBlowing && (
-                  <>
-                    <div className="absolute inset-0 rounded-full animate-ping bg-blue-400 opacity-75"></div>
-                    <div className="absolute inset-0 rounded-full animate-pulse bg-cyan-400 opacity-50"></div>
-                  </>
-                )}
-                <Wind className="w-16 h-16 text-white relative z-10" />
+              <div className="w-32 h-32 mx-auto mb-6 relative">
+                <div className="absolute inset-0 bg-blue-100 rounded-full animate-pulse" />
+                <Wind className="w-16 h-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-blue-600" />
               </div>
-              
-              {isBlowing ? (
-                <div className="space-y-3">
-                  <p className="text-lg font-medium text-blue-900">Analyzing breath sample...</p>
-                  <Progress value={progress} className="h-3" />
-                  <p className="text-sm text-gray-600">{progress}% complete</p>
-                </div>
-              ) : (
-                <div>
-                  <p className="text-lg font-medium text-gray-900 mb-2">Ready to verify</p>
-                  <p className="text-sm text-gray-600 mb-4">Blow into your BioVerify device for 2 seconds</p>
-                  <Button 
-                    onClick={simulateBiometricRead}
-                    className="bg-blue-600 hover:bg-blue-700"
-                    size="lg"
-                  >
-                    <Wind className="w-5 h-5 mr-2" />
-                    Start Verification
-                  </Button>
-                </div>
-              )}
+              <p className="text-gray-700 mb-6">
+                Position the device 2-3 inches from your mouth and click Start when ready
+              </p>
+              <Button 
+                onClick={startBreathTest}
+                className="bg-blue-600 hover:bg-blue-700"
+                size="lg"
+              >
+                <Wind className="w-5 h-5 mr-2" />
+                Start Breath Test
+              </Button>
             </div>
+          )}
 
-            <div className="bg-white rounded-lg p-4 space-y-2">
-              <h4 className="font-medium text-sm flex items-center gap-2">
-                <Activity className="w-4 h-4" />
-                How It Works
-              </h4>
-              <ul className="text-xs text-gray-600 space-y-1">
-                <li>• Analyzes unique volatile organic compounds in your breath</li>
-                <li>• Measures gas composition ratios (H₂, CH₄, CO₂, VOCs)</li>
-                <li>• Creates unforgeable biometric signature</li>
-                <li>• Changes daily but remains uniquely identifiable to you</li>
-              </ul>
-            </div>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            <div className="text-center py-4">
-              <CheckCircle2 className="w-16 h-16 text-green-600 mx-auto mb-2" />
-              <p className="text-lg font-bold text-green-700">Verification Successful!</p>
-              <p className="text-sm text-gray-600">Identity confirmed with {breathAnalysis.match_confidence}% confidence</p>
-            </div>
-
-            <div className="bg-white rounded-lg p-4 space-y-3">
-              <h4 className="font-medium flex items-center justify-between">
-                <span>Biometric Analysis</span>
-                <Badge className="bg-green-100 text-green-800">Verified</Badge>
-              </h4>
-              
-              <div className="grid grid-cols-2 gap-3 text-sm">
-                <div className="bg-gray-50 p-3 rounded">
-                  <p className="text-gray-600 text-xs">Hydrogen (ppm)</p>
-                  <p className="font-mono font-bold">{breathAnalysis.biomarkers.hydrogen}</p>
+          {stage === 'sampling' && (
+            <div className="space-y-4">
+              <div className="bg-white p-6 rounded-lg border-2 border-blue-300">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-sm font-medium text-blue-900">Collecting Sample...</span>
+                  <Wind className="w-6 h-6 text-blue-500 animate-bounce" />
                 </div>
-                <div className="bg-gray-50 p-3 rounded">
-                  <p className="text-gray-600 text-xs">Methane (ppm)</p>
-                  <p className="font-mono font-bold">{breathAnalysis.biomarkers.methane}</p>
-                </div>
-                <div className="bg-gray-50 p-3 rounded">
-                  <p className="text-gray-600 text-xs">CO₂ (ppm)</p>
-                  <p className="font-mono font-bold">{breathAnalysis.biomarkers.carbon_dioxide}</p>
-                </div>
-                <div className="bg-gray-50 p-3 rounded">
-                  <p className="text-gray-600 text-xs">VOCs (ppb)</p>
-                  <p className="font-mono font-bold">{breathAnalysis.biomarkers.volatile_compounds}</p>
+                <Progress value={breathProgress} className="h-3 bg-blue-100" />
+                <div className="flex justify-between mt-2 text-xs text-gray-500">
+                  <span>Keep blowing steadily</span>
+                  <span>{breathProgress}%</span>
                 </div>
               </div>
 
-              <div className="pt-2 border-t">
-                <p className="text-xs text-gray-600">Bio-Signature Hash</p>
-                <p className="font-mono text-xs bg-gray-100 p-2 rounded mt-1 break-all">
-                  {bioSignature}
-                </p>
+              <div className="grid grid-cols-3 gap-3">
+                <div className="bg-white p-3 rounded-lg border text-center">
+                  <Droplet className="w-5 h-5 mx-auto mb-1 text-blue-600" />
+                  <p className="text-xs text-gray-500">Moisture</p>
+                  <p className="text-sm font-bold text-blue-900">{Math.floor(breathProgress * 0.85)}%</p>
+                </div>
+                <div className="bg-white p-3 rounded-lg border text-center">
+                  <Thermometer className="w-5 h-5 mx-auto mb-1 text-red-600" />
+                  <p className="text-xs text-gray-500">Temp</p>
+                  <p className="text-sm font-bold text-red-900">{(36.5 + breathProgress * 0.005).toFixed(1)}°C</p>
+                </div>
+                <div className="bg-white p-3 rounded-lg border text-center">
+                  <Activity className="w-5 h-5 mx-auto mb-1 text-green-600" />
+                  <p className="text-xs text-gray-500">Signal</p>
+                  <p className="text-sm font-bold text-green-900">{Math.floor(breathProgress * 0.95)}%</p>
+                </div>
               </div>
             </div>
+          )}
 
-            <Button 
-              onClick={() => {
-                setBreathAnalysis(null);
-                setBioSignature(null);
-                setProgress(0);
-              }}
-              variant="outline"
-              className="w-full"
-            >
-              Verify Again
-            </Button>
-          </div>
-        )}
-      </CardContent>
-    </Card>
+          {stage === 'analyzing' && (
+            <div className="bg-purple-50 p-6 rounded-lg border-2 border-purple-200 text-center">
+              <Activity className="w-12 h-12 mx-auto mb-4 text-purple-600 animate-pulse" />
+              <p className="text-purple-900 font-medium mb-2">Analyzing DNA Markers...</p>
+              <p className="text-sm text-purple-700">Cross-referencing your unique biological signature</p>
+            </div>
+          )}
+
+          {stage === 'complete' && analysis && (
+            <div className="space-y-4">
+              <div className="bg-green-50 p-6 rounded-lg border-2 border-green-200 text-center">
+                <CheckCircle2 className="w-12 h-12 mx-auto mb-2 text-green-600" />
+                <p className="text-green-900 font-bold text-lg mb-1">Identity Verified!</p>
+                <Badge className="bg-green-600 text-white">
+                  {analysis.confidence}% Match Confidence
+                </Badge>
+              </div>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-sm">DNA Markers Verified</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  {Object.entries(analysis.dna_markers).map(([marker, data]) => (
+                    <div key={marker} className="flex items-center justify-between text-xs">
+                      <span className="text-gray-700 font-mono">{marker}</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-gray-500">{data.value}</span>
+                        <CheckCircle2 className="w-4 h-4 text-green-600" />
+                      </div>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-sm">Biometric Analysis</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <p className="text-xs text-gray-500">Temperature</p>
+                      <p className="text-sm font-bold">{analysis.biomarkers.temperature}°C</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Humidity</p>
+                      <p className="text-sm font-bold">{analysis.biomarkers.humidity}%</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">CO₂ Level</p>
+                      <p className="text-sm font-bold">{analysis.biomarkers.co2_level}%</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Proteins</p>
+                      <p className="text-sm font-bold">{analysis.biomarkers.unique_proteins}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Button 
+                onClick={() => {
+                  setStage('idle');
+                  setAnalysis(null);
+                }}
+                variant="outline"
+                className="w-full"
+              >
+                Test Again
+              </Button>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card className="border-2 border-orange-100 bg-orange-50">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-orange-900 text-sm">
+            <AlertTriangle className="w-5 h-5" />
+            How It Works
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="text-xs space-y-2 text-orange-800">
+          <p>• <strong>DNA Extraction:</strong> Saliva particles in your breath contain epithelial cells with your unique DNA</p>
+          <p>• <strong>STR Analysis:</strong> Short Tandem Repeat markers are analyzed for identity confirmation</p>
+          <p>• <strong>Multi-Factor:</strong> Combines DNA analysis with breath temperature, humidity, and protein markers</p>
+          <p>• <strong>Secure:</strong> Results are never stored - only verified against your registered biometric template</p>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
