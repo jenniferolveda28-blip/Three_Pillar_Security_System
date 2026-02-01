@@ -225,9 +225,10 @@ export default function Dashboard() {
               <ApiPlayground universes={universes} />
             </div>
             <CriminalActivityMonitor />
+            <SecureAPIKeyManager keys={keys} />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <KeyRotationDisplay keys={keys} />
               <AlertNotificationCenter />
+              <KeyRotationDisplay keys={keys} />
             </div>
             <ScramblerMonitor />
             <SecurityMonitor logs={securityLogs} />
