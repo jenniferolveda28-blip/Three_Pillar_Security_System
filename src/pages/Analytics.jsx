@@ -40,24 +40,24 @@ export default function Analytics() {
     : 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       <div className="max-w-7xl mx-auto p-6">
         {/* Header */}
         <div className="mb-8">
           <Link to={createPageUrl('Dashboard')}>
-            <Button variant="ghost" className="mb-4">
+            <Button variant="ghost" className="mb-4 text-slate-300 hover:text-slate-100 hover:bg-slate-800">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Dashboard
             </Button>
           </Link>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl">
+              <div className="p-3 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl shadow-lg shadow-cyan-500/50">
                 <BarChart3 className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold text-gray-900">Analytics Dashboard</h1>
-                <p className="text-gray-600">Comprehensive insights and metrics</p>
+                <h1 className="text-4xl font-bold gradient-text">Analytics Dashboard</h1>
+                <p className="text-slate-400">Comprehensive insights and metrics</p>
               </div>
             </div>
             <div className="flex gap-2">
