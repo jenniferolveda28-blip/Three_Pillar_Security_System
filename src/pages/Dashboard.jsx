@@ -24,6 +24,7 @@ import CircuitBreakerMonitor from '../components/api/CircuitBreakerMonitor';
 import EmergencyProtocol from '../components/security/EmergencyProtocol';
 import CriminalActivityMonitor from '../components/security/CriminalActivityMonitor';
 import AlertNotificationCenter from '../components/security/AlertNotificationCenter';
+import ScramblerMonitor from '../components/security/ScramblerMonitor';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -217,6 +218,7 @@ export default function Dashboard() {
               <KeyRotationDisplay keys={keys} />
               <AlertNotificationCenter />
             </div>
+            <ScramblerMonitor />
             <SecurityMonitor logs={securityLogs} />
           </TabsContent>
         </Tabs>
