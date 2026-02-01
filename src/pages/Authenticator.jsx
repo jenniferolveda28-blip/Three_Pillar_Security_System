@@ -3,12 +3,15 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Shield, Link2, CreditCard, Key, ArrowLeft } from "lucide-react";
+import { Shield, Link2, CreditCard, Key, ArrowLeft, Wind } from "lucide-react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import TokenRegistrationForm from '../components/authenticator/TokenRegistrationForm';
 import LinkedAccountsList from '../components/authenticator/LinkedAccountsList';
 import SubscriptionManager from '../components/authenticator/SubscriptionManager';
+import HardwareTokenManager from '../components/authenticator/HardwareTokenManager';
+import AccountRecoveryPanel from '../components/authenticator/AccountRecoveryPanel';
+import BreathalyzerVerification from '../components/authenticator/BreathalyzerVerification';
 
 export default function Authenticator() {
   const [activeTab, setActiveTab] = useState('register');
@@ -26,6 +29,11 @@ export default function Authenticator() {
   const { data: subscriptions = [], refetch: refetchSubscriptions } = useQuery({
     queryKey: ['subscriptions'],
     queryFn: () => base44.entities.Subscription.list('-created_date'),
+  });
+
+  const { data: hardwareTokens = [], refetch: refetchHardwareTokens } = useQuery({
+    queryKey: ['hardwareTokens'],
+    queryFn: () => base44.entities.HardwareToken.list('-created_date'),
   });
 
   return (
@@ -96,7 +104,19 @@ export default function Authenticator() {
               <CreditCard className="w-4 h-4" />
               Subscription
             </TabsTrigger>
-          </TabsList>
+            <TabsTrigger value="hardware" className="flex items-center gap-2">
+              <Shield className="w-4 h-4" />
+              Hardware Tokens
+            </TabsTrigger>
+            <TabsTrigger value="recovery" className="flex items-center gap-2">
+              <Shield className="w-4 h-4" />
+              Recovery
+            </TabsTrigger>
+            <TabsTrigger value="breathalyzer" className="flex items-center gap-2">
+              <Wind className="w-4 h-4" />
+              Breathalyzer
+            </TabsTrigger>
+            </TabsList>
 
           <TabsContent value="register">
             <TokenRegistrationForm onRegistered={() => refetchTokens()} tokens={tokens} />
@@ -109,7 +129,24 @@ export default function Authenticator() {
           <TabsContent value="subscription">
             <SubscriptionManager subscriptions={subscriptions} onUpdate={() => refetchSubscriptions()} />
           </TabsContent>
-        </Tabs>
+
+          <TabsContent value="hardware">
+            <HardwareTokenManager tokens={hardwareTokens} onUpdate={() => refetchHardwareTokens()} />
+          </TabsContent>
+
+          <TabsContent value="recovery">
+            <AccountRecoveryPanel accounts={linkedAccounts} onUpdate={() => refetchAccounts()} />
+          </TabsContent>
+
+          <TabsContent value="breathalyzer">
+            <BreathalyzerVerification 
+              token={tokens[0]} 
+              onVerificationComplete={(analysis) => {
+                console.log('Verification complete:', analysis);
+              }}
+            />
+          </TabsContent>
+          </Tabs>
       </div>
     </div>
   );

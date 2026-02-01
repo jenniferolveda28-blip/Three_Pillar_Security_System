@@ -14,6 +14,7 @@ import SecurityMonitor from '../components/security/SecurityMonitor';
 import HardwareTokenDisplay from '../components/security/HardwareTokenDisplay';
 import FluctuatingKeyVisualizer from '../components/security/FluctuatingKeyVisualizer';
 import AddUniverseForm from '../components/dashboard/AddUniverseForm';
+import UniverseHealthMonitor from '../components/dashboard/UniverseHealthMonitor';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -178,6 +179,7 @@ export default function Dashboard() {
               {hardwareTokens[0] && <HardwareTokenDisplay token={hardwareTokens[0]} />}
               <FluctuatingKeyVisualizer />
             </div>
+            <UniverseHealthMonitor universes={universes} onUpdate={() => refetchUniverses()} />
             <KeyRotationDisplay keys={keys} />
             <SecurityMonitor logs={securityLogs} />
           </TabsContent>
