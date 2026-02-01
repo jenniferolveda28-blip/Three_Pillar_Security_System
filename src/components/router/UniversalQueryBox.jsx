@@ -30,7 +30,7 @@ export default function UniversalQueryBox({ onRequestCreated }) {
         fallback_used: response.data.fallback_used || false
       });
 
-      toast.success(`Routed to ${response.data.universe}!`);
+      toast.success(`✓ Routed to ${response.data.universe}! Check History tab for results.`);
       setIntent('');
       if (onRequestCreated) onRequestCreated(request);
     } catch (error) {
