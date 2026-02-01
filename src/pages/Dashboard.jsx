@@ -160,44 +160,44 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="universes">
-            <div className="mb-4 flex justify-between items-center">
-              <h3 className="text-lg font-semibold">Connected API Universes</h3>
-              <Button 
-                onClick={() => setShowAddUniverse(!showAddUniverse)}
-                className="bg-indigo-600 hover:bg-indigo-700"
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                Add Universe
-              </Button>
-            </div>
+             <div className="mb-4 flex justify-between items-center">
+               <h3 className="text-lg font-semibold text-slate-100">Connected API Universes</h3>
+               <Button 
+                 onClick={() => setShowAddUniverse(!showAddUniverse)}
+                 className="bg-cyan-600 hover:bg-cyan-700"
+               >
+                 <Plus className="w-4 h-4 mr-2" />
+                 Add Universe
+               </Button>
+             </div>
 
-            {showAddUniverse && (
-              <div className="mb-6">
-                <AddUniverseForm 
-                  onUniverseAdded={() => {
-                    refetchUniverses();
-                    setShowAddUniverse(false);
-                  }}
-                  onCancel={() => setShowAddUniverse(false)}
-                />
-              </div>
-            )}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {universes.map((universe) => (
-                <UniverseCard key={universe.id} universe={universe} />
-              ))}
-              {universes.length === 0 && (
-                <div className="col-span-full bg-white rounded-xl p-12 text-center border-2 border-dashed border-gray-200">
-                  <Globe className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                  <p className="text-gray-600 mb-4">No universes connected yet</p>
-                  <Button className="bg-indigo-600 hover:bg-indigo-700">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Connect Your First Universe
-                  </Button>
-                </div>
-              )}
-            </div>
-          </TabsContent>
+             {showAddUniverse && (
+               <div className="mb-6">
+                 <AddUniverseForm 
+                   onUniverseAdded={() => {
+                     refetchUniverses();
+                     setShowAddUniverse(false);
+                   }}
+                   onCancel={() => setShowAddUniverse(false)}
+                 />
+               </div>
+             )}
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+               {universes.map((universe) => (
+                 <UniverseCard key={universe.id} universe={universe} />
+               ))}
+               {universes.length === 0 && (
+                 <div className="col-span-full multi-layer-card border rounded-xl p-12 text-center border-dashed border-slate-700 bg-slate-800/40">
+                   <Globe className="w-16 h-16 text-slate-500 mx-auto mb-4" />
+                   <p className="text-slate-400 mb-4">No universes connected yet</p>
+                   <Button className="bg-cyan-600 hover:bg-cyan-700">
+                     <Plus className="w-4 h-4 mr-2" />
+                     Connect Your First Universe
+                   </Button>
+                 </div>
+               )}
+             </div>
+           </TabsContent>
 
           <TabsContent value="history">
             <RequestHistory requests={requests} />
