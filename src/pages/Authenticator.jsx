@@ -33,23 +33,23 @@ export default function Authenticator() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <div className="max-w-6xl mx-auto p-6">
         {/* Header */}
         <div className="mb-8">
           <Link to={createPageUrl('Dashboard')}>
-            <Button variant="ghost" className="mb-4">
+            <Button variant="ghost" className="mb-4 text-slate-300 hover:text-slate-100 hover:bg-slate-800">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Dashboard
             </Button>
           </Link>
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-3 bg-purple-600 rounded-xl">
+            <div className="p-3 bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl shadow-lg shadow-violet-500/50">
               <Shield className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-gray-900">BioVerify (BVFY)</h1>
-              <p className="text-gray-600">Your biometric security that can't be hacked or stolen</p>
+              <h1 className="text-4xl font-bold gradient-text">BioVerify (BVFY)</h1>
+              <p className="text-slate-400">Your biometric security that can't be hacked or stolen</p>
             </div>
           </div>
         </div>
