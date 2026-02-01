@@ -3,7 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Plus, Sparkles, Globe, History, Key } from "lucide-react";
+import { Plus, Sparkles, Globe, History, Key, Link2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { createPageUrl } from "../utils";
 import UniverseCard from '../components/dashboard/UniverseCard';
 import UniversalQueryBox from '../components/router/UniversalQueryBox';
 import RequestHistory from '../components/router/RequestHistory';
@@ -45,14 +47,22 @@ export default function Dashboard() {
       <div className="max-w-7xl mx-auto p-6">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-3 bg-indigo-600 rounded-xl">
-              <Sparkles className="w-8 h-8 text-white" />
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-indigo-600 rounded-xl">
+                <Sparkles className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h1 className="text-4xl font-bold text-gray-900">Universal API Router</h1>
+                <p className="text-gray-600">DNA-secured intelligent routing to any API</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-4xl font-bold text-gray-900">Universal API Router</h1>
-              <p className="text-gray-600">One interface. Zero complexity. Infinite possibilities.</p>
-            </div>
+            <Link to={createPageUrl('Authenticator')}>
+              <Button variant="outline">
+                <Link2 className="w-4 h-4 mr-2" />
+                DNA Authenticator
+              </Button>
+            </Link>
           </div>
         </div>
 
