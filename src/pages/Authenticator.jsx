@@ -56,31 +56,31 @@ export default function Authenticator() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-white rounded-xl p-6 border-2 border-purple-100">
+          <div className="multi-layer-card card-layer-monitoring rounded-xl p-6 border">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">BioVerify Devices</p>
-                <p className="text-3xl font-bold text-purple-600">{tokens.length}</p>
+                <p className="text-sm text-slate-400">BioVerify Devices</p>
+                <p className="text-3xl font-bold text-violet-400">{tokens.length}</p>
               </div>
-              <Key className="w-10 h-10 text-purple-200" />
+              <Key className="w-10 h-10 text-violet-500/50 glow-pulse" />
             </div>
           </div>
-          <div className="bg-white rounded-xl p-6 border-2 border-blue-100">
+          <div className="multi-layer-card card-layer-auth rounded-xl p-6 border">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Linked Accounts</p>
-                <p className="text-3xl font-bold text-blue-600">{linkedAccounts.length}</p>
+                <p className="text-sm text-slate-400">Linked Accounts</p>
+                <p className="text-3xl font-bold text-cyan-400">{linkedAccounts.length}</p>
               </div>
-              <Link2 className="w-10 h-10 text-blue-200" />
+              <Link2 className="w-10 h-10 text-cyan-500/50 glow-pulse" />
             </div>
           </div>
-          <div className="bg-white rounded-xl p-6 border-2 border-green-100">
+          <div className="multi-layer-card card-layer-data rounded-xl p-6 border">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Active Subscriptions</p>
-                <p className="text-3xl font-bold text-green-600">{subscriptions.filter(s => s.status === 'active').length}</p>
+                <p className="text-sm text-slate-400">Active Subscriptions</p>
+                <p className="text-3xl font-bold text-emerald-400">{subscriptions.filter(s => s.status === 'active').length}</p>
               </div>
-              <CreditCard className="w-10 h-10 text-green-200" />
+              <CreditCard className="w-10 h-10 text-emerald-500/50 glow-pulse" />
             </div>
           </div>
         </div>
