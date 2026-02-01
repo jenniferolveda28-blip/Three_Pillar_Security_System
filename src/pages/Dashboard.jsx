@@ -22,6 +22,8 @@ import BiometricLayerVisualizer from '../components/security/BiometricLayerVisua
 import ApiPlayground from '../components/api/ApiPlayground';
 import CircuitBreakerMonitor from '../components/api/CircuitBreakerMonitor';
 import EmergencyProtocol from '../components/security/EmergencyProtocol';
+import CriminalActivityMonitor from '../components/security/CriminalActivityMonitor';
+import AlertNotificationCenter from '../components/security/AlertNotificationCenter';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -210,7 +212,11 @@ export default function Dashboard() {
               <CircuitBreakerMonitor universes={universes} />
               <ApiPlayground universes={universes} />
             </div>
-            <KeyRotationDisplay keys={keys} />
+            <CriminalActivityMonitor />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <KeyRotationDisplay keys={keys} />
+              <AlertNotificationCenter />
+            </div>
             <SecurityMonitor logs={securityLogs} />
           </TabsContent>
         </Tabs>
