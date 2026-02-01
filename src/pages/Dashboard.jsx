@@ -25,6 +25,7 @@ import EmergencyProtocol from '../components/security/EmergencyProtocol';
 import CriminalActivityMonitor from '../components/security/CriminalActivityMonitor';
 import AlertNotificationCenter from '../components/security/AlertNotificationCenter';
 import ScramblerMonitor from '../components/security/ScramblerMonitor';
+import APIThreatMonitor from '../components/security/APIThreatMonitor';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
