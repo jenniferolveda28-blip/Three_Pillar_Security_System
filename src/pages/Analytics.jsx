@@ -88,40 +88,40 @@ export default function Analytics() {
 
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white rounded-xl p-6 border-2 border-blue-100">
+          <div className="multi-layer-card card-layer-auth rounded-xl p-6 border">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Total API Calls</p>
-                <p className="text-3xl font-bold text-blue-600">{totalCalls}</p>
+                <p className="text-sm text-slate-400">Total API Calls</p>
+                <p className="text-3xl font-bold text-cyan-400">{totalCalls}</p>
               </div>
-              <BarChart3 className="w-10 h-10 text-blue-200" />
+              <BarChart3 className="w-10 h-10 text-cyan-500/50 glow-pulse" />
             </div>
           </div>
-          <div className="bg-white rounded-xl p-6 border-2 border-green-100">
+          <div className="multi-layer-card card-layer-data rounded-xl p-6 border">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Success Rate</p>
-                <p className="text-3xl font-bold text-green-600">{successRate}%</p>
+                <p className="text-sm text-slate-400">Success Rate</p>
+                <p className="text-3xl font-bold text-emerald-400">{successRate}%</p>
               </div>
-              <Activity className="w-10 h-10 text-green-200" />
+              <Activity className="w-10 h-10 text-emerald-500/50 glow-pulse" />
             </div>
           </div>
-          <div className="bg-white rounded-xl p-6 border-2 border-purple-100">
+          <div className="multi-layer-card card-layer-monitoring rounded-xl p-6 border">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Avg Latency</p>
-                <p className="text-3xl font-bold text-purple-600">{avgLatency}ms</p>
+                <p className="text-sm text-slate-400">Avg Latency</p>
+                <p className="text-3xl font-bold text-violet-400">{avgLatency}ms</p>
               </div>
-              <Activity className="w-10 h-10 text-purple-200" />
+              <Activity className="w-10 h-10 text-violet-500/50 glow-pulse" />
             </div>
           </div>
-          <div className="bg-white rounded-xl p-6 border-2 border-orange-100">
+          <div className="multi-layer-card card-layer-scramble rounded-xl p-6 border">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Auth Attempts</p>
-                <p className="text-3xl font-bold text-orange-600">{authMetrics.length}</p>
+                <p className="text-sm text-slate-400">Auth Attempts</p>
+                <p className="text-3xl font-bold text-amber-400">{authMetrics.length}</p>
               </div>
-              <UserCheck className="w-10 h-10 text-orange-200" />
+              <UserCheck className="w-10 h-10 text-amber-500/50 glow-pulse" />
             </div>
           </div>
         </div>
