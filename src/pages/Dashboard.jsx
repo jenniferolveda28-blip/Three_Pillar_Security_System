@@ -24,6 +24,7 @@ import CircuitBreakerMonitor from '../components/api/CircuitBreakerMonitor';
 import EmergencyProtocol from '../components/security/EmergencyProtocol';
 import CriminalActivityMonitor from '../components/security/CriminalActivityMonitor';
 import AlertNotificationCenter from '../components/security/AlertNotificationCenter';
+import SecuritySystemIntegrityMonitor from '../components/security/SecuritySystemIntegrityMonitor';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -212,6 +213,7 @@ export default function Dashboard() {
               <CircuitBreakerMonitor universes={universes} />
               <ApiPlayground universes={universes} />
             </div>
+            <SecuritySystemIntegrityMonitor />
             <CriminalActivityMonitor />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <KeyRotationDisplay keys={keys} />
