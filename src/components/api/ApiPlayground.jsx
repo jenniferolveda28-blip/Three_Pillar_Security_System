@@ -43,62 +43,63 @@ export default function ApiPlayground({ universes = [] }) {
   };
 
   return (
-    <Card className="border-2 border-blue-200">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Code className="w-5 h-5 text-blue-600" />
+    <Card className="multi-layer-card card-layer-auth border bg-slate-800/50">
+      <CardHeader className="border-b border-slate-700">
+        <CardTitle className="flex items-center gap-2 text-slate-100">
+          <Code className="w-5 h-5 text-cyan-400" />
           API Playground
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="text-sm font-medium mb-2 block">Universe</label>
+            <label className="text-sm font-medium mb-2 block text-slate-300">Universe</label>
             <Select value={selectedUniverse} onValueChange={setSelectedUniverse}>
-              <SelectTrigger>
+              <SelectTrigger className="bg-slate-700 border-slate-600 text-slate-100">
                 <SelectValue placeholder="Select Universe" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-slate-700 border-slate-600">
                 {universes.map((u) => (
                   <SelectItem key={u.id} value={u.id}>{u.name}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
-          </div>
+            </div>
 
-          <div>
-            <label className="text-sm font-medium mb-2 block">Method</label>
+            <div>
+            <label className="text-sm font-medium mb-2 block text-slate-300">Method</label>
             <Select value={method} onValueChange={setMethod}>
-              <SelectTrigger>
+              <SelectTrigger className="bg-slate-700 border-slate-600 text-slate-100">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-slate-700 border-slate-600">
                 <SelectItem value="GET">GET</SelectItem>
                 <SelectItem value="POST">POST</SelectItem>
                 <SelectItem value="PUT">PUT</SelectItem>
                 <SelectItem value="DELETE">DELETE</SelectItem>
               </SelectContent>
             </Select>
-          </div>
-        </div>
+            </div>
+            </div>
 
-        <div>
-          <label className="text-sm font-medium mb-2 block">Endpoint</label>
-          <Input
+            <div>
+            <label className="text-sm font-medium mb-2 block text-slate-300">Endpoint</label>
+            <Input
             placeholder="/api/endpoint"
             value={endpoint}
             onChange={(e) => setEndpoint(e.target.value)}
-          />
+            className="bg-slate-700 border-slate-600 text-slate-100"
+            />
         </div>
 
         {['POST', 'PUT'].includes(method) && (
           <div>
-            <label className="text-sm font-medium mb-2 block">Request Body (JSON)</label>
+            <label className="text-sm font-medium mb-2 block text-slate-300">Request Body (JSON)</label>
             <Textarea
               placeholder='{"key": "value"}'
               value={requestBody}
               onChange={(e) => setRequestBody(e.target.value)}
-              className="font-mono text-sm h-24"
+              className="font-mono text-sm h-24 bg-slate-700 border-slate-600 text-slate-100"
             />
           </div>
         )}
@@ -122,18 +123,18 @@ export default function ApiPlayground({ universes = [] }) {
         </Button>
 
         {response && (
-          <div className="border-2 border-gray-200 rounded-lg p-4 bg-gray-50">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-sm font-semibold">Response</p>
-              <Badge className={response.status === 200 ? 'bg-green-600' : 'bg-red-600'}>
-                {response.status} {response.statusText}
-              </Badge>
-            </div>
-            <pre className="bg-gray-900 text-green-400 p-3 rounded text-xs overflow-x-auto">
-              {JSON.stringify(response.data, null, 2)}
-            </pre>
-          </div>
-        )}
+           <div className="border border-slate-700 rounded-lg p-4 bg-slate-900/50">
+             <div className="flex items-center justify-between mb-3">
+               <p className="text-sm font-semibold text-slate-100">Response</p>
+               <Badge className={response.status === 200 ? 'bg-emerald-900/30 text-emerald-400' : 'bg-red-900/30 text-red-400'}>
+                 {response.status} {response.statusText}
+               </Badge>
+             </div>
+             <pre className="bg-slate-950 text-emerald-400 p-3 rounded text-xs overflow-x-auto border border-slate-700">
+               {JSON.stringify(response.data, null, 2)}
+             </pre>
+           </div>
+         )}
       </CardContent>
     </Card>
   );
