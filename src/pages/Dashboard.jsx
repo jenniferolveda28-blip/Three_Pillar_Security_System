@@ -53,8 +53,8 @@ export default function Dashboard() {
                 <Sparkles className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold text-gray-900">Little Lumi</h1>
-                <p className="text-gray-600">Your luminescent DNA-secured gateway to any API</p>
+                <h1 className="text-4xl font-bold text-gray-900">Forged API</h1>
+                <p className="text-gray-600">Your DNA-secured gateway to any API</p>
               </div>
             </div>
             <Link to={createPageUrl('Authenticator')}>
