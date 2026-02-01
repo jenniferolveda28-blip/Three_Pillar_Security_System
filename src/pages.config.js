@@ -47,13 +47,15 @@
  *
  * The mainPage value must match a key in the PAGES object exactly.
  */
-import Dashboard from './pages/Dashboard';
 import Authenticator from './pages/Authenticator';
+import Dashboard from './pages/Dashboard';
+import Analytics from './pages/Analytics';
 
 
 export const PAGES = {
-    "Dashboard": Dashboard,
     "Authenticator": Authenticator,
+    "Dashboard": Dashboard,
+    "Analytics": Analytics,
 }
 
 export const pagesConfig = {
