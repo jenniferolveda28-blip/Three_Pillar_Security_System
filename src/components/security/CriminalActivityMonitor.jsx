@@ -49,92 +49,93 @@ export default function CriminalActivityMonitor() {
   };
 
   const severityConfig = {
-    low: { color: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-300' },
-    medium: { color: 'text-yellow-600', bg: 'bg-yellow-50', border: 'border-yellow-300' },
-    high: { color: 'text-orange-600', bg: 'bg-orange-50', border: 'border-orange-300' },
-    critical: { color: 'text-red-600', bg: 'bg-red-50', border: 'border-red-300' },
-    emergency: { color: 'text-red-900', bg: 'bg-red-100', border: 'border-red-500' }
+    low: { color: 'text-blue-400', bg: 'bg-blue-900/20', border: 'border-blue-700' },
+    medium: { color: 'text-yellow-400', bg: 'bg-yellow-900/20', border: 'border-yellow-700' },
+    high: { color: 'text-orange-400', bg: 'bg-orange-900/20', border: 'border-orange-700' },
+    critical: { color: 'text-red-400', bg: 'bg-red-900/20', border: 'border-red-700' },
+    emergency: { color: 'text-red-300', bg: 'bg-red-900/40', border: 'border-red-600' }
   };
 
   return (
     <div className="space-y-6">
       {/* Status Overview */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="border-2 border-red-300 bg-red-50">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Critical Alerts</p>
-                <p className="text-3xl font-bold text-red-600">{criticalAlerts.length}</p>
-              </div>
-              <AlertTriangle className="w-8 h-8 text-red-400 animate-pulse" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="border-2 border-orange-300 bg-orange-50">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Open Alerts</p>
-                <p className="text-3xl font-bold text-orange-600">{openAlerts.length}</p>
-              </div>
-              <Eye className="w-8 h-8 text-orange-400" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="border-2 border-green-300 bg-green-50">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Auto-Blocked</p>
-                <p className="text-3xl font-bold text-green-600">{autoBlocked}</p>
-              </div>
-              <Ban className="w-8 h-8 text-green-400" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="border-2 border-purple-300 bg-purple-50">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Authorities Notified</p>
-                <p className="text-3xl font-bold text-purple-600">{authoritiesNotified}</p>
-              </div>
-              <Phone className="w-8 h-8 text-purple-400" />
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+         <Card className="multi-layer-card card-layer-threat border">
+           <CardContent className="p-4">
+             <div className="flex items-center justify-between">
+               <div>
+                 <p className="text-sm text-slate-400">Critical Alerts</p>
+                 <p className="text-3xl font-bold text-red-400">{criticalAlerts.length}</p>
+               </div>
+               <AlertTriangle className="w-8 h-8 text-red-500 animate-pulse" />
+             </div>
+           </CardContent>
+         </Card>
+         <Card className="multi-layer-card card-layer-scramble border">
+           <CardContent className="p-4">
+             <div className="flex items-center justify-between">
+               <div>
+                 <p className="text-sm text-slate-400">Open Alerts</p>
+                 <p className="text-3xl font-bold text-orange-400">{openAlerts.length}</p>
+               </div>
+               <Eye className="w-8 h-8 text-orange-500" />
+             </div>
+           </CardContent>
+         </Card>
+         <Card className="multi-layer-card card-layer-data border">
+           <CardContent className="p-4">
+             <div className="flex items-center justify-between">
+               <div>
+                 <p className="text-sm text-slate-400">Auto-Blocked</p>
+                 <p className="text-3xl font-bold text-emerald-400">{autoBlocked}</p>
+               </div>
+               <Ban className="w-8 h-8 text-emerald-500" />
+             </div>
+           </CardContent>
+         </Card>
+         <Card className="multi-layer-card card-layer-monitoring border">
+           <CardContent className="p-4">
+             <div className="flex items-center justify-between">
+               <div>
+                 <p className="text-sm text-slate-400">Authorities Notified</p>
+                 <p className="text-3xl font-bold text-violet-400">{authoritiesNotified}</p>
+               </div>
+               <Phone className="w-8 h-8 text-violet-500" />
+             </div>
+           </CardContent>
+         </Card>
+       </div>
 
       {/* Auto-Response Toggle */}
-      <Card className="border-2 border-indigo-200">
-        <CardContent className="p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Shield className="w-6 h-6 text-indigo-600" />
-              <div>
-                <p className="font-semibold">Automatic Response System</p>
-                <p className="text-sm text-gray-600">Auto-block suspicious activity and notify authorities</p>
-              </div>
-            </div>
-            <Button
-              variant={autoResponse ? "default" : "outline"}
-              onClick={() => {
-                setAutoResponse(!autoResponse);
-                toast.success(`Auto-response ${!autoResponse ? 'enabled' : 'disabled'}`);
-              }}
-            >
-              {autoResponse ? 'ACTIVE' : 'INACTIVE'}
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+       <Card className="multi-layer-card card-layer-monitoring border bg-slate-800/50">
+         <CardContent className="p-4">
+           <div className="flex items-center justify-between">
+             <div className="flex items-center gap-3">
+               <Shield className="w-6 h-6 text-violet-400" />
+               <div>
+                 <p className="font-semibold text-slate-100">Automatic Response System</p>
+                 <p className="text-sm text-slate-400">Auto-block suspicious activity and notify authorities</p>
+               </div>
+             </div>
+             <Button
+               variant={autoResponse ? "default" : "outline"}
+               onClick={() => {
+                 setAutoResponse(!autoResponse);
+                 toast.success(`Auto-response ${!autoResponse ? 'enabled' : 'disabled'}`);
+               }}
+               className={autoResponse ? 'bg-violet-600 hover:bg-violet-700' : 'border-slate-600 text-slate-300 hover:bg-slate-700'}
+             >
+               {autoResponse ? 'ACTIVE' : 'INACTIVE'}
+             </Button>
+           </div>
+         </CardContent>
+       </Card>
 
       {/* Alert List */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <AlertTriangle className="w-5 h-5 text-red-600" />
+      <Card className="multi-layer-card card-layer-threat border bg-slate-800/50">
+        <CardHeader className="border-b border-slate-700">
+          <CardTitle className="flex items-center gap-2 text-slate-100">
+            <AlertTriangle className="w-5 h-5 text-red-400" />
             Criminal Activity Alerts
           </CardTitle>
         </CardHeader>
@@ -168,10 +169,10 @@ export default function CriminalActivityMonitor() {
                         )}
                       </div>
                       
-                      <div className="text-sm text-gray-700 space-y-1">
-                        <p><strong>User:</strong> {alert.user_identifier || 'Unknown'}</p>
-                        <p><strong>IP:</strong> {alert.ip_address || 'Unknown'}</p>
-                        <p><strong>Confidence:</strong> {alert.confidence_score}% - AI detected suspicious pattern</p>
+                      <div className="text-sm text-slate-300 space-y-1">
+                         <p><strong>User:</strong> {alert.user_identifier || 'Unknown'}</p>
+                         <p><strong>IP:</strong> {alert.ip_address || 'Unknown'}</p>
+                         <p><strong>Confidence:</strong> {alert.confidence_score}% - AI detected suspicious pattern</p>
                         {alert.indicators && alert.indicators.length > 0 && (
                           <div>
                             <strong>Indicators:</strong>
@@ -219,8 +220,8 @@ export default function CriminalActivityMonitor() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-3 border-t">
-                    <span className="text-xs text-gray-500">
+                  <div className="flex items-center justify-between pt-3 border-t border-slate-700">
+                    <span className="text-xs text-slate-500">
                       Detected {new Date(alert.created_date).toLocaleString()}
                     </span>
                     <Badge variant="outline" className="capitalize">
@@ -232,24 +233,24 @@ export default function CriminalActivityMonitor() {
             })}
 
             {alerts.length === 0 && (
-              <div className="text-center py-12">
-                <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                <p className="text-gray-600 font-semibold">No Criminal Activity Detected</p>
-                <p className="text-sm text-gray-500 mt-2">System is secure and monitoring 24/7</p>
-              </div>
-            )}
+               <div className="text-center py-12">
+                 <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
+                 <p className="text-slate-100 font-semibold">No Criminal Activity Detected</p>
+                 <p className="text-sm text-slate-400 mt-2">System is secure and monitoring 24/7</p>
+               </div>
+             )}
           </div>
         </CardContent>
       </Card>
 
       {/* Emergency Contact Info */}
-      <Card className="border-2 border-red-200 bg-red-50">
+      <Card className="multi-layer-card card-layer-threat border bg-red-900/20">
         <CardContent className="p-4">
           <div className="flex items-start gap-3">
-            <Phone className="w-6 h-6 text-red-600 mt-1" />
+            <Phone className="w-6 h-6 text-red-400 mt-1" />
             <div>
-              <p className="font-bold text-red-900 mb-2">🚨 Emergency Security Protocol</p>
-              <div className="text-sm text-red-800 space-y-1">
+              <p className="font-bold text-red-300 mb-2">🚨 Emergency Security Protocol</p>
+              <div className="text-sm text-red-200 space-y-1">
                 <p>• Automatic blocking enabled for high-confidence criminal activity</p>
                 <p>• Law enforcement notification for critical threats</p>
                 <p>• All suspicious activity logged for forensic analysis</p>
