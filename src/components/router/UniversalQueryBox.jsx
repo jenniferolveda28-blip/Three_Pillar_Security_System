@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Sparkles, Loader2, ArrowRight } from "lucide-react";
+import { Sparkles, Loader2, ArrowRight, AlertTriangle } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { toast } from "sonner";
 
 export default function UniversalQueryBox({ onRequestCreated }) {
   const [intent, setIntent] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [threatLevel, setThreatLevel] = useState(0);
+  const [isBlocked, setIsBlocked] = useState(false);
+
+  // Security thresholds
+  const THREAT_THRESHOLD = 85;
 
   const handleSubmit = async () => {
     if (!intent.trim()) {
