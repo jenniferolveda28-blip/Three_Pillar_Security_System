@@ -44,8 +44,8 @@ export default function Authenticator() {
               <Shield className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-gray-900">DNA Authenticator</h1>
-              <p className="text-gray-600">Biometric security that can't be hacked or stolen</p>
+              <h1 className="text-4xl font-bold text-gray-900">Little Lumi Authenticator</h1>
+              <p className="text-gray-600">Your luminescent biometric security that can't be hacked or stolen</p>
             </div>
           </div>
         </div>
