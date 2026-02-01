@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3 } from "lucide-react";
+import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import UniverseCard from '../components/dashboard/UniverseCard';
@@ -72,7 +72,7 @@ export default function Dashboard() {
                 <p className="text-slate-400">Your DNA-secured gateway to any API</p>
               </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
                <Link to={createPageUrl('Analytics')}>
                  <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
                    <BarChart3 className="w-4 h-4 mr-2" />
@@ -83,6 +83,18 @@ export default function Dashboard() {
                  <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
                    <Link2 className="w-4 h-4 mr-2" />
                    BioVerify
+                 </Button>
+               </Link>
+               <Link to={createPageUrl('ActivityLogs')}>
+                 <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
+                   <History className="w-4 h-4 mr-2" />
+                   Logs
+                 </Button>
+               </Link>
+               <Link to={createPageUrl('UserManagement')}>
+                 <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
+                   <Shield className="w-4 h-4 mr-2" />
+                   Users
                  </Button>
                </Link>
              </div>
