@@ -96,12 +96,41 @@ export default function UniversalQueryBox({ onRequestCreated }) {
   };
 
   return (
-    <Card className="p-6 bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
+    <Card className={`p-6 border-2 ${isBlocked ? 'bg-red-900/20 border-red-600' : 'multi-layer-card card-layer-auth border'}`}>
       <div className="space-y-4">
-        <div className="flex items-center gap-2 text-indigo-900">
-          <Sparkles className="w-5 h-5" />
-          <h3 className="font-semibold">Universal Request</h3>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-cyan-400" />
+            <h3 className="font-semibold text-slate-100">Universal Request</h3>
+          </div>
+          {threatLevel > 0 && (
+            <div className="flex items-center gap-2">
+              <div className={`h-2 w-16 rounded-full ${threatLevel >= 85 ? 'bg-red-600' : threatLevel >= 60 ? 'bg-orange-600' : 'bg-green-600'}`}></div>
+              <span className={`text-xs font-semibold ${threatLevel >= 85 ? 'text-red-400' : threatLevel >= 60 ? 'text-orange-400' : 'text-green-400'}`}>
+                {threatLevel.toFixed(0)}%
+              </span>
+            </div>
+          )}
         </div>
+        
+        {isBlocked && (
+          <div className="bg-red-900/40 border border-red-600/50 rounded p-3 flex gap-2 items-start">
+            <AlertTriangle className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
+            <div className="text-sm text-red-300">
+              <p className="font-semibold">🚨 API BLOCKED</p>
+              <p className="text-xs mt-1">Critical threat detected. Security report auto-generated and sent to admin.</p>
+            </div>
+          </div>
+        )}
+
+        {threatLevel >= 60 && threatLevel < 85 && (
+          <div className="bg-orange-900/40 border border-orange-600/50 rounded p-3 flex gap-2 items-start">
+            <AlertTriangle className="w-4 h-4 text-orange-400 mt-0.5 flex-shrink-0" />
+            <div className="text-sm text-orange-300">
+              Approaching security threshold. Reduce request volume.
+            </div>
+          </div>
+        )}
         
         <Textarea
           placeholder="Just tell me what you want... 
@@ -113,19 +142,24 @@ Examples:
 • Get Bitcoin price"
           value={intent}
           onChange={(e) => setIntent(e.target.value)}
-          className="min-h-32 bg-white"
-          disabled={isProcessing}
+          className="min-h-32 bg-slate-800 text-slate-100 border-slate-700"
+          disabled={isProcessing || isBlocked}
         />
 
         <Button 
           onClick={handleSubmit}
-          disabled={isProcessing || !intent.trim()}
-          className="w-full bg-indigo-600 hover:bg-indigo-700"
+          disabled={isProcessing || !intent.trim() || isBlocked}
+          className={`w-full ${isBlocked ? 'bg-red-900 hover:bg-red-900 cursor-not-allowed' : 'bg-cyan-600 hover:bg-cyan-700'}`}
         >
           {isProcessing ? (
             <>
               <Loader2 className="w-4 h-4 mr-2 animate-spin" />
               Routing...
+            </>
+          ) : isBlocked ? (
+            <>
+              <AlertTriangle className="w-4 h-4 mr-2" />
+              API Blocked
             </>
           ) : (
             <>
