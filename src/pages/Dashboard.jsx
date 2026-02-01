@@ -7,6 +7,8 @@ import { Plus, Sparkles, Globe, History, Key } from "lucide-react";
 import UniverseCard from '../components/dashboard/UniverseCard';
 import UniversalQueryBox from '../components/router/UniversalQueryBox';
 import RequestHistory from '../components/router/RequestHistory';
+import KeyRotationDisplay from '../components/security/KeyRotationDisplay';
+import SecurityMonitor from '../components/security/SecurityMonitor';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -24,6 +26,11 @@ export default function Dashboard() {
   const { data: keys = [] } = useQuery({
     queryKey: ['keys'],
     queryFn: () => base44.entities.UniversalKey.list('-created_date'),
+  });
+
+  const { data: securityLogs = [] } = useQuery({
+    queryKey: ['securityLogs'],
+    queryFn: () => base44.entities.SecurityLog.list('-created_date', 50),
   });
 
   return (
@@ -88,6 +95,10 @@ export default function Dashboard() {
               <History className="w-4 h-4" />
               History
             </TabsTrigger>
+            <TabsTrigger value="security" className="flex items-center gap-2">
+              <Key className="w-4 h-4" />
+              Security
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="router" className="space-y-6">
@@ -126,6 +137,11 @@ export default function Dashboard() {
 
           <TabsContent value="history">
             <RequestHistory requests={requests} />
+          </TabsContent>
+
+          <TabsContent value="security" className="space-y-6">
+            <KeyRotationDisplay keys={keys} />
+            <SecurityMonitor logs={securityLogs} />
           </TabsContent>
         </Tabs>
       </div>

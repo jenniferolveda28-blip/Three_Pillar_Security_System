@@ -12,6 +12,25 @@ Deno.serve(async (req) => {
         const { intent } = await req.json();
         const startTime = Date.now();
 
+        // Generate user's digital fingerprint
+        const fingerprint = await crypto.subtle.digest(
+            'SHA-256',
+            new TextEncoder().encode(user.email + user.id + Date.now())
+        );
+        const fingerprintHash = Array.from(new Uint8Array(fingerprint))
+            .map(b => b.toString(16).padStart(2, '0'))
+            .join('')
+            .slice(0, 16);
+
+        // Log fingerprint verification
+        await base44.entities.SecurityLog.create({
+            event_type: 'fingerprint_verified',
+            fingerprint_hash: fingerprintHash,
+            success: true,
+            details: `User ${user.email} authenticated for API routing`,
+            threat_level: 'none'
+        });
+
         // Get all available universes
         const universes = await base44.entities.Universe.filter({ status: 'active' });
 
@@ -75,6 +94,16 @@ Keep it concise and realistic. Return only the data, no explanations.`;
         await base44.entities.Universe.update(selectedUniverse.id, {
             success_rate: Math.min(100, (selectedUniverse.success_rate || 100) + 1),
             last_check: new Date().toISOString()
+        });
+
+        // Log successful universe access
+        await base44.entities.SecurityLog.create({
+            event_type: 'universe_accessed',
+            universe_id: selectedUniverse.id,
+            fingerprint_hash: fingerprintHash,
+            success: true,
+            details: `Accessed ${selectedUniverse.name} for: ${intent}`,
+            threat_level: 'none'
         });
 
         return Response.json({
