@@ -13,9 +13,11 @@ import KeyRotationDisplay from '../components/security/KeyRotationDisplay';
 import SecurityMonitor from '../components/security/SecurityMonitor';
 import HardwareTokenDisplay from '../components/security/HardwareTokenDisplay';
 import FluctuatingKeyVisualizer from '../components/security/FluctuatingKeyVisualizer';
+import AddUniverseForm from '../components/dashboard/AddUniverseForm';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
+  const [showAddUniverse, setShowAddUniverse] = useState(false);
 
   const { data: universes = [], refetch: refetchUniverses } = useQuery({
     queryKey: ['universes'],
@@ -130,11 +132,26 @@ export default function Dashboard() {
           <TabsContent value="universes">
             <div className="mb-4 flex justify-between items-center">
               <h3 className="text-lg font-semibold">Connected API Universes</h3>
-              <Button className="bg-indigo-600 hover:bg-indigo-700">
+              <Button 
+                onClick={() => setShowAddUniverse(!showAddUniverse)}
+                className="bg-indigo-600 hover:bg-indigo-700"
+              >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Universe
               </Button>
             </div>
+
+            {showAddUniverse && (
+              <div className="mb-6">
+                <AddUniverseForm 
+                  onUniverseAdded={() => {
+                    refetchUniverses();
+                    setShowAddUniverse(false);
+                  }}
+                  onCancel={() => setShowAddUniverse(false)}
+                />
+              </div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {universes.map((universe) => (
                 <UniverseCard key={universe.id} universe={universe} />
