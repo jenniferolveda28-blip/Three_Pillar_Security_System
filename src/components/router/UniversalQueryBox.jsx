@@ -67,21 +67,30 @@ export default function UniversalQueryBox({ onRequestCreated }) {
 
     setIsProcessing(true);
     try {
-      const response = await base44.functions.invoke('intelligentRouter', { intent });
-      
-      const request = await base44.entities.UniversalRequest.create({
-        intent,
-        routed_to: response.data.universe,
-        status: 'success',
-        response_data: response.data.result,
-        latency_ms: response.data.latency,
-        ai_reasoning: response.data.reasoning,
-        fallback_used: response.data.fallback_used || false
-      });
+        const response = await base44.functions.invoke('intelligentRouter', { intent });
 
-      toast.success(`✓ Routed to ${response.data.universe}! Check History tab for results.`);
-      setIntent('');
-      if (onRequestCreated) onRequestCreated(request);
+        const request = await base44.entities.UniversalRequest.create({
+          intent,
+          routed_to: response.data.universe,
+          status: 'success',
+          response_data: response.data.result,
+          latency_ms: response.data.latency,
+          ai_reasoning: response.data.reasoning,
+          fallback_used: response.data.fallback_used || false
+        });
+
+        // Log activity
+        await base44.functions.invoke('logActivity', {
+          action_type: 'api_call',
+          entity_type: 'UniversalRequest',
+          entity_id: request.id,
+          description: `Routed API request to ${response.data.universe}`,
+          details: { intent, universe: response.data.universe }
+        });
+
+        toast.success(`✓ Routed to ${response.data.universe}! Check History tab for results.`);
+        setIntent('');
+        if (onRequestCreated) onRequestCreated(request);
     } catch (error) {
       toast.error(error.message || 'Failed to process request');
       
