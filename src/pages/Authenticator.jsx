@@ -44,7 +44,7 @@ export default function Authenticator() {
               <Shield className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-gray-900">Forged Authenticator</h1>
+              <h1 className="text-4xl font-bold text-gray-900">BioVerify (BVFY)</h1>
               <p className="text-gray-600">Your biometric security that can't be hacked or stolen</p>
             </div>
           </div>
@@ -55,7 +55,7 @@ export default function Authenticator() {
           <div className="bg-white rounded-xl p-6 border-2 border-purple-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Registered Tokens</p>
+                <p className="text-sm text-gray-600">BioVerify Devices</p>
                 <p className="text-3xl font-bold text-purple-600">{tokens.length}</p>
               </div>
               <Key className="w-10 h-10 text-purple-200" />
@@ -86,7 +86,7 @@ export default function Authenticator() {
           <TabsList className="mb-6">
             <TabsTrigger value="register" className="flex items-center gap-2">
               <Key className="w-4 h-4" />
-              Register Token
+              Register BioVerify
             </TabsTrigger>
             <TabsTrigger value="accounts" className="flex items-center gap-2">
               <Link2 className="w-4 h-4" />

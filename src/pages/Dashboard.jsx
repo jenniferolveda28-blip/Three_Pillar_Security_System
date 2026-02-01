@@ -60,7 +60,7 @@ export default function Dashboard() {
             <Link to={createPageUrl('Authenticator')}>
               <Button variant="outline">
                 <Link2 className="w-4 h-4 mr-2" />
-                DNA Authenticator
+                BioVerify
               </Button>
             </Link>
           </div>

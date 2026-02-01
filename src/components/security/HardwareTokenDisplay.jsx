@@ -57,7 +57,7 @@ export default function HardwareTokenDisplay({ token }) {
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Smartphone className="w-6 h-6 text-indigo-300" />
-            <span>Physical Hardware Token</span>
+            <span>BioVerify Device (BVFY)</span>
           </div>
           <Badge className="bg-green-500 text-white animate-pulse">
             <Zap className="w-3 h-3 mr-1" />

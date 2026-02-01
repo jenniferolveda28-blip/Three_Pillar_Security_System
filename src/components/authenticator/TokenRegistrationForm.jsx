@@ -41,7 +41,7 @@ export default function TokenRegistrationForm({ onRegistered, tokens }) {
         verification_method: 'dna_saliva'
       });
 
-      toast.success('DNA Token registered successfully!');
+      toast.success('BioVerify device registered successfully!');
       setFormData({ token_serial: '', registered_by_email: '' });
       onRegistered();
     } catch (error) {
@@ -63,18 +63,18 @@ export default function TokenRegistrationForm({ onRegistered, tokens }) {
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Register DNA Token</CardTitle>
+          <CardTitle>Register BioVerify Device</CardTitle>
           <CardDescription>
-            Register your physical DNA breathalyzer token for unhackable biometric authentication
+            Register your physical BioVerify token for unhackable biometric authentication
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="serial">Token Serial Number</Label>
+              <Label htmlFor="serial">BioVerify Serial Number</Label>
               <Input
                 id="serial"
-                placeholder="DNA-XXXX-XXXX-XXXX"
+                placeholder="BVFY-XXXX-XXXX-XXXX"
                 value={formData.token_serial}
                 onChange={(e) => setFormData({...formData, token_serial: e.target.value})}
                 required
@@ -116,13 +116,13 @@ export default function TokenRegistrationForm({ onRegistered, tokens }) {
       {/* Registered Tokens */}
       <Card>
         <CardHeader>
-          <CardTitle>Your Registered Tokens</CardTitle>
+          <CardTitle>Your Registered BioVerify Devices</CardTitle>
         </CardHeader>
         <CardContent>
           {tokens.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
               <AlertCircle className="w-12 h-12 mx-auto mb-2 text-gray-300" />
-              <p>No tokens registered yet</p>
+              <p>No devices registered yet</p>
             </div>
           ) : (
             <div className="space-y-3">
