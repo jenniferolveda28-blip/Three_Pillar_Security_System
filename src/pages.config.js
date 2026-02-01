@@ -51,6 +51,7 @@ import Analytics from './pages/Analytics';
 import Authenticator from './pages/Authenticator';
 import Dashboard from './pages/Dashboard';
 import ActivityLogs from './pages/ActivityLogs';
+import UserManagement from './pages/UserManagement';
 import __Layout from './Layout.jsx';
 
 
@@ -59,6 +60,7 @@ export const PAGES = {
     "Authenticator": Authenticator,
     "Dashboard": Dashboard,
     "ActivityLogs": ActivityLogs,
+    "UserManagement": UserManagement,
 }
 
 export const pagesConfig = {
