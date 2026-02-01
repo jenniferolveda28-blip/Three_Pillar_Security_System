@@ -16,7 +16,6 @@ import FluctuatingKeyVisualizer from '../components/security/FluctuatingKeyVisua
 import AddUniverseForm from '../components/dashboard/AddUniverseForm';
 import RateLimitMonitor from '../components/dashboard/RateLimitMonitor';
 import UniverseHealthMonitor from '../components/dashboard/UniverseHealthMonitor';
-import UniverseHealthMonitor from '../components/dashboard/UniverseHealthMonitor';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -181,7 +180,10 @@ export default function Dashboard() {
               {hardwareTokens[0] && <HardwareTokenDisplay token={hardwareTokens[0]} />}
               <FluctuatingKeyVisualizer />
             </div>
-            <UniverseHealthMonitor universes={universes} onUpdate={() => refetchUniverses()} />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <RateLimitMonitor universes={universes} requests={requests} />
+              <UniverseHealthMonitor universes={universes} onUpdate={() => refetchUniverses()} />
+            </div>
             <KeyRotationDisplay keys={keys} />
             <SecurityMonitor logs={securityLogs} />
           </TabsContent>
