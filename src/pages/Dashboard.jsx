@@ -62,12 +62,12 @@ export default function Dashboard() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-indigo-600 rounded-xl">
+              <div className="p-3 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl shadow-lg shadow-cyan-500/50">
                 <Sparkles className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold text-gray-900">Forged API</h1>
-                <p className="text-gray-600">Your DNA-secured gateway to any API</p>
+                <h1 className="text-4xl font-bold gradient-text">Forged API</h1>
+                <p className="text-slate-400">Your DNA-secured gateway to any API</p>
               </div>
             </div>
             <div className="flex gap-2">
