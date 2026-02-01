@@ -9,6 +9,8 @@ import UniversalQueryBox from '../components/router/UniversalQueryBox';
 import RequestHistory from '../components/router/RequestHistory';
 import KeyRotationDisplay from '../components/security/KeyRotationDisplay';
 import SecurityMonitor from '../components/security/SecurityMonitor';
+import HardwareTokenDisplay from '../components/security/HardwareTokenDisplay';
+import FluctuatingKeyVisualizer from '../components/security/FluctuatingKeyVisualizer';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -31,6 +33,11 @@ export default function Dashboard() {
   const { data: securityLogs = [] } = useQuery({
     queryKey: ['securityLogs'],
     queryFn: () => base44.entities.SecurityLog.list('-created_date', 50),
+  });
+
+  const { data: hardwareTokens = [] } = useQuery({
+    queryKey: ['hardwareTokens'],
+    queryFn: () => base44.entities.HardwareToken.filter({ is_active: true }),
   });
 
   return (
@@ -140,6 +147,10 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="security" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {hardwareTokens[0] && <HardwareTokenDisplay token={hardwareTokens[0]} />}
+              <FluctuatingKeyVisualizer />
+            </div>
             <KeyRotationDisplay keys={keys} />
             <SecurityMonitor logs={securityLogs} />
           </TabsContent>
