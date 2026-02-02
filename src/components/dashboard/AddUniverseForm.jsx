@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { base44 } from "@/api/base44Client";
 import { toast } from "sonner";
 import { Globe, X, Plus } from "lucide-react";
+import { PermissionGuard } from "../permissions/PermissionGuard";
 
 export default function AddUniverseForm({ onUniverseAdded, onCancel }) {
   const [formData, setFormData] = useState({

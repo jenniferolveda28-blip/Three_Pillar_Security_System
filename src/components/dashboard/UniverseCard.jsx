@@ -1,10 +1,25 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Globe, Zap, AlertCircle, CheckCircle2, TrendingUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Globe, Zap, AlertCircle, CheckCircle2, TrendingUp, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PermissionGuard } from "../permissions/PermissionGuard";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { base44 } from "@/api/base44Client";
+import { toast } from "sonner";
 
 export default function UniverseCard({ universe }) {
+  const queryClient = useQueryClient();
+
+  const deleteMutation = useMutation({
+    mutationFn: () => base44.entities.Universe.delete(universe.id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['universes'] });
+      toast.success('Universe deleted successfully');
+    },
+  });
+
   const statusConfig = {
     active: { icon: CheckCircle2, color: "text-emerald-400", bg: "bg-emerald-900/30", border: "border-emerald-700", accent: "emerald" },
     degraded: { icon: AlertCircle, color: "text-amber-400", bg: "bg-amber-900/30", border: "border-amber-700", accent: "amber" },
@@ -27,7 +42,19 @@ export default function UniverseCard({ universe }) {
               <p className="text-xs text-slate-400 mt-1">{universe.description}</p>
             </div>
           </div>
-          <StatusIcon className={cn("w-5 h-5", config.color)} />
+          <div className="flex items-center gap-2">
+            <StatusIcon className={cn("w-5 h-5", config.color)} />
+            <PermissionGuard require="delete">
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() => deleteMutation.mutate()}
+                className="text-red-400 hover:bg-red-900/20 h-8 w-8 p-0"
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            </PermissionGuard>
+          </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
