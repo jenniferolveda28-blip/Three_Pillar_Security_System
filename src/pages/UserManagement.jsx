@@ -10,16 +10,13 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import { ArrowLeft, Shield, Edit2, Check, X } from "lucide-react";
 import { toast } from "sonner";
+import { usePermissions } from "../components/permissions/PermissionGuard";
 
 export default function UserManagement() {
   const [editingUserId, setEditingUserId] = useState(null);
   const [selectedRole, setSelectedRole] = useState({});
   const queryClient = useQueryClient();
-
-  const { data: currentUser } = useQuery({
-    queryKey: ['currentUser'],
-    queryFn: async () => base44.auth.me(),
-  });
+  const { currentUser, isAdmin } = usePermissions();
 
   const { data: users = [] } = useQuery({
     queryKey: ['users'],
@@ -49,9 +46,7 @@ export default function UserManagement() {
     viewer: 'bg-slate-700/30 text-slate-400',
   };
 
-  const isAdmin = currentUser?.role === 'admin' || currentUser?.custom_role === 'admin';
-
-  if (!isAdmin) {
+  if (!isAdmin || !currentUser) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 p-6">
         <div className="max-w-4xl mx-auto">

@@ -3,7 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, Shield } from "lucide-react";
+import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, Shield, Activity } from "lucide-react";
+import { PermissionGuard } from '../components/permissions/PermissionGuard';
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import UniverseCard from '../components/dashboard/UniverseCard';
@@ -91,10 +92,18 @@ export default function Dashboard() {
                    Logs
                  </Button>
                </Link>
-               <Link to={createPageUrl('UserManagement')}>
+               <PermissionGuard require="admin">
+                 <Link to={createPageUrl('UserManagement')}>
+                   <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
+                     <Shield className="w-4 h-4 mr-2" />
+                     Users
+                   </Button>
+                 </Link>
+               </PermissionGuard>
+               <Link to={createPageUrl('UniverseHealth')}>
                  <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
-                   <Shield className="w-4 h-4 mr-2" />
-                   Users
+                   <Activity className="w-4 h-4 mr-2" />
+                   Health
                  </Button>
                </Link>
              </div>
@@ -174,13 +183,15 @@ export default function Dashboard() {
           <TabsContent value="universes">
              <div className="mb-4 flex justify-between items-center">
                <h3 className="text-lg font-semibold text-slate-100">Connected API Universes</h3>
-               <Button 
-                 onClick={() => setShowAddUniverse(!showAddUniverse)}
-                 className="bg-cyan-600 hover:bg-cyan-700"
-               >
-                 <Plus className="w-4 h-4 mr-2" />
-                 Add Universe
-               </Button>
+               <PermissionGuard require="create">
+                 <Button 
+                   onClick={() => setShowAddUniverse(!showAddUniverse)}
+                   className="bg-cyan-600 hover:bg-cyan-700"
+                 >
+                   <Plus className="w-4 h-4 mr-2" />
+                   Add Universe
+                 </Button>
+               </PermissionGuard>
              </div>
 
              {showAddUniverse && (
