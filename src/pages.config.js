@@ -47,20 +47,22 @@
  *
  * The mainPage value must match a key in the PAGES object exactly.
  */
+import ActivityLogs from './pages/ActivityLogs';
 import Analytics from './pages/Analytics';
 import Authenticator from './pages/Authenticator';
 import Dashboard from './pages/Dashboard';
-import ActivityLogs from './pages/ActivityLogs';
 import UserManagement from './pages/UserManagement';
+import UniverseHealth from './pages/UniverseHealth';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
+    "ActivityLogs": ActivityLogs,
     "Analytics": Analytics,
     "Authenticator": Authenticator,
     "Dashboard": Dashboard,
-    "ActivityLogs": ActivityLogs,
     "UserManagement": UserManagement,
+    "UniverseHealth": UniverseHealth,
 }
 
 export const pagesConfig = {
