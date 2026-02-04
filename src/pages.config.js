@@ -51,8 +51,8 @@ import ActivityLogs from './pages/ActivityLogs';
 import Analytics from './pages/Analytics';
 import Authenticator from './pages/Authenticator';
 import Dashboard from './pages/Dashboard';
-import UserManagement from './pages/UserManagement';
 import UniverseHealth from './pages/UniverseHealth';
+import UserManagement from './pages/UserManagement';
 import __Layout from './Layout.jsx';
 
 
@@ -61,8 +61,8 @@ export const PAGES = {
     "Analytics": Analytics,
     "Authenticator": Authenticator,
     "Dashboard": Dashboard,
-    "UserManagement": UserManagement,
     "UniverseHealth": UniverseHealth,
+    "UserManagement": UserManagement,
 }
 
 export const pagesConfig = {

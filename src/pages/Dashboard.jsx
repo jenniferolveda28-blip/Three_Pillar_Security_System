@@ -28,6 +28,8 @@ import CriminalActivityMonitor from '../components/security/CriminalActivityMoni
 import AlertNotificationCenter from '../components/security/AlertNotificationCenter';
 import ScramblerMonitor from '../components/security/ScramblerMonitor';
 import APIThreatMonitor from '../components/security/APIThreatMonitor';
+import ApiKeyManager from '../components/api/ApiKeyManager';
+import RateLimitStatus from '../components/api/RateLimitStatus';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -227,6 +229,10 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="security" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ApiKeyManager />
+              <RateLimitStatus />
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {hardwareTokens[0] && <HardwareTokenDisplay token={hardwareTokens[0]} />}
               <FluctuatingKeyVisualizer />
