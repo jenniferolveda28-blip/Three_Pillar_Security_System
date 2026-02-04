@@ -33,54 +33,54 @@ export default function Authenticator() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50">
       <div className="max-w-6xl mx-auto p-6">
         {/* Header */}
         <div className="mb-8">
           <Link to={createPageUrl('Dashboard')}>
-            <Button variant="ghost" className="mb-4 text-slate-300 hover:text-slate-100 hover:bg-slate-800">
+            <Button variant="ghost" className="mb-4">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Dashboard
             </Button>
           </Link>
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-3 bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl shadow-lg shadow-violet-500/50">
+            <div className="p-3 bg-purple-600 rounded-xl">
               <Shield className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold gradient-text">BioVerify (BVFY)</h1>
-              <p className="text-slate-400">Your biometric security that can't be hacked or stolen</p>
+              <h1 className="text-4xl font-bold text-gray-900">BioVerify (BVFY)</h1>
+              <p className="text-gray-600">Your biometric security that can't be hacked or stolen</p>
             </div>
           </div>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="multi-layer-card card-layer-monitoring rounded-xl p-6 border">
+          <div className="bg-white rounded-xl p-6 border-2 border-purple-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-400">BioVerify Devices</p>
-                <p className="text-3xl font-bold text-violet-400">{tokens.length}</p>
+                <p className="text-sm text-gray-600">BioVerify Devices</p>
+                <p className="text-3xl font-bold text-purple-600">{tokens.length}</p>
               </div>
-              <Key className="w-10 h-10 text-violet-500/50 glow-pulse" />
+              <Key className="w-10 h-10 text-purple-200" />
             </div>
           </div>
-          <div className="multi-layer-card card-layer-auth rounded-xl p-6 border">
+          <div className="bg-white rounded-xl p-6 border-2 border-blue-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-400">Linked Accounts</p>
-                <p className="text-3xl font-bold text-cyan-400">{linkedAccounts.length}</p>
+                <p className="text-sm text-gray-600">Linked Accounts</p>
+                <p className="text-3xl font-bold text-blue-600">{linkedAccounts.length}</p>
               </div>
-              <Link2 className="w-10 h-10 text-cyan-500/50 glow-pulse" />
+              <Link2 className="w-10 h-10 text-blue-200" />
             </div>
           </div>
-          <div className="multi-layer-card card-layer-data rounded-xl p-6 border">
+          <div className="bg-white rounded-xl p-6 border-2 border-green-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-400">Active Subscriptions</p>
-                <p className="text-3xl font-bold text-emerald-400">{subscriptions.filter(s => s.status === 'active').length}</p>
+                <p className="text-sm text-gray-600">Active Subscriptions</p>
+                <p className="text-3xl font-bold text-green-600">{subscriptions.filter(s => s.status === 'active').length}</p>
               </div>
-              <CreditCard className="w-10 h-10 text-emerald-500/50 glow-pulse" />
+              <CreditCard className="w-10 h-10 text-green-200" />
             </div>
           </div>
         </div>

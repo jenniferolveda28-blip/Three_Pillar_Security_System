@@ -3,8 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, Shield, Activity } from "lucide-react";
-import { PermissionGuard } from '../components/permissions/PermissionGuard';
+import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import UniverseCard from '../components/dashboard/UniverseCard';
@@ -17,7 +16,6 @@ import FluctuatingKeyVisualizer from '../components/security/FluctuatingKeyVisua
 import AddUniverseForm from '../components/dashboard/AddUniverseForm';
 import RateLimitMonitor from '../components/dashboard/RateLimitMonitor';
 import UniverseHealthMonitor from '../components/dashboard/UniverseHealthMonitor';
-import SecureAPIKeyManager from '../components/dashboard/SecureAPIKeyManager';
 import QuantumEncryptionVisualizer from '../components/security/QuantumEncryptionVisualizer';
 import ThreatMapGlobe from '../components/security/ThreatMapGlobe';
 import BiometricLayerVisualizer from '../components/security/BiometricLayerVisualizer';
@@ -27,9 +25,6 @@ import EmergencyProtocol from '../components/security/EmergencyProtocol';
 import CriminalActivityMonitor from '../components/security/CriminalActivityMonitor';
 import AlertNotificationCenter from '../components/security/AlertNotificationCenter';
 import ScramblerMonitor from '../components/security/ScramblerMonitor';
-import APIThreatMonitor from '../components/security/APIThreatMonitor';
-import ApiKeyManager from '../components/api/ApiKeyManager';
-import RateLimitStatus from '../components/api/RateLimitStatus';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -61,7 +56,7 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <div>
       <div className="max-w-7xl mx-auto p-6">
         {/* Header */}
         <div className="mb-8">
@@ -75,40 +70,20 @@ export default function Dashboard() {
                 <p className="text-slate-400">Your DNA-secured gateway to any API</p>
               </div>
             </div>
-            <div className="flex gap-2 flex-wrap">
-               <Link to={createPageUrl('Analytics')}>
-                 <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
-                   <BarChart3 className="w-4 h-4 mr-2" />
-                   Analytics
-                 </Button>
-               </Link>
-               <Link to={createPageUrl('Authenticator')}>
-                 <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
-                   <Link2 className="w-4 h-4 mr-2" />
-                   BioVerify
-                 </Button>
-               </Link>
-               <Link to={createPageUrl('ActivityLogs')}>
-                 <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
-                   <History className="w-4 h-4 mr-2" />
-                   Logs
-                 </Button>
-               </Link>
-               <PermissionGuard require="admin">
-                 <Link to={createPageUrl('UserManagement')}>
-                   <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
-                     <Shield className="w-4 h-4 mr-2" />
-                     Users
-                   </Button>
-                 </Link>
-               </PermissionGuard>
-               <Link to={createPageUrl('UniverseHealth')}>
-                 <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-slate-100">
-                   <Activity className="w-4 h-4 mr-2" />
-                   Health
-                 </Button>
-               </Link>
-             </div>
+            <div className="flex gap-2">
+              <Link to={createPageUrl('Analytics')}>
+                <Button variant="outline">
+                  <BarChart3 className="w-4 h-4 mr-2" />
+                  Analytics
+                </Button>
+              </Link>
+              <Link to={createPageUrl('Authenticator')}>
+                <Button variant="outline">
+                  <Link2 className="w-4 h-4 mr-2" />
+                  BioVerify
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -146,93 +121,78 @@ export default function Dashboard() {
         {/* Main Content */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="mb-6">
-            <TabsTrigger value="router" className="flex items-center gap-2 text-slate-300 data-[state=active]:bg-slate-800 data-[state=active]:text-slate-100">
-                 <Sparkles className="w-4 h-4" />
-                 Smart Router
-               </TabsTrigger>
-               <TabsTrigger value="universes" className="flex items-center gap-2 text-slate-300 data-[state=active]:bg-slate-800 data-[state=active]:text-slate-100">
-                 <Globe className="w-4 h-4" />
-                 Universes
-               </TabsTrigger>
-               <TabsTrigger value="history" className="flex items-center gap-2 text-slate-300 data-[state=active]:bg-slate-800 data-[state=active]:text-slate-100">
-                 <History className="w-4 h-4" />
-                 History
-               </TabsTrigger>
-               <TabsTrigger value="security" className="flex items-center gap-2 text-slate-300 data-[state=active]:bg-slate-800 data-[state=active]:text-slate-100">
-                 <Key className="w-4 h-4" />
-                 Security
-               </TabsTrigger>
+            <TabsTrigger value="router" className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4" />
+              Smart Router
+            </TabsTrigger>
+            <TabsTrigger value="universes" className="flex items-center gap-2">
+              <Globe className="w-4 h-4" />
+              Universes
+            </TabsTrigger>
+            <TabsTrigger value="history" className="flex items-center gap-2">
+              <History className="w-4 h-4" />
+              History
+            </TabsTrigger>
+            <TabsTrigger value="security" className="flex items-center gap-2">
+              <Key className="w-4 h-4" />
+              Security
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="router" className="space-y-6">
-             <APIThreatMonitor requestMetrics={{
-               recentRequests: requests.filter(r => {
-                 const created = new Date(r.created_date);
-                 return new Date() - created < 60000;
-               }).length,
-               avgLatency: requests.length > 0 ? requests.reduce((sum, r) => sum + (r.latency_ms || 0), 0) / requests.length : 0,
-               errorRate: requests.length > 0 ? (requests.filter(r => r.status === 'failed').length / requests.length) * 100 : 0
-             }} />
-
-             <UniversalQueryBox onRequestCreated={() => refetchRequests()} />
-
-             <div>
-               <h3 className="text-lg font-semibold mb-4 text-slate-100">Recent Requests</h3>
-               <RequestHistory requests={requests.slice(0, 5)} />
-             </div>
-           </TabsContent>
+            <UniversalQueryBox onRequestCreated={() => refetchRequests()} />
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Recent Requests</h3>
+              <RequestHistory requests={requests.slice(0, 5)} />
+            </div>
+          </TabsContent>
 
           <TabsContent value="universes">
-             <div className="mb-4 flex justify-between items-center">
-               <h3 className="text-lg font-semibold text-slate-100">Connected API Universes</h3>
-               <PermissionGuard require="create">
-                 <Button 
-                   onClick={() => setShowAddUniverse(!showAddUniverse)}
-                   className="bg-cyan-600 hover:bg-cyan-700"
-                 >
-                   <Plus className="w-4 h-4 mr-2" />
-                   Add Universe
-                 </Button>
-               </PermissionGuard>
-             </div>
+            <div className="mb-4 flex justify-between items-center">
+              <h3 className="text-lg font-semibold">Connected API Universes</h3>
+              <Button 
+                onClick={() => setShowAddUniverse(!showAddUniverse)}
+                className="bg-indigo-600 hover:bg-indigo-700"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Add Universe
+              </Button>
+            </div>
 
-             {showAddUniverse && (
-               <div className="mb-6">
-                 <AddUniverseForm 
-                   onUniverseAdded={() => {
-                     refetchUniverses();
-                     setShowAddUniverse(false);
-                   }}
-                   onCancel={() => setShowAddUniverse(false)}
-                 />
-               </div>
-             )}
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-               {universes.map((universe) => (
-                 <UniverseCard key={universe.id} universe={universe} />
-               ))}
-               {universes.length === 0 && (
-                 <div className="col-span-full multi-layer-card border rounded-xl p-12 text-center border-dashed border-slate-700 bg-slate-800/40">
-                   <Globe className="w-16 h-16 text-slate-500 mx-auto mb-4" />
-                   <p className="text-slate-400 mb-4">No universes connected yet</p>
-                   <Button className="bg-cyan-600 hover:bg-cyan-700">
-                     <Plus className="w-4 h-4 mr-2" />
-                     Connect Your First Universe
-                   </Button>
-                 </div>
-               )}
-             </div>
-           </TabsContent>
+            {showAddUniverse && (
+              <div className="mb-6">
+                <AddUniverseForm 
+                  onUniverseAdded={() => {
+                    refetchUniverses();
+                    setShowAddUniverse(false);
+                  }}
+                  onCancel={() => setShowAddUniverse(false)}
+                />
+              </div>
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {universes.map((universe) => (
+                <UniverseCard key={universe.id} universe={universe} />
+              ))}
+              {universes.length === 0 && (
+                <div className="col-span-full bg-white rounded-xl p-12 text-center border-2 border-dashed border-gray-200">
+                  <Globe className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                  <p className="text-gray-600 mb-4">No universes connected yet</p>
+                  <Button className="bg-indigo-600 hover:bg-indigo-700">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Connect Your First Universe
+                  </Button>
+                </div>
+              )}
+            </div>
+          </TabsContent>
 
           <TabsContent value="history">
             <RequestHistory requests={requests} />
           </TabsContent>
 
           <TabsContent value="security" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <ApiKeyManager />
-              <RateLimitStatus />
-            </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {hardwareTokens[0] && <HardwareTokenDisplay token={hardwareTokens[0]} />}
               <FluctuatingKeyVisualizer />
@@ -254,10 +214,9 @@ export default function Dashboard() {
               <ApiPlayground universes={universes} />
             </div>
             <CriminalActivityMonitor />
-            <SecureAPIKeyManager keys={keys} />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <AlertNotificationCenter />
               <KeyRotationDisplay keys={keys} />
+              <AlertNotificationCenter />
             </div>
             <ScramblerMonitor />
             <SecurityMonitor logs={securityLogs} />

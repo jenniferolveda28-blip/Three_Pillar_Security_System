@@ -1,36 +1,21 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Globe, Zap, AlertCircle, CheckCircle2, TrendingUp, Trash2 } from "lucide-react";
+import { Globe, Zap, AlertCircle, CheckCircle2, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { PermissionGuard } from "../permissions/PermissionGuard";
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { base44 } from "@/api/base44Client";
-import { toast } from "sonner";
 
 export default function UniverseCard({ universe }) {
-  const queryClient = useQueryClient();
-
-  const deleteMutation = useMutation({
-    mutationFn: () => base44.entities.Universe.delete(universe.id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['universes'] });
-      toast.success('Universe deleted successfully');
-    },
-  });
-
   const statusConfig = {
-    active: { icon: CheckCircle2, color: "text-emerald-400", bg: "bg-emerald-900/30", border: "border-emerald-700", accent: "emerald" },
-    degraded: { icon: AlertCircle, color: "text-amber-400", bg: "bg-amber-900/30", border: "border-amber-700", accent: "amber" },
-    offline: { icon: AlertCircle, color: "text-red-400", bg: "bg-red-900/30", border: "border-red-700", accent: "red" }
+    active: { icon: CheckCircle2, color: "text-green-500", bg: "bg-green-50", border: "border-green-200" },
+    degraded: { icon: AlertCircle, color: "text-yellow-500", bg: "bg-yellow-50", border: "border-yellow-200" },
+    offline: { icon: AlertCircle, color: "text-red-500", bg: "bg-red-50", border: "border-red-200" }
   };
 
   const config = statusConfig[universe.status || 'active'];
   const StatusIcon = config.icon;
 
   return (
-    <Card className={cn("multi-layer-card transition-all cursor-pointer border", config.border, "hover:shadow-lg hover:shadow-cyan-500/20")}>
+    <Card className={cn("hover:shadow-lg transition-all cursor-pointer", config.border, "border-2")}>
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
@@ -38,51 +23,39 @@ export default function UniverseCard({ universe }) {
               <Globe className={cn("w-5 h-5", config.color)} />
             </div>
             <div>
-              <CardTitle className="text-slate-100">{universe.name}</CardTitle>
-              <p className="text-xs text-slate-400 mt-1">{universe.description}</p>
+              <CardTitle className="text-lg">{universe.name}</CardTitle>
+              <p className="text-xs text-gray-500 mt-1">{universe.description}</p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <StatusIcon className={cn("w-5 h-5", config.color)} />
-            <PermissionGuard require="delete">
-              <Button
-                size="sm"
-                variant="ghost"
-                onClick={() => deleteMutation.mutate()}
-                className="text-red-400 hover:bg-red-900/20 h-8 w-8 p-0"
-              >
-                <Trash2 className="w-4 h-4" />
-              </Button>
-            </PermissionGuard>
-          </div>
+          <StatusIcon className={cn("w-5 h-5", config.color)} />
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1">
           {universe.capabilities?.map((cap, idx) => (
-            <Badge key={idx} className="bg-slate-700 text-slate-300 border-slate-600 text-xs">
+            <Badge key={idx} variant="secondary" className="text-xs">
               {cap}
             </Badge>
           ))}
         </div>
         
-        <div className="flex items-center justify-between text-sm bg-slate-900/50 p-2 rounded">
+        <div className="flex items-center justify-between text-sm">
           <div className="flex items-center gap-2">
-            <Zap className={cn("w-4 h-4", config.color)} />
-            <span className="text-slate-300">Success Rate</span>
+            <Zap className="w-4 h-4 text-blue-500" />
+            <span className="text-gray-600">Success Rate</span>
           </div>
-          <span className="font-semibold text-slate-100">{universe.success_rate || 100}%</span>
+          <span className="font-semibold">{universe.success_rate || 100}%</span>
         </div>
 
         {universe.error_count > 0 && (
-          <div className={cn("flex items-center gap-2 text-xs px-2 py-1 rounded border", config.bg, config.border)}>
-            <AlertCircle className={cn("w-3 h-3", config.color)} />
-            <span className={config.color}>{universe.error_count} errors in last 24h</span>
+          <div className="flex items-center gap-2 text-xs text-yellow-600 bg-yellow-50 px-2 py-1 rounded">
+            <AlertCircle className="w-3 h-3" />
+            {universe.error_count} errors in last 24h
           </div>
         )}
 
-        <div className="text-xs text-slate-400 pt-2 border-t border-slate-700">
-          Auth: <span className="font-medium text-slate-300">{universe.auth_type || 'none'}</span>
+        <div className="text-xs text-gray-400 pt-2 border-t">
+          Auth: <span className="font-medium">{universe.auth_type || 'none'}</span>
         </div>
       </CardContent>
     </Card>
