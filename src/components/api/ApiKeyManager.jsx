@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Key, Copy, Trash2, Eye, EyeOff, Plus, AlertTriangle, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
+import { logActivity } from '../utils/activityLogger';
 
 export default function ApiKeyManager() {
   const [showCreateDialog, setShowCreateDialog] = useState(false);
@@ -36,7 +37,7 @@ export default function ApiKeyManager() {
       
       const rateLimit = user?.role === 'admin' ? 1000 : 100;
       
-      await base44.entities.UserApiKey.create({
+      const key = await base44.entities.UserApiKey.create({
         key_name: newKeyName,
         api_key: rawKey,
         key_prefix: keyPrefix,
@@ -44,6 +45,14 @@ export default function ApiKeyManager() {
         rate_limit: rateLimit,
         scopes: newKeyScopes.split(',').map(s => s.trim()),
         expires_at: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+      });
+
+      await logActivity({
+        action_type: 'create',
+        entity_type: 'UserApiKey',
+        entity_id: key.id,
+        description: `Created API key: ${newKeyName}`,
+        details: { scopes: newKeyScopes.split(',').map(s => s.trim()) },
       });
 
       return rawKey;
@@ -58,16 +67,30 @@ export default function ApiKeyManager() {
 
   const revokeKeyMutation = useMutation({
     mutationFn: (keyId) => base44.entities.UserApiKey.update(keyId, { is_active: false }),
-    onSuccess: () => {
+    onSuccess: async (_, keyId) => {
       queryClient.invalidateQueries({ queryKey: ['apiKeys'] });
+      const key = apiKeys.find(k => k.id === keyId);
+      await logActivity({
+        action_type: 'update',
+        entity_type: 'UserApiKey',
+        entity_id: keyId,
+        description: `Revoked API key: ${key?.key_name}`,
+      });
       toast.success('API key revoked');
     },
   });
 
   const deleteKeyMutation = useMutation({
     mutationFn: (keyId) => base44.entities.UserApiKey.delete(keyId),
-    onSuccess: () => {
+    onSuccess: async (_, keyId) => {
       queryClient.invalidateQueries({ queryKey: ['apiKeys'] });
+      const key = apiKeys.find(k => k.id === keyId);
+      await logActivity({
+        action_type: 'delete',
+        entity_type: 'UserApiKey',
+        entity_id: keyId,
+        description: `Deleted API key: ${key?.key_name}`,
+      });
       toast.success('API key deleted');
     },
   });
