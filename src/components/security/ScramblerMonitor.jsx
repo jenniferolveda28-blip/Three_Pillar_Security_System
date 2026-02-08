@@ -45,13 +45,13 @@ export default function ScramblerMonitor() {
         }
     });
 
-    // Auto-scramble every 5 seconds
+    // Auto-scramble every 0.1 seconds
     useEffect(() => {
         if (!autoScramble) return;
 
         const interval = setInterval(() => {
             scrambleMutation.mutate();
-        }, 5000);
+        }, 100);
 
         return () => clearInterval(interval);
     }, [autoScramble]);
@@ -110,7 +110,7 @@ export default function ScramblerMonitor() {
                                         <div>
                                             <div className="font-semibold text-sm">{label}</div>
                                             <div className="text-xs text-gray-500">
-                                                {session.iterations} iterations • Every {session.scramble_interval_seconds}s
+                                                {session.iterations} iterations • Every {session.scramble_interval_seconds < 1 ? `${session.scramble_interval_seconds * 1000}ms` : `${session.scramble_interval_seconds}s`}
                                             </div>
                                         </div>
                                     </div>
@@ -154,8 +154,8 @@ export default function ScramblerMonitor() {
                     <div className="font-semibold mb-1">🛡️ Piranha Pool Defense Active</div>
                     <div>
                         Like a pool of piranhas constantly reshaping the system, this scrambler continuously 
-                        alters internal code paths, encryption keys, and execution sequences every few seconds, 
-                        making it virtually impossible for any unauthorized access to succeed.
+                        alters internal code paths, encryption keys, and execution sequences every 100 milliseconds, 
+                        making it virtually impossible for any unauthorized access to succeed—faster than any hacker can react.
                     </div>
                 </div>
             </CardContent>

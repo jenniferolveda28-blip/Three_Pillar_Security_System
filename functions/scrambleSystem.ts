@@ -49,7 +49,7 @@ Deno.serve(async (req) => {
                     iterations: 1,
                     last_scramble: new Date().toISOString(),
                     next_scramble: new Date(Date.now() + 5000).toISOString(),
-                    scramble_interval_seconds: 5,
+                    scramble_interval_seconds: 0.1,
                     complexity_level: 100,
                     affected_systems: ['universes', 'keys', 'authentication', 'data_paths'],
                     protection_score: 100
