@@ -51,6 +51,7 @@ import Analytics from './pages/Analytics';
 import Authenticator from './pages/Authenticator';
 import Dashboard from './pages/Dashboard';
 import ThreatAnalysis from './pages/ThreatAnalysis';
+import DynamicScrambler from './pages/DynamicScrambler';
 import __Layout from './Layout.jsx';
 
 
@@ -59,6 +60,7 @@ export const PAGES = {
     "Authenticator": Authenticator,
     "Dashboard": Dashboard,
     "ThreatAnalysis": ThreatAnalysis,
+    "DynamicScrambler": DynamicScrambler,
 }
 
 export const pagesConfig = {

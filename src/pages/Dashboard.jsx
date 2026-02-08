@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3 } from "lucide-react";
+import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw } from "lucide-react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import UniverseCard from '../components/dashboard/UniverseCard';
@@ -71,16 +71,22 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex gap-2">
-              <Link to={createPageUrl('Analytics')}>
+              <Link to={createPageUrl('DynamicScrambler')}>
                 <Button variant="outline">
-                  <BarChart3 className="w-4 h-4 mr-2" />
-                  Analytics
+                  <RefreshCw className="w-4 h-4 mr-2" />
+                  IP Shield
                 </Button>
               </Link>
               <Link to={createPageUrl('Authenticator')}>
                 <Button variant="outline">
                   <Link2 className="w-4 h-4 mr-2" />
                   BioVerify
+                </Button>
+              </Link>
+              <Link to={createPageUrl('Analytics')}>
+                <Button variant="outline">
+                  <BarChart3 className="w-4 h-4 mr-2" />
+                  Analytics
                 </Button>
               </Link>
             </div>
