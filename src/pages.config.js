@@ -50,6 +50,7 @@
 import Analytics from './pages/Analytics';
 import Authenticator from './pages/Authenticator';
 import Dashboard from './pages/Dashboard';
+import ThreatAnalysis from './pages/ThreatAnalysis';
 import __Layout from './Layout.jsx';
 
 
@@ -57,6 +58,7 @@ export const PAGES = {
     "Analytics": Analytics,
     "Authenticator": Authenticator,
     "Dashboard": Dashboard,
+    "ThreatAnalysis": ThreatAnalysis,
 }
 
 export const pagesConfig = {
