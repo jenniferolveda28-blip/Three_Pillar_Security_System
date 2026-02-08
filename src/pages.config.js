@@ -47,26 +47,28 @@
  *
  * The mainPage value must match a key in the PAGES object exactly.
  */
+import AIThreatAnalysis from './pages/AIThreatAnalysis';
 import Analytics from './pages/Analytics';
 import Authenticator from './pages/Authenticator';
 import Dashboard from './pages/Dashboard';
-import ThreatAnalysis from './pages/ThreatAnalysis';
 import DynamicScrambler from './pages/DynamicScrambler';
-import SecurityReports from './pages/SecurityReports';
 import RoleManagement from './pages/RoleManagement';
-import AIThreatAnalysis from './pages/AIThreatAnalysis';
+import SecurityReports from './pages/SecurityReports';
+import ThreatAnalysis from './pages/ThreatAnalysis';
+import SystemDiagnostics from './pages/SystemDiagnostics';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
+    "AIThreatAnalysis": AIThreatAnalysis,
     "Analytics": Analytics,
     "Authenticator": Authenticator,
     "Dashboard": Dashboard,
-    "ThreatAnalysis": ThreatAnalysis,
     "DynamicScrambler": DynamicScrambler,
-    "SecurityReports": SecurityReports,
     "RoleManagement": RoleManagement,
-    "AIThreatAnalysis": AIThreatAnalysis,
+    "SecurityReports": SecurityReports,
+    "ThreatAnalysis": ThreatAnalysis,
+    "SystemDiagnostics": SystemDiagnostics,
 }
 
 export const pagesConfig = {
