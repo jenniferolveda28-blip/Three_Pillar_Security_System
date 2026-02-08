@@ -56,6 +56,7 @@ import RoleManagement from './pages/RoleManagement';
 import SecurityReports from './pages/SecurityReports';
 import ThreatAnalysis from './pages/ThreatAnalysis';
 import SystemDiagnostics from './pages/SystemDiagnostics';
+import ThreePillarView from './pages/ThreePillarView';
 import __Layout from './Layout.jsx';
 
 
@@ -69,6 +70,7 @@ export const PAGES = {
     "SecurityReports": SecurityReports,
     "ThreatAnalysis": ThreatAnalysis,
     "SystemDiagnostics": SystemDiagnostics,
+    "ThreePillarView": ThreePillarView,
 }
 
 export const pagesConfig = {

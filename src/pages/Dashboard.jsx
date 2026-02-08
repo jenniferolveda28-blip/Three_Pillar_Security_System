@@ -71,6 +71,12 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex gap-2">
+              <Link to={createPageUrl('ThreePillarView')}>
+                <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
+                  <Lock className="w-4 h-4 mr-2" />
+                  Architecture
+                </Button>
+              </Link>
               <Link to={createPageUrl('SystemDiagnostics')}>
                 <Button variant="outline">
                   <Activity className="w-4 h-4 mr-2" />
