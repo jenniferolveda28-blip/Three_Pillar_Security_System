@@ -137,7 +137,7 @@ export default function MarketingMaterials() {
         <div className="mb-8">
           <h1 className="text-4xl font-bold gradient-text mb-3">Marketing Materials</h1>
           <p className="text-lg text-slate-400">
-            Generate and download promotional content for your Android device
+            Generate PDFs → Upload to Google NotebookLM → Auto-create videos, podcasts & more
           </p>
         </div>
 
@@ -193,13 +193,20 @@ export default function MarketingMaterials() {
 
         <Card className="mt-8 bg-slate-900/50 border-slate-700">
           <CardHeader>
-            <CardTitle>📱 How to Use on Android</CardTitle>
+            <CardTitle>📱 How to Use with Google NotebookLM</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-slate-300">
-            <p><strong>1. Generate:</strong> Click "Generate" on any material you want</p>
-            <p><strong>2. Download:</strong> Click "Download to Phone" when ready</p>
-            <p><strong>3. Share:</strong> Files save to your Downloads folder - share to social media, YouTube, podcast platforms</p>
-            <p><strong>4. Upload:</strong> Use the downloaded files in your promotional campaigns</p>
+            <p><strong>1. Generate PDFs:</strong> Click "Generate" on the PDFs you want (Complete System Documentation recommended)</p>
+            <p><strong>2. Download:</strong> Save the PDFs to your Android phone</p>
+            <p><strong>3. Upload to NotebookLM:</strong> Go to notebooklm.google.com and upload your PDFs</p>
+            <p><strong>4. Auto-Generate Content:</strong> NotebookLM will create:</p>
+            <div className="ml-6 space-y-1">
+              <p>• 📹 Informational videos</p>
+              <p>• 📊 Infographics and slide decks</p>
+              <p>• 🎙️ Podcast episodes with AI hosts</p>
+              <p>• 📄 Study guides and summaries</p>
+            </div>
+            <p><strong>5. Share:</strong> Download the generated content and share on YouTube, social media, and podcast platforms</p>
           </CardContent>
         </Card>
       </div>
