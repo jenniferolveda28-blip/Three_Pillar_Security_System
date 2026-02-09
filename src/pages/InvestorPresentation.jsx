@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/lib/utils';
+import { createPageUrl } from './utils';
 import IllegalActivityDetectionDemo from '@/components/investor/IllegalActivityDetectionDemo';
 import DNABreathalyzerDemo from '@/components/investor/DNABreathalyzerDemo';
 import ThreePillarIntegratedDemo from '@/components/investor/ThreePillarIntegratedDemo';
