@@ -1,19 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { base44 } from '@/api/base44Client';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import React from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  Shield, AlertTriangle, Lock, CheckCircle2, XCircle, Activity, Dna,
-  CreditCard, Zap, Eye, Fingerprint, AlertCircle, Play, Pause, RotateCcw,
-  Database, Server, Clock, DollarSign, Package, ArrowRight, Key, FileText, Download
-} from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from './utils';
-import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
+import IllegalActivityDetectionDemo from '../components/investor/IllegalActivityDetectionDemo';
+import DNABreathalyzerDemo from '../components/investor/DNABreathalyzerDemo';
+import ThreePillarIntegratedDemo from '../components/investor/ThreePillarIntegratedDemo';
+import TokenReplacementDemo from '../components/investor/TokenReplacementDemo';
 
 export default function InvestorPresentation() {
   const [dnaRegistrationStep, setDnaRegistrationStep] = useState(0);
