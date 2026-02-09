@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Play, Pause, RotateCcw, AlertTriangle, Shield, Eye, Zap, CheckCircle2 } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Play, Pause, RotateCcw, AlertTriangle, Shield, Eye, Zap, CheckCircle2, Upload } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { toast } from 'sonner';
 
 export default function IllegalActivityDetectionDemo() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -13,6 +15,8 @@ export default function IllegalActivityDetectionDemo() {
     confidenceScore: 0,
     threatsBlocked: 0
   });
+  const [customIp, setCustomIp] = useState('');
+  const [simulatedAttack, setSimulatedAttack] = useState(null);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -56,6 +60,22 @@ export default function IllegalActivityDetectionDemo() {
     setIsPlaying(false);
     setStep(0);
     setAttackMetrics({ requestsPerSecond: 0, confidenceScore: 0, threatsBlocked: 0 });
+    setSimulatedAttack(null);
+  };
+
+  const simulateCustomAttack = () => {
+    const ip = customIp || '203.45.78.91';
+    setSimulatedAttack({
+      ip,
+      timestamp: new Date().toISOString(),
+      requestsPerSecond: Math.floor(Math.random() * 500) + 100,
+      confidence: Math.floor(Math.random() * 30) + 70
+    });
+    toast.success(`Simulated attack from IP: ${ip}`, {
+      description: 'Watch how the system responds in real-time'
+    });
+    setIsPlaying(true);
+    setStep(1);
   };
 
   const steps = [
@@ -113,25 +133,61 @@ export default function IllegalActivityDetectionDemo() {
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
-          {/* Controls */}
-          <div className="flex items-center justify-between bg-slate-800 p-4 rounded-lg">
-            <div className="flex gap-3">
-              <Button 
-                onClick={() => setIsPlaying(!isPlaying)} 
-                className={isPlaying ? "bg-orange-600" : "bg-green-600"}
-              >
-                {isPlaying ? <Pause className="mr-2 h-4 w-4" /> : <Play className="mr-2 h-4 w-4" />}
-                {isPlaying ? 'Pause' : 'Start Demo'}
-              </Button>
-              <Button onClick={reset} variant="outline">
-                <RotateCcw className="mr-2 h-4 w-4" />
-                Reset
-              </Button>
-            </div>
-            <div className="text-sm text-slate-400">
-              Step {step} of {steps.length}
-            </div>
-          </div>
+          {/* Interactive Controls */}
+          <Card className="bg-slate-800 border-slate-700">
+            <CardContent className="pt-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-3">
+                    <Button 
+                      onClick={() => setIsPlaying(!isPlaying)} 
+                      className={isPlaying ? "bg-orange-600 hover:bg-orange-700" : "bg-green-600 hover:bg-green-700"}
+                    >
+                      {isPlaying ? <Pause className="mr-2 h-4 w-4" /> : <Play className="mr-2 h-4 w-4" />}
+                      {isPlaying ? 'Pause' : 'Start Demo'}
+                    </Button>
+                    <Button onClick={reset} variant="outline">
+                      <RotateCcw className="mr-2 h-4 w-4" />
+                      Reset
+                    </Button>
+                  </div>
+                  <div className="text-sm text-slate-400">
+                    Step {step} of {steps.length}
+                  </div>
+                </div>
+
+                {/* Custom Attack Simulation */}
+                <div className="border-t border-slate-700 pt-4">
+                  <p className="text-sm text-slate-400 mb-3">Try it yourself: Simulate an attack from any IP</p>
+                  <div className="flex gap-3">
+                    <Input
+                      placeholder="Enter IP address (e.g., 192.168.1.1)"
+                      value={customIp}
+                      onChange={(e) => setCustomIp(e.target.value)}
+                      className="flex-1"
+                    />
+                    <Button onClick={simulateCustomAttack} className="bg-red-600 hover:bg-red-700">
+                      <Upload className="mr-2 h-4 w-4" />
+                      Simulate Attack
+                    </Button>
+                  </div>
+                  {simulatedAttack && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-3 p-3 bg-red-950/40 border border-red-500 rounded-lg"
+                    >
+                      <p className="text-sm text-red-400">
+                        <strong>Attack Detected:</strong> {simulatedAttack.ip} | 
+                        {simulatedAttack.requestsPerSecond} req/s | 
+                        {simulatedAttack.confidence}% confidence
+                      </p>
+                    </motion.div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Live Metrics */}
           <div className="grid grid-cols-3 gap-4">

@@ -9,6 +9,8 @@ export default function DNABreathalyzerDemo() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [step, setStep] = useState(0);
   const [dnaProgress, setDnaProgress] = useState(0);
+  const [breathIntensity, setBreathIntensity] = useState(50);
+  const [sampleQuality, setSampleQuality] = useState(0);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -47,6 +49,23 @@ export default function DNABreathalyzerDemo() {
     setIsPlaying(false);
     setStep(0);
     setDnaProgress(0);
+    setSampleQuality(0);
+  };
+
+  const simulateBreath = () => {
+    const quality = Math.floor((breathIntensity / 100) * 100);
+    setSampleQuality(quality);
+    if (quality >= 70) {
+      toast.success('Excellent sample quality!', {
+        description: `${quality}% DNA marker confidence`
+      });
+      setIsPlaying(true);
+      setStep(1);
+    } else {
+      toast.error('Sample quality too low', {
+        description: 'Please adjust breath intensity and try again'
+      });
+    }
   };
 
   const dnaSequence = "ATCGATCGTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTATCGATCGTAGCTAGCT";
