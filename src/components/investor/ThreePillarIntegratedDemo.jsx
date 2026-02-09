@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Play, Pause, RotateCcw, Dna, Server, Shield, Activity, AlertTriangle, Eye, Zap, CheckCircle2 } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Play, Pause, RotateCcw, Dna, Server, Shield, Activity, AlertTriangle, Eye, Zap, CheckCircle2, UserCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { toast } from 'sonner';
 
 export default function ThreePillarIntegratedDemo() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [step, setStep] = useState(0);
   const [activePillars, setActivePillars] = useState([]);
   const [scrambleCount, setScrambleCount] = useState(0);
+  const [selectedUser, setSelectedUser] = useState('jane');
+  const [selectedApi, setSelectedApi] = useState('weather');
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -51,6 +55,16 @@ export default function ThreePillarIntegratedDemo() {
     setStep(0);
     setActivePillars([]);
     setScrambleCount(0);
+  };
+
+  const startCustomDemo = () => {
+    const users = { jane: 'Jane Smith', john: 'John Doe', sarah: 'Sarah Johnson' };
+    const apis = { weather: 'Weather Data', news: 'News Feed', stocks: 'Stock Prices' };
+    
+    toast.success(`Starting demo for ${users[selectedUser]}`, {
+      description: `Requesting ${apis[selectedApi]} via Forged API`
+    });
+    setIsPlaying(true);
   };
 
   const steps = [
@@ -130,25 +144,71 @@ export default function ThreePillarIntegratedDemo() {
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
-          {/* Controls */}
-          <div className="flex items-center justify-between bg-slate-800 p-4 rounded-lg">
-            <div className="flex gap-3">
-              <Button 
-                onClick={() => setIsPlaying(!isPlaying)} 
-                className={isPlaying ? "bg-orange-600" : "bg-purple-600"}
-              >
-                {isPlaying ? <Pause className="mr-2 h-4 w-4" /> : <Play className="mr-2 h-4 w-4" />}
-                {isPlaying ? 'Pause' : 'Start Integrated Demo'}
-              </Button>
-              <Button onClick={reset} variant="outline">
-                <RotateCcw className="mr-2 h-4 w-4" />
-                Reset
-              </Button>
-            </div>
-            <div className="text-sm text-slate-400">
-              Step {step} of {steps.length}
-            </div>
-          </div>
+          {/* Interactive Controls */}
+          <Card className="bg-slate-800 border-slate-700">
+            <CardContent className="pt-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex gap-3">
+                    <Button 
+                      onClick={() => setIsPlaying(!isPlaying)} 
+                      className={isPlaying ? "bg-orange-600 hover:bg-orange-700" : "bg-purple-600 hover:bg-purple-700"}
+                    >
+                      {isPlaying ? <Pause className="mr-2 h-4 w-4" /> : <Play className="mr-2 h-4 w-4" />}
+                      {isPlaying ? 'Pause' : 'Start Integrated Demo'}
+                    </Button>
+                    <Button onClick={reset} variant="outline">
+                      <RotateCcw className="mr-2 h-4 w-4" />
+                      Reset
+                    </Button>
+                  </div>
+                  <div className="text-sm text-slate-400">
+                    Step {step} of {steps.length}
+                  </div>
+                </div>
+
+                {/* Custom Scenario Builder */}
+                <div className="border-t border-slate-700 pt-4">
+                  <p className="text-sm text-slate-400 mb-3 flex items-center gap-2">
+                    <UserCircle className="h-4 w-4" />
+                    Customize the scenario: Choose user and API request
+                  </p>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-2">
+                      <label className="text-xs text-slate-400">Select User</label>
+                      <Select value={selectedUser} onValueChange={setSelectedUser}>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="jane">Jane Smith</SelectItem>
+                          <SelectItem value="john">John Doe</SelectItem>
+                          <SelectItem value="sarah">Sarah Johnson</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs text-slate-400">Select API Request</label>
+                      <Select value={selectedApi} onValueChange={setSelectedApi}>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="weather">Weather Data</SelectItem>
+                          <SelectItem value="news">News Feed</SelectItem>
+                          <SelectItem value="stocks">Stock Prices</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  <Button onClick={startCustomDemo} className="w-full mt-3 bg-purple-600 hover:bg-purple-700">
+                    <Zap className="mr-2 h-4 w-4" />
+                    Run Custom Scenario
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Three Pillars Status */}
           <div className="grid grid-cols-3 gap-4">

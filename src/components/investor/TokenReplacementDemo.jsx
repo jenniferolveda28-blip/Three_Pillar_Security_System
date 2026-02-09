@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Play, Pause, RotateCcw, Package, DollarSign, Clock, Zap, AlertTriangle, CheckCircle2, XCircle, Dna } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Play, Pause, RotateCcw, Package, DollarSign, Clock, Zap, AlertTriangle, CheckCircle2, XCircle, Dna, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { toast } from 'sonner';
 
 export default function TokenReplacementDemo() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [step, setStep] = useState(0);
   const [timer, setTimer] = useState(0);
+  const [tokenSerial, setTokenSerial] = useState('');
+  const [reportedToken, setReportedToken] = useState(null);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -47,6 +51,16 @@ export default function TokenReplacementDemo() {
     setIsPlaying(false);
     setStep(0);
     setTimer(0);
+    setReportedToken(null);
+  };
+
+  const reportLostToken = () => {
+    const serial = tokenSerial || 'BIOVERIFY-8472-ALPHA';
+    setReportedToken(serial);
+    toast.success('Token reported lost', {
+      description: `Serial ${serial} has been revoked globally`
+    });
+    setIsPlaying(true);
   };
 
   return (
@@ -59,25 +73,62 @@ export default function TokenReplacementDemo() {
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
-          {/* Controls */}
-          <div className="flex items-center justify-between bg-slate-800 p-4 rounded-lg">
-            <div className="flex gap-3">
-              <Button 
-                onClick={() => setIsPlaying(!isPlaying)} 
-                className={isPlaying ? "bg-orange-600" : "bg-green-600"}
-              >
-                {isPlaying ? <Pause className="mr-2 h-4 w-4" /> : <Play className="mr-2 h-4 w-4" />}
-                {isPlaying ? 'Pause' : 'Start Replacement Process'}
-              </Button>
-              <Button onClick={reset} variant="outline">
-                <RotateCcw className="mr-2 h-4 w-4" />
-                Reset
-              </Button>
-            </div>
-            <div className="text-sm text-slate-400">
-              Step {step} of 4
-            </div>
-          </div>
+          {/* Interactive Controls */}
+          <Card className="bg-slate-800 border-slate-700">
+            <CardContent className="pt-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex gap-3">
+                    <Button 
+                      onClick={() => setIsPlaying(!isPlaying)} 
+                      className={isPlaying ? "bg-orange-600 hover:bg-orange-700" : "bg-green-600 hover:bg-green-700"}
+                    >
+                      {isPlaying ? <Pause className="mr-2 h-4 w-4" /> : <Play className="mr-2 h-4 w-4" />}
+                      {isPlaying ? 'Pause' : 'Start Replacement Process'}
+                    </Button>
+                    <Button onClick={reset} variant="outline">
+                      <RotateCcw className="mr-2 h-4 w-4" />
+                      Reset
+                    </Button>
+                  </div>
+                  <div className="text-sm text-slate-400">
+                    Step {step} of 4
+                  </div>
+                </div>
+
+                {/* Interactive Token Reporting */}
+                <div className="border-t border-slate-700 pt-4">
+                  <p className="text-sm text-slate-400 mb-3 flex items-center gap-2">
+                    <Search className="h-4 w-4" />
+                    Report your lost token by entering its serial number
+                  </p>
+                  <div className="flex gap-3">
+                    <Input
+                      placeholder="Enter token serial (e.g., BIOVERIFY-XXXX-XXXX)"
+                      value={tokenSerial}
+                      onChange={(e) => setTokenSerial(e.target.value)}
+                      className="flex-1 font-mono"
+                    />
+                    <Button onClick={reportLostToken} className="bg-red-600 hover:bg-red-700">
+                      <AlertTriangle className="mr-2 h-4 w-4" />
+                      Report Lost
+                    </Button>
+                  </div>
+                  {reportedToken && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-3 p-3 bg-red-950/40 border border-red-500 rounded-lg"
+                    >
+                      <p className="text-sm text-red-400">
+                        <strong>Token Revoked:</strong> {reportedToken} is now permanently disabled
+                      </p>
+                    </motion.div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Cost Overview */}
           <div className="grid grid-cols-3 gap-4">
