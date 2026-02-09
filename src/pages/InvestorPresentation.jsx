@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -12,12 +12,16 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from './utils';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 export default function InvestorPresentation() {
   const [dnaRegistrationStep, setDnaRegistrationStep] = useState(0);
   const [integratedStep, setIntegratedStep] = useState(0);
   const [googleAuthCode, setGoogleAuthCode] = useState('123456');
   const [ourAuthIterations, setOurAuthIterations] = useState(0);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const contentRef = useRef(null);
 
   // Simulate Google Authenticator (30 second refresh)
   useEffect(() => {
@@ -61,311 +65,47 @@ export default function InvestorPresentation() {
     }, 2500);
   };
 
-  const downloadPresentation = () => {
-    const content = `
-INVESTOR PRESENTATION - BioVerify Security Platform
-Generated: ${new Date().toLocaleDateString()}
-
-═══════════════════════════════════════════════════════════════════════════════
-QUESTION 1: WHO KEEPS THE BLUEPRINT OF THE PERSON'S DNA? HOW IS THAT GOING TO STAY SAFE?
-═══════════════════════════════════════════════════════════════════════════════
-
-SHORT ANSWER:
-No one keeps your DNA blueprint—not even us. We store only a one-way cryptographic hash 
-(mathematical fingerprint) of your DNA signature, encrypted with military-grade AES-256-GCM. 
-This hash cannot be reverse-engineered to reconstruct your genetic sequence. Even if our 
-entire database were stolen, attackers would gain nothing usable.
-
-DETAILED TECHNICAL EXPLANATION:
-
-What Happens to Your DNA Sample:
-1. Collection (2 seconds): You blow into the BioVerify breathalyzer. Saliva particles 
-   containing DNA markers hit nano-sensors inside the device.
-
-2. Instant Processing: Device extracts unique genetic markers from your DNA and generates 
-   a mathematical signature. This happens entirely on the hardware device.
-
-3. Hash Generation: The device immediately runs your DNA signature through a SHA-256 
-   cryptographic hashing algorithm. This creates an irreversible digital fingerprint—think 
-   of it like taking a photograph of your shadow. You can verify the shadow matches you, 
-   but you can't reconstruct the person from the shadow.
-
-4. Original DNA Discarded: The raw DNA data is immediately purged from device memory. 
-   Only the hash remains. This happens in under 3 seconds total.
-
-5. Encrypted Transmission: The hash (not your DNA) is encrypted again using AES-256-GCM 
-   and transmitted via TLS 1.3 to our secure vault.
-
-Multi-Layer Storage Security:
-• Layer 1 - Hash-Only Storage: We store only the cryptographic hash, never the biological 
-  sequence. This is a one-way function—mathematically impossible to reverse.
-
-• Layer 2 - Encryption at Rest: The hash itself is encrypted using AES-256-GCM before storage. 
-  Even database administrators cannot view the raw hash.
-
-• Layer 3 - Zero-Knowledge Architecture: Our system is designed so that we never have access 
-  to your biological data at any point in the process.
-
-• Layer 4 - Hardware Security Modules (HSM): Encryption keys are stored in tamper-proof 
-  hardware that physically destroys itself if breached.
-
-• Layer 5 - Access Control & Audit: Every access attempt is logged with immutable audit trails. 
-  Multi-factor authentication required for any system access. No single employee can view or 
-  export hashes.
-
-Who Can Access Your DNA Hash?
-✓ YOU - Only through live biometric verification (you must physically blow into the device)
-✓ SYSTEM - Automated comparison engine (read-only, no human access)
-✗ ADMINISTRATORS - Cannot view, export, or decrypt hashes
-✗ EMPLOYEES - Zero access to raw data or hashes
-✗ THIRD PARTIES - No external integrations can access DNA hashes
-✗ GOVERNMENT/LEGAL - Even with subpoenas, we cannot provide DNA (we don't have it)
-✗ HACKERS - If database breached, hashes are useless (cannot be reversed)
-
-Regulatory Compliance & Legal Protection:
-✓ GDPR Compliant: No biometric data stored under EU law definition
-✓ HIPAA Compliant: Not storing Protected Health Information (PHI)
-✓ CCPA Compliant: California privacy laws satisfied
-✓ BIPA Compliant: Illinois Biometric Information Privacy Act - hashes explicitly excluded
-✓ Insurance/Employment Protected: Since we don't store DNA, your genetic data cannot be used against you
-
-What's Mathematically Impossible:
-✗ We cannot clone your DNA from what we store
-✗ We cannot determine your genetic traits, diseases, or ancestry
-✗ We cannot sell your genetic data (we don't have it)
-✗ We cannot be forced to give your DNA to insurance companies or employers
-✗ Even quantum computers in 50 years cannot reverse SHA-256 hashes
-✗ Even our own engineers with full database access cannot reconstruct your DNA
-
-BOTTOM LINE FOR INVESTORS:
-We've architected a system where the most valuable asset—your DNA—never exists in a 
-vulnerable form. This isn't just good security; it's regulatory arbitrage. Competitors 
-storing biometric data face massive compliance costs and legal liability. We face none—
-because we're not storing biometric data under any legal definition. This makes us 
-unregulatable in most jurisdictions while providing stronger security than anyone storing 
-actual biometrics.
-
-
-═══════════════════════════════════════════════════════════════════════════════
-QUESTION 2: API ILLEGAL ACTIVITY DETECTION & IP SHIELD VS GOOGLE AUTHENTICATOR
-═══════════════════════════════════════════════════════════════════════════════
-
-PART 1: WHAT HAPPENS WHEN THE API DETECTS ILLEGAL ACTIVITY?
-
-Our system uses a multi-stage AI threat detection pipeline that identifies, correlates, 
-and neutralizes attacks in under 150 milliseconds—faster than a human eye blink.
-
-Real-Time Detection & Response (0.15 seconds total):
-
-Stage 1: Initial Detection (0.05 seconds)
-Our AI monitors every API request in real-time, analyzing:
-• Request frequency (normal: 5-10/min, attack: 450+/second)
-• Source IP reputation (cross-referenced with 50+ threat intelligence feeds)
-• Endpoint targeting patterns (admin endpoints = red flag)
-• Time-of-day anomalies (3am access from a 9-5 user)
-• Geolocation impossibilities (user in US, then China 2 minutes later)
-
-Example: Attacker at IP 203.45.78.91 makes 450 requests/second targeting /api/keys 
-and /api/admin. AI flags this in 0.05s with 98% confidence.
-
-Stage 2: Behavior Correlation (0.03 seconds)
-AI cross-references this activity against the user's baseline behavior profile:
-• Baseline: User "john@company.com" normally makes 5 requests/min to /api/data 
-  during business hours
-• Current: Same user making 450 requests/second to admin endpoints at 3am
-• Deviation Score: 98% (extreme anomaly)
-
-AI Reasoning: "User behavior deviates 98% from baseline. Pattern matches credential 
-stuffing attack. Account likely compromised."
-
-Stage 3: Attack Chain Identification (0.02 seconds)
-AI identifies this as part of a 4-stage Advanced Persistent Threat (APT):
-1. Reconnaissance - Attacker mapped our API structure
-2. Initial Access - Credential stuffing with stolen passwords
-3. Privilege Escalation - Attempting admin endpoint access
-4. Data Exfiltration - Harvesting API keys for resale
-
-Confidence: 96% this is an organized attack, not user error.
-
-Stage 4: Automated Response (0.05 seconds)
-System executes multi-layered defense:
-
-1. IP Shield Scramble (Immediate): All API keys rotated, encryption layers mutated, 
-   execution paths randomized. Any data the attacker gathered in reconnaissance is 
-   now obsolete.
-
-2. Source Blocking: IP 203.45.78.91 permanently blacklisted across all systems. 
-   All active sessions from this IP terminated.
-
-3. User Notification: Real user "john@company.com" receives immediate SMS/email: 
-   "Unauthorized access attempt detected and blocked. Change your password immediately."
-
-4. Authority Notification: If attack severity is "critical" and shows signs of 
-   organized crime, automated report sent to FBI IC3 cybercrime unit.
-
-5. Forensic Logging: Every detail of the attack preserved in immutable audit logs 
-   for potential legal proceedings.
-
-Outcome:
-✓ Attack Detected: 0.05 seconds
-✓ Attack Neutralized: 0.15 seconds
-✓ Data Compromised: 0 bytes
-✓ Legitimate User Impact: None (seamless)
-✓ Attacker Success: 0% (mathematical impossibility)
-✓ Evidence Preserved: Complete forensic trail
-
-
-PART 2: HOW IP SHIELD BANKRUPTS HACKERS (VS GOOGLE AUTHENTICATOR)
-
-Google Authenticator generates a new 6-digit code every 30 seconds. Our IP Shield 
-scrambles the entire system architecture every 100 milliseconds. This isn't a 300x 
-improvement—it's a category shift that makes attacks economically impossible.
-
-TECHNICAL COMPARISON:
-
-Google Authenticator (TOTP Standard):
-• Refresh Interval: 30 seconds
-• What Changes: 6-digit authentication code only
-• What Stays Static: API endpoints, system architecture, encryption algorithms, 
-  database structure, network topology
-
-Attacker Window:
-If code intercepted at second 5, attacker has 25 seconds to:
-1. Use code (instant)
-2. Analyze system (10s)
-3. Identify vulnerabilities (8s)
-4. Execute exploit (5s)
-5. Exfiltrate data (2s)
-
-Total needed: 25s. Total available: 25s. ✓ Attack succeeds.
-
-Our IP Shield (Dynamic Mutation):
-• Refresh Interval: 0.1 seconds (100ms)
-• What Changes: All API keys, API endpoint routes, encryption layers, execution 
-  code paths, data access patterns
-• Protection Layers: 5 simultaneous layers
-
-Attacker Window:
-If access gained at 0ms, attacker has 100ms to:
-✗ Use credentials (needs 10ms, but...)
-✗ Analyze system (needs 10,000ms, has 90ms)
-✗ Identify vulnerabilities (needs 8,000ms, system mutated)
-✗ Execute exploit (impossible—target changed)
-✗ Exfiltrate data (all keys rotated)
-
-Total needed: 25,000ms. Total available: 100ms. ✗ Attack fails.
-
-WHY THIS BANKRUPTS HACKERS (ECONOMIC WARFARE):
-
-Attack Economics Against Google Authenticator:
-• Reconnaissance Cost: $5,000 (10 hours @ $500/hr)
-• Exploit Development: $10,000 (20 hours)
-• Attack Window: 30 seconds (plenty of time)
-• Success Rate: 60-70%
-• Total Investment: $15,000
-• Potential Profit: $50,000-$500,000
-• ROI: 233-3,233% profit ✓ Worth doing
-
-Attack Economics Against Our IP Shield:
-• Initial Reconnaissance: $5,000 (maps system at T=0)
-• At T=0.1s: System mutated, data worthless
-• Updated Reconnaissance: $5,000 (maps new system at T=0.1s)
-• At T=0.2s: System mutated again, data worthless
-• Cost per attempt: $5,000 every 0.1 seconds
-• Required attempts: 250+ (25 seconds ÷ 0.1s)
-• Total Investment: $1,250,000+ for ONE attack
-• Success Rate: <1%
-• Expected Profit: -$1,245,000 (massive loss)
-• ROI: -99.6% loss ✗ Economically insane
-
-What This Means for Attackers:
-Professional cybercriminals operate like any business—they calculate ROI. Against 
-Google Authenticator and traditional 2FA, attacks are profitable. Against our IP Shield, 
-attacks are financial suicide.
-
-By the time they update their attack strategy for the new system configuration, we've 
-already mutated 300+ times. It's like trying to rob a bank that teleports to a new 
-location 10 times per second—you can't even finish writing down the address before 
-it's gone.
-
-BOTTOM LINE FOR INVESTORS:
-We don't just detect illegal activity faster—we make it economically impossible to 
-profit from attacks. This isn't better security; it's economic warfare against cybercrime.
-
-Google Authenticator gives you a 30-second rotating password. We give you a self-mutating 
-fortress that rebuilds itself 10 times per second. The difference isn't incremental—it's 
-categorical. This is why we can offer breach insurance with $10M coverage—because breaches 
-are mathematically and economically impossible.
-
-
-═══════════════════════════════════════════════════════════════════════════════
-QUESTION 3-5: VISUAL DEMONSTRATIONS (Summary)
-═══════════════════════════════════════════════════════════════════════════════
-
-DNA BREATHALYZER REGISTRATION PROCESS:
-1. Unbox Hardware Token (BioVerify Pro v2.1)
-2. Blow Into Breathalyzer (2 seconds - DNA markers extracted)
-3. Hash Generation On-Device (SHA-256, raw DNA immediately discarded)
-4. Encrypted Transmission (AES-256-GCM + TLS 1.3)
-5. Activation Complete (99.7% confidence match)
-
-INTEGRATED SYSTEM DEFENSE:
-Real-time demonstration of all three systems (BioVerify, Forged API, IP Shield) working 
-together to defend against attacks in 0.3 seconds while legitimate users experience zero 
-friction.
-
-TOKEN REPLACEMENT PROCESS:
-• Replacement Cost: $29.99 (one-time hardware fee)
-• Shipping Time: 2-3 business days (Express: 24hrs +$15)
-• Re-activation Time: 30 seconds (one breath = instant access)
-• Key Feature: No DNA resubmission required—your hash is stored in the cloud
-• Process: Report lost → Order replacement → Receive new token → Blow once → Full access restored
-
-DNA is in data form (encrypted hash) in the cloud, not in the physical token. New device 
-just needs to verify you're the same person. Zero passwords to reset. Zero recovery emails 
-needed. Your biological identity is the master key.
-
-
-═══════════════════════════════════════════════════════════════════════════════
-INVESTMENT VALUE PROPOSITION
-═══════════════════════════════════════════════════════════════════════════════
-
-This is what you're investing in:
-Not promises. Not theory. Working demonstrations with mathematical proof and economic inevitability.
-
-1. BIOVERIFY DNA
-   • Biological identity that cannot be stolen, faked, or phished
-   • $29.99 replacement cost, 30-second reactivation
-   • Zero biometric data stored, worldwide compliance-ready
-   • GDPR/HIPAA/CCPA/BIPA compliant
-
-2. FORGED API
-   • Universal API gateway with AI routing
-   • 90% reduction in integration complexity
-   • $500k+ enterprise value per customer
-   • Self-healing bridges, 0.15s attack response
-
-3. IP SHIELD
-   • 300x faster than Google Authenticator
-   • 100ms scramble cycles make real-time attacks economically impossible
-   • -99.6% attacker ROI (they lose money attacking us)
-   • $10M breach insurance backed by mathematical certainty
-
-
-═══════════════════════════════════════════════════════════════════════════════
-END OF PRESENTATION
-═══════════════════════════════════════════════════════════════════════════════
-`;
-
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `BioVerify_Investor_Presentation_${new Date().toISOString().split('T')[0]}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
+  const downloadAsPDF = async () => {
+    setIsDownloading(true);
+    try {
+      const element = contentRef.current;
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#0f172a'
+      });
+
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+      });
+
+      const imgWidth = 210;
+      const pageHeight = 297;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save('Investor-Presentation-BioVerify.pdf');
+    } catch (error) {
+      console.error('PDF generation failed:', error);
+      alert('Failed to generate PDF. Please try again.');
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   return (
@@ -375,18 +115,12 @@ END OF PRESENTATION
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-5xl font-bold gradient-text">Investor Presentation</h1>
-            <div className="flex gap-3">
-              <Button onClick={downloadPresentation} className="bg-green-600 hover:bg-green-700">
-                <Download className="mr-2 h-4 w-4" />
-                Download as Text File
+            <Link to={createPageUrl('Dashboard')}>
+              <Button variant="outline">
+                <ArrowRight className="mr-2 h-4 w-4" />
+                Back to Dashboard
               </Button>
-              <Link to={createPageUrl('Dashboard')}>
-                <Button variant="outline">
-                  <ArrowRight className="mr-2 h-4 w-4" />
-                  Back to Dashboard
-                </Button>
-              </Link>
-            </div>
+            </Link>
           </div>
           <p className="text-xl text-slate-400">Written answers to investor questions + live visual demonstrations of our technology</p>
         </div>
@@ -1243,7 +977,7 @@ END OF PRESENTATION
                             User logs in from any device → clicks "Report Lost Token" → enters serial BIOVERIFY-8472-ALPHA
                           </p>
                           <div className="bg-red-900/40 p-3 rounded border border-red-500/50">
-                            <p className="text-sm font-semibold text-red-300 mb-2">⚡ What Happens in &lt;1 Second:</p>
+                            <p className="text-sm font-semibold text-red-300 mb-2">⚡ What Happens in <1 Second:</p>
                             <ul className="text-sm space-y-1">
                               <li>✓ Old token serial revoked globally</li>
                               <li>✓ Device becomes non-functional (paperweight)</li>
