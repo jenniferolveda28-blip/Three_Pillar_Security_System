@@ -201,11 +201,14 @@ export default function MarketingMaterials() {
             <p><strong>3. Upload to NotebookLM:</strong> Go to notebooklm.google.com and upload your PDFs</p>
             <p><strong>4. Auto-Generate Content:</strong> NotebookLM will create:</p>
             <div className="ml-6 space-y-1">
-              <p>• 📹 Informational videos</p>
-              <p>• 📊 Infographics and slide decks</p>
-              <p>• 🎙️ Podcast episodes with AI hosts</p>
+              <p>• 🎙️ Audio podcasts with AI hosts (MP3)</p>
               <p>• 📄 Study guides and summaries</p>
+              <p>• 💬 Q&A and briefing documents</p>
+              <p>• 📝 FAQs and key topics</p>
             </div>
+            <p className="text-amber-400 text-sm mt-2">
+              <strong>Note:</strong> Use the video script generators below to create scripts, then produce videos yourself using video editing tools
+            </p>
             <p><strong>5. Share:</strong> Download the generated content and share on YouTube, social media, and podcast platforms</p>
           </CardContent>
         </Card>

@@ -56,13 +56,13 @@ import DynamicScrambler from './pages/DynamicScrambler';
 import InvestorDemo from './pages/InvestorDemo';
 import InvestorPresentation from './pages/InvestorPresentation';
 import LiveDemonstration from './pages/LiveDemonstration';
+import MarketingMaterials from './pages/MarketingMaterials';
 import RoleManagement from './pages/RoleManagement';
 import SecurityReports from './pages/SecurityReports';
 import SystemDiagnostics from './pages/SystemDiagnostics';
 import ThreatAnalysis from './pages/ThreatAnalysis';
 import ThreePillarView from './pages/ThreePillarView';
 import UniversePerformance from './pages/UniversePerformance';
-import MarketingMaterials from './pages/MarketingMaterials';
 import __Layout from './Layout.jsx';
 
 
@@ -76,13 +76,13 @@ export const PAGES = {
     "InvestorDemo": InvestorDemo,
     "InvestorPresentation": InvestorPresentation,
     "LiveDemonstration": LiveDemonstration,
+    "MarketingMaterials": MarketingMaterials,
     "RoleManagement": RoleManagement,
     "SecurityReports": SecurityReports,
     "SystemDiagnostics": SystemDiagnostics,
     "ThreatAnalysis": ThreatAnalysis,
     "ThreePillarView": ThreePillarView,
     "UniversePerformance": UniversePerformance,
-    "MarketingMaterials": MarketingMaterials,
 }
 
 export const pagesConfig = {
