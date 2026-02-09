@@ -67,7 +67,7 @@ export default function Dashboard() {
               </div>
               <div>
                 <h1 className="text-4xl font-bold gradient-text">Forged API</h1>
-                <p className="text-slate-400">Your DNA-secured gateway to any API</p>
+                <p className="text-slate-400">DNA Authentication • Unique to You • Constantly Verified</p>
               </div>
             </div>
             <div className="flex gap-2">
