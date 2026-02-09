@@ -135,17 +135,18 @@ export default function InvestorPresentation() {
           <p className="text-xl text-slate-400">Written answers to investor questions + live visual demonstrations of our technology</p>
         </div>
 
-        <Tabs defaultValue="questions" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="questions">
-              <FileText className="mr-2 h-4 w-4" />
-              Questions 1-2: Written Answers
-            </TabsTrigger>
-            <TabsTrigger value="demonstrations">
-              <Zap className="mr-2 h-4 w-4" />
-              Questions 3-5: Visual Demonstrations
-            </TabsTrigger>
-          </TabsList>
+        <div ref={contentRef}>
+          <Tabs defaultValue="questions" className="space-y-6">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="questions">
+                <FileText className="mr-2 h-4 w-4" />
+                Questions 1-2: Written Answers
+              </TabsTrigger>
+              <TabsTrigger value="demonstrations">
+                <Zap className="mr-2 h-4 w-4" />
+                Questions 3-5: Visual Demonstrations
+              </TabsTrigger>
+            </TabsList>
 
           {/* WRITTEN ANSWERS */}
           <TabsContent value="questions" className="space-y-6">
