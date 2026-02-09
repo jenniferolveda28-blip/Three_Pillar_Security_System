@@ -15,7 +15,214 @@ Deno.serve(async (req) => {
         const doc = new jsPDF();
         let y = 20;
 
-        if (type === 'brochure') {
+        if (type === 'complete-system') {
+            // Complete System Documentation - Everything
+            doc.setFontSize(28);
+            doc.text('COMPLETE SYSTEM DOCUMENTATION', 20, y);
+            y += 12;
+            doc.setFontSize(11);
+            doc.text('Three-Pillar Security Platform - Full Overview', 20, y);
+            y += 25;
+
+            // Table of Contents
+            doc.setFontSize(16);
+            doc.text('TABLE OF CONTENTS', 20, y);
+            y += 12;
+            doc.setFontSize(10);
+            const sections = [
+                '1. Executive Summary',
+                '2. Three-Pillar Architecture',
+                '3. AI Threat Detection',
+                '4. Analytics & Performance',
+                '5. Authentication Systems',
+                '6. Dynamic Scrambler',
+                '7. Security Monitoring',
+                '8. Role Management',
+                '9. System Diagnostics',
+                '10. Implementation Guide'
+            ];
+            sections.forEach(section => {
+                doc.text(section, 25, y);
+                y += 6;
+            });
+
+            doc.addPage();
+            y = 20;
+
+            // Executive Summary
+            doc.setFontSize(18);
+            doc.text('EXECUTIVE SUMMARY', 20, y);
+            y += 12;
+            doc.setFontSize(10);
+            doc.text('Revolutionary cybersecurity platform combining DNA authentication,', 20, y);
+            y += 6;
+            doc.text('universal API gateway, and dynamic scrambling technology.', 20, y);
+            y += 10;
+            doc.text('Key Features:', 20, y);
+            y += 8;
+            doc.text('✓ 99.8% accurate DNA biometric authentication', 25, y);
+            y += 6;
+            doc.text('✓ Real-time threat detection with AI', 25, y);
+            y += 6;
+            doc.text('✓ API keys rotate every 2-5 seconds', 25, y);
+            y += 6;
+            doc.text('✓ Zero successful breaches in production', 25, y);
+            y += 6;
+            doc.text('✓ Enterprise-grade monitoring and analytics', 25, y);
+
+            doc.addPage();
+            y = 20;
+
+            // Three-Pillar Architecture
+            doc.setFontSize(18);
+            doc.text('THREE-PILLAR ARCHITECTURE', 20, y);
+            y += 15;
+            
+            doc.setFontSize(14);
+            doc.text('Pillar 1: BioVerify DNA Authentication', 20, y);
+            y += 10;
+            doc.setFontSize(9);
+            doc.text('Hardware DNA breathalyzer tokens provide unhackable biometric security.', 25, y);
+            y += 5;
+            doc.text('Each device is paired to unique genetic markers, impossible to replicate.', 25, y);
+            y += 5;
+            doc.text('Supports account recovery and multi-account linking.', 25, y);
+            y += 15;
+
+            doc.setFontSize(14);
+            doc.text('Pillar 2: Forged API Universal Gateway', 20, y);
+            y += 10;
+            doc.setFontSize(9);
+            doc.text('Single authentication point for all your APIs. Intelligent routing with', 25, y);
+            y += 5;
+            doc.text('automatic failover, load balancing, and performance optimization.', 25, y);
+            y += 15;
+
+            doc.setFontSize(14);
+            doc.text('Pillar 3: IP Shield Dynamic Scrambling', 20, y);
+            y += 10;
+            doc.setFontSize(9);
+            doc.text('Continuous rotation of encryption keys, API paths, and data structures.', 25, y);
+            y += 5;
+            doc.text('Makes stolen credentials worthless within seconds.', 25, y);
+
+            doc.addPage();
+            y = 20;
+
+            // AI & Security Features
+            doc.setFontSize(18);
+            doc.text('AI THREAT DETECTION', 20, y);
+            y += 12;
+            doc.setFontSize(10);
+            doc.text('Advanced machine learning monitors:', 20, y);
+            y += 8;
+            doc.text('• Behavior anomaly detection', 25, y);
+            y += 6;
+            doc.text('• Threat correlation and attack chain identification', 25, y);
+            y += 6;
+            doc.text('• Real-time criminal activity alerts', 25, y);
+            y += 6;
+            doc.text('• Geographic threat mapping', 25, y);
+            y += 6;
+            doc.text('• Automated response and mitigation', 25, y);
+
+            doc.addPage();
+            y = 20;
+
+            // Technical Specifications
+            doc.setFontSize(18);
+            doc.text('TECHNICAL SPECIFICATIONS', 20, y);
+            y += 12;
+            doc.setFontSize(10);
+            doc.text('Performance Metrics:', 20, y);
+            y += 8;
+            doc.text('• Average API latency: <100ms', 25, y);
+            y += 6;
+            doc.text('• Threat detection speed: <150ms', 25, y);
+            y += 6;
+            doc.text('• Key rotation interval: 2-5 seconds', 25, y);
+            y += 6;
+            doc.text('• System uptime: 99.99%', 25, y);
+            y += 6;
+            doc.text('• Concurrent users: Unlimited', 25, y);
+
+        } else if (type === 'threat-analysis') {
+            doc.setFontSize(22);
+            doc.text('THREAT ANALYSIS REPORT', 20, y);
+            y += 15;
+            doc.setFontSize(12);
+            doc.text('AI-Powered Security Intelligence', 20, y);
+            y += 20;
+
+            doc.setFontSize(14);
+            doc.text('Criminal Activity Detection', 20, y);
+            y += 10;
+            doc.setFontSize(9);
+            doc.text('Real-time monitoring of suspicious patterns including:', 25, y);
+            y += 6;
+            doc.text('• Fraud attempts and identity theft', 25, y);
+            y += 5;
+            doc.text('• Unauthorized access and data breaches', 25, y);
+            y += 5;
+            doc.text('• Malicious intent and credential abuse', 25, y);
+            y += 15;
+
+            doc.setFontSize(14);
+            doc.text('Behavior Anomaly Detection', 20, y);
+            y += 10;
+            doc.setFontSize(9);
+            doc.text('AI analyzes normal behavior patterns and flags deviations:', 25, y);
+            y += 6;
+            doc.text('• Unusual access times or locations', 25, y);
+            y += 5;
+            doc.text('• Excessive API requests', 25, y);
+            y += 5;
+            doc.text('• Privilege escalation attempts', 25, y);
+            y += 15;
+
+            doc.setFontSize(14);
+            doc.text('Attack Chain Correlation', 20, y);
+            y += 10;
+            doc.setFontSize(9);
+            doc.text('Connects multiple security events to identify coordinated attacks.', 25, y);
+
+        } else if (type === 'demo-summary') {
+            doc.setFontSize(22);
+            doc.text('LIVE DEMONSTRATION SUMMARY', 20, y);
+            y += 15;
+
+            doc.setFontSize(14);
+            doc.text('1. Illegal Activity Detection Demo', 20, y);
+            y += 8;
+            doc.setFontSize(9);
+            doc.text('Simulates real attack scenarios and shows automated threat neutralization.', 25, y);
+            y += 5;
+            doc.text('Law enforcement integration for serious threats.', 25, y);
+            y += 12;
+
+            doc.setFontSize(14);
+            doc.text('2. DNA Breathalyzer Registration', 20, y);
+            y += 8;
+            doc.setFontSize(9);
+            doc.text('Step-by-step demonstration of secure biometric enrollment process.', 25, y);
+            y += 5;
+            doc.text('Shows DNA hashing and encrypted transmission.', 25, y);
+            y += 12;
+
+            doc.setFontSize(14);
+            doc.text('3. Three-Pillar Integration', 20, y);
+            y += 8;
+            doc.setFontSize(9);
+            doc.text('Live visualization of all three security layers working together.', 25, y);
+            y += 12;
+
+            doc.setFontSize(14);
+            doc.text('4. Token Replacement Process', 20, y);
+            y += 8;
+            doc.setFontSize(9);
+            doc.text('Fast and secure device replacement with DNA re-verification.', 25, y);
+
+        } else if (type === 'brochure') {
             // Product Brochure
             doc.setFontSize(24);
             doc.text('Three-Pillar Security System', 20, y);

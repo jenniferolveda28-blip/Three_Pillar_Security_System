@@ -50,6 +50,14 @@ export default function MarketingMaterials() {
 
   const materials = [
     {
+      id: 'complete-system',
+      title: 'Complete System Documentation PDF',
+      description: 'Everything: All pages, demos, analytics, security features',
+      icon: FileText,
+      type: 'pdf',
+      action: () => generatePDF('complete-system')
+    },
+    {
       id: 'brochure',
       title: 'Product Brochure PDF',
       description: 'Complete overview of the three-pillar security system',
@@ -72,6 +80,22 @@ export default function MarketingMaterials() {
       icon: FileText,
       type: 'pdf',
       action: () => generatePDF('pitch')
+    },
+    {
+      id: 'threat-analysis',
+      title: 'Threat Analysis Report PDF',
+      description: 'AI threat detection and security analytics',
+      icon: FileText,
+      type: 'pdf',
+      action: () => generatePDF('threat-analysis')
+    },
+    {
+      id: 'demo-summary',
+      title: 'Live Demo Summary PDF',
+      description: 'All security demonstrations and features',
+      icon: FileText,
+      type: 'pdf',
+      action: () => generatePDF('demo-summary')
     },
     {
       id: 'demo-video',
