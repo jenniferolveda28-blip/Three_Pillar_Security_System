@@ -48,6 +48,7 @@
  * The mainPage value must match a key in the PAGES object exactly.
  */
 import AIThreatAnalysis from './pages/AIThreatAnalysis';
+import AIThreatDetection from './pages/AIThreatDetection';
 import Analytics from './pages/Analytics';
 import Authenticator from './pages/Authenticator';
 import Dashboard from './pages/Dashboard';
@@ -58,12 +59,13 @@ import SystemDiagnostics from './pages/SystemDiagnostics';
 import ThreatAnalysis from './pages/ThreatAnalysis';
 import ThreePillarView from './pages/ThreePillarView';
 import UniversePerformance from './pages/UniversePerformance';
-import AIThreatDetection from './pages/AIThreatDetection';
+import LiveDemonstration from './pages/LiveDemonstration';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "AIThreatAnalysis": AIThreatAnalysis,
+    "AIThreatDetection": AIThreatDetection,
     "Analytics": Analytics,
     "Authenticator": Authenticator,
     "Dashboard": Dashboard,
@@ -74,7 +76,7 @@ export const PAGES = {
     "ThreatAnalysis": ThreatAnalysis,
     "ThreePillarView": ThreePillarView,
     "UniversePerformance": UniversePerformance,
-    "AIThreatDetection": AIThreatDetection,
+    "LiveDemonstration": LiveDemonstration,
 }
 
 export const pagesConfig = {
