@@ -988,7 +988,7 @@ export default function InvestorPresentation() {
                             User logs in from any device → clicks "Report Lost Token" → enters serial BIOVERIFY-8472-ALPHA
                           </p>
                           <div className="bg-red-900/40 p-3 rounded border border-red-500/50">
-                            <p className="text-sm font-semibold text-red-300 mb-2">⚡ What Happens in <1 Second:</p>
+                            <p className="text-sm font-semibold text-red-300 mb-2">⚡ What Happens in &lt;1 Second:</p>
                             <ul className="text-sm space-y-1">
                               <li>✓ Old token serial revoked globally</li>
                               <li>✓ Device becomes non-functional (paperweight)</li>
