@@ -54,8 +54,8 @@ import Dashboard from './pages/Dashboard';
 import DynamicScrambler from './pages/DynamicScrambler';
 import RoleManagement from './pages/RoleManagement';
 import SecurityReports from './pages/SecurityReports';
-import ThreatAnalysis from './pages/ThreatAnalysis';
 import SystemDiagnostics from './pages/SystemDiagnostics';
+import ThreatAnalysis from './pages/ThreatAnalysis';
 import ThreePillarView from './pages/ThreePillarView';
 import __Layout from './Layout.jsx';
 
@@ -68,8 +68,8 @@ export const PAGES = {
     "DynamicScrambler": DynamicScrambler,
     "RoleManagement": RoleManagement,
     "SecurityReports": SecurityReports,
-    "ThreatAnalysis": ThreatAnalysis,
     "SystemDiagnostics": SystemDiagnostics,
+    "ThreatAnalysis": ThreatAnalysis,
     "ThreePillarView": ThreePillarView,
 }
 
