@@ -114,25 +114,15 @@ export default function InvestorPresentation() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-5xl font-bold gradient-text">Investor Presentation</h1>
-            <div className="flex gap-3">
-              <Button 
-                onClick={downloadAsPDF} 
-                disabled={isDownloading}
-                className="bg-green-600 hover:bg-green-700"
-              >
-                <Download className="mr-2 h-4 w-4" />
-                {isDownloading ? 'Generating PDF...' : 'Download PDF'}
+            <h1 className="text-5xl font-bold gradient-text">Live Security Demonstrations</h1>
+            <Link to={createPageUrl('Dashboard')}>
+              <Button variant="outline">
+                <ArrowRight className="mr-2 h-4 w-4" />
+                Back to Dashboard
               </Button>
-              <Link to={createPageUrl('Dashboard')}>
-                <Button variant="outline">
-                  <ArrowRight className="mr-2 h-4 w-4" />
-                  Back to Dashboard
-                </Button>
-              </Link>
-            </div>
+            </Link>
           </div>
-          <p className="text-xl text-slate-400">Written answers to investor questions + live visual demonstrations of our technology</p>
+          <p className="text-xl text-slate-400">Interactive demonstrations showing our security technology in action</p>
         </div>
 
         <div ref={contentRef}>
