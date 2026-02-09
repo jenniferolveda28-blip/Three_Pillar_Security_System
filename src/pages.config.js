@@ -61,6 +61,7 @@ import ThreatAnalysis from './pages/ThreatAnalysis';
 import ThreePillarView from './pages/ThreePillarView';
 import UniversePerformance from './pages/UniversePerformance';
 import InvestorDemo from './pages/InvestorDemo';
+import InvestorPresentation from './pages/InvestorPresentation';
 import __Layout from './Layout.jsx';
 
 
@@ -79,6 +80,7 @@ export const PAGES = {
     "ThreePillarView": ThreePillarView,
     "UniversePerformance": UniversePerformance,
     "InvestorDemo": InvestorDemo,
+    "InvestorPresentation": InvestorPresentation,
 }
 
 export const pagesConfig = {
