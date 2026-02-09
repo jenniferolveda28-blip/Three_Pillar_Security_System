@@ -86,7 +86,7 @@ export const PAGES = {
 }
 
 export const pagesConfig = {
-    mainPage: "ThreePillarView",
+    mainPage: "Dashboard",
     Pages: PAGES,
     Layout: __Layout,
 };
