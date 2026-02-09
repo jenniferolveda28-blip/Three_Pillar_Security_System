@@ -448,7 +448,7 @@ export default function InvestorPresentation() {
                           <li>• <strong>Cost per attempt:</strong> $5,000 every 0.1 seconds</li>
                           <li>• <strong>Required attempts to complete attack:</strong> 250+ (25 seconds ÷ 0.1s)</li>
                           <li>• <strong>Total Investment:</strong> $1,250,000+ for ONE attack attempt</li>
-                          <li>• <strong>Success Rate:</strong> <1% (system changes faster than attack can execute)</li>
+                          <li>• <strong>Success Rate:</strong> &lt;1% (system changes faster than attack can execute)</li>
                           <li>• <strong>Expected Profit:</strong> -$1,245,000 (massive loss)</li>
                           <li className="text-red-400 font-bold">• <strong>ROI:</strong> -99.6% loss ✗ Economically insane</li>
                         </ul>
