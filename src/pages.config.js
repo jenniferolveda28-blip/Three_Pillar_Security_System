@@ -86,7 +86,7 @@ export const PAGES = {
 }
 
 export const pagesConfig = {
-    mainPage: "MarketingMaterials",
+    mainPage: "ThreePillarView",
     Pages: PAGES,
     Layout: __Layout,
 };
