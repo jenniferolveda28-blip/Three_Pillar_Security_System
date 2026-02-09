@@ -2,11 +2,11 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { createPageUrl } from './utils';
-import IllegalActivityDetectionDemo from '../components/investor/IllegalActivityDetectionDemo';
-import DNABreathalyzerDemo from '../components/investor/DNABreathalyzerDemo';
-import ThreePillarIntegratedDemo from '../components/investor/ThreePillarIntegratedDemo';
-import TokenReplacementDemo from '../components/investor/TokenReplacementDemo';
+import { createPageUrl } from '@/lib/utils';
+import IllegalActivityDetectionDemo from '@/components/investor/IllegalActivityDetectionDemo';
+import DNABreathalyzerDemo from '@/components/investor/DNABreathalyzerDemo';
+import ThreePillarIntegratedDemo from '@/components/investor/ThreePillarIntegratedDemo';
+import TokenReplacementDemo from '@/components/investor/TokenReplacementDemo';
 
 export default function InvestorPresentation() {
   return (
