@@ -25,21 +25,10 @@ export default function InvestorPresentation() {
               </Button>
             </Link>
           </div>
-          <p className="text-xl text-slate-400">Interactive demonstrations showing our security technology in action</p>
+          <p className="text-xl text-slate-400">Watch our security technology in action - live, interactive demonstrations</p>
         </div>
 
-        <div ref={contentRef}>
-          <Tabs defaultValue="questions" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="questions">
-                <FileText className="mr-2 h-4 w-4" />
-                Questions 1-2: Written Answers
-              </TabsTrigger>
-              <TabsTrigger value="demonstrations">
-                <Zap className="mr-2 h-4 w-4" />
-                Questions 3-5: Visual Demonstrations
-              </TabsTrigger>
-            </TabsList>
+        <div className="space-y-8"
 
           {/* WRITTEN ANSWERS */}
           <TabsContent value="questions" className="space-y-6">
