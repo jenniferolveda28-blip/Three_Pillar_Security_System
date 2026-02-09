@@ -53,13 +53,14 @@ import Analytics from './pages/Analytics';
 import Authenticator from './pages/Authenticator';
 import Dashboard from './pages/Dashboard';
 import DynamicScrambler from './pages/DynamicScrambler';
+import LiveDemonstration from './pages/LiveDemonstration';
 import RoleManagement from './pages/RoleManagement';
 import SecurityReports from './pages/SecurityReports';
 import SystemDiagnostics from './pages/SystemDiagnostics';
 import ThreatAnalysis from './pages/ThreatAnalysis';
 import ThreePillarView from './pages/ThreePillarView';
 import UniversePerformance from './pages/UniversePerformance';
-import LiveDemonstration from './pages/LiveDemonstration';
+import InvestorDemo from './pages/InvestorDemo';
 import __Layout from './Layout.jsx';
 
 
@@ -70,13 +71,14 @@ export const PAGES = {
     "Authenticator": Authenticator,
     "Dashboard": Dashboard,
     "DynamicScrambler": DynamicScrambler,
+    "LiveDemonstration": LiveDemonstration,
     "RoleManagement": RoleManagement,
     "SecurityReports": SecurityReports,
     "SystemDiagnostics": SystemDiagnostics,
     "ThreatAnalysis": ThreatAnalysis,
     "ThreePillarView": ThreePillarView,
     "UniversePerformance": UniversePerformance,
-    "LiveDemonstration": LiveDemonstration,
+    "InvestorDemo": InvestorDemo,
 }
 
 export const pagesConfig = {
