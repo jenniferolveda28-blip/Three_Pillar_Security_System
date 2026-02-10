@@ -26,10 +26,12 @@ export default function MarketingMaterials() {
     setGenerating(prev => ({ ...prev, [type]: true }));
     try {
       const response = await base44.functions.invoke('generateMarketingVideo', { type });
-      setGenerated(prev => ({ ...prev, [type]: response.data.file_url }));
-      toast.success('Video generated! Click to download.');
+      const fileUrl = response.data?.file_url || response.data?.data?.file_url;
+      setGenerated(prev => ({ ...prev, [type]: fileUrl }));
+      toast.success('Video script generated! Click to download.');
     } catch (error) {
-      toast.error('Failed to generate video');
+      toast.error('Failed to generate video: ' + error.message);
+      console.error('Video generation error:', error);
     } finally {
       setGenerating(prev => ({ ...prev, [type]: false }));
     }
@@ -39,10 +41,12 @@ export default function MarketingMaterials() {
     setGenerating(prev => ({ ...prev, [type]: true }));
     try {
       const response = await base44.functions.invoke('generateMarketingAudio', { type });
-      setGenerated(prev => ({ ...prev, [type]: response.data.file_url }));
-      toast.success('Audio generated! Click to download.');
+      const fileUrl = response.data?.file_url || response.data?.data?.file_url;
+      setGenerated(prev => ({ ...prev, [type]: fileUrl }));
+      toast.success('Podcast script generated! Click to download.');
     } catch (error) {
-      toast.error('Failed to generate audio');
+      toast.error('Failed to generate audio: ' + error.message);
+      console.error('Audio generation error:', error);
     } finally {
       setGenerating(prev => ({ ...prev, [type]: false }));
     }
