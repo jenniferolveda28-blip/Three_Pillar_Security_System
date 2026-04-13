@@ -9,7 +9,7 @@ export default function SuspiciousActivityPattern({ metrics, logs, alerts, onEve
   const patterns = useMemo(() => {
     // Failed auth attempts over time
     const failedAuthByHour = {};
-    metrics.filter(m => m.metric_type === 'auth_attempt' && !m.success).forEach(m => {
+    (metrics || []).filter(m => m.metric_type === 'auth_attempt' && !m.success).forEach(m => {
       const hour = new Date(m.created_date).getHours();
       failedAuthByHour[hour] = (failedAuthByHour[hour] || 0) + 1;
     });
@@ -21,7 +21,7 @@ export default function SuspiciousActivityPattern({ metrics, logs, alerts, onEve
 
     // Most targeted endpoints
     const endpointCounts = {};
-    metrics.filter(m => m.status_code >= 400).forEach(m => {
+    (metrics || []).filter(m => m.status_code >= 400).forEach(m => {
       if (m.endpoint) {
         endpointCounts[m.endpoint] = (endpointCounts[m.endpoint] || 0) + 1;
       }
@@ -34,7 +34,7 @@ export default function SuspiciousActivityPattern({ metrics, logs, alerts, onEve
 
     // Geographic anomalies (from logs)
     const ipCounts = {};
-    logs.forEach(log => {
+    (logs || []).forEach(log => {
       if (log.ip_address && log.threat_level !== 'none') {
         ipCounts[log.ip_address] = (ipCounts[log.ip_address] || 0) + 1;
       }
