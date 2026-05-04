@@ -91,7 +91,7 @@ export default function ThreatIntelligenceFeed({ alerts, logs, onEventClick }) {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.05 }}
-                onClick={() => onEventClick(event.data)}
+                onClick={() => onEventClick && onEventClick(event.data)}
                 className={`p-4 rounded-lg border cursor-pointer transition-all hover:scale-[1.02] ${severityColor}`}
               >
                 <div className="flex items-start gap-3">

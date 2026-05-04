@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { TrendingUp, AlertTriangle, MapPin, Globe } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-export default function SuspiciousActivityPattern({ metrics, logs, alerts, onEventClick }) {
+export default function SuspiciousActivityPattern({ metrics = [], logs = [], alerts = [], onEventClick }) {
   // Analyze patterns
   const patterns = useMemo(() => {
     // Failed auth attempts over time
