@@ -1,0 +1,103 @@
+{
+  "name": "BehaviorAnomaly",
+  "type": "object",
+  "properties": {
+    "user_identifier": {
+      "type": "string",
+      "description": "User being analyzed"
+    },
+    "anomaly_type": {
+      "type": "string",
+      "enum": [
+        "unusual_access_time",
+        "unusual_location",
+        "excessive_requests",
+        "privilege_escalation_attempt",
+        "data_exfiltration_pattern",
+        "unusual_endpoint_access"
+      ],
+      "description": "Type of behavioral anomaly"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "medium"
+    },
+    "baseline_behavior": {
+      "type": "object",
+      "description": "Normal behavior profile"
+    },
+    "anomalous_behavior": {
+      "type": "object",
+      "description": "Detected anomalous behavior"
+    },
+    "deviation_score": {
+      "type": "number",
+      "description": "How far from normal (0-100)"
+    },
+    "ai_reasoning": {
+      "type": "string",
+      "description": "AI explanation of why this is anomalous"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "detected",
+        "investigating",
+        "confirmed_threat",
+        "false_positive",
+        "resolved"
+      ],
+      "default": "detected"
+    },
+    "detection_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_identifier",
+    "anomaly_type"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_identifier": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
