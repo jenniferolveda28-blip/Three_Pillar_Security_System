@@ -73,8 +73,8 @@ function App() {
         <Router>
           <NavigationTracker />
           <AuthenticatedApp />
+          <CriticalThreatMonitor />
         </Router>
-        <CriticalThreatMonitor />
         <Toaster />
       </QueryClientProvider>
     </AuthProvider>
