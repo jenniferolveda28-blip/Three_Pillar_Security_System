@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import ReportConfigForm from '../components/reports/ReportConfigForm';
 import ReportList from '../components/reports/ReportList';
+import ExecutiveReportGenerator from '../components/reports/ExecutiveReportGenerator';
 
 export default function SecurityReports() {
   const [showForm, setShowForm] = useState(false);
@@ -112,7 +113,16 @@ export default function SecurityReports() {
           }}
           onGenerate={(reportId) => generateReportMutation.mutate(reportId)}
         />
+
+        <ExecutiveReportGeneratorWrapper />
       </div>
     </div>
   );
+}
+
+function ExecutiveReportGeneratorWrapper() {
+  const { data: alerts = [] } = useQuery({ queryKey: ['execAlerts'], queryFn: () => base44.entities.CriminalActivityAlert.list('-created_date', 500) });
+  const { data: logs = [] } = useQuery({ queryKey: ['execLogs'], queryFn: () => base44.entities.SecurityLog.list('-created_date', 500) });
+  const { data: sessions = [] } = useQuery({ queryKey: ['execSessions'], queryFn: () => base44.entities.ScramblingSession.list('-created_date', 100) });
+  return <ExecutiveReportGenerator alerts={alerts} logs={logs} sessions={sessions} />;
 }

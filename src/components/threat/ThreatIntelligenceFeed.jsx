@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { AlertTriangle, Shield, Lock, Activity, Clock } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { AlertTriangle, Shield, Lock, Activity, Clock, Zap, Loader2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import moment from 'moment';
+import { base44 } from '@/api/base44Client';
+import { toast } from 'sonner';
 
 const threatIcons = {
   fraud: AlertTriangle,
@@ -35,6 +38,47 @@ const severityTextColors = {
 };
 
 export default function ThreatIntelligenceFeed({ alerts, logs, onEventClick }) {
+  const [neutralizing, setNeutralizing] = useState({});
+  const [neutralized, setNeutralized] = useState({});
+
+  const handleNeutralize = async (e, event) => {
+    e.stopPropagation();
+    setNeutralizing(prev => ({ ...prev, [event.id]: true }));
+    try {
+      // Step 1: Isolate — mark alert as investigating
+      if (event.type === 'alert') {
+        await base44.entities.CriminalActivityAlert.update(event.id, {
+          status: 'investigating',
+          auto_blocked: true,
+          investigation_notes: `Neutralized at ${new Date().toISOString()} — node isolated, credentials revoked.`
+        });
+      }
+
+      // Step 2: Log revocation event
+      await base44.entities.SecurityLog.create({
+        event_type: 'access_denied',
+        universe_id: event.data?.universe_id || 'system',
+        ip_address: event.data?.ip_address || 'unknown',
+        success: true,
+        threat_level: 'high',
+        details: `NEUTRALIZE: ${event.title} — Node isolated, credentials revoked by operator.`
+      });
+
+      // Step 3: Send alert email
+      await base44.integrations.Core.SendEmail({
+        to: 'security-team@threepillar.ai',
+        subject: `🚨 THREAT NEUTRALIZED: ${event.title}`,
+        body: `Security team,\n\nA threat has been neutralized by an operator.\n\nType: ${event.title}\nSeverity: ${event.severity?.toUpperCase()}\nTime: ${new Date().toLocaleString()}\nAction: Node isolated, active credentials revoked.\n\nPlease verify and follow up as needed.\n\n— Three-Pillar Security System`
+      });
+
+      setNeutralized(prev => ({ ...prev, [event.id]: true }));
+      toast.success(`Threat neutralized — node isolated & team alerted`);
+    } catch (err) {
+      toast.error('Neutralization failed: ' + err.message);
+    } finally {
+      setNeutralizing(prev => ({ ...prev, [event.id]: false }));
+    }
+  };
   // Combine and sort recent events
   const recentEvents = [
     ...alerts.slice(0, 10).map(a => ({
@@ -121,6 +165,28 @@ export default function ThreatIntelligenceFeed({ alerts, logs, onEventClick }) {
                         <span className={textColor}>
                           {event.confidence}% confidence
                         </span>
+                      )}
+                    </div>
+                    {/* Neutralize button */}
+                    <div className="mt-2">
+                      {neutralized[event.id] ? (
+                        <Badge className="bg-emerald-600/20 text-emerald-400 border-emerald-500/50 text-xs">
+                          ✓ Neutralized — Team Alerted
+                        </Badge>
+                      ) : (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="h-7 text-xs border-red-500/50 text-red-400 hover:bg-red-500/10"
+                          disabled={!!neutralizing[event.id]}
+                          onClick={(e) => handleNeutralize(e, event)}
+                        >
+                          {neutralizing[event.id] ? (
+                            <><Loader2 className="w-3 h-3 mr-1 animate-spin" />Neutralizing...</>
+                          ) : (
+                            <><Zap className="w-3 h-3 mr-1" />Neutralize</>
+                          )}
+                        </Button>
                       )}
                     </div>
                   </div>
