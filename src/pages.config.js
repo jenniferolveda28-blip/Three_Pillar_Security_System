@@ -48,6 +48,12 @@
  * The mainPage value must match a key in the PAGES object exactly.
  */
 import AIThreatAnalysis from './pages/AIThreatAnalysis';
+import AnomalyInvestigation from './pages/AnomalyInvestigation';
+import ExecutiveSummary from './pages/ExecutiveSummary';
+import QuantumKeyManagement from './pages/QuantumKeyManagement';
+import PredictiveAnalytics from './pages/PredictiveAnalytics';
+import RedTeamSuite from './pages/RedTeamSuite';
+import AnomalyOrchestration from './pages/AnomalyOrchestration';
 import SecurityAnalytics from './pages/SecurityAnalytics';
 import AIThreatDetection from './pages/AIThreatDetection';
 import Analytics from './pages/Analytics';
@@ -85,6 +91,12 @@ export const PAGES = {
     "ThreePillarView": ThreePillarView,
     "UniversePerformance": UniversePerformance,
     "SecurityAnalytics": SecurityAnalytics,
+    "AnomalyInvestigation": AnomalyInvestigation,
+    "ExecutiveSummary": ExecutiveSummary,
+    "QuantumKeyManagement": QuantumKeyManagement,
+    "PredictiveAnalytics": PredictiveAnalytics,
+    "RedTeamSuite": RedTeamSuite,
+    "AnomalyOrchestration": AnomalyOrchestration,
 }
 
 export const pagesConfig = {
