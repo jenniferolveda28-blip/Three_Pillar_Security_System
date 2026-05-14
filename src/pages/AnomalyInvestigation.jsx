@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertTriangle, Shield, CheckCircle, XCircle, User, Clock, Monitor, Activity } from 'lucide-react';
+import PrintReportButton from '../components/PrintReportButton';
 import { format } from 'date-fns';
 
 const severityColor = { low: 'bg-blue-500/20 text-blue-300 border-blue-500/30', medium: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30', high: 'bg-orange-500/20 text-orange-300 border-orange-500/30', critical: 'bg-red-500/20 text-red-300 border-red-500/30' };
@@ -42,12 +43,25 @@ export default function AnomalyInvestigation() {
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center gap-3 mb-6">
-          <Shield className="w-8 h-8 text-cyan-400" />
-          <div>
-            <h1 className="text-2xl font-bold text-white">Anomaly Investigation</h1>
-            <p className="text-slate-400 text-sm">Forensic side-by-side analysis — confirm threats or clear false positives</p>
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <Shield className="w-8 h-8 text-cyan-400" />
+            <div>
+              <h1 className="text-2xl font-bold text-white">Anomaly Investigation</h1>
+              <p className="text-slate-400 text-sm">Forensic side-by-side analysis — confirm threats or clear false positives</p>
+            </div>
           </div>
+          <PrintReportButton
+            reportTitle="Anomaly Investigation Report"
+            subtitle="Forensic behavioral anomaly analysis snapshot"
+            filename="anomaly-investigation-{date}.pdf"
+            sections={[
+              { heading: 'ANOMALY SUMMARY', rows: [['Total Anomalies', anomalies.length], ['Selected for Investigation', selected ? '1' : '0'], ['Selected User', selected?.data?.user_identifier || 'None'], ['Selected Type', (selected?.data?.anomaly_type || '').replace(/_/g, ' ') || 'None'], ['Deviation Score', selected?.data?.deviation_score || 'N/A'], ['Status', selected?.data?.status || 'N/A']] },
+              { heading: 'ALL DETECTED ANOMALIES', body: anomalies.slice(0, 15).map(a => `• [${(a.data?.severity || 'medium').toUpperCase()}] ${a.data?.user_identifier || 'Unknown'} — ${(a.data?.anomaly_type || '').replace(/_/g, ' ')} — Deviation: ${a.data?.deviation_score || 0}/100 — Status: ${a.data?.status}`).join('\n') || 'No anomalies.' },
+              { heading: 'AI REASONING (SELECTED)', body: selected?.data?.ai_reasoning || 'No anomaly selected. Select an anomaly in the investigation panel to see AI reasoning here.' },
+              { heading: 'INVESTIGATION PROCESS', body: 'Each anomaly is investigated using a 4-step forensic process:\n\n1. BEHAVIORAL COMPARISON — Baseline vs. anomalous behavior are shown side-by-side\n2. LOG CORRELATION — Recent security logs for the user are pulled and cross-referenced\n3. DEVICE FINGERPRINTING — Hardware token activity is checked for suspicious patterns\n4. AI ANALYSIS — Machine learning explains why the behavior was flagged\n\nAnomalies are then classified as: Confirmed Threat (→ escalate), False Positive (→ clear baseline), or Investigating (→ continue monitoring).' },
+            ]}
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

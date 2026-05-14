@@ -3,6 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Shield, AlertTriangle, TrendingUp, TrendingDown, CheckCircle, Activity, Lock, Zap } from 'lucide-react';
+import PrintReportButton from '../components/PrintReportButton';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { format, subDays } from 'date-fns';
 
@@ -84,9 +85,22 @@ export default function ExecutiveSummary() {
               <p className="text-slate-400 text-sm">Overall protection posture — {format(new Date(), 'MMMM d, yyyy')}</p>
             </div>
           </div>
-          <Badge className={overallRisk >= 80 ? 'bg-green-500/20 text-green-300 border-green-500/30 text-lg px-4 py-2' : overallRisk >= 60 ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30 text-lg px-4 py-2' : 'bg-red-500/20 text-red-300 border-red-500/30 text-lg px-4 py-2'}>
-            {overallRisk >= 80 ? '✓ PROTECTED' : overallRisk >= 60 ? '⚠ MODERATE RISK' : '🔴 HIGH RISK'}
-          </Badge>
+          <div className="flex items-center gap-3">
+            <PrintReportButton
+              reportTitle="Executive Security Summary"
+              subtitle="Board-level security posture overview and risk assessment"
+              filename="executive-summary-{date}.pdf"
+              sections={[
+                { heading: 'EXECUTIVE RISK POSTURE', rows: [['Overall Protection Score', `${overallRisk}/100`], ['Status', overallRisk >= 80 ? '✓ PROTECTED' : overallRisk >= 60 ? '⚠ MODERATE RISK' : '🔴 HIGH RISK'], ['Active Threat Level', `${threatScore}/100`], ['Scrambler Protection', `${avgProtection}%`], ['Auto-Blocked Incidents', blockedAlerts], ['Open Threats', openThreats], ['High/Critical Anomalies', highAnomalies]] },
+                { heading: 'ALERT BREAKDOWN', rows: [['Total Alerts', alerts.length], ['Critical/Emergency', criticalAlerts], ['Auto-Blocked', blockedAlerts], ['Successful Log Events', successfulLogs], ['Active Scrambling Sessions', activeSessions.length]] },
+                { heading: 'SEVERITY DISTRIBUTION', rows: [['Emergency', alerts.filter(a => (a.data?.severity || a.severity) === 'emergency').length], ['Critical', alerts.filter(a => (a.data?.severity || a.severity) === 'critical').length], ['High', alerts.filter(a => (a.data?.severity || a.severity) === 'high').length], ['Medium', alerts.filter(a => (a.data?.severity || a.severity) === 'medium').length], ['Low', alerts.filter(a => (a.data?.severity || a.severity) === 'low').length]] },
+                { heading: 'RISK FORMULA', body: `Overall Protection Score = 100 − (critical_alerts × 5) − (open_threats × 3) − (high_anomalies × 4)\n\nCurrent: 100 − (${criticalAlerts} × 5) − (${openThreats} × 3) − (${highAnomalies} × 4) = ${overallRisk}/100\n\nA score above 80 indicates the system is operating within acceptable risk parameters. Scores below 60 require immediate executive attention.` },
+              ]}
+            />
+            <Badge className={overallRisk >= 80 ? 'bg-green-500/20 text-green-300 border-green-500/30 text-lg px-4 py-2' : overallRisk >= 60 ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30 text-lg px-4 py-2' : 'bg-red-500/20 text-red-300 border-red-500/30 text-lg px-4 py-2'}>
+              {overallRisk >= 80 ? '✓ PROTECTED' : overallRisk >= 60 ? '⚠ MODERATE RISK' : '🔴 HIGH RISK'}
+            </Badge>
+          </div>
         </div>
 
         {/* Risk Score Cards */}

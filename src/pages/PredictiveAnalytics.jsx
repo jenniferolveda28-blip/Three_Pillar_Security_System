@@ -3,6 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, TrendingDown, AlertTriangle, Clock, Activity, Zap } from 'lucide-react';
+import PrintReportButton from '../components/PrintReportButton';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, AreaChart, Area, CartesianGrid } from 'recharts';
 import { format, subHours } from 'date-fns';
 
@@ -91,12 +92,24 @@ export default function PredictiveAnalytics() {
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center gap-3 mb-6">
-          <TrendingUp className="w-8 h-8 text-cyan-400" />
-          <div>
-            <h1 className="text-2xl font-bold text-white">Predictive Analytics</h1>
-            <p className="text-slate-400 text-sm">Time-to-Failure forecasts based on performance trends</p>
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <TrendingUp className="w-8 h-8 text-cyan-400" />
+            <div>
+              <h1 className="text-2xl font-bold text-white">Predictive Analytics</h1>
+              <p className="text-slate-400 text-sm">Time-to-Failure forecasts based on performance trends</p>
+            </div>
           </div>
+          <PrintReportButton
+            reportTitle="Predictive Analytics — Time-to-Failure Report"
+            subtitle="AI-computed failure forecasts for all API universes"
+            filename="predictive-analytics-{date}.pdf"
+            sections={[
+              { heading: 'PREDICTIVE HEALTH SUMMARY', rows: [['Universes Monitored', universes.length], ['Critical Risk', criticalCount], ['Warning', warningCount], ['Healthy', universeStats.filter(u => u.status === 'Healthy').length], ['Total Requests Analyzed', requests.length], ['Metrics Data Points', metrics.length]] },
+              { heading: 'PER-UNIVERSE TTF FORECAST', body: universeStats.length > 0 ? universeStats.map(u => `• ${u.name || 'Unknown'}\n  Status: ${u.status} | TTF: ${u.status === 'Critical' ? '< 1 hour' : u.status === 'Warning' ? '2–8 hours' : u.status === 'Moderate' ? '8–24 hours' : '> 48 hours'}\n  Requests: ${u.requests} | Avg Latency: ${u.avgLatency}ms | Fail Rate: ${u.failRate}%`).join('\n\n') : 'No universes to analyze.' },
+              { heading: 'HOW TTF IS CALCULATED', body: 'Time-to-Failure (TTF) is calculated using a multi-factor algorithm:\n\nFail Rate Analysis:\n• > 30% failure rate → Critical (< 1 hour TTF)\n• 15–30% failure rate → Warning (2–8 hours TTF)\n• 5–15% failure rate → Moderate (8–24 hours TTF)\n• < 5% failure rate → Healthy (> 48 hours TTF)\n\nLatency Analysis:\n• > 2000ms avg latency → Critical\n• > 1000ms avg latency → Warning\n• > 500ms avg latency → Moderate\n\nFinal TTF = worst of (fail rate result, latency result)\n\nThis allows preemptive action before failures impact users.' },
+            ]}
+          />
         </div>
 
         {/* Summary */}

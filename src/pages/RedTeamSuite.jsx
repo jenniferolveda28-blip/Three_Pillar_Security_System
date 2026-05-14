@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Shield, Target, Zap, Lock, AlertTriangle, CheckCircle, Play, Square, RefreshCw } from 'lucide-react';
+import PrintReportButton from '../components/PrintReportButton';
 
 const ATTACK_VECTORS = [
   { id: 'brute_force', name: 'Brute Force', icon: '💥', description: 'Simulates repeated credential stuffing attempts', steps: ['Generating 1,000 credential pairs...', 'Attempting authentication floods...', 'Testing rate limiting thresholds...', 'Probing lockout mechanisms...'] },
@@ -82,6 +83,17 @@ export default function RedTeamSuite() {
             </div>
           </div>
           <div className="flex items-center gap-3">
+            <PrintReportButton
+              reportTitle="Red Team Testing Suite — Defense Report"
+              subtitle="Attack vector simulation results and defense layer scores"
+              filename="red-team-defense-report-{date}.pdf"
+              sections={[
+                { heading: 'OVERALL DEFENSE SCORE', rows: [['Overall Defense Score', overallScore !== null ? `${overallScore}/100` : 'No tests run yet'], ['Tests Completed', Object.keys(results).length], ['Tests Blocked', Object.values(results).filter(r => r.blocked).length], ['Tests Partially Blocked', Object.values(results).filter(r => !r.blocked).length], ['Target', targetUniverse === 'all' ? 'All Universes' : universes.find(u => u.id === targetUniverse)?.data?.name || targetUniverse]] },
+                { heading: 'ATTACK VECTOR RESULTS', body: ATTACK_VECTORS.map(v => { const r = results[v.id]; return r ? `• ${v.icon} ${v.name}: ${r.score}/100 — ${r.blocked ? '✓ FULLY BLOCKED' : '⚠ PARTIALLY BLOCKED'}\n  ${r.layers.join(' | ')}\n  ${r.warning ? `⚠ ${r.warning}` : ''}` : `• ${v.icon} ${v.name}: Not tested`; }).join('\n\n') },
+                { heading: 'ATTACK LOG', body: log.length > 0 ? log.slice(-20).map(e => `[${e.time.toLocaleTimeString()}] ${e.msg}`).join('\n') : 'No attacks have been run yet.' },
+                { heading: 'REMEDIATION RECOMMENDATIONS', body: Object.entries(results).filter(([, r]) => !r.blocked || r.warning).map(([id, r]) => { const v = ATTACK_VECTORS.find(v => v.id === id); return `${v?.icon} ${v?.name}:\n${r.warning || 'Review defense configuration for this vector.'}`; }).join('\n\n') || 'All tested attack vectors were fully blocked. System defense is operating at full capacity.' },
+              ]}
+            />
             <select
               value={targetUniverse}
               onChange={e => setTargetUniverse(e.target.value)}

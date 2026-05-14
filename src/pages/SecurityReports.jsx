@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { FileText, Plus, ArrowLeft, Calendar, Download, Mail } from 'lucide-react';
+import PrintReportButton from '../components/PrintReportButton';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
@@ -51,10 +52,22 @@ export default function SecurityReports() {
                 </div>
               </div>
             </div>
-            <Button onClick={() => setShowForm(true)} className="bg-blue-600 hover:bg-blue-700">
-              <Plus className="w-4 h-4 mr-2" />
-              New Report
-            </Button>
+            <div className="flex gap-2">
+              <PrintReportButton
+                reportTitle="Security Reports Overview"
+                subtitle="Automated threat intelligence and compliance reporting status"
+                filename="security-reports-overview-{date}.pdf"
+                sections={[
+                  { heading: 'REPORTING STATUS', rows: [['Total Configured Reports', reports.length], ['Active Schedules', activeReports], ['Reports Generated', totalGenerated]] },
+                  { heading: 'REPORT CONFIGURATIONS', body: reports.length > 0 ? reports.map(r => `• ${r.data?.report_name || r.report_name} — Schedule: ${r.data?.schedule_type || r.schedule_type} — Active: ${r.data?.is_active || r.is_active ? 'YES' : 'NO'} — Delivery: ${r.data?.delivery_method || r.delivery_method}`).join('\n') : 'No reports configured yet.' },
+                  { heading: 'WHY AUTOMATED REPORTING MATTERS', body: 'Automated security reporting ensures continuous compliance visibility without manual effort. Each report captures:\n\n• Threat summary: All detected and blocked threats in the period\n• Incident details: Full forensic records for each security event\n• Key metrics: API performance, auth success rates, scrambler activity\n• Recommendations: AI-generated action items based on current threat posture\n\nReports can be delivered by email or downloaded, and scheduled at any frequency from daily to monthly.' },
+                ]}
+              />
+              <Button onClick={() => setShowForm(true)} className="bg-blue-600 hover:bg-blue-700">
+                <Plus className="w-4 h-4 mr-2" />
+                New Report
+              </Button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

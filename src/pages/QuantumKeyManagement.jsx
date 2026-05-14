@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Key, RefreshCw, Shield, AlertTriangle, CheckCircle, Layers } from 'lucide-react';
+import PrintReportButton from '../components/PrintReportButton';
 import { format } from 'date-fns';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis } from 'recharts';
 
@@ -71,12 +72,24 @@ export default function QuantumKeyManagement() {
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center gap-3 mb-6">
-          <Key className="w-8 h-8 text-cyan-400" />
-          <div>
-            <h1 className="text-2xl font-bold text-white">Quantum Key Management</h1>
-            <p className="text-slate-400 text-sm">Distribution visualization and batch regeneration with custom entropy</p>
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <Key className="w-8 h-8 text-cyan-400" />
+            <div>
+              <h1 className="text-2xl font-bold text-white">Quantum Key Management</h1>
+              <p className="text-slate-400 text-sm">Distribution visualization and batch regeneration with custom entropy</p>
+            </div>
           </div>
+          <PrintReportButton
+            reportTitle="Quantum Key Management Report"
+            subtitle="Key distribution, status, and entropy analysis across all universes"
+            filename="quantum-key-management-{date}.pdf"
+            sections={[
+              { heading: 'KEY INVENTORY OVERVIEW', rows: [['Total Keys', keys.length], ['Active', keys.filter(k => (k.data?.status || k.status) === 'active').length], ['Expiring Soon', keys.filter(k => (k.data?.status || k.status) === 'expiring_soon').length], ['Expired', keys.filter(k => (k.data?.status || k.status) === 'expired').length], ['Revoked', keys.filter(k => (k.data?.status || k.status) === 'revoked').length], ['Current Entropy Setting', `${entropy}%`], ['Entropy Grade', entropy >= 90 ? 'Quantum-Grade' : entropy >= 70 ? 'High' : entropy >= 50 ? 'Standard' : 'Low'], ['Connected Universes', universes.length]] },
+              { heading: 'KEY LIST', body: keys.length > 0 ? keys.slice(0, 20).map(k => `• ${k.data?.key_name || k.key_name} — Universe: ${universeMap[k.data?.universe_id] || k.data?.universe_id?.substring(0, 12) || 'N/A'} — Status: ${k.data?.status || k.status} — Used: ${k.data?.usage_count || k.usage_count || 0}x — Last Rotated: ${k.data?.last_rotated ? new Date(k.data.last_rotated).toLocaleDateString() : 'Never'}`).join('\n') : 'No keys configured.' },
+              { heading: 'QUANTUM ENTROPY EXPLAINED', body: 'Security Entropy measures the randomness and unpredictability of generated keys.\n\nEntropy Grades:\n• 90–100% — Quantum-Grade: Uses quantum random number generation, resistant to cryptanalysis\n• 70–89% — High: Uses CSPRNG (Cryptographically Secure Pseudo-Random Number Generator)\n• 50–69% — Standard: Uses OS-level entropy pool\n• 30–49% — Low: NOT recommended for production use\n\nAll production keys should use 90%+ entropy to ensure resistance against both classical and quantum computing attacks.\n\nKey Rotation Policy: Keys are automatically rotated based on universe-specific intervals ranging from minutes to days.' },
+            ]}
+          />
         </div>
 
         {/* Charts */}

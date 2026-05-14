@@ -4,6 +4,7 @@ import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { BarChart3, Shield, UserCheck, Activity, ArrowLeft } from "lucide-react";
+import PrintReportButton from '../components/PrintReportButton';
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import ApiUsageChart from '../components/analytics/ApiUsageChart';
@@ -51,16 +52,27 @@ export default function Analytics() {
             </Button>
           </Link>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl">
-                <BarChart3 className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <h1 className="text-4xl font-bold text-gray-900">Analytics Dashboard</h1>
-                <p className="text-gray-600">Comprehensive insights and metrics</p>
-              </div>
+          <div className="flex items-center gap-3">
+            <div className="p-3 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl">
+              <BarChart3 className="w-8 h-8 text-white" />
             </div>
-            <div className="flex gap-2">
+            <div>
+              <h1 className="text-4xl font-bold text-gray-900">Analytics Dashboard</h1>
+              <p className="text-gray-600">Comprehensive insights and metrics</p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <PrintReportButton
+              reportTitle="Analytics Dashboard Report"
+              subtitle="Comprehensive API usage, security events, and performance metrics"
+              filename="analytics-dashboard-{date}.pdf"
+              sections={[
+                { heading: 'KEY PERFORMANCE INDICATORS', rows: [['Total API Calls', totalCalls], ['Success Rate', `${successRate}%`], ['Average Latency', `${avgLatency}ms`], ['Authentication Attempts', authMetrics.length], ['Security Events', securityMetrics.length], ['Time Range', timeRange], ['Total Metrics Records', metrics.length]] },
+                { heading: 'API CALL BREAKDOWN', body: `Total API Calls: ${totalCalls}\nSuccessful: ${apiMetrics.filter(m => m.success || m.data?.success).length}\nFailed: ${apiMetrics.filter(m => m.success === false || m.data?.success === false).length}\nSuccess Rate: ${successRate}%\nAverage Latency: ${avgLatency}ms` },
+                { heading: 'AUTHENTICATION SUMMARY', body: `Total Auth Attempts: ${authMetrics.length}\nSuccessful: ${authMetrics.filter(m => m.success || m.data?.success).length}\nFailed: ${authMetrics.filter(m => m.success === false || m.data?.success === false).length}\nAuth Success Rate: ${authMetrics.length > 0 ? ((authMetrics.filter(m => m.success || m.data?.success).length / authMetrics.length) * 100).toFixed(1) : 100}%` },
+                { heading: 'SECURITY EVENTS', body: `Total Security Events: ${securityMetrics.length}\nHigh/Critical: ${securityMetrics.filter(m => m.data?.error_type || m.error_type).length}\nConnected Universes: ${universes.length}\nUniverse Names: ${universes.map(u => u.data?.name || u.name).join(', ') || 'None configured'}` },
+              ]}
+            />
               <Button
                 variant={timeRange === '1h' ? 'default' : 'outline'}
                 size="sm"

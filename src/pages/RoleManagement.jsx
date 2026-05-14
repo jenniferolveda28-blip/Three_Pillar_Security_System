@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Shield, Plus, ArrowLeft, Users } from 'lucide-react';
+import PrintReportButton from '../components/PrintReportButton';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
@@ -47,6 +48,17 @@ export default function RoleManagement() {
               </div>
             </div>
             <div className="flex gap-2">
+              <PrintReportButton
+                reportTitle="Role & Permission Management Report"
+                subtitle="Granular access control and user permission assignments"
+                filename="role-management-{date}.pdf"
+                sections={[
+                  { heading: 'RBAC OVERVIEW', rows: [['Total Roles', roles.length], ['User Assignments', assignments.length], ['System Roles', roles.filter(r => r.data?.is_system_role || r.is_system_role).length], ['Custom Roles', roles.filter(r => !(r.data?.is_system_role || r.is_system_role)).length]] },
+                  { heading: 'ROLES LIST', body: roles.length > 0 ? roles.map(r => `• ${r.data?.role_name || r.role_name} — ${r.data?.description || r.description || 'No description'} — System Role: ${(r.data?.is_system_role || r.is_system_role) ? 'YES' : 'NO'}`).join('\n') : 'No roles configured.' },
+                  { heading: 'USER ASSIGNMENTS', body: assignments.length > 0 ? assignments.slice(0, 20).map(a => `• User: ${a.data?.user_email || a.user_email} — Role ID: ${a.data?.role_id || a.role_id} — Assigned by: ${a.data?.assigned_by || a.assigned_by || 'System'}`).join('\n') : 'No assignments configured.' },
+                  { heading: 'WHY RBAC MATTERS', body: 'Role-Based Access Control (RBAC) ensures the principle of least privilege — every user can only access exactly what they need to do their job, nothing more.\n\nIn a zero-trust security model, RBAC prevents:\n• Insider threats — employees cannot access data beyond their role\n• Lateral movement — a compromised account cannot escalate privileges\n• Accidental data exposure — no user can stumble into sensitive areas\n\nAll RBAC changes are logged in the audit trail for compliance purposes.' },
+                ]}
+              />
               <Button onClick={() => setShowUserAssignment(true)} variant="outline">
                 <Users className="w-4 h-4 mr-2" />
                 Assign Users

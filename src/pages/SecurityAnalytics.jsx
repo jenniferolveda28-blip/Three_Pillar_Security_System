@@ -5,6 +5,7 @@ import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ArrowLeft, BarChart2, TrendingUp, ShieldAlert, Activity } from 'lucide-react';
+import PrintReportButton from '../components/PrintReportButton';
 import {
   LineChart, Line, BarChart, Bar, AreaChart, Area,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
@@ -103,14 +104,27 @@ export default function SecurityAnalytics() {
               Back to Dashboard
             </Button>
           </Link>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-3 bg-gradient-to-br from-blue-500 to-violet-600 rounded-xl shadow-lg shadow-blue-500/50">
-              <BarChart2 className="w-8 h-8 text-white" />
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-gradient-to-br from-blue-500 to-violet-600 rounded-xl shadow-lg shadow-blue-500/50">
+                <BarChart2 className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h1 className="text-4xl font-bold gradient-text">Security Analytics</h1>
+                <p className="text-slate-400">Historical threat patterns and long-term vulnerability analysis</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-4xl font-bold gradient-text">Security Analytics</h1>
-              <p className="text-slate-400">Historical threat patterns and long-term vulnerability analysis</p>
-            </div>
+            <PrintReportButton
+              reportTitle="Security Analytics Report"
+              subtitle="Historical threat patterns, severity trends, and long-term vulnerability analysis"
+              filename="security-analytics-{date}.pdf"
+              sections={[
+                { heading: 'SECURITY KPIs', rows: [['Total Threats', totalThreats], ['Critical Alerts', criticalCount], ['Behavioral Anomalies', anomalies.length], ['Resolution Rate', `${avgResolution}%`], ['Total Alerts', alerts.length], ['Total Security Logs', logs.length]] },
+                { heading: 'ATTACK TYPE BREAKDOWN', body: ['fraud', 'unauthorized_access', 'data_breach', 'malicious_intent', 'identity_theft', 'credential_abuse', 'pattern_anomaly'].map(t => `• ${t.replace(/_/g, ' ').toUpperCase()}: ${alerts.filter(a => (a.data?.alert_type || a.alert_type) === t).length} incidents`).join('\n') },
+                { heading: 'SEVERITY DISTRIBUTION', rows: [['Emergency', alerts.filter(a => (a.data?.severity || a.severity) === 'emergency').length], ['Critical', alerts.filter(a => (a.data?.severity || a.severity) === 'critical').length], ['High', alerts.filter(a => (a.data?.severity || a.severity) === 'high').length], ['Medium', alerts.filter(a => (a.data?.severity || a.severity) === 'medium').length], ['Low', alerts.filter(a => (a.data?.severity || a.severity) === 'low').length]] },
+                { heading: 'ALERT STATUS BREAKDOWN', rows: [['Open', alerts.filter(a => (a.data?.status || a.status) === 'open').length], ['Investigating', alerts.filter(a => (a.data?.status || a.status) === 'investigating').length], ['Confirmed', alerts.filter(a => (a.data?.status || a.status) === 'confirmed').length], ['Resolved', alerts.filter(a => (a.data?.status || a.status) === 'resolved').length], ['False Positive', alerts.filter(a => (a.data?.status || a.status) === 'false_positive').length]] },
+              ]}
+            />
           </div>
         </div>
 

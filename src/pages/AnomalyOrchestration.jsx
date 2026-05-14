@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { AlertTriangle, Bell, Shield, Zap, CheckCircle, Clock, User, Play, Pause } from 'lucide-react';
+import PrintReportButton from '../components/PrintReportButton';
 import { format } from 'date-fns';
 
 const severityColor = {
@@ -119,6 +120,17 @@ export default function AnomalyOrchestration() {
             </div>
           </div>
           <div className="flex items-center gap-3">
+            <PrintReportButton
+              reportTitle="Anomaly Orchestration Engine Report"
+              subtitle="Automated incident response workflow log and statistics"
+              filename="anomaly-orchestration-{date}.pdf"
+              sections={[
+                { heading: 'ENGINE STATUS & STATS', rows: [['Engine State', engineActive ? 'ACTIVE — Monitoring' : 'PAUSED'], ['Total Anomalies', anomalies.length], ['High / Critical', highCriticalCount], ['Auto-Quarantined', investigatingCount], ['Workflows Fired', workflowLog.filter(e => e.type === 'triggered').length]] },
+                { heading: 'WORKFLOW EVENT LOG', body: workflowLog.length > 0 ? workflowLog.slice(0, 20).map(e => `[${e.time.toLocaleTimeString()}] ${e.msg}`).join('\n') : 'No workflow events recorded yet.' },
+                { heading: 'HOW THE ORCHESTRATION ENGINE WORKS', body: 'The engine continuously monitors all behavioral anomalies in real-time. When a HIGH or CRITICAL severity anomaly is detected:\n\nStep 1 — TRIGGER: Anomaly identified, workflow initiated immediately\nStep 2 — SESSION REVOCATION: All active sessions for the flagged user are suspended within 800ms\nStep 3 — SECURITY LOG: An immutable forensic record is created with full context\nStep 4 — TEAM NOTIFICATION: Security team is alerted with full details including severity and deviation score\nStep 5 — QUARANTINE: User is placed in investigating status pending human review\n\nThe entire automated response completes in under 2 seconds, far faster than any human response.' },
+                { heading: 'ACTIVE ANOMALY FEED', body: anomalies.slice(0, 15).map(a => `• [${(a.data?.severity || 'medium').toUpperCase()}] ${a.data?.user_identifier || 'Unknown'} — ${(a.data?.anomaly_type || '').replace(/_/g, ' ')} — Deviation: ${a.data?.deviation_score || 0}/100 — ${a.data?.status}`).join('\n') || 'No anomalies.' },
+              ]}
+            />
             <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full border ${engineActive ? 'border-green-500/40 bg-green-500/10' : 'border-slate-600 bg-slate-800'}`}>
               <div className={`w-2 h-2 rounded-full ${engineActive ? 'bg-green-400 animate-pulse' : 'bg-slate-500'}`} />
               <span className={`text-sm font-medium ${engineActive ? 'text-green-400' : 'text-slate-400'}`}>{engineActive ? 'Engine Active' : 'Engine Paused'}</span>

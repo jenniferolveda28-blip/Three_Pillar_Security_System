@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Activity, Database, Shield, AlertTriangle, CheckCircle2, XCircle, ArrowLeft, Download } from 'lucide-react';
+import PrintReportButton from '../components/PrintReportButton';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 
@@ -246,10 +247,27 @@ SYSTEM STATUS: ${systemHealth.status === 'healthy' ? '✓ ALL SYSTEMS OPERATIONA
                 </div>
               </div>
             </div>
-            <Button onClick={generateReport} className="bg-emerald-600 hover:bg-emerald-700">
-              <Download className="w-4 h-4 mr-2" />
-              Download Report
-            </Button>
+            <div className="flex gap-2">
+              <PrintReportButton
+                reportTitle="System Diagnostics Report"
+                subtitle="Complete system health analysis across all modules"
+                filename="system-diagnostics-{date}.pdf"
+                sections={[
+                  { heading: 'SYSTEM HEALTH OVERVIEW', rows: [['System Status', systemHealth.status.toUpperCase()], ['Health Score', `${systemHealth.score}/100`]] },
+                  { heading: 'API UNIVERSES', rows: [['Total', diagnostics.universes.total], ['Active', diagnostics.universes.active], ['Degraded', diagnostics.universes.degraded], ['Offline', diagnostics.universes.offline], ['Avg Success Rate', `${diagnostics.universes.avgSuccessRate}%`]] },
+                  { heading: 'SECURITY INFRASTRUCTURE', rows: [['Total Logs', diagnostics.security.totalLogs], ['Critical Alerts', diagnostics.security.criticalAlerts], ['High Alerts', diagnostics.security.highAlerts], ['Auto-Blocked', diagnostics.security.autoBlocked], ['Critical Threats', diagnostics.security.threatLevels.critical], ['High Threats', diagnostics.security.threatLevels.high]] },
+                  { heading: 'BIOVERIFY AUTHENTICATION', rows: [['Total Tokens', diagnostics.authentication.totalTokens], ['Active Tokens', diagnostics.authentication.activeTokens], ['Auth Attempts', diagnostics.authentication.authMetrics], ['Successful Auth', diagnostics.authentication.successfulAuth], ['Failed Auth', diagnostics.authentication.failedAuth]] },
+                  { heading: 'IP SHIELD (SCRAMBLING)', rows: [['Active Sessions', diagnostics.scrambling.activeSessions], ['Total Sessions', diagnostics.scrambling.totalSessions], ['Total Iterations', diagnostics.scrambling.totalIterations], ['Avg Protection Score', `${diagnostics.scrambling.avgProtection}%`]] },
+                  { heading: 'AI THREAT INTELLIGENCE', rows: [['Attack Chains', diagnostics.ai.attackChains], ['Active Chains', diagnostics.ai.activeChains], ['Anomalies', diagnostics.ai.anomalies], ['Detected', diagnostics.ai.detectedAnomalies], ['Confirmed Threats', diagnostics.ai.confirmedThreats]] },
+                  { heading: 'PERFORMANCE', rows: [['Total Requests', diagnostics.performance.totalRequests], ['Successful', diagnostics.performance.successfulRequests], ['Failed', diagnostics.performance.failedRequests], ['Avg Latency', `${diagnostics.performance.avgLatency}ms`]] },
+                  { heading: 'ACCESS CONTROL & REPORTING', rows: [['Total Roles', diagnostics.rbac.totalRoles], ['System Roles', diagnostics.rbac.systemRoles], ['Custom Roles', diagnostics.rbac.customRoles], ['Total Reports', diagnostics.reporting.totalReports], ['Active Schedules', diagnostics.reporting.activeReports]] },
+                ]}
+              />
+              <Button onClick={generateReport} className="bg-emerald-600 hover:bg-emerald-700">
+                <Download className="w-4 h-4 mr-2" />
+                Download .TXT
+              </Button>
+            </div>
           </div>
 
           {/* System Health */}
