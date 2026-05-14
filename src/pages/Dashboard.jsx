@@ -4,6 +4,7 @@ import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw, Activity, Lock, Brain } from "lucide-react";
+import PrintReportButton from '../components/PrintReportButton';
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import UniverseCard from '../components/dashboard/UniverseCard';
@@ -61,16 +62,56 @@ export default function Dashboard() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl shadow-lg shadow-cyan-500/50">
-                <Sparkles className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <h1 className="text-4xl font-bold gradient-text">Forged API</h1>
-                <p className="text-slate-400">DNA Authentication • Unique to You • Constantly Verified</p>
-              </div>
+          <div className="flex items-center gap-3">
+            <div className="p-3 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl shadow-lg shadow-cyan-500/50">
+              <Sparkles className="w-8 h-8 text-white" />
             </div>
-            <div className="flex gap-2">
+            <div>
+              <h1 className="text-4xl font-bold gradient-text">Forged API</h1>
+              <p className="text-slate-400">DNA Authentication • Unique to You • Constantly Verified</p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <PrintReportButton
+              reportTitle="Forged API — API Key & Universe Management Report"
+              subtitle="What Forged API does for your API keys — and why no other system comes close."
+              filename="forged-api-report-{date}.pdf"
+              sections={[
+                {
+                  heading: 'WHAT FORGED API DOES FOR YOUR API KEYS',
+                  body: 'Forged API is an intelligent multi-universe API gateway that eliminates every weakness of traditional API key management.\n\nTraditional API management: One static key. One endpoint. One point of failure.\nForged API: Rotating keys across multiple universes with AI-powered routing, auto-failover, and real-time threat detection — all happening invisibly behind every request.'
+                },
+                {
+                  heading: 'LIVE SYSTEM STATUS',
+                  rows: [
+                    ['Connected API Universes', universes.length],
+                    ['Total Requests Processed', requests.length],
+                    ['Active API Keys', keys.length],
+                    ['Active Hardware Tokens', hardwareTokens.length],
+                    ['Security Logs', securityLogs.length],
+                    ['Key Rotation', 'Continuous — every 0.1 to 5 seconds'],
+                    ['Routing Algorithm', 'AI-powered latency + health scoring'],
+                    ['Failover Time', '< 50ms automatic rerouting'],
+                  ]
+                },
+                {
+                  heading: 'THE API KEY PROBLEM — AND OUR SOLUTION',
+                  body: 'TRADITIONAL APPROACH (broken):\n• One API key, valid for months or years\n• Stored in environment variables or config files\n• Leaked via git commits, logs, or insider access\n• Single point of failure — one breach = full access\n• No visibility into who used the key, when, or why\n\nFORGED API APPROACH (unbreakable):\n• Keys rotate every 0.1–5 seconds via IP Shield\n• Keys are bound to DNA-verified hardware tokens\n• Every request is logged with user, timestamp, and IP\n• Compromised keys expire before they can be replayed\n• Multiple universes provide instant failover if one is compromised'
+                },
+                {
+                  heading: 'INTELLIGENT ROUTING ACROSS UNIVERSES',
+                  body: 'Forged API routes every request across multiple API universes using an AI scoring algorithm that weighs:\n\n• Real-time latency (40% weight)\n• Success rate history (30% weight)\n• Current health status (20% weight)\n• Geographic proximity (10% weight)\n\nIf a universe degrades or goes offline, the system automatically reroutes to the next best option in < 50ms — completely transparently to the application.\n\nThis means your APIs have 99.9%+ availability even when individual providers fail.'
+                },
+                {
+                  heading: 'SECURITY LAYERS ON EVERY API CALL',
+                  body: 'Every request through Forged API passes through 5 security layers:\n\nLayer 1: DNA Authentication — Verify caller identity via BioVerify token\nLayer 2: Key Validation — Confirm current rotating key matches expected TOTP\nLayer 3: Rate Limiting — Enforce per-user and per-universe call limits\nLayer 4: Threat Analysis — AI checks request pattern against behavioral baseline\nLayer 5: Audit Logging — Full immutable record of every call with metadata\n\nAny layer can independently block a request. All five must pass for a call to succeed.'
+                },
+                {
+                  heading: 'CIRCUIT BREAKER & FAILOVER',
+                  body: 'The circuit breaker pattern protects against cascading failures:\n\n• CLOSED state: Normal operation, all requests pass through\n• OPEN state: Universe is failing, requests immediately reroute\n• HALF-OPEN state: Testing recovery before restoring full traffic\n\nThreshold: 5 consecutive failures triggers circuit open. Recovery test: Every 30 seconds.\n\nThis ensures a failing third-party API never brings down your application.'
+                },
+              ]}
+            />
               <Link to={createPageUrl('ThreePillarView')}>
                 <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
                   <Lock className="w-4 h-4 mr-2" />
