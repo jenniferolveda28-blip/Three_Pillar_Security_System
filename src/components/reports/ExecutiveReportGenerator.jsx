@@ -54,10 +54,13 @@ export default function ExecutiveReportGenerator({ logs = [], alerts = [], sessi
 
       // ── Threat Summary ──
       section('THREAT DETECTION SUMMARY', 239, 68, 68);
+      // Helper: unwrap data field (SDK wraps records in { data: {...} })
+      const d = (record) => record?.data || record || {};
+
       const totalThreats = alerts.length;
-      const criticalThreats = alerts.filter(a => a.severity === 'critical' || a.severity === 'emergency').length;
-      const resolved = alerts.filter(a => a.status === 'resolved').length;
-      const blocked = alerts.filter(a => a.auto_blocked).length;
+      const criticalThreats = alerts.filter(a => d(a).severity === 'critical' || d(a).severity === 'emergency').length;
+      const resolved = alerts.filter(a => d(a).status === 'resolved').length;
+      const blocked = alerts.filter(a => d(a).auto_blocked).length;
       row('Total Threats Detected:', totalThreats);
       row('Critical / Emergency:', criticalThreats);
       row('Auto-Blocked:', blocked);
@@ -68,7 +71,7 @@ export default function ExecutiveReportGenerator({ logs = [], alerts = [], sessi
       // ── System Stability ──
       section('SYSTEM STABILITY METRICS', 16, 185, 129);
       const totalLogs = logs.length;
-      const successLogs = logs.filter(l => l.success).length;
+      const successLogs = logs.filter(l => d(l).success).length;
       const successRate = totalLogs > 0 ? Math.round((successLogs / totalLogs) * 100) : 100;
       row('Security Events Logged:', totalLogs);
       row('Successful Operations:', successLogs);
@@ -78,10 +81,10 @@ export default function ExecutiveReportGenerator({ logs = [], alerts = [], sessi
 
       // ── Scrambling ──
       section('SCRAMBLING DEFENSE METRICS', 245, 158, 11);
-      const activeSessions = sessions.filter(s => s.status === 'active').length;
-      const totalIterations = sessions.reduce((sum, s) => sum + (s.iterations || 0), 0);
+      const activeSessions = sessions.filter(s => d(s).status === 'active').length;
+      const totalIterations = sessions.reduce((sum, s) => sum + (d(s).iterations || 0), 0);
       const avgProtection = sessions.length > 0
-        ? Math.round(sessions.reduce((sum, s) => sum + (s.protection_score || 0), 0) / sessions.length)
+        ? Math.round(sessions.reduce((sum, s) => sum + (d(s).protection_score || 0), 0) / sessions.length)
         : 100;
       row('Active Scrambling Sessions:', activeSessions);
       row('Total Scramble Iterations:', totalIterations.toLocaleString());
@@ -128,15 +131,25 @@ export default function ExecutiveReportGenerator({ logs = [], alerts = [], sessi
         doc.text(`Report ID: EXEC-${reportDate}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`, 150, 285);
       }
 
-      doc.save(`executive-compliance-${reportDate}.pdf`);
+      // Use blob URL for reliable download across all browsers/iframes
+      const pdfBlob = doc.output('blob');
+      const url = URL.createObjectURL(pdfBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `executive-compliance-${reportDate}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(url), 3000);
     } finally {
       setGenerating(false);
     }
   };
 
+  const d = (record) => record?.data || record || {};
   const totalThreats = alerts.length;
-  const criticalCount = alerts.filter(a => a.severity === 'critical' || a.severity === 'emergency').length;
-  const activeSessions = sessions.filter(s => s.status === 'active').length;
+  const criticalCount = alerts.filter(a => d(a).severity === 'critical' || d(a).severity === 'emergency').length;
+  const activeSessions = sessions.filter(s => d(s).status === 'active').length;
 
   return (
     <Card className="multi-layer-card card-layer-monitoring border mt-8">
