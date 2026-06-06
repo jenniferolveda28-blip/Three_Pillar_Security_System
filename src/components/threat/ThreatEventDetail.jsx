@@ -14,21 +14,24 @@ const severityColors = {
 };
 
 export default function ThreatEventDetail({ event, onClose, alerts, logs }) {
-  const isAlert = event.alert_type !== undefined;
-  const severity = isAlert ? event.severity : event.threat_level;
-  const title = isAlert 
-    ? event.alert_type.replace(/_/g, ' ').toUpperCase()
-    : event.event_type.replace(/_/g, ' ').toUpperCase();
+  // Normalize: support both flat and nested (.data) structures
+  const e = event?.data ?? event ?? {};
 
-  // Find related events
-  const relatedEvents = isAlert 
+  const isAlert = e.alert_type !== undefined;
+  const severity = isAlert ? e.severity : e.threat_level;
+  const title = isAlert
+    ? (e.alert_type || '').replace(/_/g, ' ').toUpperCase()
+    : (e.event_type || '').replace(/_/g, ' ').toUpperCase();
+
+  // Find related events (normalize nested data too)
+  const relatedEvents = isAlert
     ? alerts.filter(a => a.id !== event.id && (
-        a.ip_address === event.ip_address || 
-        a.user_identifier === event.user_identifier
+        (a.data?.ip_address || a.ip_address) === e.ip_address ||
+        (a.data?.user_identifier || a.user_identifier) === e.user_identifier
       )).slice(0, 5)
     : logs.filter(l => l.id !== event.id && (
-        l.ip_address === event.ip_address || 
-        l.universe_id === event.universe_id
+        (l.data?.ip_address || l.ip_address) === e.ip_address ||
+        (l.data?.universe_id || l.universe_id) === e.universe_id
       )).slice(0, 5);
 
   return (
@@ -57,80 +60,80 @@ export default function ThreatEventDetail({ event, onClose, alerts, logs }) {
               <Clock className="w-4 h-4" />
               <span className="text-xs font-semibold">Timestamp</span>
             </div>
-            <p className="text-slate-200">{moment(event.created_date).format('MMMM Do YYYY, h:mm:ss a')}</p>
-            <p className="text-xs text-slate-500">{moment(event.created_date).fromNow()}</p>
+            <p className="text-slate-200">{moment(event.created_date || e.created_date).format('MMMM Do YYYY, h:mm:ss a')}</p>
+            <p className="text-xs text-slate-500">{moment(event.created_date || e.created_date).fromNow()}</p>
           </div>
 
-          {event.ip_address && (
+          {e.ip_address && (
             <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
               <div className="flex items-center gap-2 text-slate-400 mb-1">
                 <MapPin className="w-4 h-4" />
                 <span className="text-xs font-semibold">IP Address</span>
               </div>
-              <p className="text-slate-200 font-mono">{event.ip_address}</p>
+              <p className="text-slate-200 font-mono">{e.ip_address}</p>
             </div>
           )}
 
-          {event.user_identifier && (
+          {e.user_identifier && (
             <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
               <div className="flex items-center gap-2 text-slate-400 mb-1">
                 <User className="w-4 h-4" />
                 <span className="text-xs font-semibold">User</span>
               </div>
-              <p className="text-slate-200">{event.user_identifier}</p>
+              <p className="text-slate-200">{e.user_identifier}</p>
             </div>
           )}
 
-          {event.universe_id && (
+          {e.universe_id && (
             <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
               <div className="flex items-center gap-2 text-slate-400 mb-1">
                 <Shield className="w-4 h-4" />
                 <span className="text-xs font-semibold">Universe</span>
               </div>
-              <p className="text-slate-200">{event.universe_id}</p>
+              <p className="text-slate-200">{e.universe_id}</p>
             </div>
           )}
 
-          {event.confidence_score && (
+          {e.confidence_score && (
             <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
               <div className="flex items-center gap-2 text-slate-400 mb-1">
                 <Activity className="w-4 h-4" />
                 <span className="text-xs font-semibold">Confidence Score</span>
               </div>
-              <p className="text-slate-200">{event.confidence_score}%</p>
+              <p className="text-slate-200">{e.confidence_score}%</p>
             </div>
           )}
 
-          {event.status && (
+          {e.status && (
             <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
               <div className="flex items-center gap-2 text-slate-400 mb-1">
                 <Lock className="w-4 h-4" />
                 <span className="text-xs font-semibold">Status</span>
               </div>
-              <Badge variant="outline">{event.status.toUpperCase()}</Badge>
+              <Badge variant="outline">{e.status.toUpperCase()}</Badge>
             </div>
           )}
         </div>
 
         {/* Details */}
-        {(event.details || event.activity_details) && (
+        {(e.details || e.activity_details) && (
           <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
             <p className="text-xs font-semibold text-slate-400 mb-2">Event Details</p>
             <div className="text-slate-300 text-sm whitespace-pre-wrap">
-              {typeof (event.details || event.activity_details) === 'string' 
-                ? (event.details || event.activity_details)
-                : JSON.stringify(event.details || event.activity_details, null, 2)
+              {typeof (e.details || e.activity_details) === 'string'
+                ? (e.details || e.activity_details)
+                : JSON.stringify(e.details || e.activity_details, null, 2)
               }
             </div>
           </div>
         )}
 
         {/* Indicators */}
-        {event.indicators && event.indicators.length > 0 && (
+        {e.indicators && e.indicators.length > 0 && (
           <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
             <p className="text-xs font-semibold text-slate-400 mb-2">Threat Indicators</p>
             <div className="flex flex-wrap gap-2">
-              {event.indicators.map((indicator, idx) => (
+              {e.indicators.map((indicator, idx) => (
                 <Badge key={idx} variant="outline" className="border-red-500/50 text-red-400">
                   {indicator}
                 </Badge>
