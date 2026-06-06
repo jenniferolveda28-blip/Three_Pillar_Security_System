@@ -1,0 +1,69 @@
+{
+  "name": "ThreatCorrelation",
+  "type": "object",
+  "properties": {
+    "attack_chain_name": {
+      "type": "string",
+      "description": "Name of detected attack pattern"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "medium"
+    },
+    "related_events": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of correlated security events"
+    },
+    "attack_stages": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Stages of the attack chain"
+    },
+    "confidence_score": {
+      "type": "number",
+      "description": "AI confidence in correlation (0-100)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "investigating",
+        "mitigated",
+        "false_positive"
+      ],
+      "default": "active"
+    },
+    "ai_analysis": {
+      "type": "string",
+      "description": "AI-generated analysis of the attack chain"
+    },
+    "recommended_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "AI-suggested mitigation steps"
+    },
+    "affected_systems": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Systems impacted by this attack chain"
+    }
+  },
+  "required": [
+    "attack_chain_name"
+  ]
+}

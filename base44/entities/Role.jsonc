@@ -1,0 +1,68 @@
+{
+  "name": "Role",
+  "type": "object",
+  "properties": {
+    "role_name": {
+      "type": "string",
+      "description": "Name of the role (e.g., 'Security Analyst', 'System Administrator')"
+    },
+    "description": {
+      "type": "string",
+      "description": "What this role is for"
+    },
+    "permissions": {
+      "type": "object",
+      "description": "Permission flags for various features",
+      "properties": {
+        "view_dashboard": {
+          "type": "boolean",
+          "default": true
+        },
+        "view_analytics": {
+          "type": "boolean",
+          "default": false
+        },
+        "view_threats": {
+          "type": "boolean",
+          "default": false
+        },
+        "manage_universes": {
+          "type": "boolean",
+          "default": false
+        },
+        "manage_keys": {
+          "type": "boolean",
+          "default": false
+        },
+        "manage_users": {
+          "type": "boolean",
+          "default": false
+        },
+        "manage_roles": {
+          "type": "boolean",
+          "default": false
+        },
+        "view_security_logs": {
+          "type": "boolean",
+          "default": false
+        },
+        "manage_reports": {
+          "type": "boolean",
+          "default": false
+        },
+        "emergency_protocols": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "is_system_role": {
+      "type": "boolean",
+      "default": false,
+      "description": "Built-in role (cannot be deleted)"
+    }
+  },
+  "required": [
+    "role_name"
+  ]
+}

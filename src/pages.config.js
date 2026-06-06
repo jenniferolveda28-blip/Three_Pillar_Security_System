@@ -54,6 +54,8 @@ import QuantumKeyManagement from './pages/QuantumKeyManagement';
 import PredictiveAnalytics from './pages/PredictiveAnalytics';
 import RedTeamSuite from './pages/RedTeamSuite';
 import AnomalyOrchestration from './pages/AnomalyOrchestration';
+import UnifiedSecurityDashboard from './pages/UnifiedSecurityDashboard';
+import HourlySecurityEmailSetup from './pages/HourlySecurityEmailSetup';
 import SecurityAnalytics from './pages/SecurityAnalytics';
 import AIThreatDetection from './pages/AIThreatDetection';
 import Analytics from './pages/Analytics';
@@ -97,6 +99,8 @@ export const PAGES = {
     "PredictiveAnalytics": PredictiveAnalytics,
     "RedTeamSuite": RedTeamSuite,
     "AnomalyOrchestration": AnomalyOrchestration,
+    "UnifiedSecurityDashboard": UnifiedSecurityDashboard,
+    "HourlySecurityEmailSetup": HourlySecurityEmailSetup,
 }
 
 export const pagesConfig = {

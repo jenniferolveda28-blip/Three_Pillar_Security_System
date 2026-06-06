@@ -1,0 +1,47 @@
+{
+  "name": "HardwareToken",
+  "type": "object",
+  "properties": {
+    "device_name": {
+      "type": "string",
+      "description": "Name of the physical hardware token"
+    },
+    "device_id": {
+      "type": "string",
+      "description": "Unique hardware identifier (can't be cloned)"
+    },
+    "secret_key": {
+      "type": "string",
+      "description": "TOTP secret (stored encrypted)"
+    },
+    "current_code": {
+      "type": "string",
+      "description": "Current 6-digit code (changes every 2 seconds)"
+    },
+    "last_code_generated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the code was last generated"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this token authorized"
+    },
+    "last_used": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last successful authentication"
+    },
+    "failed_attempts": {
+      "type": "number",
+      "default": 0,
+      "description": "Failed auth attempts (auto-locks at 3)"
+    }
+  },
+  "required": [
+    "device_name",
+    "device_id",
+    "secret_key"
+  ]
+}

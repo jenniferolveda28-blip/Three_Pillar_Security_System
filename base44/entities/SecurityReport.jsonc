@@ -1,0 +1,82 @@
+{
+  "name": "SecurityReport",
+  "type": "object",
+  "properties": {
+    "report_name": {
+      "type": "string",
+      "description": "Name of the report"
+    },
+    "schedule_type": {
+      "type": "string",
+      "enum": [
+        "daily",
+        "weekly",
+        "monthly",
+        "on-demand"
+      ],
+      "default": "weekly",
+      "description": "How often the report is generated"
+    },
+    "next_run": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When report will next be generated"
+    },
+    "last_run": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When report was last generated"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether automated generation is active"
+    },
+    "delivery_method": {
+      "type": "string",
+      "enum": [
+        "email",
+        "download",
+        "both"
+      ],
+      "default": "email",
+      "description": "How report is delivered"
+    },
+    "recipients": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Email addresses for delivery"
+    },
+    "include_threat_summary": {
+      "type": "boolean",
+      "default": true
+    },
+    "include_incident_details": {
+      "type": "boolean",
+      "default": true
+    },
+    "include_key_metrics": {
+      "type": "boolean",
+      "default": true
+    },
+    "include_recommendations": {
+      "type": "boolean",
+      "default": true
+    },
+    "time_range_days": {
+      "type": "number",
+      "default": 7,
+      "description": "Days of data to include in report"
+    },
+    "file_url": {
+      "type": "string",
+      "description": "URL of last generated report file"
+    }
+  },
+  "required": [
+    "report_name",
+    "schedule_type"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "name": "TokenRegistration",
+  "type": "object",
+  "properties": {
+    "token_serial": {
+      "type": "string",
+      "description": "Unique serial number on physical device"
+    },
+    "registration_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "dna_verified",
+        "activated",
+        "rejected"
+      ],
+      "default": "pending",
+      "description": "Registration workflow status"
+    },
+    "dna_hash": {
+      "type": "string",
+      "description": "Hashed DNA signature from saliva sample"
+    },
+    "biometric_confidence": {
+      "type": "number",
+      "description": "Confidence score of DNA match (0-100)"
+    },
+    "registered_by_email": {
+      "type": "string",
+      "description": "Email of person registering"
+    },
+    "registration_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When registration was initiated"
+    },
+    "activation_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When device was activated"
+    },
+    "verification_method": {
+      "type": "string",
+      "enum": [
+        "dna_saliva",
+        "fingerprint_backup",
+        "facial_backup"
+      ],
+      "default": "dna_saliva",
+      "description": "Primary verification method"
+    },
+    "device_info": {
+      "type": "object",
+      "description": "Physical device details"
+    }
+  },
+  "required": [
+    "token_serial",
+    "registered_by_email"
+  ]
+}

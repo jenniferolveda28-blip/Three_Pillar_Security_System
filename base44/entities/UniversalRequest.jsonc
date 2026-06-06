@@ -1,0 +1,50 @@
+{
+  "name": "UniversalRequest",
+  "type": "object",
+  "properties": {
+    "intent": {
+      "type": "string",
+      "description": "What the user wants to do"
+    },
+    "routed_to": {
+      "type": "string",
+      "description": "Which Universe handled this request"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "routing",
+        "processing",
+        "success",
+        "failed",
+        "retry"
+      ],
+      "default": "pending"
+    },
+    "response_data": {
+      "type": "object",
+      "description": "The actual response from the API"
+    },
+    "latency_ms": {
+      "type": "number",
+      "description": "How long it took"
+    },
+    "ai_reasoning": {
+      "type": "string",
+      "description": "Why the AI chose this route"
+    },
+    "fallback_used": {
+      "type": "boolean",
+      "default": false,
+      "description": "Did we have to use a backup API?"
+    },
+    "error_message": {
+      "type": "string",
+      "description": "If it failed, why?"
+    }
+  },
+  "required": [
+    "intent"
+  ]
+}

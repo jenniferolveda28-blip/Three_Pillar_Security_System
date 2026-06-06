@@ -1,0 +1,67 @@
+{
+  "name": "ScramblingSession",
+  "type": "object",
+  "properties": {
+    "scramble_type": {
+      "type": "string",
+      "enum": [
+        "api_keys",
+        "data_paths",
+        "execution_sequence",
+        "encryption_layer",
+        "full_system"
+      ],
+      "description": "What is being scrambled"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "completed"
+      ],
+      "default": "active",
+      "description": "Current scrambling status"
+    },
+    "iterations": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of scramble iterations performed"
+    },
+    "last_scramble": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last scramble timestamp"
+    },
+    "next_scramble": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Next scheduled scramble"
+    },
+    "scramble_interval_seconds": {
+      "type": "number",
+      "default": 5,
+      "description": "Scrambling frequency (seconds)"
+    },
+    "complexity_level": {
+      "type": "number",
+      "default": 100,
+      "description": "Scrambling complexity (0-100)"
+    },
+    "affected_systems": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Systems affected by scrambling"
+    },
+    "protection_score": {
+      "type": "number",
+      "default": 100,
+      "description": "Overall protection effectiveness (0-100)"
+    }
+  },
+  "required": [
+    "scramble_type"
+  ]
+}

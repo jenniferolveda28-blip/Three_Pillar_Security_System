@@ -1,0 +1,72 @@
+{
+  "name": "LinkedAccount",
+  "type": "object",
+  "properties": {
+    "token_serial": {
+      "type": "string",
+      "description": "DNA token this account is linked to"
+    },
+    "account_provider": {
+      "type": "string",
+      "description": "Service provider (e.g., 'Google', 'Microsoft', 'Yahoo', 'Facebook')"
+    },
+    "account_identifier": {
+      "type": "string",
+      "description": "Email or username for the account"
+    },
+    "account_type": {
+      "type": "string",
+      "enum": [
+        "email",
+        "social",
+        "banking",
+        "cloud_storage",
+        "other"
+      ],
+      "description": "Category of account"
+    },
+    "recovery_email": {
+      "type": "string",
+      "description": "Backup recovery email"
+    },
+    "recovery_phone": {
+      "type": "string",
+      "description": "Backup recovery phone"
+    },
+    "link_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When account was linked"
+    },
+    "last_verified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last successful verification"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "locked",
+        "recovered",
+        "pending"
+      ],
+      "default": "active",
+      "description": "Account status"
+    },
+    "recovery_attempts": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of recovery attempts"
+    },
+    "encrypted_backup_data": {
+      "type": "string",
+      "description": "Encrypted backup of critical account data"
+    }
+  },
+  "required": [
+    "token_serial",
+    "account_provider",
+    "account_identifier"
+  ]
+}

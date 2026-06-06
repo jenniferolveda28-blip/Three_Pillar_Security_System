@@ -1,0 +1,109 @@
+{
+  "name": "Subscription",
+  "type": "object",
+  "properties": {
+    "token_serial": {
+      "type": "string",
+      "description": "Serial number of the DNA token device"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "Email of the subscriber"
+    },
+    "plan_type": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "pro",
+        "enterprise"
+      ],
+      "default": "basic",
+      "description": "Subscription tier"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "expired",
+        "suspended",
+        "cancelled"
+      ],
+      "default": "active",
+      "description": "Current subscription status"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When subscription started"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When subscription expires"
+    },
+    "auto_renew": {
+      "type": "boolean",
+      "default": true,
+      "description": "Auto-renew enabled"
+    },
+    "api_calls_limit": {
+      "type": "number",
+      "description": "Monthly API call limit"
+    },
+    "api_calls_used": {
+      "type": "number",
+      "default": 0,
+      "description": "API calls used this period"
+    },
+    "linked_accounts_limit": {
+      "type": "number",
+      "description": "Max accounts that can be linked"
+    }
+  },
+  "required": [
+    "token_serial",
+    "user_email",
+    "plan_type"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

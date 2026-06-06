@@ -1,0 +1,52 @@
+{
+  "name": "SecurityLog",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "key_rotation",
+        "access_granted",
+        "access_denied",
+        "dna_verified",
+        "suspicious_activity",
+        "universe_accessed"
+      ],
+      "description": "Type of security event"
+    },
+    "universe_id": {
+      "type": "string",
+      "description": "Which universe was accessed"
+    },
+    "dna_hash": {
+      "type": "string",
+      "description": "Hashed DNA signature (unique genetic code)"
+    },
+    "ip_address": {
+      "type": "string",
+      "description": "Request origin"
+    },
+    "success": {
+      "type": "boolean",
+      "default": true
+    },
+    "details": {
+      "type": "string",
+      "description": "Additional security details"
+    },
+    "threat_level": {
+      "type": "string",
+      "enum": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "none"
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

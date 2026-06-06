@@ -1,0 +1,100 @@
+{
+  "name": "CriminalActivityAlert",
+  "type": "object",
+  "properties": {
+    "alert_type": {
+      "type": "string",
+      "enum": [
+        "fraud",
+        "identity_theft",
+        "unauthorized_access",
+        "data_breach",
+        "malicious_intent",
+        "pattern_anomaly",
+        "credential_abuse"
+      ],
+      "description": "Type of criminal activity detected"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical",
+        "emergency"
+      ],
+      "default": "medium",
+      "description": "Alert severity level"
+    },
+    "user_identifier": {
+      "type": "string",
+      "description": "User involved in suspicious activity"
+    },
+    "ip_address": {
+      "type": "string",
+      "description": "Source IP address"
+    },
+    "geolocation": {
+      "type": "object",
+      "description": "Geographic location data"
+    },
+    "activity_details": {
+      "type": "object",
+      "description": "Detailed information about the suspicious activity"
+    },
+    "confidence_score": {
+      "type": "number",
+      "description": "AI confidence that this is criminal activity (0-100)"
+    },
+    "indicators": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Specific indicators that triggered the alert"
+    },
+    "auto_blocked": {
+      "type": "boolean",
+      "default": false,
+      "description": "Was access automatically blocked"
+    },
+    "authorities_notified": {
+      "type": "boolean",
+      "default": false,
+      "description": "Were law enforcement notified"
+    },
+    "notification_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Was alert notification sent"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "investigating",
+        "confirmed",
+        "false_positive",
+        "resolved"
+      ],
+      "default": "open",
+      "description": "Current status of alert"
+    },
+    "investigation_notes": {
+      "type": "string",
+      "description": "Notes from security team investigation"
+    },
+    "related_alerts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of related alerts"
+    }
+  },
+  "required": [
+    "alert_type",
+    "severity"
+  ]
+}

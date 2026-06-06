@@ -1,0 +1,68 @@
+{
+  "name": "IncidentRule",
+  "type": "object",
+  "properties": {
+    "rule_name": {
+      "type": "string",
+      "description": "Name of the rule"
+    },
+    "trigger_type": {
+      "type": "string",
+      "enum": [
+        "credential_abuse",
+        "fraud",
+        "unauthorized_access",
+        "data_breach",
+        "malicious_intent",
+        "pattern_anomaly",
+        "identity_theft"
+      ],
+      "description": "Alert type that triggers this rule"
+    },
+    "min_severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical",
+        "emergency"
+      ],
+      "default": "high"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Actions to execute: notify_email, notify_sms, block_ip, revoke_credentials, isolate_account, escalate"
+    },
+    "notify_email": {
+      "type": "string",
+      "description": "Email address to notify"
+    },
+    "notify_sms": {
+      "type": "string",
+      "description": "Phone number to notify via SMS"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "execution_count": {
+      "type": "number",
+      "default": 0
+    },
+    "last_triggered": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "rule_name",
+    "trigger_type"
+  ]
+}

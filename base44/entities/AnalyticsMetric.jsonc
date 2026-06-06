@@ -1,0 +1,80 @@
+{
+  "name": "AnalyticsMetric",
+  "type": "object",
+  "properties": {
+    "metric_type": {
+      "type": "string",
+      "enum": [
+        "api_call",
+        "auth_attempt",
+        "security_event",
+        "performance",
+        "error"
+      ],
+      "description": "Type of metric being tracked"
+    },
+    "universe_id": {
+      "type": "string",
+      "description": "Related universe (for API calls)"
+    },
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint called"
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "PATCH"
+      ],
+      "description": "HTTP method"
+    },
+    "status_code": {
+      "type": "number",
+      "description": "HTTP status code"
+    },
+    "latency_ms": {
+      "type": "number",
+      "description": "Response latency in milliseconds"
+    },
+    "success": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether operation succeeded"
+    },
+    "error_type": {
+      "type": "string",
+      "description": "Type of error if failed"
+    },
+    "user_identifier": {
+      "type": "string",
+      "description": "User who triggered this metric"
+    },
+    "auth_method": {
+      "type": "string",
+      "enum": [
+        "dna",
+        "fingerprint",
+        "facial",
+        "breathalyzer",
+        "liveness",
+        "continuous"
+      ],
+      "description": "Authentication method used"
+    },
+    "ip_address": {
+      "type": "string",
+      "description": "Source IP"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metric data"
+    }
+  },
+  "required": [
+    "metric_type"
+  ]
+}

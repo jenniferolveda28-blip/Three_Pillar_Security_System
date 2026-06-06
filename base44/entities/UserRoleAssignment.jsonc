@@ -1,0 +1,27 @@
+{
+  "name": "UserRoleAssignment",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email of the user"
+    },
+    "role_id": {
+      "type": "string",
+      "description": "ID of the assigned role"
+    },
+    "assigned_by": {
+      "type": "string",
+      "description": "Email of admin who made the assignment"
+    },
+    "assigned_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When role was assigned"
+    }
+  },
+  "required": [
+    "user_email",
+    "role_id"
+  ]
+}
