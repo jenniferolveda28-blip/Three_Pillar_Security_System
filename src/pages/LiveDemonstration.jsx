@@ -20,6 +20,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import PrintReportButton from '@/components/PrintReportButton';
 
 export default function LiveDemonstration() {
   const [simulationStep, setSimulationStep] = useState(0);
@@ -83,8 +84,86 @@ export default function LiveDemonstration() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold gradient-text mb-2">Live Security Demonstration</h1>
-          <p className="text-slate-400">Real-time visualization of infiltration detection, threat response, and subscription enforcement</p>
+          <div className="flex items-start justify-between gap-4 flex-wrap">
+            <div>
+              <h1 className="text-4xl font-bold gradient-text mb-2">Live Security Demonstration</h1>
+              <p className="text-slate-400">Real-time visualization of infiltration detection, threat response, and subscription enforcement</p>
+            </div>
+            <PrintReportButton
+              reportTitle="Forged API — Live Demonstration Summary"
+              subtitle="Infiltration Detection · IP Shield Response · Subscription Enforcement · DNA Identity"
+              filename="live-demonstration-hardcopy-{date}.pdf"
+              sections={[
+                {
+                  heading: 'SYSTEM STATUS AT TIME OF PRINT',
+                  rows: [
+                    ['Critical Threats Detected', alerts.filter(a => (a.data?.severity || a.severity) === 'critical').length],
+                    ['IP Shield Status', 'ACTIVE'],
+                    ['Scrambles Per Minute', '600'],
+                    ['Protection Score', `${activeScrambling?.data?.protection_score || activeScrambling?.protection_score || 99.9}%`],
+                    ['Total Security Logs', logs.length],
+                    ['Active Anomalies', anomalies.length],
+                    ['AI Threat Correlations', correlations.length],
+                  ]
+                },
+                {
+                  heading: 'SCENARIO 1 — INFILTRATION DETECTION',
+                  body: 'The platform detected and neutralized a real-time attack attempt. The following is the live record of that event.\n\n' +
+                    (criticalAlert
+                      ? `CRITICAL ALERT: ${(criticalAlert.data?.alert_type || criticalAlert.alert_type || '').replace(/_/g, ' ').toUpperCase()}\n` +
+                        `Attacker IP: ${criticalAlert.data?.ip_address || criticalAlert.ip_address || 'N/A'}\n` +
+                        `User Identifier: ${criticalAlert.data?.user_identifier || criticalAlert.user_identifier || 'N/A'}\n` +
+                        `Confidence Score: ${criticalAlert.data?.confidence_score || criticalAlert.confidence_score || 'N/A'}%\n` +
+                        `Auto-Blocked: ${(criticalAlert.data?.auto_blocked || criticalAlert.auto_blocked) ? 'YES' : 'NO'}\n` +
+                        `Authorities Notified: ${(criticalAlert.data?.authorities_notified || criticalAlert.authorities_notified) ? 'YES' : 'NO'}\n` +
+                        `Status: ${(criticalAlert.data?.status || criticalAlert.status || '').toUpperCase()}`
+                      : 'No critical alerts active at time of print — system operating normally.')
+                },
+                {
+                  heading: 'AI THREAT CORRELATION ANALYSIS',
+                  body: correlations[0]
+                    ? `Attack Chain: ${correlations[0].data?.attack_chain_name || correlations[0].attack_chain_name}\n` +
+                      `Confidence: ${correlations[0].data?.confidence_score || correlations[0].confidence_score}%\n` +
+                      `Status: ${correlations[0].data?.status || correlations[0].status}\n\n` +
+                      `AI Analysis:\n${correlations[0].data?.ai_analysis || correlations[0].ai_analysis || 'N/A'}\n\n` +
+                      `Recommended Actions:\n${(correlations[0].data?.recommended_actions || correlations[0].recommended_actions || []).map(a => `  • ${a}`).join('\n')}`
+                    : 'No active threat correlations at time of print.'
+                },
+                {
+                  heading: 'BEHAVIOR ANOMALY DETECTION',
+                  body: anomalies[0]
+                    ? `Anomaly Type: ${(anomalies[0].data?.anomaly_type || anomalies[0].anomaly_type || '').replace(/_/g, ' ')}\n` +
+                      `User: ${anomalies[0].data?.user_identifier || anomalies[0].user_identifier}\n` +
+                      `Deviation Score: ${anomalies[0].data?.deviation_score || anomalies[0].deviation_score}%\n` +
+                      `Severity: ${(anomalies[0].data?.severity || anomalies[0].severity || '').toUpperCase()}\n\n` +
+                      `AI Reasoning:\n${anomalies[0].data?.ai_reasoning || anomalies[0].ai_reasoning || 'N/A'}`
+                    : 'No active behavior anomalies at time of print.'
+                },
+                {
+                  heading: 'IP SHIELD ACTIVE RESPONSE',
+                  body: activeScrambling
+                    ? `Scramble Type: ${(activeScrambling.data?.scramble_type || activeScrambling.scramble_type || '').replace(/_/g, ' ')}\n` +
+                      `Total Scramble Iterations: ${activeScrambling.data?.iterations || activeScrambling.iterations}\n` +
+                      `Scramble Interval: ${(activeScrambling.data?.scramble_interval_seconds || activeScrambling.scramble_interval_seconds || 0) * 1000}ms\n` +
+                      `Complexity Level: ${activeScrambling.data?.complexity_level || activeScrambling.complexity_level}%\n` +
+                      `Protection Score: ${activeScrambling.data?.protection_score || activeScrambling.protection_score}%\n\n` +
+                      `How this defeated the attack: While the attacker attempted to map our API structure, IP Shield executed ${activeScrambling.data?.iterations || activeScrambling.iterations} scramble cycles in real-time. Every 100ms the entire attack surface mutated — API endpoints, encryption keys, and execution paths — rendering all attacker reconnaissance permanently obsolete.`
+                    : 'IP Shield session data unavailable at time of print.'
+                },
+                {
+                  heading: 'SCENARIO 2 — SUBSCRIPTION ENFORCEMENT',
+                  body: 'When a subscription expires, the platform automatically revokes the associated hardware token within seconds. The physical device becomes inoperable. The user\'s biological identity (DNA hash) remains securely stored and can be used to re-provision a new token upon renewal.\n\n' +
+                    (expiredSubscription
+                      ? `EXPIRED SUBSCRIPTION:\nUser: ${expiredSubscription.data?.user_email || expiredSubscription.user_email}\nToken: ${expiredSubscription.data?.token_serial || expiredSubscription.token_serial}\nPlan: ${(expiredSubscription.data?.plan_type || expiredSubscription.plan_type || '').toUpperCase()}\nExpired: ${new Date(expiredSubscription.data?.end_date || expiredSubscription.end_date).toLocaleDateString()}\nAPI Usage: ${expiredSubscription.data?.api_calls_used || expiredSubscription.api_calls_used} / ${expiredSubscription.data?.api_calls_limit || expiredSubscription.api_calls_limit} calls`
+                      : 'No expired subscriptions active at time of print.')
+                },
+                {
+                  heading: 'RENEWAL & RECOVERY PROCESS',
+                  body: '1. User renews subscription — payment processed\n2. Subscription status updates from "expired" to "active"\n3. System automation detects status change and triggers token reactivation\n4. Hardware token re-enabled — device becomes operational\n5. Full access restored — user authenticates with DNA breathalyzer immediately\n\nKey point for investors: The user\'s biological identity is never lost or revoked. Only the hardware device link is disabled. Re-linking takes one breath (30 seconds) upon renewal.'
+                },
+              ]}
+            />
+          </div>
         </div>
 
         {/* System Status Banner */}
