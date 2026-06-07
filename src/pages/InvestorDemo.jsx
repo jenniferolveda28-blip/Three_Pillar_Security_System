@@ -10,7 +10,6 @@ import {
   Database, Server, Clock, DollarSign, Package, ArrowRight, Key
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import PrintReportButton from '@/components/PrintReportButton';
 
 export default function InvestorDemo() {
   const [activeDemo, setActiveDemo] = useState('dna-storage');
@@ -87,66 +86,6 @@ export default function InvestorDemo() {
           <h1 className="text-5xl font-bold gradient-text mb-4">Investor Technical Demonstration</h1>
           <p className="text-xl text-slate-400">Live simulations proving the superiority of our three-pillar security architecture</p>
           <p className="text-lg text-blue-400 mt-2">Real-time visual proof • Not just theory • Watch it work</p>
-          <div className="flex justify-center mt-6">
-            <PrintReportButton
-              reportTitle="Forged API — Investor Technical Demonstration"
-              subtitle="Three-Pillar Security Architecture: DNA Biometrics · Forged API · IP Shield"
-              filename="investor-technical-demo-{date}.pdf"
-              sections={[
-                {
-                  heading: 'EXECUTIVE OVERVIEW',
-                  body: 'This document presents a complete technical demonstration of the Three-Pillar Security System — a patent-pending architecture combining DNA biometric authentication, an AI-powered multi-universe API gateway, and a real-time cryptographic scrambling engine (IP Shield).\n\nThe system has zero successful breaches by design — not by convention. Every component is mathematically engineered to make attacks economically and computationally infeasible.'
-                },
-                {
-                  heading: 'PILLAR 1 — DNA BIOMETRIC AUTHENTICATION (BioVerify)',
-                  body: 'The BioVerify hardware token collects saliva particles via a nano-sensor breathalyzer. DNA markers are extracted in under 2 seconds, immediately converted to a one-way SHA-256 cryptographic hash, and the raw biological data is discarded from memory before transmission.\n\nWHAT IS STORED: Only an AES-256-GCM encrypted mathematical fingerprint. Raw DNA never leaves the device, never enters our servers, and cannot be reconstructed from what is stored.\n\nREGULATORY STATUS: Fully compliant with GDPR, HIPAA, and CCPA. Because we never store biological data, we are categorically immune to genetic data breach liability.\n\nTOKEN REPLACEMENT: If a device is lost, the old serial is revoked globally in under 1 second. A replacement device ships for $29.99 and re-activates with one breath in 30 seconds — no re-collection of DNA required since the hash remains stored.',
-                  rows: [
-                    ['Biometric Method', 'Saliva DNA nano-sensor breathalyzer'],
-                    ['Sample Processing Time', '< 2 seconds on-device'],
-                    ['Storage Format', 'SHA-256 one-way hash, AES-256-GCM encrypted'],
-                    ['Raw DNA Retention', 'ZERO — discarded immediately after hashing'],
-                    ['Match Confidence', '99.7 – 99.8%'],
-                    ['Backup Methods', 'Fingerprint + Facial Recognition'],
-                    ['Replacement Cost', '$29.99 hardware fee'],
-                    ['Re-activation Time', '30 seconds (one breath)'],
-                    ['Regulatory Compliance', 'GDPR, HIPAA, CCPA — fully compliant'],
-                  ]
-                },
-                {
-                  heading: 'PILLAR 2 — FORGED API (AI-Powered Multi-Universe Gateway)',
-                  body: 'Forged API is an intelligent API gateway that eliminates every weakness of traditional single-key API management. Instead of one static key and one endpoint, requests are routed dynamically across multiple independent API "Universes" using an AI scoring algorithm.\n\nROUTING ALGORITHM weights:\n  • Real-time latency — 40%\n  • Historical success rate — 30%\n  • Current health status — 20%\n  • Geographic proximity — 10%\n\nFAILOVER: If any Universe degrades or goes offline, automatic rerouting occurs in under 50ms — completely transparent to the calling application.\n\nCIRCUIT BREAKER: 5 consecutive failures trigger OPEN state with immediate rerouting. Recovery testing every 30 seconds in HALF-OPEN state before restoring full traffic.',
-                  rows: [
-                    ['Routing Algorithm', 'AI-weighted latency + health scoring'],
-                    ['Failover Time', '< 50ms automatic rerouting'],
-                    ['Circuit Breaker Threshold', '5 consecutive failures → OPEN state'],
-                    ['Security Layers Per Request', '5 (DNA auth, key validation, rate limiting, AI threat, audit log)'],
-                    ['Uptime Guarantee', '99.9%+ even with individual provider failures'],
-                    ['Integration Complexity Reduction', '~90% vs direct API management'],
-                  ]
-                },
-                {
-                  heading: 'PILLAR 3 — IP SHIELD (Real-Time Cryptographic Scrambler)',
-                  body: 'IP Shield is a continuous mutation engine that scrambles the entire API environment every 100 milliseconds. This includes API keys, routing paths, encryption layers, execution sequences, and data paths.\n\nCOMPARATIVE ANALYSIS vs. Google Authenticator:\n\nGoogle Authenticator refreshes a 6-digit code every 30 SECONDS. An attacker who intercepts at second 5 has 25 full seconds to analyze, craft, and execute an exploit.\n\nIP Shield refreshes the ENTIRE SYSTEM every 0.1 SECONDS. An attacker who intercepts at 0.05s has 0.05 seconds before all credentials and routes they analyzed are permanently invalidated.\n\nRESULT: The attack becomes mathematically impossible — the cost of updating reconnaissance data exceeds any possible financial gain from a successful breach.',
-                  rows: [
-                    ['Scramble Frequency', 'Every 100ms (0.1 seconds)'],
-                    ['vs. Google Authenticator', '300x faster refresh rate'],
-                    ['Attacker Exploit Window', '0.1 seconds (vs. 30 seconds for TOTP)'],
-                    ['Layers Scrambled Per Cycle', '5 (API keys, routes, encryption, paths, execution)'],
-                    ['Successful Attacks (last 12mo)', 'ZERO — mathematically infeasible'],
-                    ['Cost to Break (attacker ROI)', 'Negative — reconnaissance cost exceeds exploit value'],
-                  ]
-                },
-                {
-                  heading: 'LIVE ATTACK SIMULATION RESULTS',
-                  body: 'Simulation: Attacker attempts API key theft at 450 requests/second from a single IP.\n\n  Step 1 — Initial Detection (0.05s): AI flags abnormal request rate, matches known attack signature.\n  Step 2 — Behavior Analysis (0.08s): AI correlates 4-stage attack chain with 98% confidence.\n  Step 3 — Immediate Response (0.10s): IP Shield triggers emergency full scramble.\n  Step 4 — Source Blocked (0.15s): Attacker IP blacklisted, all sessions terminated.\n\nTotal Response Time: 0.15 seconds\nData Compromised: 0 bytes\nAuthorities Notified: Yes (automated)\n\nAttacker Outcome: Every piece of reconnaissance data was obsolete before it could be weaponized. Attack was mathematically impossible to complete.'
-                },
-                {
-                  heading: 'INVESTMENT HIGHLIGHTS',
-                  body: 'The Three-Pillar System represents a fundamental shift in security architecture — not an incremental improvement.\n\n  • DNA Biometrics: The only authentication factor that cannot be stolen, phished, or guessed. GDPR/HIPAA compliant. Immune to genetic data breach liability.\n\n  • Forged API: Reduces enterprise integration complexity by ~90%. Single gateway replaces dozens of direct API integrations with AI-optimized routing and 99.9%+ uptime.\n\n  • IP Shield: 300x faster than the current industry standard (Google Authenticator). Zero successful breaches by mathematical design.\n\n  Total addressable market: API security ($5.1B growing 22% YoY) + Biometric authentication ($43B growing 19% YoY).\n\n  Enterprise target pricing: $500–$5,000/month per organization (SaaS) + $29.99/user hardware device.'
-                },
-              ]}
-            />
-          </div>
         </div>
 
         <Tabs value={activeDemo} onValueChange={setActiveDemo} className="space-y-6">
