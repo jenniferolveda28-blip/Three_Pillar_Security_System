@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw, Activity, Lock, Brain } from "lucide-react";
+import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw, Activity, Lock, Brain, Shield, Zap, Mail } from "lucide-react";
 import PrintReportButton from '../components/PrintReportButton';
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
@@ -152,6 +152,24 @@ export default function Dashboard() {
                 <Button variant="outline" className="border-red-500/50 text-red-400 hover:bg-red-500/10">
                   <Brain className="w-4 h-4 mr-2" />
                   AI Threats
+                </Button>
+              </Link>
+              <Link to={createPageUrl('UnifiedSecurityDashboard')}>
+                <Button variant="outline" className="border-orange-500/50 text-orange-400 hover:bg-orange-500/10">
+                  <Shield className="w-4 h-4 mr-2" />
+                  Unified Dashboard
+                </Button>
+              </Link>
+              <Link to={createPageUrl('AnomalyOrchestration')}>
+                <Button variant="outline" className="border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10">
+                  <Zap className="w-4 h-4 mr-2" />
+                  Auto-Neutralize
+                </Button>
+              </Link>
+              <Link to={createPageUrl('HourlySecurityEmailSetup')}>
+                <Button variant="outline" className="border-green-500/50 text-green-400 hover:bg-green-500/10">
+                  <Mail className="w-4 h-4 mr-2" />
+                  Email Reports
                 </Button>
               </Link>
             </div>
