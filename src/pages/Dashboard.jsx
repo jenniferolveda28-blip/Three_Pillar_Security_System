@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw, Activity, Lock, Brain, Shield, Zap, Mail } from "lucide-react";
 import PrintReportButton from '../components/PrintReportButton';
+import BatchDownloadButton from '../components/reports/BatchDownloadButton';
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import UniverseCard from '../components/dashboard/UniverseCard';
@@ -71,7 +72,14 @@ export default function Dashboard() {
               <p className="text-slate-400">DNA Authentication • Unique to You • Constantly Verified</p>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
+            <BatchDownloadButton
+              universes={universes}
+              requests={requests}
+              keys={keys}
+              securityLogs={securityLogs}
+              hardwareTokens={hardwareTokens}
+            />
             <PrintReportButton
               reportTitle="Forged API — API Key & Universe Management Report"
               subtitle="What Forged API does for your API keys — and why no other system comes close."

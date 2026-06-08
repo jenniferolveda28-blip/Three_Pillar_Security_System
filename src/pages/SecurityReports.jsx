@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import ReportConfigForm from '../components/reports/ReportConfigForm';
 import ReportList from '../components/reports/ReportList';
 import ExecutiveReportGenerator from '../components/reports/ExecutiveReportGenerator';
+import AutoReportScheduler from '../components/reports/AutoReportScheduler';
 
 export default function SecurityReports() {
   const [showForm, setShowForm] = useState(false);
@@ -127,6 +128,7 @@ export default function SecurityReports() {
           onGenerate={(reportId) => generateReportMutation.mutate(reportId)}
         />
 
+        <AutoReportScheduler />
         <ExecutiveReportGeneratorWrapper />
       </div>
     </div>
