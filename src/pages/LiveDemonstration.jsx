@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
+import PrintReportButton from '../components/PrintReportButton';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -82,9 +83,21 @@ export default function LiveDemonstration() {
     <div className="min-h-screen p-6 space-y-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold gradient-text mb-2">Live Security Demonstration</h1>
-          <p className="text-slate-400">Real-time visualization of infiltration detection, threat response, and subscription enforcement</p>
+        <div className="mb-8 flex items-start justify-between">
+          <div>
+            <h1 className="text-4xl font-bold gradient-text mb-2">Live Security Demonstration</h1>
+            <p className="text-slate-400">Real-time visualization of infiltration detection, threat response, and subscription enforcement</p>
+          </div>
+          <PrintReportButton
+            reportTitle="Live Security Demonstration Report"
+            subtitle="Real-time infiltration detection, IP shield response, and subscription enforcement"
+            filename="live-demonstration-{date}.pdf"
+            sections={[
+              { heading: 'DEMO SYSTEM STATUS', rows: [['Critical Alerts', alerts.filter(a => a.severity === 'critical' || a.data?.severity === 'critical').length], ['Security Logs', logs.length], ['Behavioral Anomalies', anomalies.length], ['Active Scrambling', scramblingSessions.length > 0 ? 'YES' : 'NO'], ['Subscriptions Tracked', subscriptions.length], ['Hardware Tokens', tokens.length]] },
+              { heading: 'THREAT CORRELATION', body: correlations.slice(0, 5).map(c => `• ${c.attack_chain_name || c.data?.attack_chain_name} — Confidence: ${c.confidence_score || c.data?.confidence_score}% — Status: ${c.status || c.data?.status}`).join('\n') || 'No correlations recorded.' },
+              { heading: 'IP SHIELD ACTIVE DEFENSE', body: 'IP Shield continuously mutates the attack surface every 100ms. While attackers attempt reconnaissance, every API endpoint, key, and execution path changes before exploitation can occur.\n\nProtection method: Moving Target Defense\nKey rotation: 0.1 – 5 seconds\nQuatum resistance: CRYSTALS-Kyber lattice cryptography\nBreaches prevented: ZERO by mathematical design' },
+            ]}
+          />
         </div>
 
         {/* System Status Banner */}

@@ -5,6 +5,7 @@ import { Shield, AlertTriangle, Activity, TrendingUp, ArrowLeft } from 'lucide-r
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
+import PrintReportButton from '../components/PrintReportButton';
 import ThreatIntelligenceFeed from '../components/threat/ThreatIntelligenceFeed';
 import SuspiciousActivityPattern from '../components/threat/SuspiciousActivityPattern';
 import ThreatEventDetail from '../components/threat/ThreatEventDetail';
@@ -58,6 +59,16 @@ export default function ThreatAnalysis() {
                 </div>
               </div>
             </div>
+            <PrintReportButton
+              reportTitle="Threat Analysis Report"
+              subtitle="Real-time security intelligence and threat monitoring"
+              filename="threat-analysis-{date}.pdf"
+              sections={[
+                { heading: 'THREAT STATISTICS', rows: [['Critical Threats', criticalThreats], ['Active Investigations', activeInvestigations], ['Suspicious Events', suspiciousLogs], ['Failed Auth Attempts', failedAuthAttempts], ['Total Alerts', alerts.length], ['Total Security Logs', securityLogs.length]] },
+                { heading: 'RECENT ALERTS', body: alerts.slice(0, 15).map(a => `• [${(a.data?.severity || a.severity || 'medium').toUpperCase()}] ${(a.data?.alert_type || a.alert_type || '').replace(/_/g, ' ')} — User: ${a.data?.user_identifier || a.user_identifier || 'N/A'} — Auto-Blocked: ${(a.data?.auto_blocked || a.auto_blocked) ? 'YES' : 'NO'}`).join('\n') || 'No alerts.' },
+                { heading: 'RECENT SECURITY LOGS', body: securityLogs.slice(0, 15).map(l => `• [${(l.data?.threat_level || l.threat_level || 'none').toUpperCase()}] ${(l.data?.event_type || l.event_type || '').replace(/_/g, ' ')} — ${(l.data?.success !== false && l.success !== false) ? 'SUCCESS' : 'FAILED'} — IP: ${l.data?.ip_address || l.ip_address || 'N/A'}`).join('\n') || 'No logs.' },
+              ]}
+            />
           </div>
 
           {/* Threat Statistics */}
