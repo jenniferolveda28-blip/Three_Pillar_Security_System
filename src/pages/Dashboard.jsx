@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw, Activity, Lock, Brain, Shield, Zap, Mail, CalendarClock, Star } from "lucide-react";
+import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw, Activity, Lock, Brain, Shield, Zap, Mail, CalendarClock, Star, TrendingUp } from "lucide-react";
 import PrintReportButton from '../components/PrintReportButton';
 import BatchDownloadButton from '../components/reports/BatchDownloadButton';
 import { Link } from "react-router-dom";
@@ -27,6 +27,8 @@ import EmergencyProtocol from '../components/security/EmergencyProtocol';
 import CriminalActivityMonitor from '../components/security/CriminalActivityMonitor';
 import AlertNotificationCenter from '../components/security/AlertNotificationCenter';
 import ScramblerMonitor from '../components/security/ScramblerMonitor';
+import ThreatNeutralizationChart from '../components/investor/ThreatNeutralizationChart';
+import { FileText, Users } from 'lucide-react';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -192,6 +194,18 @@ export default function Dashboard() {
                   Seeking Partners
                 </Button>
               </Link>
+              <Link to="/InvestorCRM">
+                <Button variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10">
+                  <Users className="w-4 h-4 mr-2" />
+                  Investor CRM
+                </Button>
+              </Link>
+              <Link to="/TexasNDA">
+                <Button variant="outline" className="border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10">
+                  <FileText className="w-4 h-4 mr-2" />
+                  Texas NDA
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -245,6 +259,10 @@ export default function Dashboard() {
             <TabsTrigger value="security" className="flex items-center gap-2">
               <Key className="w-4 h-4" />
               Security
+            </TabsTrigger>
+            <TabsTrigger value="investor" className="flex items-center gap-2">
+              <TrendingUp className="w-4 h-4" />
+              Investor View
             </TabsTrigger>
           </TabsList>
 
@@ -329,6 +347,28 @@ export default function Dashboard() {
             </div>
             <ScramblerMonitor />
             <SecurityMonitor logs={securityLogs} />
+          </TabsContent>
+
+          <TabsContent value="investor" className="space-y-6">
+            <div className="flex items-center justify-between mb-2">
+              <div>
+                <h2 className="text-2xl font-black text-white">Investor Performance Overview</h2>
+                <p className="text-slate-400 text-sm">30-day threat neutralization trends and scrambler performance — ready to show investors</p>
+              </div>
+              <div className="flex gap-2">
+                <Link to="/InvestorCRM">
+                  <Button variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10">
+                    <Users className="w-4 h-4 mr-2" /> Investor CRM
+                  </Button>
+                </Link>
+                <Link to="/TexasNDA">
+                  <Button variant="outline" className="border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10">
+                    <FileText className="w-4 h-4 mr-2" /> Generate NDA
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            <ThreatNeutralizationChart />
           </TabsContent>
         </Tabs>
       </div>

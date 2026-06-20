@@ -11,6 +11,8 @@ import AnomalyNotificationMonitor from '@/components/security/AnomalyNotificatio
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import DailyThreatEmail from './pages/DailyThreatEmail';
 import SeekingPartners from './pages/SeekingPartners';
+import InvestorCRM from './pages/InvestorCRM';
+import TexasNDA from './pages/TexasNDA';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -64,6 +66,8 @@ const AuthenticatedApp = () => {
       ))}
       <Route path="/DailyThreatEmail" element={<LayoutWrapper currentPageName="DailyThreatEmail"><DailyThreatEmail /></LayoutWrapper>} />
       <Route path="/SeekingPartners" element={<LayoutWrapper currentPageName="SeekingPartners"><SeekingPartners /></LayoutWrapper>} />
+      <Route path="/InvestorCRM" element={<LayoutWrapper currentPageName="InvestorCRM"><InvestorCRM /></LayoutWrapper>} />
+      <Route path="/TexasNDA" element={<LayoutWrapper currentPageName="TexasNDA"><TexasNDA /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

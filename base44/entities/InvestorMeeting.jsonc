@@ -1,0 +1,81 @@
+{
+  "name": "InvestorMeeting",
+  "type": "object",
+  "properties": {
+    "investor_name": {
+      "type": "string",
+      "description": "Full name of investor or researcher"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company or fund name"
+    },
+    "email": {
+      "type": "string",
+      "description": "Contact email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Contact phone"
+    },
+    "meeting_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of meeting"
+    },
+    "meeting_location": {
+      "type": "string",
+      "description": "City or venue"
+    },
+    "county": {
+      "type": "string",
+      "default": "Travis",
+      "description": "Texas county of meeting"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "interested",
+        "reviewing",
+        "negotiating",
+        "passed"
+      ],
+      "default": "pending",
+      "description": "Investor engagement status"
+    },
+    "interest_level": {
+      "type": "string",
+      "default": "3",
+      "description": "1-5 star interest rating"
+    },
+    "pillars_discussed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Which pillars were discussed"
+    },
+    "feedback": {
+      "type": "string",
+      "description": "Investor feedback on the technology"
+    },
+    "next_steps": {
+      "type": "string",
+      "description": "Agreed upon next steps"
+    },
+    "documents_reviewed": {
+      "type": "string",
+      "description": "Documents reviewed during meeting"
+    },
+    "follow_up_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Scheduled follow-up date"
+    }
+  },
+  "required": [
+    "investor_name",
+    "meeting_date"
+  ]
+}
