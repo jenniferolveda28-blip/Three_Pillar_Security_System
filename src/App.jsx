@@ -10,6 +10,7 @@ import CriticalThreatMonitor from '@/components/security/CriticalThreatMonitor';
 import AnomalyNotificationMonitor from '@/components/security/AnomalyNotificationMonitor';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import DailyThreatEmail from './pages/DailyThreatEmail';
+import SeekingPartners from './pages/SeekingPartners';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -62,6 +63,7 @@ const AuthenticatedApp = () => {
         />
       ))}
       <Route path="/DailyThreatEmail" element={<LayoutWrapper currentPageName="DailyThreatEmail"><DailyThreatEmail /></LayoutWrapper>} />
+      <Route path="/SeekingPartners" element={<LayoutWrapper currentPageName="SeekingPartners"><SeekingPartners /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

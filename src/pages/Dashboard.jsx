@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw, Activity, Lock, Brain, Shield, Zap, Mail, CalendarClock } from "lucide-react";
+import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw, Activity, Lock, Brain, Shield, Zap, Mail, CalendarClock, Star } from "lucide-react";
 import PrintReportButton from '../components/PrintReportButton';
 import BatchDownloadButton from '../components/reports/BatchDownloadButton';
 import { Link } from "react-router-dom";
@@ -184,6 +184,12 @@ export default function Dashboard() {
                 <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
                   <CalendarClock className="w-4 h-4 mr-2" />
                   Daily Digest
+                </Button>
+              </Link>
+              <Link to="/SeekingPartners">
+                <Button className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold border-0">
+                  <Star className="w-4 h-4 mr-2" />
+                  Seeking Partners
                 </Button>
               </Link>
             </div>
