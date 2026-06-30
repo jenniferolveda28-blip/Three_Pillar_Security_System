@@ -16,6 +16,16 @@ export default function RequestHistory({ requests }) {
     pending: { icon: Clock, color: "text-gray-600", bg: "bg-gray-50" }
   };
 
+  // Derive effective status from actual response data rather than relying
+  // solely on the stored status field, which can be stale or out of sync.
+  const getEffectiveStatus = (request) => {
+    if (request.error_message) return 'failed';
+    if (request.response_data || request.latency_ms) return 'success';
+    if (['processing', 'routing', 'retry'].includes(request.status)) return 'processing';
+    if (request.status === 'success' || request.status === 'failed') return request.status;
+    return 'pending';
+  };
+
   return (
     <div className="space-y-3">
       {requests.length === 0 ? (
@@ -24,7 +34,8 @@ export default function RequestHistory({ requests }) {
         </Card>
       ) : (
         requests.map((request) => {
-          const config = statusConfig[request.status] || statusConfig.pending;
+          const effectiveStatus = getEffectiveStatus(request);
+          const config = statusConfig[effectiveStatus] || statusConfig.pending;
           const StatusIcon = config.icon;
 
           return (
@@ -32,7 +43,7 @@ export default function RequestHistory({ requests }) {
               <CardContent className="p-4">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-start gap-3 flex-1">
-                    <StatusIcon className={cn("w-5 h-5 mt-0.5", config.color, request.status === 'processing' && "animate-spin")} />
+                    <StatusIcon className={cn("w-5 h-5 mt-0.5", config.color, effectiveStatus === 'processing' && "animate-spin")} />
                     <div className="flex-1">
                       <p className="font-medium text-gray-900">{request.intent}</p>
                       <div className="flex items-center gap-2 mt-2 flex-wrap">
