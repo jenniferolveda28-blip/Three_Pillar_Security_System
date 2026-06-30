@@ -8,18 +8,23 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Users, Plus, Calendar, FileText, Star, TrendingUp, MessageSquare, Printer, ChevronRight } from 'lucide-react';
+import { Users, Plus, Calendar, FileText, Star, TrendingUp, MessageSquare, Printer, ChevronRight, Layout, Sparkles } from 'lucide-react';
 import { format } from 'date-fns';
 import { jsPDF } from 'jspdf';
 import { toast } from 'sonner';
 import PrintReportButton from '@/components/PrintReportButton';
+import ExportAllPagesButton from '@/components/reports/ExportAllPagesButton';
+import KanbanBoard from '@/components/investor/KanbanBoard';
+import ExecutiveSummaryGenerator from '@/components/investor/ExecutiveSummaryGenerator';
 
 const STATUS_COLORS = {
-  interested: 'bg-green-600',
-  reviewing: 'bg-blue-600',
-  negotiating: 'bg-purple-600',
-  passed: 'bg-slate-600',
-  pending: 'bg-yellow-600',
+  'Contacted': 'bg-blue-600',
+  'NDA Sent': 'bg-yellow-600',
+  'Meeting Scheduled': 'bg-cyan-600',
+  'Follow-up Needed': 'bg-orange-600',
+  'Negotiating': 'bg-purple-600',
+  'Interested': 'bg-green-600',
+  'Passed': 'bg-slate-600',
 };
 
 const PILLARS = ['DNA Breathalyzer', 'IP Shield', 'Forged API', 'All Three', 'Business Model', 'Market Size'];
@@ -256,6 +261,8 @@ export default function InvestorCRM() {
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState(null);
   const [selected, setSelected] = useState(null);
+  const [viewMode, setViewMode] = useState('list');
+  const [execSummaryMeeting, setExecSummaryMeeting] = useState(null);
 
   const { data: meetings = [] } = useQuery({
     queryKey: ['investor_meetings'],
@@ -273,6 +280,18 @@ export default function InvestorCRM() {
       toast.success('Meeting saved!');
     },
   });
+
+  const statusMutation = useMutation({
+    mutationFn: ({ id, status }) => base44.entities.InvestorMeeting.update(id, { status }),
+    onSuccess: () => {
+      qc.invalidateQueries(['investor_meetings']);
+      toast.success('Pipeline stage updated!');
+    },
+  });
+
+  const handleStatusChange = (id, newStatus) => {
+    statusMutation.mutate({ id, status: newStatus });
+  };
 
   const openEdit = (m) => { setEditing(m); setShowForm(true); };
   const openNew = () => { setEditing(null); setShowForm(true); };
@@ -294,7 +313,8 @@ export default function InvestorCRM() {
             <h1 className="text-3xl font-black gradient-text">Investor CRM</h1>
             <p className="text-slate-400 mt-1">Track every meeting, feedback, and follow-up</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
+            <ExportAllPagesButton />
             <PrintReportButton
               reportTitle="Investor Pipeline Summary"
               subtitle="Three-Pillar Security System — CRM Export"
@@ -350,7 +370,20 @@ export default function InvestorCRM() {
           ))}
         </div>
 
+        {/* View Toggle */}
+        <div className="flex items-center gap-2">
+          <Button size="sm" onClick={() => setViewMode('list')}
+            className={viewMode === 'list' ? 'bg-cyan-600 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}>
+            <Layout className="w-4 h-4 mr-2" /> List View
+          </Button>
+          <Button size="sm" onClick={() => setViewMode('kanban')}
+            className={viewMode === 'kanban' ? 'bg-cyan-600 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}>
+            <Users className="w-4 h-4 mr-2" /> Kanban Board
+          </Button>
+        </div>
+
         {/* Meeting List */}
+        {viewMode === 'list' && (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {meetings.length === 0 && (
             <Card className="col-span-3 bg-slate-800/40 border-slate-700">
@@ -421,6 +454,10 @@ export default function InvestorCRM() {
                     <div className="flex gap-2 pt-1">
                       <Button size="sm" onClick={(e) => { e.stopPropagation(); openEdit(m); }}
                         className="bg-slate-700 hover:bg-slate-600 text-white text-xs flex-1">Edit</Button>
+                      <Button size="sm" onClick={(e) => { e.stopPropagation(); setExecSummaryMeeting(m); }}
+                        className="bg-purple-700 hover:bg-purple-600 text-white text-xs flex-1">
+                        <Sparkles className="w-3 h-3 mr-1" /> Exec Summary
+                      </Button>
                       <Button size="sm" onClick={(e) => { e.stopPropagation(); printMeetingPDF(m); }}
                         className="bg-cyan-700 hover:bg-cyan-600 text-white text-xs flex-1">
                         <Printer className="w-3 h-3 mr-1" /> Print PDF
@@ -432,7 +469,23 @@ export default function InvestorCRM() {
             </Card>
           ))}
         </div>
+        )}
+
+        {/* Kanban Board */}
+        {viewMode === 'kanban' && (
+          <KanbanBoard meetings={meetings} onStatusChange={handleStatusChange} onCardClick={openEdit} />
+        )}
       </div>
+
+      {/* Executive Summary Dialog */}
+      <Dialog open={!!execSummaryMeeting} onOpenChange={(v) => { if (!v) setExecSummaryMeeting(null); }}>
+        <DialogContent className="bg-slate-900 border-slate-700 text-white max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-cyan-400">Executive Summary</DialogTitle>
+          </DialogHeader>
+          {execSummaryMeeting && <ExecutiveSummaryGenerator meeting={execSummaryMeeting} onClose={() => setExecSummaryMeeting(null)} />}
+        </DialogContent>
+      </Dialog>
 
       {/* Form Dialog */}
       <Dialog open={showForm} onOpenChange={v => { setShowForm(v); if (!v) setEditing(null); }}>

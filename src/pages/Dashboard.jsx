@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw, Activity, Lock, Brain, Shield, Zap, Mail, CalendarClock, Star, TrendingUp } from "lucide-react";
 import PrintReportButton from '../components/PrintReportButton';
 import BatchDownloadButton from '../components/reports/BatchDownloadButton';
+import ExportAllPagesButton from '../components/reports/ExportAllPagesButton';
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import UniverseCard from '../components/dashboard/UniverseCard';
@@ -75,6 +76,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="flex gap-2 flex-wrap">
+            <ExportAllPagesButton />
             <BatchDownloadButton
               universes={universes}
               requests={requests}
@@ -212,6 +214,12 @@ export default function Dashboard() {
                   Texas NDA
                 </Button>
               </Link>
+              <Link to="/LeadActivitySummary">
+                <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
+                  <Users className="w-4 h-4 mr-2" />
+                  Lead Activity
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -279,6 +287,8 @@ export default function Dashboard() {
               <h3 className="text-lg font-semibold mb-4">Recent Requests</h3>
               <RequestHistory requests={requests.slice(0, 5)} />
             </div>
+
+            <ThreatNeutralizationChart />
           </TabsContent>
 
           <TabsContent value="universes">
