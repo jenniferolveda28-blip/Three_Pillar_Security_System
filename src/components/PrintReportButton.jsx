@@ -93,14 +93,16 @@ export default function PrintReportButton({ reportTitle, subtitle, sections = []
         doc.line(12, y, 198, y);
         y += 7;
 
-        // Optional table rows
+        // Optional table rows — value column wraps to fit page width
         if (section.rows && section.rows.length > 0) {
           section.rows.forEach(([label, value], ri) => {
-            checkPage(8);
+            const valueLines = doc.splitTextToSize(String(value), 75);
+            const rowHeight = Math.max(8, valueLines.length * 5 + 3);
+            checkPage(rowHeight + 2);
             // alternating row bg
             if (ri % 2 === 0) {
               doc.setFillColor(241, 245, 249);
-              doc.rect(12, y - 5, 186, 8, 'F');
+              doc.rect(12, y - 5, 186, rowHeight, 'F');
             }
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(10);
@@ -108,8 +110,8 @@ export default function PrintReportButton({ reportTitle, subtitle, sections = []
             doc.text(String(label), 15, y);
             doc.setFont('helvetica', 'normal');
             doc.setTextColor(6, 182, 212);
-            doc.text(String(value), 120, y);
-            y += 9;
+            doc.text(valueLines, 120, y);
+            y += rowHeight + 1;
           });
           y += 4;
         }
