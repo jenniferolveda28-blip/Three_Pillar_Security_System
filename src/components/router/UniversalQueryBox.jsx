@@ -24,7 +24,7 @@ export default function UniversalQueryBox({ onRequestCreated }) {
         intent,
         routed_to: response.data.universe,
         status: 'success',
-        response_data: response.data.result,
+        response_data: { result: response.data.result },
         latency_ms: response.data.latency,
         ai_reasoning: response.data.reasoning,
         fallback_used: response.data.fallback_used || false
@@ -41,6 +41,7 @@ export default function UniversalQueryBox({ onRequestCreated }) {
         status: 'failed',
         error_message: error.message
       });
+      if (onRequestCreated) onRequestCreated();
     } finally {
       setIsProcessing(false);
     }
