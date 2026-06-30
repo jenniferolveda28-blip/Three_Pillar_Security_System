@@ -35,14 +35,16 @@
     "status": {
       "type": "string",
       "enum": [
-        "pending",
-        "interested",
-        "reviewing",
-        "negotiating",
-        "passed"
+        "Contacted",
+        "NDA Sent",
+        "Meeting Scheduled",
+        "Follow-up Needed",
+        "Negotiating",
+        "Interested",
+        "Passed"
       ],
-      "default": "pending",
-      "description": "Investor engagement status"
+      "default": "Contacted",
+      "description": "Investor pipeline stage"
     },
     "interest_level": {
       "type": "string",
