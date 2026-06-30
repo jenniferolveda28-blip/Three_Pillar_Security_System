@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Users, Plus, Calendar, FileText, Star, TrendingUp, MessageSquare, Printer, ChevronRight, Layout, Sparkles } from 'lucide-react';
+import { Users, Plus, Calendar, FileText, Star, TrendingUp, MessageSquare, Printer, ChevronRight, Layout, Sparkles, Flame } from 'lucide-react';
 import { format } from 'date-fns';
 import { jsPDF } from 'jspdf';
 import { toast } from 'sonner';
@@ -16,6 +16,7 @@ import PrintReportButton from '@/components/PrintReportButton';
 import ExportAllPagesButton from '@/components/reports/ExportAllPagesButton';
 import KanbanBoard from '@/components/investor/KanbanBoard';
 import ExecutiveSummaryGenerator from '@/components/investor/ExecutiveSummaryGenerator';
+import PriorityBadge, { calculatePriorityScore, getPriorityTier } from '@/components/investor/PriorityBadge';
 
 const STATUS_COLORS = {
   'Contacted': 'bg-blue-600',
@@ -303,6 +304,11 @@ export default function InvestorCRM() {
     followUps: meetings.filter(m => m.follow_up_date && new Date(m.follow_up_date) >= new Date()).length,
   };
 
+  const priorityStats = {
+    high: meetings.filter(m => getPriorityTier(calculatePriorityScore(m)) === 'high').length,
+    medium: meetings.filter(m => getPriorityTier(calculatePriorityScore(m)) === 'medium').length,
+  };
+
   return (
     <div className="min-h-screen p-6 text-white">
       <div className="max-w-7xl mx-auto space-y-6">
@@ -356,6 +362,7 @@ export default function InvestorCRM() {
             { label: 'Total Meetings', value: stats.total, icon: Users, color: 'text-cyan-400' },
             { label: 'Interested / Negotiating', value: stats.interested, icon: TrendingUp, color: 'text-green-400' },
             { label: 'Avg Interest Score', value: stats.avgInterest + '/5', icon: Star, color: 'text-yellow-400' },
+            { label: 'High Priority', value: priorityStats.high, icon: Flame, color: 'text-red-400' },
             { label: 'Upcoming Follow-Ups', value: stats.followUps, icon: Calendar, color: 'text-purple-400' },
           ].map((s, i) => (
             <Card key={i} className="bg-slate-800/60 border-slate-700">
@@ -405,7 +412,10 @@ export default function InvestorCRM() {
                     {m.status}
                   </Badge>
                 </div>
-                <div className="text-yellow-400 text-sm mb-2">{'⭐'.repeat(parseInt(m.interest_level || 3))}</div>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-yellow-400 text-sm">{'⭐'.repeat(parseInt(m.interest_level || 3))}</div>
+                  <PriorityBadge meeting={m} />
+                </div>
                 <div className="text-xs text-slate-500 space-y-1">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-3 h-3" />
