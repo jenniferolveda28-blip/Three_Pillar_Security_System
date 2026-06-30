@@ -93,24 +93,35 @@ export default function PrintReportButton({ reportTitle, subtitle, sections = []
         doc.line(12, y, 198, y);
         y += 7;
 
-        // Optional table rows — value column wraps to fit page width
+        // Optional table rows — two-column layout, both columns wrap to fit
         if (section.rows && section.rows.length > 0) {
+          // Column layout: label 15–108 (93mm), value 112–197 (85mm)
+          const labelX = 15, labelMaxW = 93;
+          const valueX = 112, valueMaxW = 85;
           section.rows.forEach(([label, value], ri) => {
-            const valueLines = doc.splitTextToSize(String(value), 75);
-            const rowHeight = Math.max(8, valueLines.length * 5 + 3);
+            const labelLines = doc.splitTextToSize(String(label), labelMaxW);
+            const valueLines = doc.splitTextToSize(String(value), valueMaxW);
+            const maxLines = Math.max(labelLines.length, valueLines.length);
+            const rowHeight = Math.max(9, maxLines * 5.5 + 4);
             checkPage(rowHeight + 2);
             // alternating row bg
             if (ri % 2 === 0) {
               doc.setFillColor(241, 245, 249);
               doc.rect(12, y - 5, 186, rowHeight, 'F');
             }
+            // subtle column separator
+            doc.setDrawColor(226, 232, 240);
+            doc.setLineWidth(0.2);
+            doc.line(110, y - 5, 110, y - 5 + rowHeight);
+            // label
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(10);
             doc.setTextColor(30, 41, 59);
-            doc.text(String(label), 15, y);
+            doc.text(labelLines, labelX, y);
+            // value
             doc.setFont('helvetica', 'normal');
             doc.setTextColor(6, 182, 212);
-            doc.text(valueLines, 120, y);
+            doc.text(valueLines, valueX, y);
             y += rowHeight + 1;
           });
           y += 4;
