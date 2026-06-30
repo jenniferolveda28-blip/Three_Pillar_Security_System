@@ -12,6 +12,7 @@ import { Users, Plus, Calendar, FileText, Star, TrendingUp, MessageSquare, Print
 import { format } from 'date-fns';
 import { jsPDF } from 'jspdf';
 import { toast } from 'sonner';
+import PrintReportButton from '@/components/PrintReportButton';
 
 const STATUS_COLORS = {
   interested: 'bg-green-600',
@@ -293,9 +294,40 @@ export default function InvestorCRM() {
             <h1 className="text-3xl font-black gradient-text">Investor CRM</h1>
             <p className="text-slate-400 mt-1">Track every meeting, feedback, and follow-up</p>
           </div>
-          <Button onClick={openNew} className="bg-cyan-600 hover:bg-cyan-500 font-bold">
-            <Plus className="w-4 h-4 mr-2" /> Log Meeting
-          </Button>
+          <div className="flex gap-2">
+            <PrintReportButton
+              reportTitle="Investor Pipeline Summary"
+              subtitle="Three-Pillar Security System — CRM Export"
+              filename="investor-pipeline-{date}.pdf"
+              sections={[
+                { heading: 'PIPELINE SUMMARY', body: `As of ${format(new Date(), 'MMMM d, yyyy')}, the investor pipeline includes ${stats.total} logged meeting${stats.total !== 1 ? 's' : ''}. ${stats.interested} investor${stats.interested !== 1 ? 's' : ''} currently interested or negotiating. Average interest score: ${stats.avgInterest}/5. ${stats.followUps} upcoming follow-up${stats.followUps !== 1 ? 's' : ''} scheduled.` },
+                { heading: 'PIPELINE METRICS', rows: [
+                  ['Total Meetings', stats.total],
+                  ['Interested / Negotiating', stats.interested],
+                  ['Average Interest Score', stats.avgInterest + '/5'],
+                  ['Upcoming Follow-Ups', stats.followUps],
+                ]},
+                ...meetings.map((m, i) => ({
+                  heading: `${i + 1}. ${m.investor_name}${m.company ? ' — ' + m.company : ''}`,
+                  rows: [
+                    ['Status', (m.status || 'pending').toUpperCase()],
+                    ['Interest', '\u2B50'.repeat(parseInt(m.interest_level || 3)) + ` (${m.interest_level || 3}/5)`],
+                    ['Meeting Date', m.meeting_date || '—'],
+                    ['Location', m.meeting_location ? `${m.meeting_location}, ${m.county || 'Travis'} Co., TX` : `${m.county || 'Travis'} Co., TX`],
+                    ['Email', m.email || '—'],
+                    ['Phone', m.phone || '—'],
+                    ['Pillars Discussed', (m.pillars_discussed || []).join(', ') || '—'],
+                    ['Documents Reviewed', m.documents_reviewed || '—'],
+                    ['Follow-Up Date', m.follow_up_date || '—'],
+                  ],
+                  body: [m.feedback && `FEEDBACK: ${m.feedback}`, m.next_steps && `NEXT STEPS: ${m.next_steps}`].filter(Boolean).join('\n\n') || undefined,
+                })),
+              ]}
+            />
+            <Button onClick={openNew} className="bg-cyan-600 hover:bg-cyan-500 font-bold">
+              <Plus className="w-4 h-4 mr-2" /> Log Meeting
+            </Button>
+          </div>
         </div>
 
         {/* Stats */}
