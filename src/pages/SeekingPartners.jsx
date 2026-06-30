@@ -8,6 +8,7 @@ import {
   Microscope, FlaskConical, Lightbulb, TrendingUp, Users, Lock,
   ArrowRight, Star, Globe, Phone, Cpu, Eye, BrainCircuit
 } from 'lucide-react';
+import PrintReportButton from '@/components/PrintReportButton';
 
 const FadeIn = ({ children, delay = 0, className = '' }) => (
   <motion.div
@@ -126,6 +127,23 @@ export default function SeekingPartners() {
               >
                 See the Technology <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
+              <PrintReportButton
+                reportTitle="Seeking Partners & Investors"
+                subtitle="Three-Pillar Security System — DNA Authentication · IP Shield · Forged API"
+                filename="seeking-partners-{date}.pdf"
+                sections={[
+                  { heading: 'EXECUTIVE SUMMARY', body: 'A fully functional cybersecurity platform built around three interlocking innovations: DNA-based biometric authentication, a real-time moving-target defense system (IP Shield), and an AI-driven universal API security layer (Forged API). The architecture is proven and fully demonstrated in software. The physical DNA breathalyzer hardware prototype does not exist yet — that is the gap this partnership seeks to close.' },
+                  { heading: 'THE PROBLEM', body: 'Cybercrime is projected to cost $10.5T annually by 2025 (World Economic Forum). 81% of breaches involve stolen credentials. Current authentication methods are structurally broken: passwords get phished, hardware tokens get cloned, 2FA codes are valid for up to 30 seconds (an eternity for automated attacks), and fingerprints/facial scans are spoofed with $200 of equipment. DNA, processed correctly, is the only biometric that cannot be copied from a photo, recording, or stolen device.' },
+                  { heading: 'PILLAR 1 — DNA BREATHALYZER AUTHENTICATION (BioVerify Token)', body: 'Saliva-based DNA extraction via a breath-into-device interface. Raw DNA is never stored — only a one-way cryptographic hash. A biometric that cannot be stolen from a photo, voice, or fingerprint scanner. Ships as a hardware token (no phone required). Re-registration after loss takes 30 seconds with one breath. GDPR/HIPAA compliant by design.' },
+                  { heading: 'PILLAR 2 — IP SHIELD (Moving Target Defense)', body: 'API keys, routes, encryption layers, and execution paths all rotate every 100ms. 300x faster refresh rate than Google Authenticator (0.1s vs 30s). By the time an attacker finishes reconnaissance, every path they mapped is obsolete. Mathematically provable: real-time exploitation is impossible. No breach has ever occurred against a fully deployed moving-target system. Software layer is ready for scientific validation now.' },
+                  { heading: 'PILLAR 3 — FORGED API (Universal AI Router)', body: 'A single authenticated session routes across any connected API securely. AI-driven behavior analysis detects attack patterns in real time. Criminal activity is auto-flagged, auto-blocked, and authorities notified. Correlates events across sessions to identify multi-stage attack chains. Reduces enterprise API integration complexity by ~90%. Fully functional software demo available now.' },
+                  { heading: 'WHAT EXISTS vs WHAT IS NEEDED', body: 'ALREADY BUILT: Full software platform, DNA hash storage/comparison/verification logic, IP Shield scrambling engine (software simulation), AI threat detection and attack chain correlation, criminal activity monitoring and auto-response, RBAC and audit logging, automated security report generation, investor-facing demos for all three pillars, full system architecture and data flow designs.\n\nSTILL NEEDED: Physical DNA breathalyzer hardware prototype, miniaturized saliva DNA extraction sensor (nano-sensor array), on-device hash generation chip (tamper-proof secure element), validation of DNA marker extraction speed (target: <2 seconds), accuracy testing at scale (false positive/negative rates), regulatory pathway mapping (FDA, FTC, GDPR, HIPAA), independent scientific peer review, angel or seed funding ($250k-$2M target).' },
+                  { heading: 'WHO WE ARE SEEKING', rows: [['Biomedical/Forensic Scientists', 'Rapid DNA extraction from saliva, miniaturized sensors, point-of-care diagnostics'], ['Embedded Systems/Hardware Engineers', 'Secure microcontrollers, tamper-proof chips, IoT biometric devices'], ['Angel Investors / Seed Funds', '$250k-$2M for prototype development and scientific validation. Equity available.'], ['University Research Labs', 'Funded research collaboration in biometrics, security hardware, or biotech. IP sharing on the table.'], ['Cybersecurity Researchers', 'Adversarial testing — attempt to break the IP Shield or DNA hash model.'], ['Co-Founders / Technical Partners', 'Hardware or biotech background. Equity co-founder positions open.']] },
+                  { heading: 'MARKET OPPORTUNITY', rows: [['Global Cybersecurity Market', '$300B+'], ['Identity & Access Management TAM', '$55B'], ['YoY Growth in Biometric Security', '23%'], ['Direct Competitors', '$0 — no product combines DNA + moving-target + AI in one platform']] },
+                  { heading: 'THE HONEST PITCH', body: 'I am one person. I built all of this — the architecture, the software, the simulations, the security logic — without funding, without a team, and without formal backing. The idea works. The math checks out. What I cannot do alone is build a physical DNA sensor chip or fund prototype manufacturing. If you have those capabilities or connections, we should be talking. A conversation costs nothing.' },
+                  { heading: 'CONTACT', rows: [['Email', 'threepillarsecurity@proton.me'], ['Location', 'Texas, USA'], ['Stage', 'Pre-seed / Prototype'], ['Target Raise', '$250k - $2M']] },
+                ]}
+              />
             </div>
           </FadeIn>
         </div>
