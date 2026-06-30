@@ -1,4 +1,4 @@
-import { createClientFromRequest } from 'npm:@base44/sdk@0.8.6';
+import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
 
 Deno.serve(async (req) => {
     try {
@@ -85,8 +85,18 @@ Keep it concise and realistic. Return only the data, no explanations.`;
 
         const mockResponse = await base44.integrations.Core.InvokeLLM({
             prompt: mockPrompt,
-            add_context_from_internet: true
+            response_json_schema: {
+                type: "object",
+                properties: {
+                    data: { type: "string" }
+                }
+            }
         });
+
+        // mockResponse is a dict { data: "..." } because response_json_schema was specified
+        const responseData = typeof mockResponse === 'string' 
+            ? mockResponse 
+            : (mockResponse?.data || JSON.stringify(mockResponse));
 
         const latency = Date.now() - startTime;
 
@@ -110,7 +120,7 @@ Keep it concise and realistic. Return only the data, no explanations.`;
             universe: aiResponse.universe,
             reasoning: aiResponse.reasoning,
             confidence: aiResponse.confidence,
-            result: mockResponse,
+            result: responseData,
             latency,
             fallback_used: false
         });
