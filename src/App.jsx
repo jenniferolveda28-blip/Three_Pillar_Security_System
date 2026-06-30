@@ -6,6 +6,7 @@ import { pagesConfig } from './pages.config'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
+import ErrorBoundary from '@/components/ErrorBoundary';
 import CriticalThreatMonitor from '@/components/security/CriticalThreatMonitor';
 import AnomalyNotificationMonitor from '@/components/security/AnomalyNotificationMonitor';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
@@ -32,8 +33,11 @@ const AuthenticatedApp = () => {
   // Show loading spinner while checking app public settings or auth
   if (isLoadingPublicSettings || isLoadingAuth) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin"></div>
+      <div className="fixed inset-0 flex items-center justify-center bg-slate-900">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-4 border-slate-700 border-t-cyan-400 rounded-full animate-spin"></div>
+          <p className="text-slate-500 text-sm">Loading…</p>
+        </div>
       </div>
     );
   }
@@ -43,9 +47,16 @@ const AuthenticatedApp = () => {
     if (authError.type === 'user_not_registered') {
       return <UserNotRegisteredError />;
     } else if (authError.type === 'auth_required') {
-      // Redirect to login automatically
+      // Redirect to login automatically — show a visible message while redirecting
       navigateToLogin();
-      return null;
+      return (
+        <div className="fixed inset-0 flex items-center justify-center bg-slate-900">
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-10 h-10 border-4 border-slate-700 border-t-cyan-400 rounded-full animate-spin"></div>
+            <p className="text-slate-400 text-sm">Redirecting to login…</p>
+          </div>
+        </div>
+      );
     }
   }
 
@@ -86,15 +97,17 @@ function App() {
 
   return (
     <AuthProvider>
-      <QueryClientProvider client={queryClientInstance}>
-        <Router>
-          <NavigationTracker />
-          <AuthenticatedApp />
-          <CriticalThreatMonitor />
-          <AnomalyNotificationMonitor />
-        </Router>
-        <Toaster />
-      </QueryClientProvider>
+      <ErrorBoundary>
+        <QueryClientProvider client={queryClientInstance}>
+          <Router>
+            <NavigationTracker />
+            <AuthenticatedApp />
+            <CriticalThreatMonitor />
+            <AnomalyNotificationMonitor />
+          </Router>
+          <Toaster />
+        </QueryClientProvider>
+      </ErrorBoundary>
     </AuthProvider>
   )
 }
