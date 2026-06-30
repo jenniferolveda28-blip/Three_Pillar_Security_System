@@ -194,6 +194,12 @@ export default function Dashboard() {
                   Seeking Partners
                 </Button>
               </Link>
+              <Link to="/InvestorOverview">
+                <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
+                  <BarChart3 className="w-4 h-4 mr-2" />
+                  Investor Overview
+                </Button>
+              </Link>
               <Link to="/InvestorCRM">
                 <Button variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10">
                   <Users className="w-4 h-4 mr-2" />

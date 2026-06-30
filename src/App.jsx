@@ -13,6 +13,7 @@ import DailyThreatEmail from './pages/DailyThreatEmail';
 import SeekingPartners from './pages/SeekingPartners';
 import InvestorCRM from './pages/InvestorCRM';
 import TexasNDA from './pages/TexasNDA';
+import InvestorOverview from './pages/InvestorOverview';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -68,6 +69,7 @@ const AuthenticatedApp = () => {
       <Route path="/SeekingPartners" element={<LayoutWrapper currentPageName="SeekingPartners"><SeekingPartners /></LayoutWrapper>} />
       <Route path="/InvestorCRM" element={<LayoutWrapper currentPageName="InvestorCRM"><InvestorCRM /></LayoutWrapper>} />
       <Route path="/TexasNDA" element={<LayoutWrapper currentPageName="TexasNDA"><TexasNDA /></LayoutWrapper>} />
+      <Route path="/InvestorOverview" element={<LayoutWrapper currentPageName="InvestorOverview"><InvestorOverview /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
