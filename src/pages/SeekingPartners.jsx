@@ -9,6 +9,7 @@ import {
   ArrowRight, Star, Globe, Phone, Cpu, Eye, BrainCircuit
 } from 'lucide-react';
 import PrintReportButton from '@/components/PrintReportButton';
+import ContactLeadForm from '@/components/investor/ContactLeadForm';
 
 const FadeIn = ({ children, delay = 0, className = '' }) => (
   <motion.div
@@ -491,8 +492,12 @@ export default function SeekingPartners() {
                 <Mail className="w-5 h-5 mr-3" />
                 {emailCopied ? '✓ Email Copied to Clipboard' : 'threepillarsecurity@proton.me'}
               </Button>
-              <p className="text-slate-500 text-sm">Click to copy email address</p>
+              <p className="text-slate-500 text-sm">Or fill out the form below — your info goes straight to our investor pipeline</p>
             </div>
+          </FadeIn>
+
+          <FadeIn delay={0.12}>
+            <ContactLeadForm />
           </FadeIn>
 
           <FadeIn delay={0.15}>
