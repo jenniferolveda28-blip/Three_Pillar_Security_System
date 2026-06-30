@@ -62,6 +62,11 @@
     "encrypted_backup_data": {
       "type": "string",
       "description": "Encrypted backup of critical account data"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional description or notes"
     }
   },
   "required": [

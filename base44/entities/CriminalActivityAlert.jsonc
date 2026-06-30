@@ -91,6 +91,11 @@
         "type": "string"
       },
       "description": "IDs of related alerts"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional description or notes"
     }
   },
   "required": [

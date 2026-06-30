@@ -37,6 +37,11 @@
       "type": "number",
       "default": 0,
       "description": "Failed auth attempts (auto-locks at 3)"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional description or notes"
     }
   },
   "required": [

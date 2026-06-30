@@ -58,6 +58,11 @@
     "linked_accounts_limit": {
       "type": "number",
       "description": "Max accounts that can be linked"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional description or notes"
     }
   },
   "required": [

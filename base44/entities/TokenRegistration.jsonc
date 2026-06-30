@@ -52,6 +52,11 @@
     "device_info": {
       "type": "object",
       "description": "Physical device details"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional description or notes"
     }
   },
   "required": [

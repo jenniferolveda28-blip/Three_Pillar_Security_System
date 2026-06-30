@@ -61,6 +61,11 @@
         "type": "string"
       },
       "description": "Systems impacted by this attack chain"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional description or notes"
     }
   },
   "required": [

@@ -14,6 +14,8 @@ import SeekingPartners from './pages/SeekingPartners';
 import InvestorCRM from './pages/InvestorCRM';
 import TexasNDA from './pages/TexasNDA';
 import InvestorOverview from './pages/InvestorOverview';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -70,6 +72,8 @@ const AuthenticatedApp = () => {
       <Route path="/InvestorCRM" element={<LayoutWrapper currentPageName="InvestorCRM"><InvestorCRM /></LayoutWrapper>} />
       <Route path="/TexasNDA" element={<LayoutWrapper currentPageName="TexasNDA"><TexasNDA /></LayoutWrapper>} />
       <Route path="/InvestorOverview" element={<LayoutWrapper currentPageName="InvestorOverview"><InvestorOverview /></LayoutWrapper>} />
+      <Route path="/About" element={<LayoutWrapper currentPageName="About"><About /></LayoutWrapper>} />
+      <Route path="/Contact" element={<LayoutWrapper currentPageName="Contact"><Contact /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

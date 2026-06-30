@@ -59,6 +59,11 @@
       "type": "number",
       "default": 100,
       "description": "Overall protection effectiveness (0-100)"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional description or notes"
     }
   },
   "required": [

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
@@ -122,8 +122,29 @@ export default function Layout({ children, currentPageName }) {
       `}</style>
 
       {/* Main content */}
-      <div className="relative z-10">
-        {children}
+      <div className="relative z-10 min-h-screen flex flex-col">
+        <div className="flex-1">
+          {children}
+        </div>
+
+        {/* Footer */}
+        <footer className="border-t border-slate-800 bg-slate-950/80 mt-auto">
+          <div className="max-w-7xl mx-auto px-6 py-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="text-slate-500 text-sm">
+                Three-Pillar Security System · Texas, USA · 2024–2026
+              </div>
+              <nav className="flex items-center gap-6">
+                <Link to="/About" className="text-slate-400 hover:text-cyan-400 text-sm font-medium transition-colors">
+                  About
+                </Link>
+                <Link to="/Contact" className="text-slate-400 hover:text-cyan-400 text-sm font-medium transition-colors">
+                  Contact
+                </Link>
+              </nav>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );

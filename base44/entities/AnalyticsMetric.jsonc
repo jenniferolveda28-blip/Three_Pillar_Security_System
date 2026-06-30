@@ -72,6 +72,11 @@
     "metadata": {
       "type": "object",
       "description": "Additional metric data"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional description or notes"
     }
   },
   "required": [
