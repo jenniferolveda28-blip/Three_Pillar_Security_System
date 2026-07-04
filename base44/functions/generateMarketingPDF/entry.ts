@@ -60,13 +60,13 @@ Deno.serve(async (req) => {
             y += 10;
             doc.text('Key Features:', 20, y);
             y += 8;
-            doc.text('✓ 99.8% accurate DNA biometric authentication', 25, y);
+            doc.text('✓ 99.8% accuracy target (pending validation) — DNA biometric authentication', 25, y);
             y += 6;
             doc.text('✓ Real-time threat detection with AI', 25, y);
             y += 6;
             doc.text('✓ API keys rotate every 2-5 seconds', 25, y);
             y += 6;
-            doc.text('✓ Zero successful breaches in production', 25, y);
+            doc.text('✓ Zero successful breaches in simulation', 25, y);
             y += 6;
             doc.text('✓ Enterprise-grade monitoring and analytics', 25, y);
 
@@ -240,7 +240,7 @@ Deno.serve(async (req) => {
             y += 7;
             doc.text('- 99.8% accuracy rate', 25, y);
             y += 7;
-            doc.text('- Impossible to fake or steal credentials', 25, y);
+            doc.text('- Designed to resist spoofing (hardware required) — credentials', 25, y);
             y += 15;
 
             doc.setFontSize(14);
@@ -262,14 +262,14 @@ Deno.serve(async (req) => {
             y += 7;
             doc.text('- Stolen credentials expire instantly', 25, y);
             y += 7;
-            doc.text('- Makes hacking mathematically impossible', 25, y);
+            doc.text('- Makes hacking designed to be computationally infeasible', 25, y);
             y += 20;
 
             doc.setFontSize(16);
             doc.text('Why Choose Us?', 20, y);
             y += 10;
             doc.setFontSize(10);
-            doc.text('✓ 100% unbreakable security architecture', 25, y);
+            doc.text('✓ Security target: 99.9%+ (architected for resilience)', 25, y);
             y += 7;
             doc.text('✓ Real-time threat detection and neutralization', 25, y);
             y += 7;
@@ -342,7 +342,7 @@ Deno.serve(async (req) => {
             doc.text('Our Solution:', 20, y);
             y += 10;
             doc.setFontSize(10);
-            doc.text('Three revolutionary technologies working as one unbreakable system', 25, y);
+            doc.text('Three revolutionary technologies working as one architected-for-resilience system', 25, y);
             y += 20;
 
             doc.setFontSize(16);

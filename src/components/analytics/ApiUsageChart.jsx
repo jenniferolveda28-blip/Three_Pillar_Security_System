@@ -1,10 +1,28 @@
 import React, { useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { base44 } from "@/api/base44Client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { TrendingUp, Globe, Activity } from "lucide-react";
 
 export default function ApiUsageChart({ metrics = [], universes = [], timeRange }) {
+  const { data: securityLogs = [] } = useQuery({
+    queryKey: ['securityLogs_universe_access'],
+    queryFn: () => base44.entities.SecurityLog.filter({ event_type: 'universe_accessed' }),
+  });
+
+  const universeNameMap = useMemo(() => {
+    const map = {};
+    securityLogs.forEach(log => {
+      if (log.universe_id && !map[log.universe_id]) {
+        const universe = universes.find(u => u.id === log.universe_id);
+        if (universe) map[log.universe_id] = universe.name;
+      }
+    });
+    return map;
+  }, [securityLogs, universes]);
+
   const chartData = useMemo(() => {
     // Group by hour
     const grouped = {};
@@ -29,9 +47,10 @@ export default function ApiUsageChart({ metrics = [], universes = [], timeRange 
     metrics.forEach(m => {
       if (m.universe_id) {
         if (!grouped[m.universe_id]) {
-          const universe = universes.find(u => u.id === m.universe_id);
+          const universe = universes.find(u => u.id === m.universe_id || u.name === m.universe_id);
+          const nameFromLog = universeNameMap[m.universe_id];
           grouped[m.universe_id] = { 
-            name: universe?.name || 'Unknown', 
+            name: universe?.name || nameFromLog || m.universe_id || 'Unknown', 
             calls: 0 
           };
         }
@@ -39,7 +58,7 @@ export default function ApiUsageChart({ metrics = [], universes = [], timeRange 
       }
     });
     return Object.values(grouped);
-  }, [metrics, universes]);
+  }, [metrics, universes, universeNameMap]);
 
   const methodData = useMemo(() => {
     const grouped = {};
@@ -112,25 +131,17 @@ export default function ApiUsageChart({ metrics = [], universes = [], timeRange 
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={methodData}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={(entry) => `${entry.name}: ${entry.value}`}
-                  outerRadius={100}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  {methodData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
+            <div className="space-y-2">
+              {['GET', 'POST', 'PUT', 'DELETE', 'PATCH'].map(method => {
+                const count = methodData.find(d => d.name === method)?.value || 0;
+                return (
+                  <div key={method} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <Badge variant="outline" className="font-mono">{method}</Badge>
+                    <span className="text-sm text-gray-600">{count} (test)</span>
+                  </div>
+                );
+              })}
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -149,6 +160,7 @@ export default function ApiUsageChart({ metrics = [], universes = [], timeRange 
                     {metric.method || 'GET'}
                   </Badge>
                   <span className="font-mono text-sm">{metric.endpoint || '/api/unknown'}</span>
+                  {metric.universe_id && <span className="text-xs text-gray-500">({metric.universe_id})</span>}
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-gray-600">{metric.latency_ms}ms</span>

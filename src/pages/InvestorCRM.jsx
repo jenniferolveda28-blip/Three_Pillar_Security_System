@@ -395,7 +395,7 @@ export default function InvestorCRM() {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: 'Total Meetings', value: stats.total, icon: Users, color: 'text-cyan-400' },
+            { label: 'Total Meetings', value: stats.total === 0 ? '0 (demo)' : stats.total, icon: Users, color: 'text-cyan-400' },
             { label: 'Interested / Negotiating', value: stats.interested, icon: TrendingUp, color: 'text-green-400' },
             { label: 'Avg Interest Score', value: stats.avgInterest + '/5', icon: Star, color: 'text-yellow-400' },
             { label: 'High Priority', value: priorityStats.high, icon: Flame, color: 'text-red-400' },
@@ -449,7 +449,9 @@ export default function InvestorCRM() {
           {meetings.length === 0 && (
             <Card className="col-span-3 bg-slate-800/40 border-slate-700">
               <CardContent className="p-12 text-center text-slate-500">
-                No meetings logged yet. Click "Log Meeting" to add your first investor contact.
+                <Badge className="bg-amber-600 text-white mb-3">DEMO DATA</Badge>
+                <p>No meetings logged yet. Click "Log Meeting" to add your first investor contact.</p>
+                <p className="text-xs mt-2">0 (demo environment — no external outreach yet)</p>
               </CardContent>
             </Card>
           )}

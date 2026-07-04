@@ -45,7 +45,7 @@ export default function GeneticTraitVerifier() {
           </div>
           {results && (
             <Badge className="bg-purple-600">
-              {results.overallMatch}% Match
+              {results.overallMatch}% Match (simulated — pending hardware validation)
             </Badge>
           )}
         </CardTitle>
@@ -93,7 +93,7 @@ export default function GeneticTraitVerifier() {
               </div>
               <Progress value={results.overallMatch} className="h-3" />
               <p className="text-sm text-gray-600 mt-2">
-                {results.overallMatch}% confidence across {traits.length} genetic markers
+                {results.overallMatch}% confidence across {traits.length} genetic markers (simulated — pending hardware validation)
               </p>
             </div>
 
@@ -113,8 +113,8 @@ export default function GeneticTraitVerifier() {
                       <p className="text-xs text-gray-500">{trait.gene}</p>
                     </div>
                     <span className="text-sm font-bold text-purple-600">
-                      {trait.match}%
-                    </span>
+                       {trait.match}% <span className="text-xs text-gray-400">(simulated)</span>
+                     </span>
                   </div>
                   <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
                     <motion.div

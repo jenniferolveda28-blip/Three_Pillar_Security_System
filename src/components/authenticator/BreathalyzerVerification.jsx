@@ -142,8 +142,8 @@ export default function BreathalyzerVerification({ token, onVerificationComplete
                 <CheckCircle2 className="w-12 h-12 mx-auto mb-2 text-green-600" />
                 <p className="text-green-900 font-bold text-lg mb-1">Identity Verified!</p>
                 <Badge className="bg-green-600 text-white">
-                  {analysis.confidence}% Match Confidence
-                </Badge>
+                   {analysis.confidence}% Match Confidence (simulated — pending hardware validation)
+                 </Badge>
               </div>
 
               <Card>

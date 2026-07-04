@@ -405,7 +405,7 @@ export default function ExportAllPagesButton() {
 
       // 32. About
       section('30. ABOUT');
-      body('The Three-Pillar Security System is a next-generation API security platform combining DNA-based biometric authentication, dynamic key scrambling, and AI-powered threat detection. Built in Texas, USA, the system provides unbreakable API key management through rotating credentials bound to genetic identity, with real-time threat neutralization and multi-universe failover. Founded 2024.');
+      body('The Three-Pillar Security System is a next-generation API security platform combining DNA-based biometric authentication, dynamic key scrambling, and AI-powered threat detection. Built in Texas, USA, the system provides architected-for-resilience API key management through rotating credentials bound to genetic identity, with real-time threat neutralization and multi-universe failover. Founded 2024.');
 
       // 33. Contact
       section('31. CONTACT');

@@ -22,7 +22,7 @@ Deno.serve(async (req) => {
         let script = '';
         
         if (type === 'intro') {
-            script = `Welcome to the future of cybersecurity. Today we're diving into a revolutionary system that makes hacking mathematically impossible.
+            script = `Welcome to the future of cybersecurity. Today we're diving into a revolutionary system that makes hacking designed to be computationally infeasible.
 
 Picture this: A security architecture so advanced, it uses your DNA for authentication. Not your fingerprint. Not your face. Your actual DNA. Combined with technology that scrambles API keys every 30 milliseconds, making stolen credentials worthless before hackers can use them.
 

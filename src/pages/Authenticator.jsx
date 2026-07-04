@@ -51,7 +51,7 @@ export default function Authenticator() {
               </div>
               <div>
                 <h1 className="text-4xl font-bold text-gray-900">BioVerify (BVFY)</h1>
-                <p className="text-gray-600">Your biometric security that can't be hacked or stolen</p>
+                <p className="text-gray-600">Biometric authentication — hardware integration required</p>
               </div>
             </div>
             <PrintReportButton
@@ -144,9 +144,10 @@ export default function Authenticator() {
               <CreditCard className="w-4 h-4" />
               Subscription
             </TabsTrigger>
-            <TabsTrigger value="breathalyzer" className="flex items-center gap-2">
+            <TabsTrigger value="breathalyzer" className="flex items-center gap-2 opacity-50 cursor-not-allowed" disabled title="Requires Hardware Prototype">
               <Wind className="w-4 h-4" />
               Breathalyzer Test
+              <span className="text-xs text-amber-600 font-semibold">(Requires Hardware)</span>
             </TabsTrigger>
             </TabsList>
 

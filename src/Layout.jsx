@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import DemoBanner from '@/components/DemoBanner';
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
@@ -120,6 +121,8 @@ export default function Layout({ children, currentPageName }) {
           }
         }
       `}</style>
+
+      <DemoBanner />
 
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex flex-col">

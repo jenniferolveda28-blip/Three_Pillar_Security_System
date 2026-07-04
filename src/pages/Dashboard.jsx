@@ -108,7 +108,7 @@ export default function Dashboard() {
                 },
                 {
                   heading: 'THE API KEY PROBLEM — AND OUR SOLUTION',
-                  body: 'TRADITIONAL APPROACH (broken):\n• One API key, valid for months or years\n• Stored in environment variables or config files\n• Leaked via git commits, logs, or insider access\n• Single point of failure — one breach = full access\n• No visibility into who used the key, when, or why\n\nFORGED API APPROACH (unbreakable):\n• Keys rotate every 0.1–5 seconds via IP Shield\n• Keys are bound to DNA-verified hardware tokens\n• Every request is logged with user, timestamp, and IP\n• Compromised keys expire before they can be replayed\n• Multiple universes provide instant failover if one is compromised'
+                  body: 'TRADITIONAL APPROACH (broken):\n• One API key, valid for months or years\n• Stored in environment variables or config files\n• Leaked via git commits, logs, or insider access\n• Single point of failure — one breach = full access\n• No visibility into who used the key, when, or why\n\nFORGED API APPROACH (architected for resilience):\n• Keys rotate every 0.1–5 seconds via IP Shield\n• Keys are bound to DNA-verified hardware tokens\n• Every request is logged with user, timestamp, and IP\n• Compromised keys expire before they can be replayed\n• Multiple universes provide instant failover if one is compromised'
                 },
                 {
                   heading: 'INTELLIGENT ROUTING ACROSS UNIVERSES',

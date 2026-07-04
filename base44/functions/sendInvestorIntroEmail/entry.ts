@@ -44,7 +44,7 @@ The Three-Pillar Security System is a next-generation cybersecurity platform bui
 2. IP Shield (Dynamic Scrambler)
    - Moving Target Defense: API keys, routing paths, and encryption layers rotate every 0.1–5 seconds
    - Attacker exploit window: 0.1 seconds (vs. 30 seconds for Google Authenticator)
-   - Zero successful breaches by mathematical design
+   - Zero successful breaches in simulation by mathematical design
    - Continuous key rotation with AES-256-GCM encryption
 
 3. Forged API (Multi-Universe Router)
@@ -104,7 +104,7 @@ Texas, USA`;
       <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #334155;">
         <li>Moving Target Defense: keys &amp; paths rotate every 0.1–5 seconds</li>
         <li>Attacker exploit window: 0.1 seconds (vs. 30s for Google Authenticator)</li>
-        <li>Zero successful breaches by mathematical design</li>
+        <li>Zero successful breaches in simulation by mathematical design</li>
         <li>Continuous key rotation with AES-256-GCM encryption</li>
       </ul>
     </div>

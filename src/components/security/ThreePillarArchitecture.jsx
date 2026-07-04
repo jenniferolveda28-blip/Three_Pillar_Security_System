@@ -55,7 +55,7 @@ export default function ThreePillarArchitecture() {
             borderColor: 'border-violet-500',
             glowColor: 'shadow-violet-500/50',
             description: 'HOW YOU\'RE PROTECTED',
-            details: ['100ms scramble', 'Key rotation', 'Path shifting', 'Piranha defense']
+            details: ['100ms scramble (target)', 'Key rotation (simulated)', 'Path shifting (architected)', 'Multi-layer path randomization']
         }
     ];
 
@@ -146,7 +146,7 @@ export default function ThreePillarArchitecture() {
                                     <Activity className="w-5 h-5 text-cyan-400" />
                                     Access Flow
                                 </h4>
-                                <span className="text-xs text-slate-400">Live simulation</span>
+                                <span className="text-xs text-amber-400 font-semibold">⚠️ DEMO MODE — Simulated Security Layer</span>
                             </div>
 
                             <div className="space-y-3">
@@ -201,11 +201,9 @@ export default function ThreePillarArchitecture() {
                             <div className="flex items-start gap-4">
                                 <Lock className="w-12 h-12 text-cyan-400 flex-shrink-0" />
                                 <div>
-                                    <h4 className="text-lg font-bold text-white mb-2">The Unbreakable Trinity</h4>
+                                    <h4 className="text-lg font-bold text-white mb-2">The Architected Trinity</h4>
                                     <p className="text-slate-300 text-sm leading-relaxed">
-                                        Your DNA unlocks the universal gateway (BioVerify → Forged API), and the gateway exists 
-                                        in a state of constant quantum flux every 100 milliseconds (IP Shield). Unauthorized access 
-                                        is mathematically impossible—the system changes faster than any hacker can react.
+                                        Your DNA unlocks the universal gateway (BioVerify → Forged API), and the gateway is designed to exist in a state of constant flux every 100 milliseconds (IP Shield). Unauthorized access is designed to be computationally infeasible—the system architecture changes faster than attack reconnaissance can complete. Hardware prototype required for full implementation.
                                     </p>
                                 </div>
                             </div>

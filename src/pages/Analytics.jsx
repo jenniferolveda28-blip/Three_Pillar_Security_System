@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { BarChart3, Shield, UserCheck, Activity, ArrowLeft } from "lucide-react";
+import { BarChart3, Shield, UserCheck, Activity, ArrowLeft, AlertTriangle } from "lucide-react";
 import PrintReportButton from '../components/PrintReportButton';
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
@@ -98,13 +98,19 @@ export default function Analytics() {
           </div>
         </div>
 
+        {/* Demo Banner */}
+        <div className="mb-6 bg-amber-100 border-2 border-amber-400 rounded-xl p-4 flex items-center gap-3">
+          <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />
+          <p className="text-sm text-amber-900 font-semibold">⚠️ DEMO MODE — Analytics based on internal test data only</p>
+        </div>
+
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <div className="bg-white rounded-xl p-6 border-2 border-blue-100">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total API Calls</p>
-                <p className="text-3xl font-bold text-blue-600">{totalCalls}</p>
+                <p className="text-3xl font-bold text-blue-600">{totalCalls} <span className="text-sm text-gray-500">(test)</span></p>
               </div>
               <BarChart3 className="w-10 h-10 text-blue-200" />
             </div>
@@ -113,7 +119,7 @@ export default function Analytics() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Success Rate</p>
-                <p className="text-3xl font-bold text-green-600">{successRate}%</p>
+                <p className="text-3xl font-bold text-green-600">{successRate}% <span className="text-sm text-gray-500">({apiMetrics.filter(m => m.success).length}/{apiMetrics.length} internal tests)</span></p>
               </div>
               <Activity className="w-10 h-10 text-green-200" />
             </div>
@@ -122,7 +128,7 @@ export default function Analytics() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Avg Latency</p>
-                <p className="text-3xl font-bold text-purple-600">{avgLatency}ms</p>
+                <p className="text-3xl font-bold text-purple-600">{avgLatency}ms <span className="text-sm text-gray-500">(LLM generation time)</span></p>
               </div>
               <Activity className="w-10 h-10 text-purple-200" />
             </div>
@@ -131,7 +137,7 @@ export default function Analytics() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Auth Attempts</p>
-                <p className="text-3xl font-bold text-orange-600">{authMetrics.length}</p>
+                <p className="text-3xl font-bold text-orange-600">{authMetrics.length} <span className="text-sm text-gray-500">(internal login)</span></p>
               </div>
               <UserCheck className="w-10 h-10 text-orange-200" />
             </div>

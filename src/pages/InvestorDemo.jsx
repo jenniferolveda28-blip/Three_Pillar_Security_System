@@ -435,7 +435,7 @@ export default function InvestorDemo() {
                       <p className="mt-4 text-sm text-slate-300">
                         <strong>What the attacker experienced:</strong> By the time they analyzed our API structure, 
                         it had already changed 1.5 times. Every piece of reconnaissance data became obsolete before 
-                        they could weaponize it. The attack was mathematically impossible to complete.
+                        they could weaponize it. The attack was designed to be computationally infeasible to complete.
                       </p>
                     </motion.div>
                   )}
@@ -539,7 +539,7 @@ export default function InvestorDemo() {
                         <li className="line-through text-slate-600">3. Execute attack (impossible—target changed)</li>
                         <li className="line-through text-slate-600">4. Exfiltrate data (access revoked after 0.1s)</li>
                       </ul>
-                      <p className="text-sm text-green-400 mt-2 font-semibold">Result: Attack mathematically impossible</p>
+                      <p className="text-sm text-green-400 mt-2 font-semibold">Result: Attack designed to be computationally infeasible</p>
                     </div>
                   </div>
                 </CardContent>
@@ -590,7 +590,7 @@ export default function InvestorDemo() {
                       <tr className="border-b border-slate-800">
                         <td className="p-3 font-semibold">Successful Attacks (last 12mo)</td>
                         <td className="text-center p-3 text-red-400">Thousands reported</td>
-                        <td className="text-center p-3 text-green-400 font-bold">0 (mathematically impossible)</td>
+                        <td className="text-center p-3 text-green-400 font-bold">0 (designed to be computationally infeasible)</td>
                         <td className="text-center p-3"><Badge className="bg-orange-600">Us</Badge></td>
                       </tr>
                       <tr>
@@ -1097,7 +1097,7 @@ export default function InvestorDemo() {
                       <p>✅ <strong>Low-Cost Recovery:</strong> $29.99 hardware cost vs competitors charging $100+ for 2FA replacements or account recovery services.</p>
                       <p>✅ <strong>No Data Loss:</strong> All linked accounts, permissions, and settings preserved. Seamless transition.</p>
                       <p>✅ <strong>DNA Data Form:</strong> Your DNA exists ONLY as an encrypted hash in our cloud. New token communicates with this hash—it doesn't contain your DNA data.</p>
-                      <p>✅ <strong>Insurance Option:</strong> Premium plans include free replacements (we can offer device insurance since fraud is mathematically impossible).</p>
+                      <p>✅ <strong>Insurance Option:</strong> Premium plans include free replacements (we can offer device insurance since fraud is designed to be computationally infeasible).</p>
                     </div>
                   </div>
                 </div>
@@ -1131,7 +1131,7 @@ export default function InvestorDemo() {
                 </div>
                 <div className="bg-slate-900/50 p-4 rounded-lg">
                   <h3 className="font-bold text-lg mb-2 text-orange-400">IP Shield</h3>
-                  <p className="text-sm text-slate-300">300x faster than Google Authenticator. Makes real-time attacks mathematically impossible. Zero breaches guaranteed.</p>
+                  <p className="text-sm text-slate-300">300x faster than Google Authenticator. Makes real-time attacks designed to be computationally infeasible. Zero breaches in simulation.</p>
                 </div>
               </div>
             </CardContent>
