@@ -564,10 +564,24 @@ export default function ExportAllPagesButton() {
         ? requests.slice(0, 20).map(r => `• [${r.status?.toUpperCase() || 'UNKNOWN'}] "${r.intent}" -> ${r.routed_to || 'N/A'} -- ${r.latency_ms || '?'}ms${r.fallback_used ? ' (FALLBACK)' : ''}`).join('\n')
         : 'No API requests recorded.');
 
-      // Footer on all pages
+      // Amber demo banner + footer on all pages
       const pages = doc.internal.getNumberOfPages();
       for (let i = 1; i <= pages; i++) {
         doc.setPage(i);
+
+        // Amber DEMO ENVIRONMENT banner at top of every page
+        doc.setFillColor(180, 83, 9);
+        doc.rect(0, 0, 210, 14, 'F');
+        doc.setFontSize(8);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(255, 237, 213);
+        doc.text('[!] DEMO ENVIRONMENT -- INTERNAL TESTING ONLY', 10, 6);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(6);
+        doc.setTextColor(255, 200, 150);
+        doc.text('Simulated security layer. Not for production use. Hardware prototype required for full functionality.', 10, 10.5);
+
+        // Dark footer
         doc.setFillColor(15, 23, 42);
         doc.rect(0, 282, 210, 15, 'F');
         doc.setFontSize(8);
