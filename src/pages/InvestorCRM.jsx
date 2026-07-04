@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Users, Plus, Calendar, FileText, Star, TrendingUp, MessageSquare, Printer, ChevronRight, Layout, Sparkles, Flame } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
 import { format } from 'date-fns';
 import { jsPDF } from 'jspdf';
 import { toast } from 'sonner';
@@ -17,6 +18,8 @@ import ExportAllPagesButton from '@/components/reports/ExportAllPagesButton';
 import KanbanBoard from '@/components/investor/KanbanBoard';
 import ExecutiveSummaryGenerator from '@/components/investor/ExecutiveSummaryGenerator';
 import PriorityBadge, { calculatePriorityScore, getPriorityTier } from '@/components/investor/PriorityBadge';
+import BulkActionBar, { exportSelectedLeadsPDF } from '@/components/investor/BulkActionBar';
+import InteractionTimeline from '@/components/investor/InteractionTimeline';
 
 const STATUS_COLORS = {
   'Contacted': 'bg-blue-600',
@@ -264,6 +267,7 @@ export default function InvestorCRM() {
   const [selected, setSelected] = useState(null);
   const [viewMode, setViewMode] = useState('list');
   const [execSummaryMeeting, setExecSummaryMeeting] = useState(null);
+  const [selectedIds, setSelectedIds] = useState(new Set());
 
   const { data: meetings = [] } = useQuery({
     queryKey: ['investor_meetings'],
@@ -292,6 +296,38 @@ export default function InvestorCRM() {
 
   const handleStatusChange = (id, newStatus) => {
     statusMutation.mutate({ id, status: newStatus });
+  };
+
+  const toggleSelect = (id) => {
+    setSelectedIds(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  };
+
+  const toggleSelectAll = () => {
+    setSelectedIds(prev => prev.size === meetings.length ? new Set() : new Set(meetings.map(m => m.id)));
+  };
+
+  const clearSelection = () => setSelectedIds(new Set());
+
+  const bulkStatusMutation = useMutation({
+    mutationFn: ({ ids, status }) => base44.entities.InvestorMeeting.bulkUpdate(ids.map(id => ({ id, status }))),
+    onSuccess: () => {
+      qc.invalidateQueries(['investor_meetings']);
+      toast.success(`Updated ${selectedIds.size} leads to "${status}"`);
+      clearSelection();
+    },
+  });
+
+  const handleBulkStatusUpdate = (newStatus) => {
+    bulkStatusMutation.mutate({ ids: [...selectedIds], status: newStatus });
+  };
+
+  const handleExportSelected = () => {
+    const selectedMeetings = meetings.filter(m => selectedIds.has(m.id));
+    exportSelectedLeadsPDF(selectedMeetings);
   };
 
   const openEdit = (m) => { setEditing(m); setShowForm(true); };
@@ -391,6 +427,24 @@ export default function InvestorCRM() {
 
         {/* Meeting List */}
         {viewMode === 'list' && (
+        <div className="space-y-4">
+          {selectedIds.size > 0 && (
+            <BulkActionBar
+              selectedCount={selectedIds.size}
+              onBulkStatusUpdate={handleBulkStatusUpdate}
+              onExportSelected={handleExportSelected}
+              onClearSelection={clearSelection}
+            />
+          )}
+          <div className="flex items-center gap-3 px-1">
+            <Checkbox
+              checked={meetings.length > 0 && selectedIds.size === meetings.length}
+              onCheckedChange={toggleSelectAll}
+            />
+            <span className="text-xs text-slate-400 font-medium">
+              {selectedIds.size > 0 ? `${selectedIds.size} of ${meetings.length} selected` : 'Select all'}
+            </span>
+          </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {meetings.length === 0 && (
             <Card className="col-span-3 bg-slate-800/40 border-slate-700">
@@ -400,17 +454,25 @@ export default function InvestorCRM() {
             </Card>
           )}
           {meetings.map(m => (
-            <Card key={m.id} className="bg-slate-800/60 border-slate-700 hover:border-cyan-500/50 transition-colors cursor-pointer"
+            <Card key={m.id} className={`bg-slate-800/60 border-slate-700 hover:border-cyan-500/50 transition-colors cursor-pointer ${selectedIds.has(m.id) ? 'ring-2 ring-cyan-500/50' : ''}`}
               onClick={() => setSelected(m === selected ? null : m)}>
               <CardContent className="p-5">
-                <div className="flex items-start justify-between mb-3">
-                  <div>
-                    <h3 className="font-bold text-white text-lg">{m.investor_name}</h3>
-                    <p className="text-slate-400 text-sm">{m.company}</p>
+                <div className="flex items-start gap-3 mb-3">
+                  <Checkbox
+                    checked={selectedIds.has(m.id)}
+                    onCheckedChange={() => toggleSelect(m.id)}
+                    onClick={(e) => e.stopPropagation()}
+                    className="mt-1"
+                  />
+                  <div className="flex-1 flex items-start justify-between">
+                    <div>
+                      <h3 className="font-bold text-white text-lg">{m.investor_name}</h3>
+                      <p className="text-slate-400 text-sm">{m.company}</p>
+                    </div>
+                    <Badge className={`${STATUS_COLORS[m.status] || 'bg-slate-600'} text-white text-xs`}>
+                      {m.status}
+                    </Badge>
                   </div>
-                  <Badge className={`${STATUS_COLORS[m.status] || 'bg-slate-600'} text-white text-xs`}>
-                    {m.status}
-                  </Badge>
                 </div>
                 <div className="flex items-center justify-between mb-2">
                   <div className="text-yellow-400 text-sm">{'⭐'.repeat(parseInt(m.interest_level || 3))}</div>
@@ -473,11 +535,13 @@ export default function InvestorCRM() {
                         <Printer className="w-3 h-3 mr-1" /> Print PDF
                       </Button>
                     </div>
+                    <InteractionTimeline meeting={m} />
                   </div>
                 )}
               </CardContent>
             </Card>
           ))}
+        </div>
         </div>
         )}
 

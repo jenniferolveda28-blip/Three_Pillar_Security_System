@@ -18,7 +18,7 @@ export default function ExportAllPagesButton() {
         universes, requests, keys, securityLogs, hardwareTokens,
         meetings, alerts, anomalies, scrambling, threats,
         tokens, metrics, subscriptions, roles, linkedAccounts,
-        reports, incidentRules, tokenRegs, roleAssignments,
+        reports, incidentRules, tokenRegs, roleAssignments, interactions,
       ] = await Promise.all([
         base44.entities.Universe.list('-created_date', 100),
         base44.entities.UniversalRequest.list('-created_date', 50),
@@ -39,6 +39,7 @@ export default function ExportAllPagesButton() {
         base44.entities.IncidentRule.list('-created_date', 50),
         base44.entities.TokenRegistration.list('-created_date', 50),
         base44.entities.UserRoleAssignment.list('-created_date', 50),
+        base44.entities.InvestorInteraction.list('-timestamp', 100),
       ]);
 
       const doc = new jsPDF();
@@ -446,8 +447,28 @@ export default function ExportAllPagesButton() {
         ['Rejected', tokenRegs.filter(t => t.registration_status === 'rejected').length],
       ]);
 
-      // Subscriptions
-      section('35. SUBSCRIPTIONS');
+      // Investor Interaction History
+      section('35. INVESTOR INTERACTION HISTORY');
+      const interactionCounts = {};
+      interactions.forEach(i => { interactionCounts[i.interaction_type] = (interactionCounts[i.interaction_type] || 0) + 1; });
+      rows([
+        ['Total Interactions Logged', interactions.length],
+        ['Status Changes', interactionCounts['status_change'] || 0],
+        ['Meetings Logged', interactionCounts['meeting_logged'] || 0],
+        ['Follow-Ups Scheduled', interactionCounts['follow_up_scheduled'] || 0],
+        ['Checklists Created', interactionCounts['checklist_created'] || 0],
+        ['Feedback Updates', interactionCounts['feedback_updated'] || 0],
+      ]);
+      body(interactions.length > 0
+        ? interactions.slice(0, 15).map(i => `• [${format(new Date(i.timestamp), 'MMM d, yyyy')}] ${i.interaction_type} — ${i.investor_name}: ${i.description}`).join('\n')
+        : 'No interactions logged yet.');
+
+      // Subscription Revenue Estimate
+      const PLAN_PRICES = { basic: 9.99, pro: 49.99, enterprise: 199.99 };
+      const monthlyRevenue = subscriptions
+        .filter(s => s.status === 'active')
+        .reduce((sum, s) => sum + (PLAN_PRICES[s.plan_type] || 0), 0);
+      section('36. SUBSCRIPTIONS & REVENUE');
       rows([
         ['Total Subscriptions', subscriptions.length],
         ['Active', subscriptions.filter(s => s.status === 'active').length],
@@ -455,10 +476,75 @@ export default function ExportAllPagesButton() {
         ['Pro Plan', subscriptions.filter(s => s.plan_type === 'pro').length],
         ['Enterprise', subscriptions.filter(s => s.plan_type === 'enterprise').length],
         ['Auto-Renew Enabled', subscriptions.filter(s => s.auto_renew).length],
+        ['Monthly Revenue (Est.)', `$${monthlyRevenue.toFixed(2)}`],
+        ['Annual Revenue (Est.)', `$${(monthlyRevenue * 12).toFixed(2)}`],
       ]);
 
+      // Role Permissions Detail
+      section('37. ROLE PERMISSIONS MATRIX');
+      body(roles.length > 0
+        ? roles.map(r => {
+            const perms = r.permissions || {};
+            const enabled = Object.entries(perms).filter(([k, v]) => v === true).map(([k]) => k);
+            return `• ${r.role_name}${r.is_system_role ? ' (System)' : ''} — ${r.description || 'No description'}\n  Enabled Permissions: ${enabled.length > 0 ? enabled.join(', ') : 'None'}`;
+          }).join('\n')
+        : 'No roles defined.');
+
+      // Threat Correlation Details
+      section('38. THREAT CORRELATION DETAILS');
+      body(threats.length > 0
+        ? threats.map(t => {
+            const stages = (t.attack_stages || []).length;
+            const systems = (t.affected_systems || []).join(', ') || 'N/A';
+            const actions = (t.recommended_actions || []).slice(0, 3).join('; ') || 'N/A';
+            return `• ${t.attack_chain_name} — Severity: ${t.severity} — Status: ${t.status}\n  Stages: ${stages} | Systems: ${systems} | Confidence: ${t.confidence_score || 'N/A'}%\n  Recommended: ${actions}`;
+          }).join('\n')
+        : 'No threat correlations recorded.');
+
+      // Analytics by Auth Method
+      section('39. ANALYTICS BY AUTH METHOD');
+      const authMethodCounts = {};
+      metrics.filter(m => m.auth_method).forEach(m => { authMethodCounts[m.auth_method] = (authMethodCounts[m.auth_method] || 0) + 1; });
+      const methodEntries = Object.entries(authMethodCounts);
+      rows([
+        ['DNA Authentications', authMethodCounts['dna'] || 0],
+        ['Fingerprint', authMethodCounts['fingerprint'] || 0],
+        ['Facial Recognition', authMethodCounts['facial'] || 0],
+        ['Breathalyzer', authMethodCounts['breathalyzer'] || 0],
+        ['Liveness Check', authMethodCounts['liveness'] || 0],
+        ['Continuous Auth', authMethodCounts['continuous'] || 0],
+      ]);
+
+      // Linked Accounts by Type
+      section('40. LINKED ACCOUNTS BY TYPE');
+      const accountTypeCounts = {};
+      linkedAccounts.forEach(a => { accountTypeCounts[a.account_type] = (accountTypeCounts[a.account_type] || 0) + 1; });
+      rows([
+        ['Email Accounts', accountTypeCounts['email'] || 0],
+        ['Social Accounts', accountTypeCounts['social'] || 0],
+        ['Banking Accounts', accountTypeCounts['banking'] || 0],
+        ['Cloud Storage', accountTypeCounts['cloud_storage'] || 0],
+        ['Other', accountTypeCounts['other'] || 0],
+        ['Active', linkedAccounts.filter(a => a.status === 'active').length],
+        ['Locked', linkedAccounts.filter(a => a.status === 'locked').length],
+      ]);
+
+      // API Universe by Auth Type
+      section('41. API UNIVERSE AUTH BREAKDOWN');
+      const authTypeCounts = {};
+      universes.forEach(u => { if (u.auth_type) authTypeCounts[u.auth_type] = (authTypeCounts[u.auth_type] || 0) + 1; });
+      rows([
+        ['API Key Auth', authTypeCounts['api_key'] || 0],
+        ['Bearer Token', authTypeCounts['bearer'] || 0],
+        ['OAuth', authTypeCounts['oauth'] || 0],
+        ['No Auth', authTypeCounts['none'] || 0],
+      ]);
+      body(universes.length > 0
+        ? universes.slice(0, 15).map(u => `• ${u.name} — Auth: ${u.auth_type || 'N/A'} — Base URL: ${u.base_url || 'N/A'} — Capabilities: ${(u.capabilities || []).join(', ') || 'N/A'}`).join('\n')
+        : 'No universes connected.');
+
       // Request History detail
-      section('36. API REQUEST HISTORY');
+      section('42. API REQUEST HISTORY');
       body(requests.length > 0
         ? requests.slice(0, 20).map(r => `• [${r.status?.toUpperCase()}] "${r.intent}" → ${r.routed_to || 'N/A'} — ${r.latency_ms || '?'}ms${r.fallback_used ? ' (FALLBACK)' : ''}`).join('\n')
         : 'No API requests recorded.');

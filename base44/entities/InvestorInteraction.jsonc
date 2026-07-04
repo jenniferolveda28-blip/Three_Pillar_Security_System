@@ -1,0 +1,51 @@
+{
+  "name": "InvestorInteraction",
+  "type": "object",
+  "properties": {
+    "investor_meeting_id": {
+      "type": "string",
+      "description": "ID of the related InvestorMeeting"
+    },
+    "investor_name": {
+      "type": "string",
+      "description": "Investor name for quick reference"
+    },
+    "interaction_type": {
+      "type": "string",
+      "enum": [
+        "meeting_logged",
+        "status_change",
+        "follow_up_scheduled",
+        "checklist_created",
+        "feedback_updated",
+        "notes_added"
+      ],
+      "description": "Type of interaction event"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable summary of the interaction"
+    },
+    "old_status": {
+      "type": "string",
+      "description": "Previous pipeline status (for status changes)"
+    },
+    "new_status": {
+      "type": "string",
+      "description": "New pipeline status (for status changes)"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional interaction context"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the interaction occurred"
+    }
+  },
+  "required": [
+    "investor_meeting_id",
+    "interaction_type"
+  ]
+}
