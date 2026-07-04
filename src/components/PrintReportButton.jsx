@@ -60,7 +60,15 @@ export default function PrintReportButton({ reportTitle, subtitle, sections = []
       doc.setTextColor(100, 116, 139);
       doc.text(`Generated: ${today}  |  Three-Pillar Security System`, 12, 43);
 
-      let y = 62;
+      // Demo environment notice
+      doc.setFillColor(255, 237, 213);
+      doc.rect(10, 50, 190, 8, 'F');
+      doc.setFontSize(8);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(180, 83, 9);
+      doc.text('⚠️ DEMO ENVIRONMENT — INTERNAL TESTING ONLY. Simulated security layer. Not for production use.', 12, 55);
+
+      let y = 64;
 
       const checkPage = (needed = 20) => {
         if (y + needed > 275) {
@@ -151,7 +159,7 @@ export default function PrintReportButton({ reportTitle, subtitle, sections = []
         doc.setFontSize(8);
         doc.setFont('helvetica', 'normal');
         doc.setTextColor(100, 116, 139);
-        doc.text('THREE-PILLAR SECURITY SYSTEM — CONFIDENTIAL', 12, 289);
+        doc.text('THREE-PILLAR SECURITY SYSTEM — DEMO ENVIRONMENT', 12, 289);
         doc.text(`Page ${i} of ${pageCount}  |  ${dateStr}`, 155, 289);
       }
 

@@ -71,6 +71,14 @@ export default function TexasNDA() {
     doc.text(`Governed by the Laws of the State of Texas  |  ${form.county} County`, 12, 40);
     doc.text(`Date: ${form.date}`, 12, 49);
 
+    // Demo environment notice
+    doc.setFillColor(180, 83, 9);
+    doc.rect(10, 52, 190, 7, 'F');
+    doc.setFontSize(7);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(255, 237, 213);
+    doc.text('⚠️ DEMO ENVIRONMENT — INTERNAL TESTING ONLY — NOT FOR PRODUCTION USE', 14, 57);
+
     let y = 68;
 
     const heading = (title) => {
@@ -188,7 +196,7 @@ export default function TexasNDA() {
       doc.setFontSize(8);
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(100, 116, 139);
-      doc.text(`NON-DISCLOSURE AGREEMENT  |  ${form.county} County, Texas  |  CONFIDENTIAL`, 12, 289);
+      doc.text(`NDA  |  ${form.county} County, TX  |  DEMO ENVIRONMENT — INTERNAL TESTING ONLY`, 12, 289);
       doc.text(`Page ${i} of ${pages}`, 182, 289);
     }
 

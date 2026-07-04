@@ -42,6 +42,7 @@ Deno.serve(async (req) => {
         doc.setFontSize(10);
         doc.text(`Generated: ${new Date().toLocaleString()}`, 20, y);
         doc.text(`Report Period: Last ${report.time_range_days} days`, 20, y + 5);
+        doc.text(`Environment: DEMO — Internal Testing Only (simulated data)`, 20, y + 10);
         y += 20;
 
         // Threat Summary
@@ -133,6 +134,15 @@ Deno.serve(async (req) => {
                 doc.text(`• ${rec}`, 30, y);
                 y += 7;
             });
+        }
+
+        // Footer on every page
+        const totalPages = doc.internal.getNumberOfPages();
+        for (let p = 1; p <= totalPages; p++) {
+            doc.setPage(p);
+            doc.setFontSize(7);
+            doc.text('THREE-PILLAR SECURITY SYSTEM — DEMO ENVIRONMENT (INTERNAL TESTING ONLY)', 20, 290);
+            doc.text(`Page ${p} of ${totalPages}`, 160, 290);
         }
 
         const pdfBytes = doc.output('arraybuffer');

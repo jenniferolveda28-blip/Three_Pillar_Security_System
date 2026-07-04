@@ -68,6 +68,18 @@ export default function ExportAllPagesButton() {
       doc.text(`Sections: Dashboard, Security, Analytics, Investor,`, 14, 165);
       doc.text('Authenticator, Scrambler, Diagnostics, Reports, and more', 14, 171);
 
+      // Demo environment banner
+      doc.setFillColor(180, 83, 9);
+      doc.rect(14, 180, 182, 12, 'F');
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(255, 237, 213);
+      doc.text('⚠️ DEMO ENVIRONMENT — INTERNAL TESTING ONLY', 20, 188);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(7);
+      doc.setTextColor(255, 200, 150);
+      doc.text('Simulated security layer. Not for production use. Hardware prototype required for full functionality.', 20, 192);
+
       let y = 20;
       const checkPage = (needed = 20) => {
         if (y + needed > 275) { doc.addPage(); y = 20; }
@@ -557,7 +569,7 @@ export default function ExportAllPagesButton() {
         doc.rect(0, 282, 210, 15, 'F');
         doc.setFontSize(8);
         doc.setTextColor(100, 116, 139);
-        doc.text('THREE-PILLAR SECURITY SYSTEM — COMPLETE EXPORT (ALL PAGES)', 10, 289);
+        doc.text('THREE-PILLAR SECURITY SYSTEM — DEMO ENVIRONMENT (INTERNAL TESTING ONLY)', 10, 289);
         doc.text(`Page ${i} of ${pages}  |  ${dateStr}`, 150, 289);
       }
 

@@ -178,6 +178,14 @@ function printMeetingPDF(meeting) {
   doc.setTextColor(148, 163, 184);
   doc.text(`Three-Pillar Security System  |  ${format(new Date(), 'MMMM d, yyyy')}`, 12, 30);
 
+  // Demo environment notice
+  doc.setFillColor(180, 83, 9);
+  doc.rect(10, 32, 190, 7, 'F');
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(255, 237, 213);
+  doc.text('⚠️ DEMO ENVIRONMENT — INTERNAL TESTING ONLY', 14, 37);
+
   let y = 55;
   const row = (label, value, color) => {
     doc.setFont('helvetica', 'bold');
@@ -247,7 +255,7 @@ function printMeetingPDF(meeting) {
   doc.rect(0, 282, 210, 15, 'F');
   doc.setFontSize(8);
   doc.setTextColor(100, 116, 139);
-  doc.text('THREE-PILLAR SECURITY SYSTEM — CONFIDENTIAL INVESTOR RECORD', 12, 289);
+  doc.text('THREE-PILLAR SECURITY SYSTEM — DEMO ENVIRONMENT', 12, 289);
   doc.text(format(new Date(), 'yyyy-MM-dd'), 180, 289);
 
   const blob = doc.output('blob');
