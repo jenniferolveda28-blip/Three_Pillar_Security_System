@@ -318,7 +318,7 @@ export default function ExportAllPagesButton() {
 
       // 19. ExecutiveSummary
       section('18. EXECUTIVE SUMMARY');
-      body(`System Status: ${degradedUniverses.length === 0 ? 'OPERATIONAL' : 'DEGRADED'}\n\nThe Three-Pillar Security System is currently ${degradedUniverses.length === 0 ? 'fully operational' : 'experiencing degradation in ' + degradedUniverses.length + ' universe(s)'}. Key metrics:\n• ${universes.length} API universes connected with ${Math.round(universes.reduce((s, u) => s + (u.success_rate || 100), 0) / Math.max(universes.length, 1))}% average success rate\n• ${securityLogs.length} security events logged in recent period\n• ${threats.length} active threat correlations under monitoring\n• ${anomalies.length} behavior anomalies tracked\n• ${meetings.length} investor pipeline leads with ${meetings.filter(m => m.status === 'Interested' || m.status === 'Negotiating').length} active negotiations\n• ${hardwareTokens.length} hardware tokens active\n• ${scrambling.filter(s => s.status === 'active').length} scrambling sessions protecting the system\n\nRecommendation: ${alerts.filter(a => a.status === 'open').length > 0 ? 'Review open criminal activity alerts immediately.' : 'All systems nominal — continue routine monitoring.'}`);
+      body(`System Status: ${degradedUniverses.length === 0 ? 'OPERATIONAL' : 'DEGRADED'}\n\nThe Three-Pillar Security System is currently ${degradedUniverses.length === 0 ? 'fully operational' : 'experiencing degradation in ' + degradedUniverses.length + ' universe(s)'}. Key metrics:\n• ${universes.length} API universes connected with ${Math.round(universes.reduce((s, u) => s + (u.success_rate || 100), 0) / Math.max(universes.length, 1))}% average success rate\n• ${securityLogs.length} security events logged in recent period\n• ${threats.length} active threat correlations under monitoring\n• ${anomalies.length} behavior anomalies tracked\n• ${meetings.length} investor pipeline leads with ${meetings.filter(m => m.status === 'Interested' || m.status === 'Negotiating').length} active negotiations\n• ${hardwareTokens.length} hardware tokens active\n• ${scrambling.filter(s => s.status === 'active').length} scrambling sessions protecting the system\n\nRecommendation: ${alerts.filter(a => a.status === 'open').length > 0 ? 'Review open criminal activity alerts immediately.' : 'All systems nominal in demo environment — continue internal testing'}`);
       body('[DEMO ENVIRONMENT NOTE] This report reflects internal test data from a demo environment. Security metrics are simulated. Hardware prototype required for full functionality. Not for production use.');
 
       // 20. QuantumKeyManagement
@@ -435,7 +435,7 @@ export default function ExportAllPagesButton() {
         ['Confirmed', alerts.filter(a => a.status === 'confirmed').length],
         ['Resolved', alerts.filter(a => a.status === 'resolved').length],
         ['Auto-Blocked', alerts.filter(a => a.auto_blocked).length],
-        ['Authorities Notified', alerts.filter(a => a.authorities_notified).length],
+        ['Authorities Notified', '0 (Simulated — Framework Only)'],
       ]);
       body(alerts.length > 0
         ? alerts.slice(0, 10).map(a => `• [${a.severity?.toUpperCase()}] ${a.alert_type} — User: ${a.user_identifier || 'N/A'} — IP: ${a.ip_address || 'N/A'} — Status: ${a.status} — Confidence: ${a.confidence_score || 'N/A'}%`).join('\n')
