@@ -180,7 +180,7 @@ export default function TexasNDA() {
     doc.text(`Date: _______________`, 110, y);
 
     // ── Footer on each page ──
-    const pages = doc.internal.getNumberOfPages();
+    const pages = doc.getNumberOfPages();
     for (let i = 1; i <= pages; i++) {
       doc.setPage(i);
       doc.setFillColor(15, 23, 42);
@@ -192,13 +192,8 @@ export default function TexasNDA() {
       doc.text(`Page ${i} of ${pages}`, 182, 289);
     }
 
-    const blob = doc.output('blob');
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `NDA-${form.receivingParty.replace(/\s+/g, '-')}-${form.county}County-TX.pdf`;
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 3000);
+    const filename = `NDA-${form.receivingParty.replace(/\s+/g, '-')}-${form.county}County-TX.pdf`;
+    doc.save(filename);
     toast.success('NDA generated and downloaded!');
   };
 
