@@ -177,8 +177,8 @@ export default function ExportAllPagesButton() {
         ['Linked Accounts', linkedAccounts.length],
         ['Active Subscriptions', subscriptions.length],
         ['Token Registrations', tokenRegs.length],
-        ['Biometric Method', 'DNA Breathalyzer'],
-        ['Token Replacement Cost', '$29.99'],
+        ['Biometric Method', 'DNA Breathalyzer (hardware prototype required)'],
+        ['Token Replacement Cost', '$29.99 (projected retail — not yet sold)'],
       ]);
       body(hardwareTokens.length > 0
         ? hardwareTokens.map(t => `• ${t.device_name} (ID: ${t.device_id}) — Active: ${t.is_active ? 'YES' : 'NO'} — Failed Attempts: ${t.failed_attempts || 0}`).join('\n')
@@ -273,7 +273,7 @@ export default function ExportAllPagesButton() {
 
       // 15. ThreePillarView
       section('14. THREE-PILLAR ARCHITECTURE');
-      body('Pillar 1: DNA Authentication — BioVerify hardware tokens with genetic verification using saliva samples and breathalyzer backup. Tokens generate codes every 2 seconds and auto-lock after 3 failed attempts.\n\nPillar 2: Dynamic Scrambling — IP Shield rotates API keys every 0.1–5 seconds across multiple universes with quantum encryption. Keys are bound to DNA-verified tokens.\n\nPillar 3: AI Threat Detection — Real-time behavioral analysis, criminal activity monitoring, and automated threat neutralization with anomaly orchestration.');
+      body('Pillar 1: DNA Authentication (Software Simulation) — BioVerify hardware tokens with genetic verification using saliva samples and breathalyzer backup. Tokens generate codes every 2 seconds and auto-lock after 3 failed attempts. NOTE: Hardware prototype required for full implementation; current system is a software simulation.\n\nPillar 2: Dynamic Scrambling (Framework Designed) — IP Shield is designed to rotate API keys every 0.1–5 seconds across multiple universes with quantum encryption. Keys are architected to be bound to DNA-verified tokens. NOTE: Full scrambling engine requires hardware integration; current implementation is a framework/architecture demo.\n\nPillar 3: AI Threat Detection (Architected) — Real-time behavioral analysis, criminal activity monitoring, and automated threat neutralization with anomaly orchestration. NOTE: Threat detection models are architected but not yet deployed against live attack traffic; data shown is internal test data.');
 
       // 16. UniversePerformance
       section('15. UNIVERSE PERFORMANCE');
@@ -316,7 +316,7 @@ export default function ExportAllPagesButton() {
 
       // 19. ExecutiveSummary
       section('18. EXECUTIVE SUMMARY');
-      body(`System Status: ${degradedUniverses.length === 0 ? 'OPERATIONAL' : 'DEGRADED'}\n\nThe Three-Pillar Security System is currently ${degradedUniverses.length === 0 ? 'fully operational' : 'experiencing degradation in ' + degradedUniverses.length + ' universe(s)'}. Key metrics:\n• ${universes.length} API universes connected with ${Math.round(universes.reduce((s, u) => s + (u.success_rate || 100), 0) / Math.max(universes.length, 1))}% average success rate\n• ${securityLogs.length} security events logged in recent period\n• ${threats.length} active threat correlations under monitoring\n• ${anomalies.length} behavior anomalies tracked\n• ${meetings.length} investor pipeline leads with ${meetings.filter(m => m.status === 'Interested' || m.status === 'Negotiating').length} active negotiations\n• ${hardwareTokens.length} hardware tokens active\n• ${scrambling.filter(s => s.status === 'active').length} scrambling sessions protecting the system\n\nRecommendation: ${alerts.filter(a => a.status === 'open').length > 0 ? 'Review open criminal activity alerts immediately.' : 'All systems nominal — continue routine monitoring.'}`);
+      body(`System Status: ${degradedUniverses.length === 0 ? 'OPERATIONAL' : 'DEGRADED'}\n\nThe Three-Pillar Security System is currently ${degradedUniverses.length === 0 ? 'fully operational' : 'experiencing degradation in ' + degradedUniverses.length + ' universe(s)'}. Key metrics:\n• ${universes.length} API universes connected with ${Math.round(universes.reduce((s, u) => s + (u.success_rate || 100), 0) / Math.max(universes.length, 1))}% average success rate\n• ${securityLogs.length} security events logged in recent period\n• ${threats.length} active threat correlations under monitoring\n• ${anomalies.length} behavior anomalies tracked\n• ${meetings.length} investor pipeline leads with ${meetings.filter(m => m.status === 'Interested' || m.status === 'Negotiating').length} active negotiations\n• ${hardwareTokens.length} hardware tokens active\n• ${scrambling.filter(s => s.status === 'active').length} scrambling sessions protecting the system\n\nRecommendation: ${alerts.filter(a => a.status === 'open').length > 0 ? 'Review open criminal activity alerts immediately.' : 'All systems nominal — continue routine monitoring.'}\n\n⚠️ DEMO ENVIRONMENT NOTE: This report reflects internal test data from a demo environment. Security metrics are simulated. Hardware prototype required for full functionality. Not for production use.`);
 
       // 20. QuantumKeyManagement
       section('19. QUANTUM KEY MANAGEMENT');
