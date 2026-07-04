@@ -70,15 +70,17 @@ export default function ExportAllPagesButton() {
 
       // Demo environment banner
       doc.setFillColor(180, 83, 9);
-      doc.rect(14, 180, 182, 12, 'F');
+      doc.rect(14, 178, 182, 18, 'F');
       doc.setFontSize(9);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(255, 237, 213);
-      doc.text('⚠️ DEMO ENVIRONMENT — INTERNAL TESTING ONLY', 20, 188);
+      doc.text('[!] DEMO ENVIRONMENT -- INTERNAL TESTING ONLY', 18, 186);
       doc.setFont('helvetica', 'normal');
-      doc.setFontSize(7);
+      doc.setFontSize(7.5);
       doc.setTextColor(255, 200, 150);
-      doc.text('Simulated security layer. Not for production use. Hardware prototype required for full functionality.', 20, 192);
+      doc.splitTextToSize('Simulated security layer. Not for production use. Hardware prototype required for full functionality.', 172).forEach((line, i) => {
+        doc.text(line, 18, 192 + i * 5);
+      });
 
       let y = 20;
       const checkPage = (needed = 20) => {
@@ -316,7 +318,8 @@ export default function ExportAllPagesButton() {
 
       // 19. ExecutiveSummary
       section('18. EXECUTIVE SUMMARY');
-      body(`System Status: ${degradedUniverses.length === 0 ? 'OPERATIONAL' : 'DEGRADED'}\n\nThe Three-Pillar Security System is currently ${degradedUniverses.length === 0 ? 'fully operational' : 'experiencing degradation in ' + degradedUniverses.length + ' universe(s)'}. Key metrics:\n• ${universes.length} API universes connected with ${Math.round(universes.reduce((s, u) => s + (u.success_rate || 100), 0) / Math.max(universes.length, 1))}% average success rate\n• ${securityLogs.length} security events logged in recent period\n• ${threats.length} active threat correlations under monitoring\n• ${anomalies.length} behavior anomalies tracked\n• ${meetings.length} investor pipeline leads with ${meetings.filter(m => m.status === 'Interested' || m.status === 'Negotiating').length} active negotiations\n• ${hardwareTokens.length} hardware tokens active\n• ${scrambling.filter(s => s.status === 'active').length} scrambling sessions protecting the system\n\nRecommendation: ${alerts.filter(a => a.status === 'open').length > 0 ? 'Review open criminal activity alerts immediately.' : 'All systems nominal — continue routine monitoring.'}\n\n⚠️ DEMO ENVIRONMENT NOTE: This report reflects internal test data from a demo environment. Security metrics are simulated. Hardware prototype required for full functionality. Not for production use.`);
+      body(`System Status: ${degradedUniverses.length === 0 ? 'OPERATIONAL' : 'DEGRADED'}\n\nThe Three-Pillar Security System is currently ${degradedUniverses.length === 0 ? 'fully operational' : 'experiencing degradation in ' + degradedUniverses.length + ' universe(s)'}. Key metrics:\n• ${universes.length} API universes connected with ${Math.round(universes.reduce((s, u) => s + (u.success_rate || 100), 0) / Math.max(universes.length, 1))}% average success rate\n• ${securityLogs.length} security events logged in recent period\n• ${threats.length} active threat correlations under monitoring\n• ${anomalies.length} behavior anomalies tracked\n• ${meetings.length} investor pipeline leads with ${meetings.filter(m => m.status === 'Interested' || m.status === 'Negotiating').length} active negotiations\n• ${hardwareTokens.length} hardware tokens active\n• ${scrambling.filter(s => s.status === 'active').length} scrambling sessions protecting the system\n\nRecommendation: ${alerts.filter(a => a.status === 'open').length > 0 ? 'Review open criminal activity alerts immediately.' : 'All systems nominal — continue routine monitoring.'}`);
+      body('[DEMO ENVIRONMENT NOTE] This report reflects internal test data from a demo environment. Security metrics are simulated. Hardware prototype required for full functionality. Not for production use.');
 
       // 20. QuantumKeyManagement
       section('19. QUANTUM KEY MANAGEMENT');
@@ -558,7 +561,7 @@ export default function ExportAllPagesButton() {
       // Request History detail
       section('42. API REQUEST HISTORY');
       body(requests.length > 0
-        ? requests.slice(0, 20).map(r => `• [${r.status?.toUpperCase()}] "${r.intent}" → ${r.routed_to || 'N/A'} — ${r.latency_ms || '?'}ms${r.fallback_used ? ' (FALLBACK)' : ''}`).join('\n')
+        ? requests.slice(0, 20).map(r => `• [${r.status?.toUpperCase() || 'UNKNOWN'}] "${r.intent}" -> ${r.routed_to || 'N/A'} -- ${r.latency_ms || '?'}ms${r.fallback_used ? ' (FALLBACK)' : ''}`).join('\n')
         : 'No API requests recorded.');
 
       // Footer on all pages
