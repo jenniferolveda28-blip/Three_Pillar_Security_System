@@ -220,6 +220,30 @@ export default function Dashboard() {
                   Lead Activity
                 </Button>
               </Link>
+              <Link to="/SystemLogs">
+                <Button variant="outline" className="border-slate-500/50 text-slate-300 hover:bg-slate-500/10">
+                  <Activity className="w-4 h-4 mr-2" />
+                  System Logs
+                </Button>
+              </Link>
+              <Link to="/IntegrationHub">
+                <Button variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10">
+                  <Link2 className="w-4 h-4 mr-2" />
+                  Integrations
+                </Button>
+              </Link>
+              <Link to="/LeadBulkActions">
+                <Button variant="outline" className="border-orange-500/50 text-orange-400 hover:bg-orange-500/10">
+                  <Users className="w-4 h-4 mr-2" />
+                  Bulk Leads
+                </Button>
+              </Link>
+              <Link to="/EmailTemplates">
+                <Button variant="outline" className="border-blue-500/50 text-blue-400 hover:bg-blue-500/10">
+                  <Mail className="w-4 h-4 mr-2" />
+                  Email Templates
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

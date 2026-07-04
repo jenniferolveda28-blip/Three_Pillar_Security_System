@@ -18,6 +18,10 @@ import InvestorOverview from './pages/InvestorOverview';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import LeadActivitySummary from './pages/LeadActivitySummary';
+import SystemLogs from './pages/SystemLogs';
+import IntegrationHub from './pages/IntegrationHub';
+import LeadBulkActions from './pages/LeadBulkActions';
+import EmailTemplates from './pages/EmailTemplates';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -87,6 +91,10 @@ const AuthenticatedApp = () => {
       <Route path="/About" element={<LayoutWrapper currentPageName="About"><About /></LayoutWrapper>} />
       <Route path="/Contact" element={<LayoutWrapper currentPageName="Contact"><Contact /></LayoutWrapper>} />
       <Route path="/LeadActivitySummary" element={<LayoutWrapper currentPageName="LeadActivitySummary"><LeadActivitySummary /></LayoutWrapper>} />
+      <Route path="/SystemLogs" element={<LayoutWrapper currentPageName="SystemLogs"><SystemLogs /></LayoutWrapper>} />
+      <Route path="/IntegrationHub" element={<LayoutWrapper currentPageName="IntegrationHub"><IntegrationHub /></LayoutWrapper>} />
+      <Route path="/LeadBulkActions" element={<LayoutWrapper currentPageName="LeadBulkActions"><LeadBulkActions /></LayoutWrapper>} />
+      <Route path="/EmailTemplates" element={<LayoutWrapper currentPageName="EmailTemplates"><EmailTemplates /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
