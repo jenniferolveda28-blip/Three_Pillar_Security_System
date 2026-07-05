@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Dna, Zap, BrainCircuit, Mail, ArrowRight } from 'lucide-react';
+import { Shield, Dna, Zap, BrainCircuit, Mail, ArrowRight, FileDown } from 'lucide-react';
+import { jsPDF } from 'jspdf';
 
 export default function About() {
   return (
@@ -78,6 +79,72 @@ export default function About() {
           >
             <Mail className="w-5 h-5" /> Get In Touch
           </Link>
+          <button
+            onClick={() => {
+              const doc = new jsPDF();
+              let y = 20;
+              doc.setFontSize(20);
+              doc.setTextColor(15, 23, 42);
+              doc.text('Three-Pillar Security System', 20, y);
+              y += 10;
+              doc.setFontSize(11);
+              doc.setTextColor(100, 116, 139);
+              doc.text('Texas, USA · 2024–2026', 20, y);
+              y += 12;
+              doc.setFontSize(13);
+              doc.setTextColor(15, 23, 42);
+              doc.text('About', 20, y);
+              y += 8;
+
+              const sections = [
+                'The Three-Pillar Security System is a next-generation cybersecurity platform built around three interlocking innovations: DNA-based biometric authentication, a real-time moving-target defense system, and an AI-driven universal API security layer. Together, these pillars create a security architecture that no existing product on the market can match — combining uncopyable identity verification with infrastructure that changes faster than attackers can exploit it.',
+                'The platform is designed for enterprises, government agencies, and security-conscious organizations that require the highest level of protection for their APIs, user identities, and sensitive data. It is also built for biomedical researchers, hardware engineers, and university labs who can help bring the physical DNA breathalyzer prototype to life. Investors and venture partners seeking opportunities in the $300B+ cybersecurity market will find a fully functional software platform ready for scientific validation and commercialization.',
+                'The system was built independently by a solo developer based in Texas, USA, without funding, a team, or formal backing. Every component — the software architecture, the AI threat detection engine, the IP Shield scrambling simulation, the criminal activity monitoring, the role-based access controls, and the investor-facing demonstrations — was created from scratch. The architecture is proven and fully demonstrated in software. The physical DNA sensor hardware prototype is the next frontier, and that is where scientific partners and investors come in.',
+                'Our mission is simple: make digital identity verification uncopyable, make API security self-defending, and make cyberattacks mathematically impractical. We believe security should not rely on static credentials or hope that attackers are slower than your defenses. Instead, the system continuously reinvents itself — rotating keys, routes, and encryption layers hundreds of times per minute — so that by the time an attacker maps your infrastructure, every path they discovered has already changed.',
+              ];
+
+              doc.setFontSize(10);
+              doc.setTextColor(51, 65, 85);
+              sections.forEach(text => {
+                const lines = doc.splitTextToSize(text, 170);
+                lines.forEach(line => {
+                  if (y > 270) { doc.addPage(); y = 20; }
+                  doc.text(line, 20, y);
+                  y += 5;
+                });
+                y += 4;
+              });
+
+              doc.addPage();
+              y = 20;
+              const pillars = [
+                { title: 'DNA Authentication', body: 'Saliva-based DNA extraction produces a cryptographic hash that cannot be stolen from a photo, recording, or stolen device.' },
+                { title: 'IP Shield', body: 'API keys, routes, and encryption layers rotate every 100 milliseconds — 300x faster than Google Authenticator.' },
+                { title: 'Forged API', body: 'An AI-driven universal router that detects attack patterns in real time and auto-blocks criminal activity across all connected APIs.' },
+              ];
+              doc.setFontSize(16);
+              doc.setTextColor(15, 23, 42);
+              doc.text('The Three Pillars', 20, y);
+              y += 12;
+              pillars.forEach(p => {
+                if (y > 250) { doc.addPage(); y = 20; }
+                doc.setFontSize(13);
+                doc.setTextColor(15, 23, 42);
+                doc.text(p.title, 20, y);
+                y += 7;
+                doc.setFontSize(10);
+                doc.setTextColor(71, 85, 105);
+                const plines = doc.splitTextToSize(p.body, 170);
+                plines.forEach(l => { doc.text(l, 20, y); y += 5; });
+                y += 6;
+              });
+
+              doc.save('three-pillar-security-about.pdf');
+            }}
+            className="inline-flex items-center justify-center gap-2 border border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-bold px-8 py-4 rounded-lg transition-colors"
+          >
+            <FileDown className="w-5 h-5" /> Download PDF
+          </button>
           <Link
             to="/"
             className="inline-flex items-center justify-center gap-2 border border-slate-500 text-slate-300 hover:bg-slate-800 font-bold px-8 py-4 rounded-lg transition-colors"
