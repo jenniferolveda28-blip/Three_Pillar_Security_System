@@ -3,9 +3,10 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { Activity, Loader2, RefreshCw, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
+import { Activity, Loader2, RefreshCw, CheckCircle, AlertTriangle, XCircle, FileDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { exportBulkPDF } from '@/components/reports/BulkPDFExport';
 
 export default function SystemHealth() {
   const [universes, setUniverses] = useState([]);
@@ -37,6 +38,62 @@ export default function SystemHealth() {
 
   const chartData = universes.slice(0, 8).map(u => ({ name: u.name?.slice(0, 12), success: u.success_rate || 0, errors: u.error_count || 0 }));
 
+  const [exporting, setExporting] = useState(false);
+
+  const handleExportPDF = () => {
+    setExporting(true);
+    try {
+      exportBulkPDF(
+        'System Health Report',
+        'Universe status, success rates, and analytics metrics',
+        [
+          {
+            sectionTitle: 'System Summary',
+            headers: [],
+            rows: [],
+            colWidths: [],
+            summary: [
+              { label: 'Active', value: activeCount },
+              { label: 'Degraded', value: degradedCount },
+              { label: 'Offline', value: offlineCount },
+              { label: 'Avg Success', value: `${avgSuccess.toFixed(1)}%` },
+              { label: 'Total Errors', value: universes.reduce((s, u) => s + (u.error_count || 0), 0) },
+            ],
+          },
+          {
+            sectionTitle: 'Universe Status',
+            headers: ['Name', 'Base URL', 'Status', 'Success Rate', 'Errors (24h)', 'Auth Type', 'Last Check'],
+            colWidths: [35, 60, 25, 25, 25, 25, 40],
+            rows: universes.map(u => [
+              (u.name || '—').slice(0, 40),
+              (u.base_url || '—').slice(0, 60),
+              u.status || '—',
+              `${u.success_rate || 0}%`,
+              u.error_count || 0,
+              u.auth_type || '—',
+              u.last_check ? new Date(u.last_check).toLocaleString() : 'Never',
+            ]),
+          },
+          {
+            sectionTitle: 'Recent Analytics Metrics',
+            headers: ['Type', 'Endpoint', 'Method', 'Status', 'Latency', 'User', 'Success'],
+            colWidths: [30, 60, 20, 20, 25, 40, 20],
+            rows: metrics.map(m => [
+              m.metric_type || '—',
+              (m.endpoint || '—').slice(0, 60),
+              m.method || '—',
+              m.status_code || '—',
+              m.latency_ms ? `${m.latency_ms}ms` : '—',
+              (m.user_identifier || '—').slice(0, 40),
+              m.success !== false ? 'Yes' : 'No',
+            ]),
+          },
+        ],
+        `system-health-${new Date().toISOString().slice(0, 10)}.pdf`
+      );
+    } finally { setExporting(false); }
+  };
+
   return (
     <div className="min-h-screen text-white p-6">
       <div className="max-w-7xl mx-auto">
@@ -48,9 +105,15 @@ export default function SystemHealth() {
               <p className="text-slate-400 text-sm">Real-time stability, uptime, and resource utilization</p>
             </div>
           </div>
-          <Button variant="outline" onClick={load} disabled={loading}>
-            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />} Refresh
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" onClick={load} disabled={loading}>
+              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />} Refresh
+            </Button>
+            <Button onClick={handleExportPDF} disabled={exporting || universes.length === 0} className="bg-cyan-600 hover:bg-cyan-700">
+              {exporting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <FileDown className="w-4 h-4 mr-2" />}
+              {exporting ? 'Generating…' : 'Download PDF'}
+            </Button>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
