@@ -12,6 +12,7 @@ import LinkedAccountsList from '../components/authenticator/LinkedAccountsList';
 import SubscriptionManager from '../components/authenticator/SubscriptionManager';
 import BreathalyzerVerification from '../components/authenticator/BreathalyzerVerification';
 import GeneticTraitVerifier from '../components/authenticator/GeneticTraitVerifier';
+import AuditModeToggle from '../components/security/AuditModeToggle';
 
 export default function Authenticator() {
   const [activeTab, setActiveTab] = useState('register');
@@ -96,6 +97,11 @@ export default function Authenticator() {
               ]}
             />
           </div>
+        </div>
+
+        {/* Audit Mode Toggle (Auditor role only) */}
+        <div className="mb-8">
+          <AuditModeToggle />
         </div>
 
         {/* Stats */}

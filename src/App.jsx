@@ -6,6 +6,7 @@ import { pagesConfig } from './pages.config'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
+import { AuditModeProvider } from '@/lib/AuditModeContext';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import CriticalThreatMonitor from '@/components/security/CriticalThreatMonitor';
 import AnomalyNotificationMonitor from '@/components/security/AnomalyNotificationMonitor';
@@ -105,6 +106,7 @@ function App() {
 
   return (
     <AuthProvider>
+      <AuditModeProvider>
       <ErrorBoundary>
         <QueryClientProvider client={queryClientInstance}>
           <Router>
@@ -116,6 +118,7 @@ function App() {
           <Toaster />
         </QueryClientProvider>
       </ErrorBoundary>
+      </AuditModeProvider>
     </AuthProvider>
   )
 }

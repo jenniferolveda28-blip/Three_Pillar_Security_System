@@ -3,14 +3,30 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { Fingerprint, Loader2, CheckCircle2, XCircle, Droplet, Wind, Zap } from "lucide-react";
+import { Fingerprint, Loader2, CheckCircle2, XCircle, Droplet, Wind, Zap, ShieldAlert } from "lucide-react";
 import { toast } from "sonner";
+import { useAuditMode } from '@/lib/AuditModeContext';
 
 export default function BiometricVerification({ onVerified, tokenSerial }) {
+  const { bypassActive } = useAuditMode();
   const [stage, setStage] = useState('idle'); // idle, sampling, analyzing, verifying, success, failed
   const [progress, setProgress] = useState(0);
   const [analysis, setAnalysis] = useState({});
   const [breath, setBreath] = useState(0);
+
+  // Auto-bypass when Audit Mode is active
+  useEffect(() => {
+    if (bypassActive) {
+      setStage('success');
+      setProgress(100);
+      toast.info('Audit Mode: BioVerify authentication bypassed for demonstration.');
+      setTimeout(() => onVerified?.({
+        confidence: 100,
+        markers: 5,
+        auditBypass: true
+      }), 500);
+    }
+  }, [bypassActive]);
 
   const stages = {
     idle: { label: 'Ready to Verify', icon: Fingerprint, color: 'text-gray-500' },

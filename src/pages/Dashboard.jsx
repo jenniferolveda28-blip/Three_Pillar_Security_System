@@ -28,6 +28,7 @@ import EmergencyProtocol from '../components/security/EmergencyProtocol';
 import CriminalActivityMonitor from '../components/security/CriminalActivityMonitor';
 import AlertNotificationCenter from '../components/security/AlertNotificationCenter';
 import ScramblerMonitor from '../components/security/ScramblerMonitor';
+import AuditModeToggle from '../components/security/AuditModeToggle';
 import ThreatNeutralizationChart from '../components/investor/ThreatNeutralizationChart';
 import { FileText, Users } from 'lucide-react';
 
@@ -246,6 +247,11 @@ export default function Dashboard() {
               </Link>
             </div>
           </div>
+        </div>
+
+        {/* Audit Mode Toggle (Auditor role only) */}
+        <div className="mb-8">
+          <AuditModeToggle />
         </div>
 
         {/* Stats */}
