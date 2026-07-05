@@ -5,6 +5,90 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Activity, Zap, TrendingUp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
+function ScrambleHeatmap({ sessions }) {
+  const hours = Array.from({ length: 24 }, (_, i) => i);
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+  // Build a 7x24 grid from session data
+  const grid = days.map(() => Array(24).fill(null));
+
+  sessions.forEach(s => {
+    const date = s.created_date ? new Date(s.created_date) : null;
+    if (!date) return;
+    const dayIdx = (date.getDay() + 6) % 7; // Convert Sunday=0 to Monday=0
+    const hourIdx = date.getHours();
+    if (dayIdx < 0 || dayIdx > 6 || hourIdx < 0 || hourIdx > 23) return;
+
+    const score = s.protection_score ?? 100;
+    const interval = s.scramble_interval_seconds ?? 5;
+    // Consistency score: 100 = perfect (0.01s interval, 100% protection), lower = deviation
+    const intervalScore = interval <= 0.01 ? 100 : Math.max(0, 100 - (interval / 0.05) * 100);
+    const consistency = Math.round((score + intervalScore) / 2);
+
+    if (grid[dayIdx][hourIdx] === null) {
+      grid[dayIdx][hourIdx] = { consistency, count: 1 };
+    } else {
+      const existing = grid[dayIdx][hourIdx];
+      existing.consistency = Math.round((existing.consistency + consistency) / 2);
+      existing.count++;
+    }
+  });
+
+  const getColor = (val) => {
+    if (val === null) return '#1e293b';
+    if (val >= 95) return '#10b981';
+    if (val >= 85) return '#22c55e';
+    if (val >= 70) return '#f59e0b';
+    if (val >= 50) return '#f97316';
+    return '#ef4444';
+  };
+
+  return (
+    <div className="overflow-x-auto">
+      <div className="min-w-[600px]">
+        {/* Hour labels */}
+        <div className="flex pl-12 mb-1">
+          {hours.map(h => (
+            <div key={h} className="flex-1 text-center text-[9px] text-slate-500">
+              {h % 3 === 0 ? `${h}:00` : ''}
+            </div>
+          ))}
+        </div>
+        {/* Grid */}
+        {days.map((day, dIdx) => (
+          <div key={day} className="flex items-center mb-1">
+            <div className="w-12 text-xs text-slate-400 text-right pr-2">{day}</div>
+            <div className="flex flex-1 gap-0.5">
+              {hours.map(h => {
+                const cell = grid[dIdx][h];
+                const val = cell ? cell.consistency : null;
+                return (
+                  <div
+                    key={h}
+                    className="flex-1 h-7 rounded-sm transition-all hover:scale-110 cursor-default"
+                    style={{ backgroundColor: getColor(val) }}
+                    title={val !== null ? `${day} ${h}:00 — ${val}% consistency (${cell.count} sessions)` : `${day} ${h}:00 — No data`}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        ))}
+        {/* Legend */}
+        <div className="flex items-center justify-end gap-2 mt-3 text-xs text-slate-400">
+          <span>Low</span>
+          <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: '#ef4444' }}></div>
+          <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: '#f97316' }}></div>
+          <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: '#f59e0b' }}></div>
+          <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: '#22c55e' }}></div>
+          <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: '#10b981' }}></div>
+          <span>High</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ScrambleAnalytics() {
   const { data: sessions = [], isLoading } = useQuery({
     queryKey: ['scrambleAnalytics'],
@@ -87,6 +171,18 @@ export default function ScrambleAnalytics() {
               <Line type="monotone" dataKey="interval" stroke="#ef4444" strokeWidth={2} dot={{ r: 3 }} />
             </LineChart>
           </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      {/* 24-Hour Performance Heatmap */}
+      <Card className="bg-slate-800/50 border-slate-700">
+        <CardHeader>
+          <CardTitle className="text-white flex items-center gap-2">
+            <Activity className="w-5 h-5 text-orange-400" /> 24-Hour Performance Consistency Heatmap
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ScrambleHeatmap sessions={sessions} />
         </CardContent>
       </Card>
     </div>

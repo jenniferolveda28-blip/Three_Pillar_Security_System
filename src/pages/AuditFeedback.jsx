@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { MessageSquare, Send, Eye, CheckCircle } from 'lucide-react';
+import { MessageSquare, Send, Eye, CheckCircle, CloudUpload, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -42,6 +42,21 @@ export default function AuditFeedback() {
     },
   });
 
+  const [syncLoading, setSyncLoading] = useState(false);
+  const [syncResult, setSyncResult] = useState(null);
+
+  const syncToDrive = async () => {
+    setSyncLoading(true);
+    setSyncResult(null);
+    try {
+      const res = await base44.functions.invoke('syncAuditNotesToDrive', {});
+      setSyncResult({ success: true, msg: `Synced ${res.data?.total_observations || 0} observations to Google Drive` });
+    } catch (e) {
+      setSyncResult({ success: false, msg: e.message });
+    } finally { setSyncLoading(false); }
+    setTimeout(() => setSyncResult(null), 5000);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!observation.trim()) return;
@@ -64,6 +79,18 @@ export default function AuditFeedback() {
           <MessageSquare className="w-8 h-8 text-cyan-400" /> Audit Feedback
         </h1>
         <p className="text-slate-400 mt-1">Submit observations and notes during test sessions for admin review</p>
+      </div>
+
+      <div className="flex items-center gap-3 flex-wrap">
+        <Button onClick={syncToDrive} disabled={syncLoading} variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
+          {syncLoading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <CloudUpload className="w-4 h-4 mr-2" />}
+          {syncLoading ? 'Syncing…' : 'Sync to Google Drive'}
+        </Button>
+        {syncResult && (
+          <span className={`text-sm ${syncResult.success ? 'text-green-400' : 'text-red-400'}`}>
+            {syncResult.success ? '✓' : '✗'} {syncResult.msg}
+          </span>
+        )}
       </div>
 
       <Card className="bg-slate-800/50 border-slate-700">

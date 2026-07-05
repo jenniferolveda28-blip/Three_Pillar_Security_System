@@ -19,6 +19,7 @@ import FluctuatingKeyVisualizer from '../components/security/FluctuatingKeyVisua
 import AddUniverseForm from '../components/dashboard/AddUniverseForm';
 import RateLimitMonitor from '../components/dashboard/RateLimitMonitor';
 import UniverseHealthMonitor from '../components/dashboard/UniverseHealthMonitor';
+import UniverseStatusWidget from '../components/dashboard/UniverseStatusWidget';
 import QuantumEncryptionVisualizer from '../components/security/QuantumEncryptionVisualizer';
 import ThreatMapGlobe from '../components/security/ThreatMapGlobe';
 import BiometricLayerVisualizer from '../components/security/BiometricLayerVisualizer';
@@ -260,8 +261,12 @@ export default function Dashboard() {
           <AuditModeToggle />
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        {/* Universe Status Widget + Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+          <div className="md:col-span-1">
+            <UniverseStatusWidget />
+          </div>
+          <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="multi-layer-card card-layer-auth rounded-xl p-6 border">
             <div className="flex items-center justify-between">
               <div>
@@ -280,13 +285,14 @@ export default function Dashboard() {
               <History className="w-10 h-10 text-emerald-500/50 glow-pulse" />
             </div>
           </div>
-          <div className="multi-layer-card card-layer-monitoring rounded-xl p-6 border">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-slate-400">Active Keys</p>
-                <p className="text-3xl font-bold text-violet-400">{keys.length}</p>
+            <div className="multi-layer-card card-layer-monitoring rounded-xl p-6 border">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-slate-400">Active Keys</p>
+                  <p className="text-3xl font-bold text-violet-400">{keys.length}</p>
+                </div>
+                <Key className="w-10 h-10 text-violet-500/50 glow-pulse" />
               </div>
-              <Key className="w-10 h-10 text-violet-500/50 glow-pulse" />
             </div>
           </div>
         </div>

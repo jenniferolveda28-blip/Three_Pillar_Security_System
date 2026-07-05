@@ -3,8 +3,9 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { KeyRound, Loader2, RefreshCw, Fingerprint } from 'lucide-react';
+import { KeyRound, Loader2, RefreshCw, Fingerprint, Ban, RotateCw, MoreVertical, ShieldOff, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
 
 export default function TokenManagement() {
   const [tokens, setTokens] = useState([]);
@@ -27,6 +28,39 @@ export default function TokenManagement() {
 
   const regBySerial = {};
   registrations.forEach(r => { regBySerial[r.token_serial] = r; });
+
+  const [actionLoading, setActionLoading] = useState(null);
+  const [toast, setToast] = useState(null);
+
+  const revokeToken = async (token) => {
+    setActionLoading(token.id);
+    try {
+      await base44.entities.HardwareToken.update(token.id, { is_active: false, failed_attempts: 3 });
+      setToast({ type: 'success', msg: `${token.device_name} access revoked` });
+      await load();
+    } catch (e) { setToast({ type: 'error', msg: e.message }); } finally { setActionLoading(null); }
+    setTimeout(() => setToast(null), 3000);
+  };
+
+  const reactivateToken = async (token) => {
+    setActionLoading(token.id);
+    try {
+      await base44.entities.HardwareToken.update(token.id, { is_active: true, failed_attempts: 0 });
+      setToast({ type: 'success', msg: `${token.device_name} reactivated` });
+      await load();
+    } catch (e) { setToast({ type: 'error', msg: e.message }); } finally { setActionLoading(null); }
+    setTimeout(() => setToast(null), 3000);
+  };
+
+  const refreshStatus = async (token) => {
+    setActionLoading(token.id);
+    try {
+      await base44.entities.HardwareToken.update(token.id, { last_code_generated: new Date().toISOString() });
+      setToast({ type: 'success', msg: `${token.device_name} status refreshed` });
+      await load();
+    } catch (e) { setToast({ type: 'error', msg: e.message }); } finally { setActionLoading(null); }
+    setTimeout(() => setToast(null), 3000);
+  };
 
   return (
     <div className="min-h-screen text-white p-6">
@@ -68,7 +102,30 @@ export default function TokenManagement() {
                         <CardTitle className="text-white text-lg">{t.device_name}</CardTitle>
                         <p className="text-slate-400 text-xs mt-1 font-mono">{t.device_id}</p>
                       </div>
-                      <Badge variant={t.is_active ? 'default' : 'destructive'}>{t.is_active ? 'Active' : 'Locked'}</Badge>
+                      <div className="flex items-center gap-2">
+                        <Badge variant={t.is_active ? 'default' : 'destructive'}>{t.is_active ? 'Active' : 'Locked'}</Badge>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon" className="h-8 w-8" disabled={actionLoading === t.id}>
+                              {actionLoading === t.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <MoreVertical className="w-4 h-4" />}
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end" className="bg-slate-900 border-slate-700">
+                            {t.is_active ? (
+                              <DropdownMenuItem onClick={() => revokeToken(t)} className="text-red-400 hover:text-red-300 cursor-pointer">
+                                <Ban className="w-4 h-4 mr-2" /> Revoke Access
+                              </DropdownMenuItem>
+                            ) : (
+                              <DropdownMenuItem onClick={() => reactivateToken(t)} className="text-green-400 hover:text-green-300 cursor-pointer">
+                                <CheckCircle2 className="w-4 h-4 mr-2" /> Reactivate
+                              </DropdownMenuItem>
+                            )}
+                            <DropdownMenuItem onClick={() => refreshStatus(t)} className="text-cyan-400 hover:text-cyan-300 cursor-pointer">
+                              <RotateCw className="w-4 h-4 mr-2" /> Refresh Status
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </div>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-3">
@@ -91,6 +148,12 @@ export default function TokenManagement() {
                 </Card>
               );
             })}
+          </div>
+        )}
+
+        {toast && (
+          <div className={`fixed bottom-6 right-6 px-4 py-3 rounded-lg shadow-lg z-50 ${toast.type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white text-sm font-medium`}>
+            {toast.msg}
           </div>
         )}
       </div>
