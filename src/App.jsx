@@ -23,6 +23,7 @@ import SystemLogs from './pages/SystemLogs';
 import IntegrationHub from './pages/IntegrationHub';
 import LeadBulkActions from './pages/LeadBulkActions';
 import EmailTemplates from './pages/EmailTemplates';
+import AuditLog from './pages/AuditLog';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -96,6 +97,7 @@ const AuthenticatedApp = () => {
       <Route path="/IntegrationHub" element={<LayoutWrapper currentPageName="IntegrationHub"><IntegrationHub /></LayoutWrapper>} />
       <Route path="/LeadBulkActions" element={<LayoutWrapper currentPageName="LeadBulkActions"><LeadBulkActions /></LayoutWrapper>} />
       <Route path="/EmailTemplates" element={<LayoutWrapper currentPageName="EmailTemplates"><EmailTemplates /></LayoutWrapper>} />
+      <Route path="/AuditLog" element={<LayoutWrapper currentPageName="AuditLog"><AuditLog /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
