@@ -25,6 +25,18 @@ import LeadBulkActions from './pages/LeadBulkActions';
 import EmailTemplates from './pages/EmailTemplates';
 import AuditLog from './pages/AuditLog';
 import ScramblingReports from './pages/ScramblingReports';
+import HardwareHealth from './pages/HardwareHealth';
+import UniverseRegistry from './pages/UniverseRegistry';
+import ScrambleAnalytics from './pages/ScrambleAnalytics';
+import UserPermissions from './pages/UserPermissions';
+import SystemComplianceLog from './pages/SystemComplianceLog';
+import ScramblePerformanceMonitor from './pages/ScramblePerformanceMonitor';
+import APIGatewayHealth from './pages/APIGatewayHealth';
+import AuditAccessControl from './pages/AuditAccessControl';
+import ThreatSummary from './pages/ThreatSummary';
+import ConnectionStatus from './pages/ConnectionStatus';
+import AccountManagement from './pages/AccountManagement';
+import AuditFeedback from './pages/AuditFeedback';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -100,6 +112,18 @@ const AuthenticatedApp = () => {
       <Route path="/EmailTemplates" element={<LayoutWrapper currentPageName="EmailTemplates"><EmailTemplates /></LayoutWrapper>} />
       <Route path="/AuditLog" element={<LayoutWrapper currentPageName="AuditLog"><AuditLog /></LayoutWrapper>} />
       <Route path="/ScramblingReports" element={<LayoutWrapper currentPageName="ScramblingReports"><ScramblingReports /></LayoutWrapper>} />
+      <Route path="/HardwareHealth" element={<LayoutWrapper currentPageName="HardwareHealth"><HardwareHealth /></LayoutWrapper>} />
+      <Route path="/UniverseRegistry" element={<LayoutWrapper currentPageName="UniverseRegistry"><UniverseRegistry /></LayoutWrapper>} />
+      <Route path="/ScrambleAnalytics" element={<LayoutWrapper currentPageName="ScrambleAnalytics"><ScrambleAnalytics /></LayoutWrapper>} />
+      <Route path="/UserPermissions" element={<LayoutWrapper currentPageName="UserPermissions"><UserPermissions /></LayoutWrapper>} />
+      <Route path="/SystemComplianceLog" element={<LayoutWrapper currentPageName="SystemComplianceLog"><SystemComplianceLog /></LayoutWrapper>} />
+      <Route path="/ScramblePerformanceMonitor" element={<LayoutWrapper currentPageName="ScramblePerformanceMonitor"><ScramblePerformanceMonitor /></LayoutWrapper>} />
+      <Route path="/APIGatewayHealth" element={<LayoutWrapper currentPageName="APIGatewayHealth"><APIGatewayHealth /></LayoutWrapper>} />
+      <Route path="/AuditAccessControl" element={<LayoutWrapper currentPageName="AuditAccessControl"><AuditAccessControl /></LayoutWrapper>} />
+      <Route path="/ThreatSummary" element={<LayoutWrapper currentPageName="ThreatSummary"><ThreatSummary /></LayoutWrapper>} />
+      <Route path="/ConnectionStatus" element={<LayoutWrapper currentPageName="ConnectionStatus"><ConnectionStatus /></LayoutWrapper>} />
+      <Route path="/AccountManagement" element={<LayoutWrapper currentPageName="AccountManagement"><AccountManagement /></LayoutWrapper>} />
+      <Route path="/AuditFeedback" element={<LayoutWrapper currentPageName="AuditFeedback"><AuditFeedback /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

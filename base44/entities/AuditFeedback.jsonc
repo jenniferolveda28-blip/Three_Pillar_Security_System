@@ -1,0 +1,95 @@
+{
+  "name": "AuditFeedback",
+  "type": "object",
+  "properties": {
+    "auditor_email": {
+      "type": "string",
+      "description": "Email of the auditor submitting feedback"
+    },
+    "session_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the test session occurred"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "security",
+        "performance",
+        "usability",
+        "compliance",
+        "general"
+      ],
+      "default": "general",
+      "description": "Category of observation"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "low",
+        "medium",
+        "high"
+      ],
+      "default": "info",
+      "description": "Severity level"
+    },
+    "observation": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "The auditor's notes or observations"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "submitted",
+        "reviewed",
+        "resolved"
+      ],
+      "default": "submitted",
+      "description": "Review status"
+    },
+    "admin_response": {
+      "type": "string",
+      "description": "Response from admin team"
+    }
+  },
+  "required": [
+    "auditor_email",
+    "observation"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
