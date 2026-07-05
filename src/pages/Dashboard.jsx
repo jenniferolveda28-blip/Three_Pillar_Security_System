@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw, Activity, Lock, Brain, Shield, Zap, Mail, CalendarClock, Star, TrendingUp } from "lucide-react";
+import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw, Activity, Lock, Brain, Shield, Zap, Mail, CalendarClock, Star, TrendingUp, Gauge } from "lucide-react";
 import PrintReportButton from '../components/PrintReportButton';
 import BatchDownloadButton from '../components/reports/BatchDownloadButton';
 import ExportAllPagesButton from '../components/reports/ExportAllPagesButton';
@@ -243,6 +243,12 @@ export default function Dashboard() {
                 <Button variant="outline" className="border-blue-500/50 text-blue-400 hover:bg-blue-500/10">
                   <Mail className="w-4 h-4 mr-2" />
                   Email Templates
+                </Button>
+              </Link>
+              <Link to="/ScramblingReports">
+                <Button variant="outline" className="border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10">
+                  <Gauge className="w-4 h-4 mr-2" />
+                  Scrambling Reports
                 </Button>
               </Link>
             </div>
