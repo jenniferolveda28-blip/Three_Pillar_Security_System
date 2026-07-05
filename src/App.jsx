@@ -37,6 +37,18 @@ import ThreatSummary from './pages/ThreatSummary';
 import ConnectionStatus from './pages/ConnectionStatus';
 import AccountManagement from './pages/AccountManagement';
 import AuditFeedback from './pages/AuditFeedback';
+import SubscriptionStatus from './pages/SubscriptionStatus';
+import SystemHealth from './pages/SystemHealth';
+import TokenManagement from './pages/TokenManagement';
+import IncidentResponse from './pages/IncidentResponse';
+import DataUsage from './pages/DataUsage';
+import RequestQueue from './pages/RequestQueue';
+import CircuitBreaker from './pages/CircuitBreaker';
+import RateLimits from './pages/RateLimits';
+import ConnectivityMap from './pages/ConnectivityMap';
+import Sandbox from './pages/Sandbox';
+import DataIntegrity from './pages/DataIntegrity';
+import IncidentRules from './pages/IncidentRules';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -124,6 +136,18 @@ const AuthenticatedApp = () => {
       <Route path="/ConnectionStatus" element={<LayoutWrapper currentPageName="ConnectionStatus"><ConnectionStatus /></LayoutWrapper>} />
       <Route path="/AccountManagement" element={<LayoutWrapper currentPageName="AccountManagement"><AccountManagement /></LayoutWrapper>} />
       <Route path="/AuditFeedback" element={<LayoutWrapper currentPageName="AuditFeedback"><AuditFeedback /></LayoutWrapper>} />
+      <Route path="/subscription-status" element={<LayoutWrapper currentPageName="subscription-status"><SubscriptionStatus /></LayoutWrapper>} />
+      <Route path="/system-health" element={<LayoutWrapper currentPageName="system-health"><SystemHealth /></LayoutWrapper>} />
+      <Route path="/token-management" element={<LayoutWrapper currentPageName="token-management"><TokenManagement /></LayoutWrapper>} />
+      <Route path="/incident-response" element={<LayoutWrapper currentPageName="incident-response"><IncidentResponse /></LayoutWrapper>} />
+      <Route path="/data-usage" element={<LayoutWrapper currentPageName="data-usage"><DataUsage /></LayoutWrapper>} />
+      <Route path="/request-queue" element={<LayoutWrapper currentPageName="request-queue"><RequestQueue /></LayoutWrapper>} />
+      <Route path="/circuit-breaker" element={<LayoutWrapper currentPageName="circuit-breaker"><CircuitBreaker /></LayoutWrapper>} />
+      <Route path="/rate-limits" element={<LayoutWrapper currentPageName="rate-limits"><RateLimits /></LayoutWrapper>} />
+      <Route path="/connectivity-map" element={<LayoutWrapper currentPageName="connectivity-map"><ConnectivityMap /></LayoutWrapper>} />
+      <Route path="/sandbox" element={<LayoutWrapper currentPageName="sandbox"><Sandbox /></LayoutWrapper>} />
+      <Route path="/data-integrity" element={<LayoutWrapper currentPageName="data-integrity"><DataIntegrity /></LayoutWrapper>} />
+      <Route path="/incident-rules" element={<LayoutWrapper currentPageName="incident-rules"><IncidentRules /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
