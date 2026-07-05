@@ -5,10 +5,13 @@ import { jsPDF } from 'jspdf';
 import { format } from 'date-fns';
 import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
+import { useGuestAuditor } from '@/lib/useGuestAuditor';
 
 export default function ExportAllPagesButton() {
+  const { isGuestAuditor } = useGuestAuditor();
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  if (isGuestAuditor) return null;
 
   const handleExport = async () => {
     setLoading(true);

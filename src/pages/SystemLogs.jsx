@@ -10,6 +10,8 @@ import { format } from 'date-fns';
 import { jsPDF } from 'jspdf';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
+import { useGuestAuditor } from '@/lib/useGuestAuditor';
+import AccessRestricted from '@/components/security/AccessRestricted';
 
 const EVENT_ICONS = {
   key_rotation: ShieldCheck,
@@ -29,6 +31,7 @@ const THREAT_COLORS = {
 };
 
 export default function SystemLogs() {
+  const { isGuestAuditor } = useGuestAuditor();
   const [search, setSearch] = useState('');
   const [logFilter, setLogFilter] = useState('all');
   const [reqFilter, setReqFilter] = useState('all');
@@ -73,6 +76,8 @@ export default function SystemLogs() {
       return matchesSearch && matchesFilter;
     });
   }, [requests, search, reqFilter]);
+
+  if (isGuestAuditor) return <AccessRestricted feature="Security Logs" />;
 
   const handleExport = () => {
     const doc = new jsPDF();

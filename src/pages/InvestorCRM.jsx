@@ -20,6 +20,8 @@ import ExecutiveSummaryGenerator from '@/components/investor/ExecutiveSummaryGen
 import PriorityBadge, { calculatePriorityScore, getPriorityTier } from '@/components/investor/PriorityBadge';
 import BulkActionBar, { exportSelectedLeadsPDF } from '@/components/investor/BulkActionBar';
 import InteractionTimeline from '@/components/investor/InteractionTimeline';
+import { useGuestAuditor } from '@/lib/useGuestAuditor';
+import AccessRestricted from '@/components/security/AccessRestricted';
 
 const STATUS_COLORS = {
   'Contacted': 'bg-blue-600',
@@ -269,6 +271,7 @@ function printMeetingPDF(meeting) {
 }
 
 export default function InvestorCRM() {
+  const { isGuestAuditor } = useGuestAuditor();
   const qc = useQueryClient();
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState(null);
@@ -340,6 +343,8 @@ export default function InvestorCRM() {
 
   const openEdit = (m) => { setEditing(m); setShowForm(true); };
   const openNew = () => { setEditing(null); setShowForm(true); };
+
+  if (isGuestAuditor) return <AccessRestricted feature="Investor CRM" />;
 
   const stats = {
     total: meetings.length,

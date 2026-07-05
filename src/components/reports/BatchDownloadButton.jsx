@@ -4,6 +4,7 @@ import { Download, Loader2, CheckCircle2 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
+import { useGuestAuditor } from '@/lib/useGuestAuditor';
 
 function downloadBlob(blob, filename) {
   const url = URL.createObjectURL(blob);
@@ -106,8 +107,10 @@ function buildPDF(reportTitle, subtitle, sections) {
 }
 
 export default function BatchDownloadButton({ universes = [], requests = [], keys = [], securityLogs = [], hardwareTokens = [] }) {
+  const { isGuestAuditor } = useGuestAuditor();
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  if (isGuestAuditor) return null;
 
   const reports = [
     {

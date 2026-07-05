@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import DemoBanner from '@/components/DemoBanner';
 import AuditModeBanner from '@/components/security/AuditModeBanner';
+import GuestAuditorBanner from '@/components/security/GuestAuditorBanner';
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
@@ -124,6 +125,7 @@ export default function Layout({ children, currentPageName }) {
       `}</style>
 
       <AuditModeBanner />
+      <GuestAuditorBanner />
       <DemoBanner />
 
       {/* Main content */}

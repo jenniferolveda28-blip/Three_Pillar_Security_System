@@ -9,8 +9,11 @@ import { Button } from '@/components/ui/button';
 import RoleEditor from '../components/roles/RoleEditor';
 import RoleList from '../components/roles/RoleList';
 import UserRoleAssignment from '../components/roles/UserRoleAssignment';
+import { useGuestAuditor } from '@/lib/useGuestAuditor';
+import AccessRestricted from '@/components/security/AccessRestricted';
 
 export default function RoleManagement() {
+  const { isGuestAuditor } = useGuestAuditor();
   const [showRoleForm, setShowRoleForm] = useState(false);
   const [editingRole, setEditingRole] = useState(null);
   const [showUserAssignment, setShowUserAssignment] = useState(false);
@@ -25,6 +28,8 @@ export default function RoleManagement() {
     queryKey: ['roleAssignments'],
     queryFn: () => base44.entities.UserRoleAssignment.list('-created_date'),
   });
+
+  if (isGuestAuditor) return <AccessRestricted feature="Settings & Role Management" />;
 
   return (
     <div>

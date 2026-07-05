@@ -4,6 +4,7 @@ import { Printer, Loader2 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
+import { useGuestAuditor } from '@/lib/useGuestAuditor';
 
 /**
  * Universal print/PDF button.
@@ -27,7 +28,9 @@ function downloadBlob(blob, filename) {
 }
 
 export default function PrintReportButton({ reportTitle, subtitle, sections = [], filename = 'report.pdf', className = '' }) {
+  const { isGuestAuditor } = useGuestAuditor();
   const [loading, setLoading] = useState(false);
+  if (isGuestAuditor) return null;
 
   const generate = async () => {
     setLoading(true);
