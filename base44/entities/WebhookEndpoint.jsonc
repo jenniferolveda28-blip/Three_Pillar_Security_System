@@ -1,0 +1,53 @@
+{
+  "name": "WebhookEndpoint",
+  "type": "object",
+  "properties": {
+    "webhook_name": {
+      "type": "string",
+      "description": "Name of the webhook integration"
+    },
+    "target_url": {
+      "type": "string",
+      "description": "URL to send webhook payloads to"
+    },
+    "event_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Events that trigger this webhook"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this webhook is currently active"
+    },
+    "secret_token": {
+      "type": "string",
+      "description": "Secret token for payload verification"
+    },
+    "last_triggered": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the webhook was last triggered"
+    },
+    "trigger_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Total times this webhook has fired"
+    },
+    "last_response_status": {
+      "type": "number",
+      "description": "HTTP status code from last delivery"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional description or notes"
+    }
+  },
+  "required": [
+    "webhook_name",
+    "target_url"
+  ]
+}

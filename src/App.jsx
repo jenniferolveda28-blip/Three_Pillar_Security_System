@@ -49,6 +49,18 @@ import ConnectivityMap from './pages/ConnectivityMap';
 import Sandbox from './pages/Sandbox';
 import DataIntegrity from './pages/DataIntegrity';
 import IncidentRules from './pages/IncidentRules';
+import RequestHistory from './pages/RequestHistory';
+import ScramblingConfig from './pages/ScramblingConfig';
+import SubscriptionManagement from './pages/SubscriptionManagement';
+import HardwareDiagnostics from './pages/HardwareDiagnostics';
+import ComplianceDashboard from './pages/ComplianceDashboard';
+import WebhookIntegrations from './pages/WebhookIntegrations';
+import DataExport from './pages/DataExport';
+import AnomalyInsights from './pages/AnomalyInsights';
+import UniverseLatency from './pages/UniverseLatency';
+import SystemEventLog from './pages/SystemEventLog';
+import KeyRotation from './pages/KeyRotation';
+import AuditFeedbackTracker from './pages/AuditFeedbackTracker';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -148,6 +160,18 @@ const AuthenticatedApp = () => {
       <Route path="/sandbox" element={<LayoutWrapper currentPageName="sandbox"><Sandbox /></LayoutWrapper>} />
       <Route path="/data-integrity" element={<LayoutWrapper currentPageName="data-integrity"><DataIntegrity /></LayoutWrapper>} />
       <Route path="/incident-rules" element={<LayoutWrapper currentPageName="incident-rules"><IncidentRules /></LayoutWrapper>} />
+      <Route path="/request-history" element={<LayoutWrapper currentPageName="request-history"><RequestHistory /></LayoutWrapper>} />
+      <Route path="/scrambling-config" element={<LayoutWrapper currentPageName="scrambling-config"><ScramblingConfig /></LayoutWrapper>} />
+      <Route path="/subscription-management" element={<LayoutWrapper currentPageName="subscription-management"><SubscriptionManagement /></LayoutWrapper>} />
+      <Route path="/hardware-diagnostics" element={<LayoutWrapper currentPageName="hardware-diagnostics"><HardwareDiagnostics /></LayoutWrapper>} />
+      <Route path="/compliance-dashboard" element={<LayoutWrapper currentPageName="compliance-dashboard"><ComplianceDashboard /></LayoutWrapper>} />
+      <Route path="/webhook-integrations" element={<LayoutWrapper currentPageName="webhook-integrations"><WebhookIntegrations /></LayoutWrapper>} />
+      <Route path="/data-export" element={<LayoutWrapper currentPageName="data-export"><DataExport /></LayoutWrapper>} />
+      <Route path="/anomaly-insights" element={<LayoutWrapper currentPageName="anomaly-insights"><AnomalyInsights /></LayoutWrapper>} />
+      <Route path="/universe-latency" element={<LayoutWrapper currentPageName="universe-latency"><UniverseLatency /></LayoutWrapper>} />
+      <Route path="/system-event-log" element={<LayoutWrapper currentPageName="system-event-log"><SystemEventLog /></LayoutWrapper>} />
+      <Route path="/key-rotation" element={<LayoutWrapper currentPageName="key-rotation"><KeyRotation /></LayoutWrapper>} />
+      <Route path="/audit-feedback-tracker" element={<LayoutWrapper currentPageName="audit-feedback-tracker"><AuditFeedbackTracker /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
