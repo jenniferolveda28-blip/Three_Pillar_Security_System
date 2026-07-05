@@ -218,7 +218,7 @@ export default function ExportAllPagesButton() {
 
       // 9. LiveDemonstration
       section('8. LIVE DEMONSTRATION');
-      body('Live demonstration capabilities include real-time DNA verification, dynamic key rotation visualization, AI threat detection in action, and multi-universe API routing. The demo showcases the three-pillar architecture with live data from the production system.');
+      body('Live demonstration capabilities include real-time DNA verification, dynamic key rotation visualization, AI threat detection in action, and multi-universe API routing. The demo showcases the three-pillar architecture with live data from the demo environment.');
 
       // 10. MarketingMaterials
       section('9. MARKETING MATERIALS');
