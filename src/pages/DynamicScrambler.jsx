@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
 import ScramblerMonitor from '../components/security/ScramblerMonitor';
+import ScrambleIntervalVerifier from '../components/security/ScrambleIntervalVerifier';
 import KeyRotationDisplay from '../components/security/KeyRotationDisplay';
 import FluctuatingKeyVisualizer from '../components/security/FluctuatingKeyVisualizer';
 import QuantumEncryptionVisualizer from '../components/security/QuantumEncryptionVisualizer';
@@ -65,7 +66,7 @@ export default function DynamicScrambler() {
                   ['Active Scrambling Layers', sessions.length],
                   ['Total Scramble Iterations', totalIterations.toLocaleString()],
                   ['Average Complexity Level', `${Math.round(avgComplexity)}%`],
-                  ['Scramble Interval', '0.1 – 5 seconds'],
+                  ['Scramble Interval', '0.01 seconds (strict)'],
                   ['Total API Keys Protected', keys.length],
                   ['Encryption Algorithm', 'AES-256-GCM + Quantum-Resistant (CRYSTALS-Kyber)'],
                   ['Moving Target Status', sessions.length > 0 ? '✓ ACTIVE — Hackers are blind' : 'STANDBY'],
@@ -73,12 +74,12 @@ export default function DynamicScrambler() {
               },
               {
                 heading: 'HOW FAST IS THE SCRAMBLER?',
-                body: 'The scrambler operates at a minimum interval of 100 milliseconds (0.1 seconds). This means:\n\n• Every 100ms — API keys are rotated across all active sessions\n• Every 500ms — Data paths are randomized using cryptographic shuffling\n• Every 1 second — Execution sequences are reordered with dependency-graph validation\n• Every 5 seconds — Full encryption layer cycling with new quantum keys\n\nA typical hacker\'s automated exploit tool takes 200–500ms to replay a captured credential. Our system has already cycled 2–5 times before the attack can be replayed.\n\nResult: 0% successful credential replay attacks.'
+                body: 'The scrambler operates at a strict uniform interval of 10 milliseconds (0.01 seconds) across ALL layers. This means:\n\n• Every 10ms — API keys are rotated across all active sessions\n• Every 10ms — Data paths are randomized using cryptographic shuffling\n• Every 10ms — Execution sequences are reordered with dependency-graph validation\n• Every 10ms — Encryption layer cycling with new quantum keys\n\nA typical hacker\'s automated exploit tool takes 200–500ms to replay a captured credential. Our system has already cycled 20–50 times before the attack can be replayed.\n\nResult: 0% successful credential replay attacks.'
               },
               {
                 heading: 'SCRAMBLE TYPES ACTIVE',
                 rows: [
-                  ['API Keys', 'Rotated every 0.1–5 seconds using TOTP + DNA hash'],
+                  ['API Keys', 'Rotated every 0.01 seconds using TOTP + DNA hash'],
                   ['Data Paths', 'Randomized using Fisher-Yates shuffle algorithm'],
                   ['Execution Sequence', 'Reordered with topological sort validation'],
                   ['Encryption Layer', 'AES-256-GCM with ephemeral session keys'],
@@ -131,6 +132,7 @@ export default function DynamicScrambler() {
 
         {/* Main Content */}
         <div className="space-y-6">
+          <ScrambleIntervalVerifier />
           <ScramblerMonitor />
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
