@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import { Printer, FileDown } from 'lucide-react';
 import DemoBanner from '@/components/DemoBanner';
 import AuditModeBanner from '@/components/security/AuditModeBanner';
 import GuestAuditorBanner from '@/components/security/GuestAuditorBanner';
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
+  const [printing, setPrinting] = useState(false);
+
+  const handlePrint = () => {
+    setPrinting(true);
+    setTimeout(() => {
+      window.print();
+      setPrinting(false);
+    }, 300);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
@@ -127,6 +137,17 @@ export default function Layout({ children, currentPageName }) {
       <AuditModeBanner />
       <GuestAuditorBanner />
       <DemoBanner />
+
+      {/* Global Print / Export PDF button — visible on every page */}
+      <button
+        onClick={handlePrint}
+        disabled={printing}
+        className="no-print fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white shadow-lg shadow-cyan-500/30 transition-all hover:scale-105 disabled:opacity-50"
+        title="Print or Save as PDF"
+      >
+        {printing ? <Printer className="w-5 h-5 animate-pulse" /> : <FileDown className="w-5 h-5" />}
+        <span className="text-sm font-medium">{printing ? 'Preparing…' : 'Print / PDF'}</span>
+      </button>
 
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex flex-col">

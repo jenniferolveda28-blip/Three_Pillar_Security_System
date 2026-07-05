@@ -86,3 +86,55 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Print styles — optimize pages for PDF export via browser print dialog */
+@media print {
+  /* Force white background and dark text for readability */
+  body, body * {
+    background: #ffffff !important;
+    color: #1e293b !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Keep badge/border colors visible but on white */
+  [class*="border-"] {
+    border-color: #cbd5e1 !important;
+  }
+
+  /* Remove animated background layers */
+  .fixed.inset-0,
+  [class*="animate-pulse"],
+  [class*="glow-pulse"] {
+    display: none !important;
+  }
+
+  /* Hide footer, demo banners, and non-essential UI */
+  footer,
+  [class*="DemoBanner"],
+  [class*="AuditModeBanner"],
+  [class*="GuestAuditorBanner"],
+  .no-print {
+    display: none !important;
+  }
+
+  /* Expand content to full width */
+  .max-w-7xl,
+  .max-w-\[600px\] {
+    max-width: 100% !important;
+  }
+
+  /* Ensure tables don't overflow */
+  table { font-size: 10px !important; }
+  .overflow-x-auto { overflow: visible !important; }
+
+  /* Avoid page breaks inside cards/rows */
+  [class*="rounded-xl"],
+  [class*="rounded-lg"],
+  tr, td, th {
+    page-break-inside: avoid;
+  }
+
+  /* Set base font size for print */
+  body { font-size: 12px; }
+}
