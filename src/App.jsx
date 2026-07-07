@@ -66,6 +66,7 @@ import UniverseLatency from './pages/UniverseLatency';
 import SystemEventLog from './pages/SystemEventLog';
 import KeyRotation from './pages/KeyRotation';
 import AuditFeedbackTracker from './pages/AuditFeedbackTracker';
+import AuditFixSummary from './pages/AuditFixSummary';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -171,6 +172,7 @@ const AuthenticatedApp = () => {
         <Route path="/system-event-log" element={<LayoutWrapper currentPageName="system-event-log"><SystemEventLog /></LayoutWrapper>} />
         <Route path="/key-rotation" element={<LayoutWrapper currentPageName="key-rotation"><KeyRotation /></LayoutWrapper>} />
         <Route path="/audit-feedback-tracker" element={<LayoutWrapper currentPageName="audit-feedback-tracker"><AuditFeedbackTracker /></LayoutWrapper>} />
+        <Route path="/audit-fix-summary" element={<LayoutWrapper currentPageName="audit-fix-summary"><AuditFixSummary /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />
