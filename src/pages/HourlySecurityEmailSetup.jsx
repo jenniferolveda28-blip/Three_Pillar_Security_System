@@ -9,6 +9,8 @@ import PrintReportButton from '../components/PrintReportButton';
 import { format, addHours } from 'date-fns';
 import { jsPDF } from 'jspdf';
 import { toast } from 'sonner';
+import { ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 function generateSecurityPDF(anomalies, alerts, sessions, logs) {
   const doc = new jsPDF();
@@ -207,15 +209,20 @@ export default function HourlySecurityEmailSetup() {
               <p className="text-slate-400 text-sm">Auto-generate & email a security PDF summary every hour</p>
             </div>
           </div>
-          <PrintReportButton
-            reportTitle="Hourly Email Report Configuration"
-            subtitle="Automated security email delivery settings and send history"
-            filename="email-report-config-{date}.pdf"
-            sections={[
-              { heading: 'CONFIGURATION', rows: [['Status', emailActive ? 'ACTIVE — Sending hourly' : 'INACTIVE'], ['Recipient', savedEmail || 'Not configured'], ['Last Sent', lastSent ? format(lastSent, 'MMM d, yyyy HH:mm') : 'Never'], ['Next Send', nextSend && emailActive ? format(nextSend, 'MMM d, yyyy HH:mm') : 'N/A'], ['Reports Sent This Session', sendLog.filter(l => l.success).length], ['Current Security Score', `${score}/100`]] },
-              { heading: 'SEND LOG', body: sendLog.length > 0 ? sendLog.map(l => `[${format(l.time, 'HH:mm:ss')}] ${l.type?.toUpperCase()} — ${l.success ? `Score: ${l.score}/100, ${l.critCount} critical, ${l.anomalyCount} anomalies` : `FAILED: ${l.error}`}`).join('\n') : 'No reports sent yet.' },
-            ]}
-          />
+          <div className="flex items-center gap-2">
+            <Link to="/" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white transition-colors text-sm font-medium">
+              <ArrowLeft className="w-4 h-4" /> Back to Dashboard
+            </Link>
+            <PrintReportButton
+              reportTitle="Hourly Email Report Configuration"
+              subtitle="Automated security email delivery settings and send history"
+              filename="email-report-config-{date}.pdf"
+              sections={[
+                { heading: 'CONFIGURATION', rows: [['Status', emailActive ? 'ACTIVE — Sending hourly' : 'INACTIVE'], ['Recipient', savedEmail || 'Not configured'], ['Last Sent', lastSent ? format(lastSent, 'MMM d, yyyy HH:mm') : 'Never'], ['Next Send', nextSend && emailActive ? format(nextSend, 'MMM d, yyyy HH:mm') : 'N/A'], ['Reports Sent This Session', sendLog.filter(l => l.success).length], ['Current Security Score', `${score}/100`]] },
+                { heading: 'SEND LOG', body: sendLog.length > 0 ? sendLog.map(l => `[${format(l.time, 'HH:mm:ss')}] ${l.type?.toUpperCase()} — ${l.success ? `Score: ${l.score}/100, ${l.critCount} critical, ${l.anomalyCount} anomalies` : `FAILED: ${l.error}`}`).join('\n') : 'No reports sent yet.' },
+              ]}
+            />
+          </div>
         </div>
 
         {/* Current Status Card */}
