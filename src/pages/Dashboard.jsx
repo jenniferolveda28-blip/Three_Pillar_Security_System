@@ -7,6 +7,7 @@ import { Plus, Sparkles, Globe, History, Key, Link2, BarChart3, RefreshCw, Activ
 import PrintReportButton from '../components/PrintReportButton';
 import BatchDownloadButton from '../components/reports/BatchDownloadButton';
 import ExportAllPagesButton from '../components/reports/ExportAllPagesButton';
+import ComprehensiveAuditButton from '../components/reports/ComprehensiveAuditButton';
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import UniverseCard from '../components/dashboard/UniverseCard';
@@ -78,6 +79,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="flex gap-2 flex-wrap">
+            <ComprehensiveAuditButton daysBack={7} />
             <ExportAllPagesButton />
             <BatchDownloadButton
               universes={universes}
