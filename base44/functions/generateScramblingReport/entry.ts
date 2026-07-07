@@ -9,16 +9,14 @@ Deno.serve(async (req) => {
     try {
         const base44 = createClientFromRequest(req);
 
-        // Allow admin users (manual trigger) or service-role automation calls
-        let isAutomation = false;
-        try {
-            const user = await base44.auth.me();
-            if (user && user.role !== 'admin') {
-                return Response.json({ error: 'Forbidden: Admin access required' }, { status: 403 });
-            }
-            if (!user) isAutomation = true;
-        } catch {
-            isAutomation = true;
+        // Allow admin users (manual trigger) or platform-authenticated automation calls
+        const isAuth = await base44.auth.isAuthenticated();
+        if (!isAuth) {
+            return Response.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+        const user = await base44.auth.me();
+        if (user && user.role !== 'admin') {
+            return Response.json({ error: 'Forbidden: Admin access required' }, { status: 403 });
         }
 
         const now = new Date();

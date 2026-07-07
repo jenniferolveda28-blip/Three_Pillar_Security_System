@@ -4,6 +4,10 @@ import { jsPDF } from 'npm:jspdf@4.0.0';
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
+    const isAuth = await base44.auth.isAuthenticated();
+    if (!isAuth) {
+      return Response.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     const user = await base44.auth.me();
     if (user && user.role !== 'admin') {
       return Response.json({ error: 'Forbidden — admin only' }, { status: 403 });
