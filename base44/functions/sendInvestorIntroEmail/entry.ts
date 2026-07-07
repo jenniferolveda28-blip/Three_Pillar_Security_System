@@ -184,12 +184,21 @@ Texas, USA`;
       body: JSON.stringify({ raw: rawMessage }),
     });
 
-    if (!sendRes.ok) {
-      const errText = await sendRes.text();
-      return Response.json({ error: 'Gmail API error', details: errText }, { status: 502 });
-    }
+    let messageId = null;
+    let sendMethod = 'gmail';
 
-    const sent = await sendRes.json();
+    if (!sendRes.ok) {
+      // Gmail API failed (e.g. "Mail service not enabled") — fall back to built-in email
+      await base44.asServiceRole.integrations.Core.SendEmail({
+        to: meeting.email,
+        subject,
+        body: htmlBody,
+      });
+      sendMethod = 'builtin';
+    } else {
+      const sent = await sendRes.json();
+      messageId = sent.id;
+    }
 
     await base44.asServiceRole.entities.SecurityLog.create({
       event_type: 'universe_accessed',
@@ -200,7 +209,8 @@ Texas, USA`;
 
     return Response.json({
       status: 'success',
-      message_id: sent.id,
+      message_id: messageId,
+      send_method: sendMethod,
       recipient: meeting.email,
       subject: subject,
       message: `Introductory email sent to ${meeting.investor_name}`,

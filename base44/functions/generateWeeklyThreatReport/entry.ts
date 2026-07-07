@@ -291,7 +291,17 @@ Deno.serve(async (req) => {
           body: JSON.stringify({ raw: encoded }),
         });
 
-        if (sendRes.ok) emailSent = true;
+        if (sendRes.ok) {
+          emailSent = true;
+        } else {
+          // Gmail API failed (e.g. "Mail service not enabled") — fall back to built-in email
+          await base44.asServiceRole.integrations.Core.SendEmail({
+            to: recipientEmail,
+            subject,
+            body: htmlBody,
+          });
+          emailSent = true;
+        }
       }
     } catch (e) {
       // Gmail not available — still return the PDF

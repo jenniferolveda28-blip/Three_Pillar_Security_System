@@ -116,7 +116,17 @@ Deno.serve(async (req) => {
         body: JSON.stringify({ raw: encoded }),
       });
 
-      if (sendRes.ok) emailsSent++;
+      if (sendRes.ok) {
+        emailsSent++;
+      } else {
+        // Gmail API failed (e.g. "Mail service not enabled") — fall back to built-in email
+        await base44.asServiceRole.integrations.Core.SendEmail({
+          to: notifyEmail,
+          subject,
+          body: htmlBody,
+        });
+        emailsSent++;
+      }
 
       // Increment execution count and update last_triggered
       await base44.asServiceRole.entities.IncidentRule.update(rule.id, {
