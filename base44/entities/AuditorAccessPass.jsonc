@@ -1,0 +1,95 @@
+{
+  "name": "AuditorAccessPass",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "description": "Auditor's first name"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Auditor's last name"
+    },
+    "auditor_email": {
+      "type": "string",
+      "description": "Contact email for sending the passcode"
+    },
+    "passcode": {
+      "type": "string",
+      "description": "Unique access passcode for this auditor"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "active",
+        "used",
+        "expired",
+        "revoked"
+      ],
+      "default": "active",
+      "description": "Current status of the access pass"
+    },
+    "assigned_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the passcode was generated"
+    },
+    "accessed_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the auditor first accessed"
+    },
+    "access_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of times the auditor has accessed"
+    },
+    "questionnaire_answers": {
+      "type": "object",
+      "description": "Answers to the audit questionnaire"
+    },
+    "questionnaire_completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the questionnaire has been completed"
+    },
+    "questionnaire_completed_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the questionnaire was submitted"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional admin notes"
+    }
+  },
+  "required": [
+    "first_name",
+    "last_name",
+    "passcode"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

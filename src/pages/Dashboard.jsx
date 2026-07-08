@@ -32,7 +32,7 @@ import AlertNotificationCenter from '../components/security/AlertNotificationCen
 import ScramblerMonitor from '../components/security/ScramblerMonitor';
 import AuditModeToggle from '../components/security/AuditModeToggle';
 import ThreatNeutralizationChart from '../components/investor/ThreatNeutralizationChart';
-import { FileText, Users } from 'lucide-react';
+import { FileText, Users, UserCheck } from 'lucide-react';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -252,6 +252,12 @@ export default function Dashboard() {
                 <Button variant="outline" className="border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10">
                   <Gauge className="w-4 h-4 mr-2" />
                   Scrambling Reports
+                </Button>
+              </Link>
+              <Link to="/auditor-management">
+                <Button variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10">
+                  <UserCheck className="w-4 h-4 mr-2" />
+                  Auditor Passcodes
                 </Button>
               </Link>
             </div>

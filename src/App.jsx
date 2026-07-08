@@ -67,6 +67,8 @@ import SystemEventLog from './pages/SystemEventLog';
 import KeyRotation from './pages/KeyRotation';
 import AuditFeedbackTracker from './pages/AuditFeedbackTracker';
 import AuditFixSummary from './pages/AuditFixSummary';
+import AuditorAccess from './pages/AuditorAccess';
+import AuditorManagement from './pages/AuditorManagement';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -103,6 +105,7 @@ const AuthenticatedApp = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/auditor-access" element={<AuditorAccess />} />
 
       {/* All app routes gated by ProtectedRoute */}
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
@@ -173,6 +176,7 @@ const AuthenticatedApp = () => {
         <Route path="/key-rotation" element={<LayoutWrapper currentPageName="key-rotation"><KeyRotation /></LayoutWrapper>} />
         <Route path="/audit-feedback-tracker" element={<LayoutWrapper currentPageName="audit-feedback-tracker"><AuditFeedbackTracker /></LayoutWrapper>} />
         <Route path="/audit-fix-summary" element={<LayoutWrapper currentPageName="audit-fix-summary"><AuditFixSummary /></LayoutWrapper>} />
+        <Route path="/auditor-management" element={<LayoutWrapper currentPageName="auditor-management"><AuditorManagement /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />
