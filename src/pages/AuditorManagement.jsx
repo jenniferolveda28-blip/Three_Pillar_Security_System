@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { UserPlus, Mail, Copy, Check, Loader2, Users, KeyRound, FileCheck, ChevronDown, ChevronUp } from 'lucide-react';
+import { UserPlus, Mail, Copy, Check, Loader2, Users, KeyRound, FileCheck, ChevronDown, ChevronUp, Shield } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
 const STATUS_COLORS = {
@@ -67,7 +67,7 @@ export default function AuditorManagement() {
 
       if (email) {
         const appUrl = window.location.origin + '/auditor-access';
-        const body = `Hello ${firstName},\n\nYou have been granted auditor access to the Three-Pillar Security System.\n\nYour unique access passcode: ${code}\n\nAccess portal: ${appUrl}\n\nInstructions:\n1. Visit the access portal link above\n2. Enter your first name, last name, and the passcode\n3. Complete the security audit questionnaire\n\nThis passcode is unique to you. Do not share it with others.\n\nThank you,\nThree-Pillar Security Team`;
+        const body = `Hello ${firstName},\n\nYou have been granted auditor access to the Three-Pillar Security System.\n\nApp login email (shared): auditor4threepillarsecurity@gmail.com\nYour unique access passcode: ${code}\n\nAccess portal: ${appUrl}\n\nInstructions:\n1. Visit the access portal link above\n2. Log in with the shared email above, then enter your first name, last name, and passcode\n3. Complete the security audit questionnaire\n\nThis passcode is unique to you. Do not share it with others.\n\nThank you,\nThree-Pillar Security Team`;
         await emailMutation.mutateAsync({ to: email, subject: 'Your Auditor Access Passcode — Three-Pillar Security', body });
         toast({ title: 'Passcode generated & emailed', description: `${firstName} ${lastName} received their passcode.` });
       } else {
@@ -94,7 +94,7 @@ export default function AuditorManagement() {
       return;
     }
     const appUrl = window.location.origin + '/auditor-access';
-    const body = `Hello ${pass.first_name},\n\nYour auditor access passcode: ${pass.passcode}\n\nAccess portal: ${appUrl}\n\nInstructions:\n1. Visit the access portal link above\n2. Enter your first name, last name, and the passcode\n3. Complete the security audit questionnaire\n\nThank you,\nThree-Pillar Security Team`;
+    const body = `Hello ${pass.first_name},\n\nYour auditor access passcode: ${pass.passcode}\n\nApp login email (shared): auditor4threepillarsecurity@gmail.com\nAccess portal: ${appUrl}\n\nInstructions:\n1. Visit the access portal link above\n2. Log in with the shared email above, then enter your first name, last name, and passcode\n3. Complete the security audit questionnaire\n\nThank you,\nThree-Pillar Security Team`;
     try {
       await emailMutation.mutateAsync({ to: pass.auditor_email, subject: 'Your Auditor Access Passcode — Three-Pillar Security', body });
       toast({ title: 'Email sent', description: `Passcode re-sent to ${pass.auditor_email}.` });
@@ -117,6 +117,23 @@ export default function AuditorManagement() {
           <Users className="w-8 h-8 text-cyan-400" /> Auditor Management
         </h1>
         <p className="text-slate-400 mt-1">Generate unique passcodes, invite auditors, and review questionnaire responses.</p>
+      </div>
+
+      {/* Universal auditor login */}
+      <div className="rounded-xl border border-cyan-500/30 bg-slate-800/50 p-4 flex items-center gap-4">
+        <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-cyan-500/10">
+          <Shield className="w-6 h-6 text-cyan-400" />
+        </div>
+        <div className="flex-1">
+          <p className="text-sm font-medium text-white">Universal Auditor Login</p>
+          <p className="text-xs text-slate-400">Share this email with auditors to log in to the app. Each auditor then uses their unique passcode at the access portal.</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <code className="text-cyan-400 font-mono text-sm bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-700">auditor4threepillarsecurity@gmail.com</code>
+          <Button variant="ghost" size="sm" onClick={() => { navigator.clipboard.writeText('auditor4threepillarsecurity@gmail.com'); toast({ title: 'Copied', description: 'Email copied to clipboard.' }); }}>
+            <Copy className="w-4 h-4" />
+          </Button>
+        </div>
       </div>
 
       {/* Stats */}

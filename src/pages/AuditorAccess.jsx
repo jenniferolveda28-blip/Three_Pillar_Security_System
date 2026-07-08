@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ShieldCheck, KeyRound, ClipboardCheck, Loader2, CheckCircle2, Lock } from 'lucide-react';
+import { ShieldCheck, KeyRound, ClipboardCheck, Loader2, CheckCircle2, Lock, Mail } from 'lucide-react';
 
 const QUESTIONNAIRE = [
   { id: 'overall_rating', label: 'Rate the overall security posture (1 = Poor, 5 = Excellent)', type: 'rating' },
@@ -93,6 +93,14 @@ export default function AuditorAccess() {
               <CardDescription className="text-slate-400">
                 Enter your first name, last name, and the unique passcode provided to you.
               </CardDescription>
+              <div className="mt-3 rounded-lg border border-cyan-500/20 bg-cyan-500/5 p-3 flex items-start gap-2">
+                <Mail className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
+                <div className="text-sm text-slate-300">
+                  <span className="text-slate-400">App login email: </span>
+                  <code className="text-cyan-400 font-mono">auditor4threepillarsecurity@gmail.com</code>
+                  <p className="text-xs text-slate-500 mt-1">Use this shared email to log in, then your personal passcode below to identify yourself.</p>
+                </div>
+              </div>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleVerify} className="space-y-4">
