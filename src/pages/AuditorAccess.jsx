@@ -97,7 +97,7 @@ export default function AuditorAccess() {
                 <Mail className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
                 <div className="text-sm text-slate-300">
                   <span className="text-slate-400">App login email: </span>
-                  <code className="text-cyan-400 font-mono">auditor4threepillarsecurity@gmail.com</code>
+                  <code className="text-cyan-400 font-mono">auditor4threepillarsecurity@proton.me</code>
                   <p className="text-xs text-slate-500 mt-1">Use this shared email to log in, then your personal passcode below to identify yourself.</p>
                 </div>
               </div>

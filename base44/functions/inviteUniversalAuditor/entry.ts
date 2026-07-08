@@ -8,7 +8,7 @@ Deno.serve(async (req) => {
     if (user.role !== 'admin') return Response.json({ error: 'Forbidden — admin only' }, { status: 403 });
 
     const body = await req.json().catch(() => ({}));
-    const email = body.email || 'auditor4threepillarsecurity@gmail.com';
+    const email = body.email || 'auditor4threepillarsecurity@proton.me';
 
     // Invite as "user" first — platform only allows user/admin at invite time
     const inviteResult = await base44.users.inviteUser(email, 'user');
