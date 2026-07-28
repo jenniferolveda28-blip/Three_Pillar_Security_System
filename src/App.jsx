@@ -69,6 +69,7 @@ import AuditFeedbackTracker from './pages/AuditFeedbackTracker';
 import AuditFixSummary from './pages/AuditFixSummary';
 import AuditorAccess from './pages/AuditorAccess';
 import AuditorManagement from './pages/AuditorManagement';
+import BioVerifyBlueprint from './pages/BioVerifyBlueprint';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -177,6 +178,7 @@ const AuthenticatedApp = () => {
         <Route path="/audit-feedback-tracker" element={<LayoutWrapper currentPageName="audit-feedback-tracker"><AuditFeedbackTracker /></LayoutWrapper>} />
         <Route path="/audit-fix-summary" element={<LayoutWrapper currentPageName="audit-fix-summary"><AuditFixSummary /></LayoutWrapper>} />
         <Route path="/auditor-management" element={<LayoutWrapper currentPageName="auditor-management"><AuditorManagement /></LayoutWrapper>} />
+        <Route path="/bioverify-blueprint" element={<LayoutWrapper currentPageName="bioverify-blueprint"><BioVerifyBlueprint /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />
