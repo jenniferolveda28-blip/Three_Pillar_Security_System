@@ -70,7 +70,10 @@ import AuditFixSummary from './pages/AuditFixSummary';
 import AuditorAccess from './pages/AuditorAccess';
 import AuditorManagement from './pages/AuditorManagement';
 import BioVerifyBlueprint from './pages/BioVerifyBlueprint';
+import BioVerifyHandbook from './pages/BioVerifyHandbook';
+import SelfCertificationForm from './pages/SelfCertificationForm';
 import ExposureShield from './pages/ExposureShield';
+import WeeklyExposureSummary from './pages/WeeklyExposureSummary';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -181,6 +184,9 @@ const AuthenticatedApp = () => {
         <Route path="/auditor-management" element={<LayoutWrapper currentPageName="auditor-management"><AuditorManagement /></LayoutWrapper>} />
         <Route path="/bioverify-blueprint" element={<LayoutWrapper currentPageName="bioverify-blueprint"><BioVerifyBlueprint /></LayoutWrapper>} />
         <Route path="/exposure-shield" element={<LayoutWrapper currentPageName="exposure-shield"><ExposureShield /></LayoutWrapper>} />
+        <Route path="/bioverify-handbook" element={<LayoutWrapper currentPageName="bioverify-handbook"><BioVerifyHandbook /></LayoutWrapper>} />
+        <Route path="/self-certification" element={<LayoutWrapper currentPageName="self-certification"><SelfCertificationForm /></LayoutWrapper>} />
+        <Route path="/weekly-exposure-summary" element={<LayoutWrapper currentPageName="weekly-exposure-summary"><WeeklyExposureSummary /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />

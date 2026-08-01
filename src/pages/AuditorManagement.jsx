@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { UserPlus, Mail, Copy, Check, Loader2, Users, KeyRound, FileCheck, ChevronDown, ChevronUp, Shield } from 'lucide-react';
+import { UserPlus, Mail, Copy, Check, Loader2, Users, KeyRound, FileCheck, ChevronDown, ChevronUp, Shield, BellRing, Clock } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
 const STATUS_COLORS = {
@@ -32,6 +32,7 @@ export default function AuditorManagement() {
   const [generatedCode, setGeneratedCode] = useState('');
   const [copiedId, setCopiedId] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
+  const [pendingOnly, setPendingOnly] = useState(false);
 
   const { data: passes = [], isLoading } = useQuery({
     queryKey: ['auditorPasses'],
@@ -107,8 +108,26 @@ export default function AuditorManagement() {
     total: passes.length,
     active: passes.filter((p) => p.status === 'active').length,
     used: passes.filter((p) => p.status === 'used').length,
-    completed: passes.filter((p) => p.questionnaire_completed).length
+    completed: passes.filter((p) => p.questionnaire_completed).length,
+    pending: passes.filter((p) => !p.questionnaire_completed && p.status === 'used').length
   };
+
+  const handleFollowUp = async (pass) => {
+    if (!pass.auditor_email) {
+      toast({ title: 'No email', description: 'This auditor has no email on file.', variant: 'destructive' });
+      return;
+    }
+    const appUrl = window.location.origin + '/auditor-access';
+    const body = `Hello ${pass.first_name},\n\nThis is a follow-up reminder regarding your pending security audit questionnaire.\n\nOur records show you have accessed the Three-Pillar Security System audit portal but have not yet completed the required questionnaire.\n\nAccess portal: ${appUrl}\nApp login email (shared): auditor4threepillarsecurity@proton.me\nYour passcode: ${pass.passcode}\n\nPlease complete the questionnaire at your earliest convenience. If you have already submitted it, please disregard this message.\n\nThank you,\nThree-Pillar Security Team`;
+    try {
+      await emailMutation.mutateAsync({ to: pass.auditor_email, subject: 'Reminder: Complete Your Security Audit Questionnaire', body });
+      toast({ title: 'Follow-up sent', description: `Reminder sent to ${pass.first_name} ${pass.last_name}.` });
+    } catch (err) {
+      toast({ title: 'Follow-up failed', description: err.message, variant: 'destructive' });
+    }
+  };
+
+  const filteredPasses = pendingOnly ? passes.filter((p) => !p.questionnaire_completed && p.status === 'used') : passes;
 
   return (
     <div className="p-6 space-y-6">
@@ -137,10 +156,11 @@ export default function AuditorManagement() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         <Card className="bg-slate-800/50 border-slate-700"><CardContent className="pt-6"><p className="text-sm text-slate-400">Total Auditors</p><p className="text-2xl font-bold text-white">{stats.total}</p></CardContent></Card>
         <Card className="bg-slate-800/50 border-emerald-500/30"><CardContent className="pt-6"><p className="text-sm text-emerald-400">Active Passes</p><p className="text-2xl font-bold text-emerald-400">{stats.active}</p></CardContent></Card>
         <Card className="bg-slate-800/50 border-cyan-500/30"><CardContent className="pt-6"><p className="text-sm text-cyan-400">Accessed</p><p className="text-2xl font-bold text-cyan-400">{stats.used}</p></CardContent></Card>
+        <Card className="bg-slate-800/50 border-amber-500/30"><CardContent className="pt-6"><p className="text-sm text-amber-400">Pending Questionnaire</p><p className="text-2xl font-bold text-amber-400">{stats.pending}</p></CardContent></Card>
         <Card className="bg-slate-800/50 border-violet-500/30"><CardContent className="pt-6"><p className="text-sm text-violet-400">Questionnaires Done</p><p className="text-2xl font-bold text-violet-400">{stats.completed}</p></CardContent></Card>
       </div>
 
@@ -186,16 +206,27 @@ export default function AuditorManagement() {
       {/* Auditor list */}
       <Card className="bg-slate-800/50 border-slate-700">
         <CardHeader>
-          <CardTitle className="text-white">Auditor Passes</CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-white">Auditor Passes</CardTitle>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setPendingOnly(!pendingOnly)}
+              className={pendingOnly ? 'border-amber-500/50 text-amber-400 bg-amber-500/10' : 'border-slate-600 text-slate-300'}
+            >
+              <FileCheck className="w-4 h-4 mr-1" />
+              {pendingOnly ? 'Showing Pending Only' : 'Show Pending Only'}
+            </Button>
+          </div>
         </CardHeader>
         <CardContent>
           {isLoading ? (
             <div className="flex justify-center py-8"><Loader2 className="w-6 h-6 animate-spin text-slate-400" /></div>
-          ) : passes.length === 0 ? (
-            <p className="text-slate-500 text-center py-8">No auditor passes generated yet.</p>
+          ) : filteredPasses.length === 0 ? (
+            <p className="text-slate-500 text-center py-8">{pendingOnly ? 'No auditors with pending questionnaires.' : 'No auditor passes generated yet.'}</p>
           ) : (
             <div className="space-y-2">
-              {passes.map((p) => (
+              {filteredPasses.map((p) => (
                 <div key={p.id} className="rounded-lg bg-slate-900/50 border border-slate-800 overflow-hidden">
                   <div className="flex items-center justify-between p-3">
                     <div className="flex items-center gap-3">
@@ -209,17 +240,26 @@ export default function AuditorManagement() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Badge className={STATUS_COLORS[p.status] || STATUS_COLORS.pending}>{p.status}</Badge>
-                      {p.questionnaire_completed && (
+                      {p.questionnaire_completed ? (
                         <Badge className="bg-violet-500/20 text-violet-400 border-violet-500/50">
-                          <FileCheck className="w-3 h-3 mr-1" /> Done
+                          <FileCheck className="w-3 h-3 mr-1" /> Questionnaire Done
                         </Badge>
-                      )}
+                      ) : p.status === 'used' ? (
+                        <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/50">
+                          <Clock className="w-3 h-3 mr-1" /> Pending Questionnaire
+                        </Badge>
+                      ) : null}
                       <Button variant="ghost" size="sm" onClick={() => handleCopy(p.passcode, p.id)}>
                         {copiedId === p.id ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                       </Button>
                       {p.auditor_email && (
-                        <Button variant="ghost" size="sm" onClick={() => handleResendEmail(p)} disabled={emailMutation.isPending}>
+                        <Button variant="ghost" size="sm" onClick={() => handleResendEmail(p)} disabled={emailMutation.isPending} title="Resend passcode email">
                           <Mail className="w-4 h-4" />
+                        </Button>
+                      )}
+                      {!p.questionnaire_completed && p.auditor_email && (
+                        <Button variant="ghost" size="sm" onClick={() => handleFollowUp(p)} disabled={emailMutation.isPending} className="text-amber-400 hover:text-amber-300" title="Send questionnaire follow-up reminder">
+                          <BellRing className="w-4 h-4" />
                         </Button>
                       )}
                       {p.questionnaire_completed && (
