@@ -70,6 +70,7 @@ import AuditFixSummary from './pages/AuditFixSummary';
 import AuditorAccess from './pages/AuditorAccess';
 import AuditorManagement from './pages/AuditorManagement';
 import BioVerifyBlueprint from './pages/BioVerifyBlueprint';
+import ExposureShield from './pages/ExposureShield';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -179,6 +180,7 @@ const AuthenticatedApp = () => {
         <Route path="/audit-fix-summary" element={<LayoutWrapper currentPageName="audit-fix-summary"><AuditFixSummary /></LayoutWrapper>} />
         <Route path="/auditor-management" element={<LayoutWrapper currentPageName="auditor-management"><AuditorManagement /></LayoutWrapper>} />
         <Route path="/bioverify-blueprint" element={<LayoutWrapper currentPageName="bioverify-blueprint"><BioVerifyBlueprint /></LayoutWrapper>} />
+        <Route path="/exposure-shield" element={<LayoutWrapper currentPageName="exposure-shield"><ExposureShield /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />

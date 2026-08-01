@@ -1,0 +1,153 @@
+{
+  "name": "ExposureRecord",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email of the user whose data is exposed"
+    },
+    "broker_name": {
+      "type": "string",
+      "description": "Name of the data broker or people search site"
+    },
+    "exposure_type": {
+      "type": "string",
+      "enum": [
+        "pii_name",
+        "pii_address",
+        "pii_phone",
+        "pii_email",
+        "pii_relatives",
+        "pii_criminal_record",
+        "pii_financial",
+        "pii_court_records"
+      ],
+      "default": "pii_name",
+      "description": "Type of personal information exposed"
+    },
+    "listing_url": {
+      "type": "string",
+      "description": "Direct URL to the exposed profile listing"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "discovered",
+        "opt_out_sent",
+        "pending_verification",
+        "scrubbed",
+        "re_listed",
+        "escalated"
+      ],
+      "default": "discovered",
+      "description": "Current removal workflow status"
+    },
+    "before_screenshot_url": {
+      "type": "string",
+      "description": "Screenshot of the listing before removal (proof of exposure)"
+    },
+    "after_screenshot_url": {
+      "type": "string",
+      "description": "Screenshot after removal (proof of scrubbing)"
+    },
+    "discovery_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the exposure was first detected"
+    },
+    "opt_out_sent_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the legal opt-out request was sent"
+    },
+    "scrubbed_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When removal was verified"
+    },
+    "last_verified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time the listing URL was re-checked"
+    },
+    "risk_score": {
+      "type": "number",
+      "default": 0,
+      "description": "How dangerous this specific exposure is (0-100)"
+    },
+    "removal_method": {
+      "type": "string",
+      "enum": [
+        "automated_opt_out",
+        "human_agent",
+        "custom_takedown",
+        "legal_request"
+      ],
+      "default": "automated_opt_out",
+      "description": "How the removal was processed"
+    },
+    "re_scan_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of times this listing has been re-checked"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional admin or agent notes"
+    }
+  },
+  "required": [
+    "user_email",
+    "broker_name",
+    "exposure_type"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "auditor"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
