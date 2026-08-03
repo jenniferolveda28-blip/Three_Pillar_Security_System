@@ -32,7 +32,7 @@ import AlertNotificationCenter from '../components/security/AlertNotificationCen
 import ScramblerMonitor from '../components/security/ScramblerMonitor';
 import AuditModeToggle from '../components/security/AuditModeToggle';
 import ThreatNeutralizationChart from '../components/investor/ThreatNeutralizationChart';
-import { FileText, Users, UserCheck } from 'lucide-react';
+import { FileText, Users, UserCheck, Database, Watch, ListChecks, Settings, Gavel, KeyRound, ScrollText, Bell, ShieldCheck, FileSearch } from 'lucide-react';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('router');
@@ -258,6 +258,90 @@ export default function Dashboard() {
                 <Button variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10">
                   <UserCheck className="w-4 h-4 mr-2" />
                   Auditor Passcodes
+                </Button>
+              </Link>
+              <Link to="/data-broker-directory">
+                <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
+                  <Database className="w-4 h-4 mr-2" />
+                  Data Brokers
+                </Button>
+              </Link>
+              <Link to="/bioverify-hardware-status">
+                <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
+                  <Watch className="w-4 h-4 mr-2" />
+                  BioVerify Hardware
+                </Button>
+              </Link>
+              <Link to="/remediation-queue">
+                <Button variant="outline" className="border-amber-500/50 text-amber-400 hover:bg-amber-500/10">
+                  <ListChecks className="w-4 h-4 mr-2" />
+                  Remediation Queue
+                </Button>
+              </Link>
+              <Link to="/security-configuration">
+                <Button variant="outline" className="border-slate-500/50 text-slate-300 hover:bg-slate-500/10">
+                  <Settings className="w-4 h-4 mr-2" />
+                  Security Config
+                </Button>
+              </Link>
+              <Link to="/certificate-registry">
+                <Button variant="outline" className="border-blue-500/50 text-blue-400 hover:bg-blue-500/10">
+                  <FileText className="w-4 h-4 mr-2" />
+                  Certificates
+                </Button>
+              </Link>
+              <Link to="/exposure-trends">
+                <Button variant="outline" className="border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10">
+                  <TrendingUp className="w-4 h-4 mr-2" />
+                  Exposure Trends
+                </Button>
+              </Link>
+              <Link to="/broker-request-manager">
+                <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
+                  <Mail className="w-4 h-4 mr-2" />
+                  Broker Requests
+                </Button>
+              </Link>
+              <Link to="/alert-feed">
+                <Button variant="outline" className="border-red-500/50 text-red-400 hover:bg-red-500/10">
+                  <Bell className="w-4 h-4 mr-2" />
+                  Alert Feed
+                </Button>
+              </Link>
+              <Link to="/auditor-portal">
+                <Button variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10">
+                  <Gavel className="w-4 h-4 mr-2" />
+                  Auditor Portal
+                </Button>
+              </Link>
+              <Link to="/token-key-rotation">
+                <Button variant="outline" className="border-violet-500/50 text-violet-400 hover:bg-violet-500/10">
+                  <KeyRound className="w-4 h-4 mr-2" />
+                  Key Rotation
+                </Button>
+              </Link>
+              <Link to="/identity-dashboard">
+                <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
+                  <Activity className="w-4 h-4 mr-2" />
+                  Identity Dashboard
+                </Button>
+              </Link>
+              <Link to="/auditor-compliance-log">
+                <Button variant="outline" className="border-slate-500/50 text-slate-300 hover:bg-slate-500/10">
+                  <ScrollText className="w-4 h-4 mr-2" />
+                  Compliance Log
+                </Button>
+              </Link>
+              <Link to="/owners-security-report">
+                <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
+                  <ShieldCheck className="w-4 h-4 mr-2" />
+                  Owner Report
+                </Button>
+              </Link>
+              <Link to="/user-security-report">
+                <Button variant="outline" className="border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10">
+                  <FileSearch className="w-4 h-4 mr-2" />
+                  User Report
                 </Button>
               </Link>
             </div>
