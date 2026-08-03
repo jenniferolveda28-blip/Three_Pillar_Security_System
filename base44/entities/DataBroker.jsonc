@@ -1,0 +1,112 @@
+{
+  "name": "DataBroker",
+  "type": "object",
+  "properties": {
+    "broker_name": {
+      "type": "string",
+      "description": "Name of the data broker or people-search site"
+    },
+    "broker_url": {
+      "type": "string",
+      "description": "Main website URL"
+    },
+    "opt_out_url": {
+      "type": "string",
+      "description": "Direct opt-out / removal request URL"
+    },
+    "removal_method": {
+      "type": "string",
+      "enum": [
+        "automated_opt_out",
+        "manual_form",
+        "email_request",
+        "mail_request",
+        "legal_request"
+      ],
+      "default": "automated_opt_out",
+      "description": "Known removal protocol"
+    },
+    "scan_status": {
+      "type": "string",
+      "enum": [
+        "monitored",
+        "scanning",
+        "paused",
+        "blocked",
+        "error"
+      ],
+      "default": "monitored",
+      "description": "Current scan status"
+    },
+    "last_scan_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last scan timestamp"
+    },
+    "exposure_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Active exposures found on this broker"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "medium"
+    },
+    "data_types_exposed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "PII types known to be listed"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "broker_name"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "auditor"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

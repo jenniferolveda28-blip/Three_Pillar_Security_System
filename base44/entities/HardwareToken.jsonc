@@ -38,6 +38,31 @@
       "default": 0,
       "description": "Failed auth attempts (auto-locks at 3)"
     },
+    "battery_level": {
+      "type": "number",
+      "default": 100,
+      "description": "Battery percentage 0-100"
+    },
+    "last_sync_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last cloud synchronization timestamp"
+    },
+    "sync_status": {
+      "type": "string",
+      "enum": [
+        "synced",
+        "syncing",
+        "offline",
+        "error"
+      ],
+      "default": "synced",
+      "description": "Current sync state"
+    },
+    "firmware_version": {
+      "type": "string",
+      "description": "Installed firmware version"
+    },
     "description": {
       "type": "string",
       "maxLength": 1000,

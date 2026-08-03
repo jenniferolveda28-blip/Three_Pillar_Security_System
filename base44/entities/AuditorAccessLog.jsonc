@@ -1,0 +1,75 @@
+{
+  "name": "AuditorAccessLog",
+  "type": "object",
+  "properties": {
+    "auditor_email": {
+      "type": "string",
+      "description": "Auditor who accessed the system"
+    },
+    "access_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the access occurred"
+    },
+    "credentials_used": {
+      "type": "string",
+      "description": "Warrant passcode or credential method used"
+    },
+    "records_requested": {
+      "type": "string",
+      "description": "What records/data the auditor requested"
+    },
+    "ip_address": {
+      "type": "string",
+      "description": "Source IP address"
+    },
+    "action": {
+      "type": "string",
+      "description": "What the auditor did (view, export, query, login)"
+    },
+    "warrant_id": {
+      "type": "string",
+      "description": "Reference to the Auditor Warrant used"
+    },
+    "success": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the access was permitted"
+    }
+  },
+  "required": [
+    "auditor_email",
+    "access_time"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "auditor"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -76,6 +76,18 @@ import ExposureShield from './pages/ExposureShield';
 import WeeklyExposureSummary from './pages/WeeklyExposureSummary';
 import OwnersSecurityReport from './pages/owners_security_report';
 import UserSecurityReport from './pages/user_security_report';
+import DataBrokerDirectory from './pages/DataBrokerDirectory';
+import BioVerifyHardwareStatus from './pages/BioVerifyHardwareStatus';
+import ThreatRemediationQueue from './pages/ThreatRemediationQueue';
+import SecurityConfiguration from './pages/SecurityConfiguration';
+import CertificateRegistry from './pages/CertificateRegistry';
+import ExposureTrends from './pages/ExposureTrends';
+import BrokerRequestManager from './pages/BrokerRequestManager';
+import AlertFeed from './pages/AlertFeed';
+import AuditorPortal from './pages/AuditorPortal';
+import TokenKeyRotation from './pages/TokenKeyRotation';
+import IdentityDashboard from './pages/IdentityDashboard';
+import AuditorComplianceLog from './pages/AuditorComplianceLog';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -191,6 +203,18 @@ const AuthenticatedApp = () => {
         <Route path="/weekly-exposure-summary" element={<LayoutWrapper currentPageName="weekly-exposure-summary"><WeeklyExposureSummary /></LayoutWrapper>} />
         <Route path="/owners-security-report" element={<LayoutWrapper currentPageName="owners-security-report"><OwnersSecurityReport /></LayoutWrapper>} />
         <Route path="/user-security-report" element={<LayoutWrapper currentPageName="user-security-report"><UserSecurityReport /></LayoutWrapper>} />
+        <Route path="/data-broker-directory" element={<LayoutWrapper currentPageName="data-broker-directory"><DataBrokerDirectory /></LayoutWrapper>} />
+        <Route path="/bioverify-hardware-status" element={<LayoutWrapper currentPageName="bioverify-hardware-status"><BioVerifyHardwareStatus /></LayoutWrapper>} />
+        <Route path="/remediation-queue" element={<LayoutWrapper currentPageName="remediation-queue"><ThreatRemediationQueue /></LayoutWrapper>} />
+        <Route path="/security-configuration" element={<LayoutWrapper currentPageName="security-configuration"><SecurityConfiguration /></LayoutWrapper>} />
+        <Route path="/certificate-registry" element={<LayoutWrapper currentPageName="certificate-registry"><CertificateRegistry /></LayoutWrapper>} />
+        <Route path="/exposure-trends" element={<LayoutWrapper currentPageName="exposure-trends"><ExposureTrends /></LayoutWrapper>} />
+        <Route path="/broker-request-manager" element={<LayoutWrapper currentPageName="broker-request-manager"><BrokerRequestManager /></LayoutWrapper>} />
+        <Route path="/alert-feed" element={<LayoutWrapper currentPageName="alert-feed"><AlertFeed /></LayoutWrapper>} />
+        <Route path="/auditor-portal" element={<LayoutWrapper currentPageName="auditor-portal"><AuditorPortal /></LayoutWrapper>} />
+        <Route path="/token-key-rotation" element={<LayoutWrapper currentPageName="token-key-rotation"><TokenKeyRotation /></LayoutWrapper>} />
+        <Route path="/identity-dashboard" element={<LayoutWrapper currentPageName="identity-dashboard"><IdentityDashboard /></LayoutWrapper>} />
+        <Route path="/auditor-compliance-log" element={<LayoutWrapper currentPageName="auditor-compliance-log"><AuditorComplianceLog /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />
