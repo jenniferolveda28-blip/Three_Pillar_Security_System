@@ -14,7 +14,7 @@ export default function AuthenticationAnalytics() {
 
   const { data: tokenRegistrations = [] } = useQuery({
     queryKey: ['tokenRegistrations'],
-    queryFn: () => base44.entities.TokenRegistration.list('-created_date'),
+    queryFn: () => base44.entities.BioVerifyRegistration.list('-created_date'),
   });
 
   const { data: events = [] } = useQuery({

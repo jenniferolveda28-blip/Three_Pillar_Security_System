@@ -12,7 +12,7 @@ export default function RequestQueue() {
   const load = async () => {
     setLoading(true);
     try {
-      const data = await base44.entities.UniversalRequest.list('-created_date', 50);
+      const data = await base44.entities.ProtectedRequest.list('-created_date', 50);
       setRequests(data);
     } catch (e) { console.error(e); } finally { setLoading(false); }
   };

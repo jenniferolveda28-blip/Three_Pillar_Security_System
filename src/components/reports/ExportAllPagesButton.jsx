@@ -23,24 +23,24 @@ export default function ExportAllPagesButton() {
         tokens, metrics, subscriptions, roles, linkedAccounts,
         reports, incidentRules, tokenRegs, roleAssignments, interactions,
       ] = await Promise.all([
-        base44.entities.Universe.list('-created_date', 100),
-        base44.entities.UniversalRequest.list('-created_date', 50),
-        base44.entities.UniversalKey.list('-created_date', 100),
+        base44.entities.ProtectedEndpointGroup.list('-created_date', 100),
+        base44.entities.ProtectedRequest.list('-created_date', 50),
+        base44.entities.CipherPass.list('-created_date', 100),
         base44.entities.SecurityLog.list('-created_date', 50),
-        base44.entities.HardwareToken.filter({ is_active: true }),
+        base44.entities.BioVerifyToken.filter({ is_active: true }),
         base44.entities.InvestorMeeting.list('-meeting_date', 100),
         base44.entities.CriminalActivityAlert.list('-created_date', 50),
         base44.entities.BehaviorAnomaly.list('-created_date', 50),
         base44.entities.ScramblingSession.list('-created_date', 50),
         base44.entities.ThreatCorrelation.list('-created_date', 50),
-        base44.entities.TokenRegistration.list('-created_date', 50),
+        base44.entities.BioVerifyRegistration.list('-created_date', 50),
         base44.entities.AnalyticsMetric.list('-created_date', 100),
         base44.entities.Subscription.list('-created_date', 50),
         base44.entities.Role.list('-created_date', 50),
-        base44.entities.LinkedAccount.list('-created_date', 50),
+        base44.entities.BioVerifyLinkedAccount.list('-created_date', 50),
         base44.entities.SecurityReport.list('-created_date', 50),
         base44.entities.IncidentRule.list('-created_date', 50),
-        base44.entities.TokenRegistration.list('-created_date', 50),
+        base44.entities.BioVerifyRegistration.list('-created_date', 50),
         base44.entities.UserRoleAssignment.list('-created_date', 50),
         base44.entities.InvestorInteraction.list('-timestamp', 100),
       ]);
@@ -337,7 +337,7 @@ export default function ExportAllPagesButton() {
         ['Total Usage Count', keys.reduce((s, k) => s + (k.usage_count || 0), 0)],
       ]);
       body(keys.length > 0
-        ? keys.slice(0, 10).map(k => `• ${k.key_name} — Universe: ${k.universe_id} — Status: ${k.status} — Usage: ${k.usage_count || 0}`).join('\n')
+        ? keys.slice(0, 10).map(k => `• ${k.key_name} — Universe: ${k.endpoint_group_id} — Status: ${k.status} — Usage: ${k.usage_count || 0}`).join('\n')
         : 'No universal keys managed.');
 
       // 21. PredictiveAnalytics

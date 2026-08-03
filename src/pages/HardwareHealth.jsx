@@ -14,7 +14,7 @@ const statusBadge = (token) => {
 export default function HardwareHealth() {
   const { data: tokens = [], isLoading } = useQuery({
     queryKey: ['hardwareTokensHealth'],
-    queryFn: () => base44.entities.HardwareToken.list('-created_date', 100),
+    queryFn: () => base44.entities.BioVerifyToken.list('-created_date', 100),
   });
 
   const active = tokens.filter(t => t.is_active && t.failed_attempts < 3);

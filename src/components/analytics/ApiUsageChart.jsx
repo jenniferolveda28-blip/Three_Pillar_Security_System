@@ -9,15 +9,15 @@ import { TrendingUp, Globe, Activity } from "lucide-react";
 export default function ApiUsageChart({ metrics = [], universes = [], timeRange }) {
   const { data: securityLogs = [] } = useQuery({
     queryKey: ['securityLogs_universe_access'],
-    queryFn: () => base44.entities.SecurityLog.filter({ event_type: 'universe_accessed' }),
+    queryFn: () => base44.entities.SecurityLog.filter({ event_type: 'endpoint_group_accessed' }),
   });
 
   const universeNameMap = useMemo(() => {
     const map = {};
     securityLogs.forEach(log => {
-      if (log.universe_id && !map[log.universe_id]) {
-        const universe = universes.find(u => u.id === log.universe_id);
-        if (universe) map[log.universe_id] = universe.name;
+      if (log.endpoint_group_id && !map[log.endpoint_group_id]) {
+        const universe = universes.find(u => u.id === log.endpoint_group_id);
+        if (universe) map[log.endpoint_group_id] = universe.name;
       }
     });
     return map;
@@ -45,16 +45,16 @@ export default function ApiUsageChart({ metrics = [], universes = [], timeRange 
   const universeData = useMemo(() => {
     const grouped = {};
     metrics.forEach(m => {
-      if (m.universe_id) {
-        if (!grouped[m.universe_id]) {
-          const universe = universes.find(u => u.id === m.universe_id || u.name === m.universe_id);
-          const nameFromLog = universeNameMap[m.universe_id];
-          grouped[m.universe_id] = { 
-            name: universe?.name || nameFromLog || m.universe_id || 'Unknown', 
+      if (m.endpoint_group_id) {
+        if (!grouped[m.endpoint_group_id]) {
+          const universe = universes.find(u => u.id === m.endpoint_group_id || u.name === m.endpoint_group_id);
+          const nameFromLog = universeNameMap[m.endpoint_group_id];
+          grouped[m.endpoint_group_id] = { 
+            name: universe?.name || nameFromLog || m.endpoint_group_id || 'Unknown', 
             calls: 0 
           };
         }
-        grouped[m.universe_id].calls++;
+        grouped[m.endpoint_group_id].calls++;
       }
     });
     return Object.values(grouped);
@@ -160,7 +160,7 @@ export default function ApiUsageChart({ metrics = [], universes = [], timeRange 
                     {metric.method || 'GET'}
                   </Badge>
                   <span className="font-mono text-sm">{metric.endpoint || '/api/unknown'}</span>
-                  {metric.universe_id && <span className="text-xs text-gray-500">({metric.universe_id})</span>}
+                  {metric.endpoint_group_id && <span className="text-xs text-gray-500">({metric.endpoint_group_id})</span>}
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-gray-600">{metric.latency_ms}ms</span>

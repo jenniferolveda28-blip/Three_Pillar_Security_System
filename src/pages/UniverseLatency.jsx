@@ -15,7 +15,7 @@ const statusColors = {
 export default function UniverseLatency() {
   const { data: universes = [], isLoading } = useQuery({
     queryKey: ['universesLatency'],
-    queryFn: () => base44.entities.Universe.list('-created_date', 100),
+    queryFn: () => base44.entities.ProtectedEndpointGroup.list('-created_date', 100),
   });
 
   if (isLoading) return <div className="p-8 text-slate-400">Loading universe latency data…</div>;

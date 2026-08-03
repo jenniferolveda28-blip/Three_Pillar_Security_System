@@ -16,8 +16,8 @@ export default function TokenManagement() {
     setLoading(true);
     try {
       const [t, r] = await Promise.all([
-        base44.entities.HardwareToken.list('-created_date', 50),
-        base44.entities.TokenRegistration.list('-created_date', 50),
+        base44.entities.BioVerifyToken.list('-created_date', 50),
+        base44.entities.BioVerifyRegistration.list('-created_date', 50),
       ]);
       setTokens(t);
       setRegistrations(r);
@@ -35,7 +35,7 @@ export default function TokenManagement() {
   const revokeToken = async (token) => {
     setActionLoading(token.id);
     try {
-      await base44.entities.HardwareToken.update(token.id, { is_active: false, failed_attempts: 3 });
+      await base44.entities.BioVerifyToken.update(token.id, { is_active: false, failed_attempts: 3 });
       setToast({ type: 'success', msg: `${token.device_name} access revoked` });
       await load();
     } catch (e) { setToast({ type: 'error', msg: e.message }); } finally { setActionLoading(null); }
@@ -45,7 +45,7 @@ export default function TokenManagement() {
   const reactivateToken = async (token) => {
     setActionLoading(token.id);
     try {
-      await base44.entities.HardwareToken.update(token.id, { is_active: true, failed_attempts: 0 });
+      await base44.entities.BioVerifyToken.update(token.id, { is_active: true, failed_attempts: 0 });
       setToast({ type: 'success', msg: `${token.device_name} reactivated` });
       await load();
     } catch (e) { setToast({ type: 'error', msg: e.message }); } finally { setActionLoading(null); }
@@ -55,7 +55,7 @@ export default function TokenManagement() {
   const refreshStatus = async (token) => {
     setActionLoading(token.id);
     try {
-      await base44.entities.HardwareToken.update(token.id, { last_code_generated: new Date().toISOString() });
+      await base44.entities.BioVerifyToken.update(token.id, { last_code_generated: new Date().toISOString() });
       setToast({ type: 'success', msg: `${token.device_name} status refreshed` });
       await load();
     } catch (e) { setToast({ type: 'error', msg: e.message }); } finally { setActionLoading(null); }

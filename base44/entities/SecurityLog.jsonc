@@ -10,13 +10,13 @@
         "access_denied",
         "dna_verified",
         "suspicious_activity",
-        "universe_accessed"
+        "endpoint_group_accessed"
       ],
       "description": "Type of security event"
     },
-    "universe_id": {
+    "endpoint_group_id": {
       "type": "string",
-      "description": "Which universe was accessed"
+      "description": "Which Protected Endpoint Group was accessed"
     },
     "dna_hash": {
       "type": "string",

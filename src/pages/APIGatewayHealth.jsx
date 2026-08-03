@@ -15,7 +15,7 @@ const statusConfig = {
 export default function APIGatewayHealth() {
   const { data: universes = [], isLoading } = useQuery({
     queryKey: ['gatewayHealth'],
-    queryFn: () => base44.entities.Universe.list('-created_date', 100),
+    queryFn: () => base44.entities.ProtectedEndpointGroup.list('-created_date', 100),
     refetchInterval: 10000,
   });
 

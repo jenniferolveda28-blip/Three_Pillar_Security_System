@@ -30,8 +30,8 @@ Deno.serve(async (req) => {
       base44.asServiceRole.entities.ThreatCorrelation.list('-created_date', 100),
       base44.asServiceRole.entities.CriminalActivityAlert.list('-created_date', 100),
       base44.asServiceRole.entities.BehaviorAnomaly.list('-created_date', 100),
-      base44.asServiceRole.entities.Universe.list('-created_date', 100),
-      base44.asServiceRole.entities.UniversalRequest.list('-created_date', 200),
+      base44.asServiceRole.entities.ProtectedEndpointGroup.list('-created_date', 100),
+      base44.asServiceRole.entities.ProtectedRequest.list('-created_date', 200),
       base44.asServiceRole.entities.ScramblingSession.list('-created_date', 50),
     ]);
 

@@ -25,11 +25,11 @@ export default function QuantumKeyManagement() {
   const [regenerating, setRegenerating] = useState(false);
   const qc = useQueryClient();
 
-  const { data: keys = [] } = useQuery({ queryKey: ['keys-qkm'], queryFn: () => base44.entities.UniversalKey.list('-created_date', 100), refetchInterval: 15000 });
-  const { data: universes = [] } = useQuery({ queryKey: ['universes-qkm'], queryFn: () => base44.entities.Universe.list() });
+  const { data: keys = [] } = useQuery({ queryKey: ['keys-qkm'], queryFn: () => base44.entities.CipherPass.list('-created_date', 100), refetchInterval: 15000 });
+  const { data: universes = [] } = useQuery({ queryKey: ['universes-qkm'], queryFn: () => base44.entities.ProtectedEndpointGroup.list() });
 
   const updateKey = useMutation({
-    mutationFn: ({ id, data }) => base44.entities.UniversalKey.update(id, data),
+    mutationFn: ({ id, data }) => base44.entities.CipherPass.update(id, data),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['keys-qkm'] }),
   });
 
@@ -44,7 +44,7 @@ export default function QuantumKeyManagement() {
   // Distribution by universe
   const byUniverse = universes.map(u => ({
     name: u.data?.name || 'Unknown',
-    keys: keys.filter(k => k.data?.universe_id === u.id).length,
+    keys: keys.filter(k => k.data?.endpoint_group_id === u.id).length,
   })).filter(x => x.keys > 0);
 
   const toggleKey = (id) => {
@@ -86,7 +86,7 @@ export default function QuantumKeyManagement() {
             filename="quantum-key-management-{date}.pdf"
             sections={[
               { heading: 'KEY INVENTORY OVERVIEW', rows: [['Total Keys', keys.length], ['Active', keys.filter(k => (k.data?.status || k.status) === 'active').length], ['Expiring Soon', keys.filter(k => (k.data?.status || k.status) === 'expiring_soon').length], ['Expired', keys.filter(k => (k.data?.status || k.status) === 'expired').length], ['Revoked', keys.filter(k => (k.data?.status || k.status) === 'revoked').length], ['Current Entropy Setting', `${entropy}%`], ['Entropy Grade', entropy >= 90 ? 'Quantum-Grade' : entropy >= 70 ? 'High' : entropy >= 50 ? 'Standard' : 'Low'], ['Connected Universes', universes.length]] },
-              { heading: 'KEY LIST', body: keys.length > 0 ? keys.slice(0, 20).map(k => `• ${k.data?.key_name || k.key_name} — Universe: ${universeMap[k.data?.universe_id] || k.data?.universe_id?.substring(0, 12) || 'N/A'} — Status: ${k.data?.status || k.status} — Used: ${k.data?.usage_count || k.usage_count || 0}x — Last Rotated: ${k.data?.last_rotated ? new Date(k.data.last_rotated).toLocaleDateString() : 'Never'}`).join('\n') : 'No keys configured.' },
+              { heading: 'KEY LIST', body: keys.length > 0 ? keys.slice(0, 20).map(k => `• ${k.data?.key_name || k.key_name} — Universe: ${universeMap[k.data?.endpoint_group_id] || k.data?.endpoint_group_id?.substring(0, 12) || 'N/A'} — Status: ${k.data?.status || k.status} — Used: ${k.data?.usage_count || k.usage_count || 0}x — Last Rotated: ${k.data?.last_rotated ? new Date(k.data.last_rotated).toLocaleDateString() : 'Never'}`).join('\n') : 'No keys configured.' },
               { heading: 'QUANTUM ENTROPY EXPLAINED', body: 'Security Entropy measures the randomness and unpredictability of generated keys.\n\nEntropy Grades:\n• 90–100% — Quantum-Grade: Uses quantum random number generation, resistant to cryptanalysis\n• 70–89% — High: Uses CSPRNG (Cryptographically Secure Pseudo-Random Number Generator)\n• 50–69% — Standard: Uses OS-level entropy pool\n• 30–49% — Low: NOT recommended for production use\n\nAll production keys should use 90%+ entropy to ensure resistance against both classical and quantum computing attacks.\n\nKey Rotation Policy: Keys are automatically rotated based on universe-specific intervals ranging from minutes to days.' },
             ]}
           />
@@ -177,7 +177,7 @@ export default function QuantumKeyManagement() {
                     </div>
                     <div>
                       <p className="text-white text-sm font-medium">{k.data?.key_name}</p>
-                      <p className="text-slate-400 text-xs">Universe: {universeMap[k.data?.universe_id] || k.data?.universe_id?.substring(0, 12) || 'N/A'}</p>
+                      <p className="text-slate-400 text-xs">Universe: {universeMap[k.data?.endpoint_group_id] || k.data?.endpoint_group_id?.substring(0, 12) || 'N/A'}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">

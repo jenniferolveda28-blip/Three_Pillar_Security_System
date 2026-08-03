@@ -21,7 +21,7 @@ export default function DynamicScrambler() {
 
   const { data: keys = [] } = useQuery({
     queryKey: ['keys'],
-    queryFn: () => base44.entities.UniversalKey.list('-created_date'),
+    queryFn: () => base44.entities.CipherPass.list('-created_date'),
   });
 
   const totalIterations = sessions.reduce((sum, s) => sum + s.iterations, 0);

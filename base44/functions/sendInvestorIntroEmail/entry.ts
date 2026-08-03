@@ -201,7 +201,7 @@ Texas, USA`;
     }
 
     await base44.asServiceRole.entities.SecurityLog.create({
-      event_type: 'universe_accessed',
+      event_type: 'endpoint_group_accessed',
       success: true,
       details: `Introductory email sent to interested investor: ${meeting.investor_name} (${meeting.email})`,
       threat_level: 'none',

@@ -47,14 +47,14 @@ function TTFCard({ name, status, requests, avgLatency, failRate }) {
 }
 
 export default function PredictiveAnalytics() {
-  const { data: requests = [] } = useQuery({ queryKey: ['pred-requests'], queryFn: () => base44.entities.UniversalRequest.list('-created_date', 200), refetchInterval: 30000 });
+  const { data: requests = [] } = useQuery({ queryKey: ['pred-requests'], queryFn: () => base44.entities.ProtectedRequest.list('-created_date', 200), refetchInterval: 30000 });
   const { data: metrics = [] } = useQuery({ queryKey: ['pred-metrics'], queryFn: () => base44.entities.AnalyticsMetric.list('-created_date', 200), refetchInterval: 30000 });
-  const { data: universes = [] } = useQuery({ queryKey: ['pred-universes'], queryFn: () => base44.entities.Universe.list() });
+  const { data: universes = [] } = useQuery({ queryKey: ['pred-universes'], queryFn: () => base44.entities.ProtectedEndpointGroup.list() });
 
   // Per-universe TTF analysis
   const universeStats = universes.map(u => {
     const uReqs = requests.filter(r => r.data?.routed_to === u.data?.name || r.data?.routed_to === u.id);
-    const uMetrics = metrics.filter(m => m.data?.universe_id === u.id);
+    const uMetrics = metrics.filter(m => m.data?.endpoint_group_id === u.id);
     const allReqs = [...uReqs, ...uMetrics];
     const total = allReqs.length;
     const failures = allReqs.filter(r => r.data?.status === 'failed' || r.data?.success === false).length;

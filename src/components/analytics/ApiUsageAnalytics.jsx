@@ -14,7 +14,7 @@ export default function ApiUsageAnalytics() {
 
   const { data: universes = [] } = useQuery({
     queryKey: ['universes'],
-    queryFn: () => base44.entities.Universe.list('-created_date'),
+    queryFn: () => base44.entities.ProtectedEndpointGroup.list('-created_date'),
   });
 
   // Calculate statistics
@@ -28,9 +28,9 @@ export default function ApiUsageAnalytics() {
   // Usage by universe
   const usageByUniverse = universes.map(u => ({
     name: u.name,
-    calls: events.filter(e => e.universe_id === u.id).length,
-    success: events.filter(e => e.universe_id === u.id && e.status === 'success').length,
-    failed: events.filter(e => e.universe_id === u.id && e.status !== 'success').length
+    calls: events.filter(e => e.endpoint_group_id === u.id).length,
+    success: events.filter(e => e.endpoint_group_id === u.id && e.status === 'success').length,
+    failed: events.filter(e => e.endpoint_group_id === u.id && e.status !== 'success').length
   }));
 
   // Hourly usage pattern

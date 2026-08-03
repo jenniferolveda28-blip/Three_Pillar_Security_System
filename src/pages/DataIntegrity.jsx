@@ -16,7 +16,7 @@ export default function DataIntegrity() {
     setLoading(true);
     try {
       const [r, m] = await Promise.all([
-        base44.entities.UniversalRequest.list('-created_date', 50),
+        base44.entities.ProtectedRequest.list('-created_date', 50),
         base44.entities.AnalyticsMetric.list('-created_date', 100),
       ]);
       setRequests(r);

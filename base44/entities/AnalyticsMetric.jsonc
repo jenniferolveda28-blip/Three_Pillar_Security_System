@@ -13,9 +13,9 @@
       ],
       "description": "Type of metric being tracked"
     },
-    "universe_id": {
+    "endpoint_group_id": {
       "type": "string",
-      "description": "Related universe (for API calls)"
+      "description": "Related Protected Endpoint Group (for API calls)"
     },
     "endpoint": {
       "type": "string",

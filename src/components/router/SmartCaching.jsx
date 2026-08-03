@@ -109,7 +109,7 @@ export default function SmartCaching() {
                         <Badge variant="outline">EXPIRED</Badge>
                       )}
                     </div>
-                    <p className="text-sm text-gray-600">Universe: {cache.universe_id}</p>
+                    <p className="text-sm text-gray-600">Universe: {cache.endpoint_group_id}</p>
                   </div>
                   <div className="text-right">
                     <div className="flex items-center gap-1 text-sm text-blue-700 font-semibold">

@@ -9,7 +9,7 @@ import { Progress } from '@/components/ui/progress';
 export default function HardwareDiagnostics() {
   const { data: tokens = [], isLoading } = useQuery({
     queryKey: ['hardwareTokensDiag'],
-    queryFn: () => base44.entities.HardwareToken.list('-created_date', 100),
+    queryFn: () => base44.entities.BioVerifyToken.list('-created_date', 100),
   });
 
   const computeCalibration = (token) => {

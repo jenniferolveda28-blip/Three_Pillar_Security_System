@@ -14,7 +14,7 @@ export default function ConnectivityMap() {
     setLoading(true);
     try {
       const [u, m] = await Promise.all([
-        base44.entities.Universe.list('-created_date', 50),
+        base44.entities.ProtectedEndpointGroup.list('-created_date', 50),
         base44.entities.AnalyticsMetric.list('-created_date', 100),
       ]);
       setUniverses(u);
@@ -26,7 +26,7 @@ export default function ConnectivityMap() {
 
   const avgLatencyByUniverse = {};
   metrics.filter(m => m.metric_type === 'api_call' && m.latency_ms).forEach(m => {
-    const key = m.universe_id || m.endpoint;
+    const key = m.endpoint_group_id || m.endpoint;
     if (!avgLatencyByUniverse[key]) avgLatencyByUniverse[key] = { total: 0, count: 0 };
     avgLatencyByUniverse[key].total += m.latency_ms;
     avgLatencyByUniverse[key].count++;

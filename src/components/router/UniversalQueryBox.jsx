@@ -20,7 +20,7 @@ export default function UniversalQueryBox({ onRequestCreated }) {
     try {
       const response = await base44.functions.invoke('intelligentRouter', { intent });
       
-      const request = await base44.entities.UniversalRequest.create({
+      const request = await base44.entities.ProtectedRequest.create({
         intent,
         routed_to: response.data.universe,
         status: 'success',
@@ -36,7 +36,7 @@ export default function UniversalQueryBox({ onRequestCreated }) {
     } catch (error) {
       toast.error(error.message || 'Failed to process request');
       
-      await base44.entities.UniversalRequest.create({
+      await base44.entities.ProtectedRequest.create({
         intent,
         status: 'failed',
         error_message: error.message

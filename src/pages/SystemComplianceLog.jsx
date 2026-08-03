@@ -64,7 +64,7 @@ export default function SystemComplianceLog() {
                     {log.details && <p className="text-sm text-slate-300 mt-1">{log.details}</p>}
                     <div className="flex items-center gap-3 mt-1 text-xs text-slate-500">
                       {log.ip_address && <span>IP: {log.ip_address}</span>}
-                      {log.universe_id && <span>Universe: {log.universe_id}</span>}
+                      {log.endpoint_group_id && <span>Universe: {log.endpoint_group_id}</span>}
                       {log.dna_hash && <span className="font-mono">DNA: {log.dna_hash.substring(0, 12)}…</span>}
                     </div>
                   </div>

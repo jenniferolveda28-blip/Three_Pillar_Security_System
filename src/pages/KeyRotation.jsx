@@ -25,7 +25,7 @@ function timeUntil(dateStr) {
 export default function KeyRotation() {
   const { data: keys = [], isLoading } = useQuery({
     queryKey: ['universalKeysRotation'],
-    queryFn: () => base44.entities.UniversalKey.list('-created_date', 100),
+    queryFn: () => base44.entities.CipherPass.list('-created_date', 100),
   });
 
   if (isLoading) return <div className="p-8 text-slate-400">Loading key rotation schedule…</div>;
@@ -102,7 +102,7 @@ export default function KeyRotation() {
                         <Key className="w-5 h-5 text-cyan-400" />
                         <div>
                           <h3 className="text-white font-medium">{k.key_name || 'Unnamed Key'}</h3>
-                          <p className="text-xs text-slate-500">Universe: {k.universe_id || '—'}</p>
+                          <p className="text-xs text-slate-500">Universe: {k.endpoint_group_id || '—'}</p>
                         </div>
                       </div>
                       <Badge className={statusColors[k.status] || statusColors.active}>{k.status?.replace(/_/g, ' ')}</Badge>

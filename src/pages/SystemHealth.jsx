@@ -17,7 +17,7 @@ export default function SystemHealth() {
     setLoading(true);
     try {
       const [u, m] = await Promise.all([
-        base44.entities.Universe.list('-created_date', 50),
+        base44.entities.ProtectedEndpointGroup.list('-created_date', 50),
         base44.entities.AnalyticsMetric.list('-created_date', 50),
       ]);
       setUniverses(u);

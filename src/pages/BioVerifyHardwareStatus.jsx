@@ -17,7 +17,7 @@ const batteryBar = (lvl) => lvl > 60 ? 'bg-emerald-500' : lvl > 20 ? 'bg-amber-5
 export default function BioVerifyHardwareStatus() {
   const { data = [], isLoading } = useQuery({
     queryKey: ['bioverifyHardware'],
-    queryFn: () => base44.entities.HardwareToken.list('-created_date', 50)
+    queryFn: () => base44.entities.BioVerifyToken.list('-created_date', 50)
   });
   return (
     <div className="max-w-7xl mx-auto px-6 py-8 space-y-6">

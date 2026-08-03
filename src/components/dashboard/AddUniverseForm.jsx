@@ -42,7 +42,7 @@ export default function AddUniverseForm({ onUniverseAdded, onCancel }) {
     setLoading(true);
 
     try {
-      await base44.entities.Universe.create({
+      await base44.entities.ProtectedEndpointGroup.create({
         ...formData,
         status: 'active',
         last_check: new Date().toISOString(),

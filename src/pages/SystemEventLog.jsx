@@ -12,7 +12,7 @@ const eventTypeIcons = {
   access_denied: Shield,
   dna_verified: Shield,
   suspicious_activity: Shield,
-  universe_accessed: Shield,
+  endpoint_group_accessed: Shield,
 };
 
 const threatColors = {
@@ -51,7 +51,7 @@ export default function SystemEventLog() {
     threat_level: l.threat_level || 'none',
     ip: l.ip_address || '',
     success: l.success !== false,
-    universe: l.universe_id || '',
+    universe: l.endpoint_group_id || '',
   }));
 
   const metricEntries = metrics.map(m => ({
@@ -63,7 +63,7 @@ export default function SystemEventLog() {
     threat_level: m.success === false ? 'medium' : 'none',
     ip: m.ip_address || '',
     success: m.success !== false,
-    universe: m.universe_id || '',
+    universe: m.endpoint_group_id || '',
   }));
 
   const allEntries = [...logEntries, ...metricEntries].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));

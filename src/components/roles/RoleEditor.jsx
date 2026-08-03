@@ -11,7 +11,7 @@ import { toast } from 'sonner';
 
 const permissionGroups = {
   'Dashboards & Views': ['view_dashboard', 'view_analytics', 'view_threats'],
-  'Data Management': ['manage_universes', 'manage_keys', 'view_security_logs'],
+  'Data Management': ['manage_endpoint_groups', 'manage_keys', 'view_security_logs'],
   'User & System Admin': ['manage_users', 'manage_roles', 'emergency_protocols'],
   'Reporting': ['manage_reports']
 };
@@ -20,7 +20,7 @@ const permissionLabels = {
   view_dashboard: 'View Dashboard',
   view_analytics: 'View Analytics',
   view_threats: 'View Threat Analysis',
-  manage_universes: 'Manage API Universes',
+  manage_endpoint_groups: 'Manage API Universes',
   manage_keys: 'Manage API Keys',
   manage_users: 'Manage Users',
   manage_roles: 'Manage Roles & Permissions',

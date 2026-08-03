@@ -40,17 +40,17 @@ export default function Dashboard() {
 
   const { data: universes = [], refetch: refetchUniverses } = useQuery({
     queryKey: ['universes'],
-    queryFn: () => base44.entities.Universe.list('-created_date'),
+    queryFn: () => base44.entities.ProtectedEndpointGroup.list('-created_date'),
   });
 
   const { data: requests = [], refetch: refetchRequests } = useQuery({
     queryKey: ['requests'],
-    queryFn: () => base44.entities.UniversalRequest.list('-created_date', 20),
+    queryFn: () => base44.entities.ProtectedRequest.list('-created_date', 20),
   });
 
   const { data: keys = [] } = useQuery({
     queryKey: ['keys'],
-    queryFn: () => base44.entities.UniversalKey.list('-created_date'),
+    queryFn: () => base44.entities.CipherPass.list('-created_date'),
   });
 
   const { data: securityLogs = [] } = useQuery({
@@ -60,7 +60,7 @@ export default function Dashboard() {
 
   const { data: hardwareTokens = [] } = useQuery({
     queryKey: ['hardwareTokens'],
-    queryFn: () => base44.entities.HardwareToken.filter({ is_active: true }),
+    queryFn: () => base44.entities.BioVerifyToken.filter({ is_active: true }),
   });
 
   return (

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function UniverseStatusWidget() {
   const { data: universes = [], isLoading } = useQuery({
     queryKey: ['universeStatusWidget'],
-    queryFn: () => base44.entities.Universe.list('-created_date', 100),
+    queryFn: () => base44.entities.ProtectedEndpointGroup.list('-created_date', 100),
     refetchInterval: 30000,
   });
 

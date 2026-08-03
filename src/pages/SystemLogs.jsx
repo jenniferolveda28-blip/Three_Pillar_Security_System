@@ -19,7 +19,7 @@ const EVENT_ICONS = {
   access_denied: ShieldX,
   dna_verified: ShieldCheck,
   suspicious_activity: AlertTriangle,
-  universe_accessed: Globe,
+  endpoint_group_accessed: Globe,
 };
 
 const THREAT_COLORS = {
@@ -43,7 +43,7 @@ export default function SystemLogs() {
 
   const { data: requests = [] } = useQuery({
     queryKey: ['universalRequests_audit'],
-    queryFn: () => base44.entities.UniversalRequest.list('-created_date', 200),
+    queryFn: () => base44.entities.ProtectedRequest.list('-created_date', 200),
   });
 
   const { data: metrics = [] } = useQuery({
@@ -57,7 +57,7 @@ export default function SystemLogs() {
         l.event_type?.toLowerCase().includes(search.toLowerCase()) ||
         l.details?.toLowerCase().includes(search.toLowerCase()) ||
         l.ip_address?.toLowerCase().includes(search.toLowerCase()) ||
-        l.universe_id?.toLowerCase().includes(search.toLowerCase());
+        l.endpoint_group_id?.toLowerCase().includes(search.toLowerCase());
       const matchesFilter = logFilter === 'all' ||
         (logFilter === 'success' && l.success) ||
         (logFilter === 'blocked' && !l.success) ||
@@ -209,7 +209,7 @@ export default function SystemLogs() {
                         <span className={`text-xs ${l.success ? 'text-green-400' : 'text-red-400'}`}>{l.success ? 'SUCCESS' : 'BLOCKED'}</span>
                       </div>
                       <p className="text-xs text-slate-400 mt-1">{l.details || 'No details'}</p>
-                      {l.universe_id && <p className="text-xs text-slate-500 mt-0.5">Universe: {l.universe_id}</p>}
+                      {l.endpoint_group_id && <p className="text-xs text-slate-500 mt-0.5">Universe: {l.endpoint_group_id}</p>}
                     </div>
                     <div className="text-right flex-shrink-0">
                       {l.ip_address && <p className="text-xs text-slate-500">{l.ip_address}</p>}

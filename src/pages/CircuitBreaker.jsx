@@ -15,7 +15,7 @@ export default function CircuitBreaker() {
     setLoading(true);
     try {
       const [u, m] = await Promise.all([
-        base44.entities.Universe.list('-created_date', 50),
+        base44.entities.ProtectedEndpointGroup.list('-created_date', 50),
         base44.entities.AnalyticsMetric.list('-created_date', 100),
       ]);
       setUniverses(u);
@@ -32,7 +32,7 @@ export default function CircuitBreaker() {
 
   const errorMetricsByUniverse = {};
   metrics.filter(m => m.metric_type === 'error' || (m.metric_type === 'api_call' && !m.success)).forEach(m => {
-    const key = m.universe_id || m.endpoint || 'unknown';
+    const key = m.endpoint_group_id || m.endpoint || 'unknown';
     errorMetricsByUniverse[key] = (errorMetricsByUniverse[key] || 0) + 1;
   });
 

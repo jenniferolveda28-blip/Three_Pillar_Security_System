@@ -140,7 +140,7 @@ export default function BatchDownloadButton({ universes = [], requests = [], key
         {
           heading: 'ACTIVE API KEYS',
           body: keys.length > 0
-            ? keys.map(k => `• Key: ${k.key_name} — Universe: ${k.universe_id} — Status: ${k.status?.toUpperCase()} — Usage: ${k.usage_count ?? 0} calls`).join('\n')
+            ? keys.map(k => `• Key: ${k.key_name} — Universe: ${k.endpoint_group_id} — Status: ${k.status?.toUpperCase()} — Usage: ${k.usage_count ?? 0} calls`).join('\n')
             : 'No keys configured.'
         },
         {

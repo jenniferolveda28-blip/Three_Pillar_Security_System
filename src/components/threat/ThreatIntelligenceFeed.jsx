@@ -57,7 +57,7 @@ export default function ThreatIntelligenceFeed({ alerts, logs, onEventClick }) {
       // Step 2: Log revocation event
       await base44.entities.SecurityLog.create({
         event_type: 'access_denied',
-        universe_id: event.data?.universe_id || 'system',
+        endpoint_group_id: event.data?.endpoint_group_id || 'system',
         ip_address: event.data?.ip_address || 'unknown',
         success: true,
         threat_level: 'high',

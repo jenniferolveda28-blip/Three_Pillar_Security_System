@@ -34,7 +34,7 @@ export default function LinkedAccountsList({ accounts, onUpdate }) {
     setLoading(true);
 
     try {
-      await base44.entities.LinkedAccount.create({
+      await base44.entities.BioVerifyLinkedAccount.create({
         ...formData,
         link_date: new Date().toISOString(),
         status: 'active'

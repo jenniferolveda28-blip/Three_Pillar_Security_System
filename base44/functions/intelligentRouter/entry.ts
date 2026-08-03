@@ -32,7 +32,7 @@ Deno.serve(async (req) => {
         });
 
         // Get all available universes
-        const universes = await base44.entities.Universe.filter({ status: 'active' });
+        const universes = await base44.entities.ProtectedEndpointGroup.filter({ status: 'active' });
 
         if (universes.length === 0) {
             return Response.json({ 
@@ -101,15 +101,15 @@ Keep it concise and realistic. Return only the data, no explanations.`;
         const latency = Date.now() - startTime;
 
         // Update universe success rate
-        await base44.entities.Universe.update(selectedUniverse.id, {
+        await base44.entities.ProtectedEndpointGroup.update(selectedUniverse.id, {
             success_rate: Math.min(100, (selectedUniverse.success_rate || 100) + 1),
             last_check: new Date().toISOString()
         });
 
         // Log successful universe access
         await base44.entities.SecurityLog.create({
-            event_type: 'universe_accessed',
-            universe_id: selectedUniverse.id,
+            event_type: 'endpoint_group_accessed',
+            endpoint_group_id: selectedUniverse.id,
             fingerprint_hash: fingerprintHash,
             success: true,
             details: `Accessed ${selectedUniverse.name} for: ${intent}`,

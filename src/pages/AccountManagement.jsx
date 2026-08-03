@@ -15,7 +15,7 @@ const statusConfig = {
 export default function AccountManagement() {
   const { data: accounts = [], isLoading } = useQuery({
     queryKey: ['managedAccounts'],
-    queryFn: () => base44.entities.LinkedAccount.list('-created_date', 100),
+    queryFn: () => base44.entities.BioVerifyLinkedAccount.list('-created_date', 100),
   });
 
   if (isLoading) return <div className="p-8 text-slate-400">Loading accounts…</div>;

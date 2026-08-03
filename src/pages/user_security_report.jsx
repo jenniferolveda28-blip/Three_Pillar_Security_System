@@ -45,7 +45,7 @@ export default function UserSecurityReport() {
 
   const devices = useQuery({
     queryKey: ['user-report', 'hardwareTokens'],
-    queryFn: () => base44.entities.HardwareToken.list('-created_date', 20)
+    queryFn: () => base44.entities.BioVerifyToken.list('-created_date', 20)
   });
   const rotations = useQuery({
     queryKey: ['user-report', 'scramblingSessions'],
@@ -53,7 +53,7 @@ export default function UserSecurityReport() {
   });
   const linked = useQuery({
     queryKey: ['user-report', 'linkedAccounts'],
-    queryFn: () => base44.entities.LinkedAccount.list('-created_date', 20)
+    queryFn: () => base44.entities.BioVerifyLinkedAccount.list('-created_date', 20)
   });
   const threats = useQuery({
     queryKey: ['user-report', 'threatCorrelations'],

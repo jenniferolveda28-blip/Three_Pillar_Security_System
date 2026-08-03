@@ -18,12 +18,12 @@ export default function UniversePerformance() {
 
     const { data: universes = [], refetch: refetchUniverses } = useQuery({
         queryKey: ['universes'],
-        queryFn: () => base44.entities.Universe.list('-created_date'),
+        queryFn: () => base44.entities.ProtectedEndpointGroup.list('-created_date'),
     });
 
     const { data: requests = [] } = useQuery({
         queryKey: ['requests'],
-        queryFn: () => base44.entities.UniversalRequest.list('-created_date', 100),
+        queryFn: () => base44.entities.ProtectedRequest.list('-created_date', 100),
     });
 
     const { data: metrics = [] } = useQuery({

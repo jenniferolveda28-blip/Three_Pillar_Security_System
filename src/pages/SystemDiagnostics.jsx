@@ -15,7 +15,7 @@ export default function SystemDiagnostics() {
   // Fetch all entity data for diagnostics
   const { data: universes = [] } = useQuery({
     queryKey: ['diag-universes'],
-    queryFn: () => base44.entities.Universe.list(),
+    queryFn: () => base44.entities.ProtectedEndpointGroup.list(),
   });
 
   const { data: securityLogs = [] } = useQuery({
@@ -60,12 +60,12 @@ export default function SystemDiagnostics() {
 
   const { data: requests = [] } = useQuery({
     queryKey: ['diag-requests'],
-    queryFn: () => base44.entities.UniversalRequest.list(),
+    queryFn: () => base44.entities.ProtectedRequest.list(),
   });
 
   const { data: tokens = [] } = useQuery({
     queryKey: ['diag-tokens'],
-    queryFn: () => base44.entities.HardwareToken.list(),
+    queryFn: () => base44.entities.BioVerifyToken.list(),
   });
 
   // Calculate diagnostics

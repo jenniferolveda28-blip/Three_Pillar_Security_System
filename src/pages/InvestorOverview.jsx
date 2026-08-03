@@ -23,11 +23,11 @@ const SEVERITY_STYLES = {
 export default function InvestorOverview() {
   const { data: universes = [] } = useQuery({
     queryKey: ['io_universes'],
-    queryFn: () => base44.entities.Universe.list('-created_date'),
+    queryFn: () => base44.entities.ProtectedEndpointGroup.list('-created_date'),
   });
   const { data: requests = [] } = useQuery({
     queryKey: ['io_requests'],
-    queryFn: () => base44.entities.UniversalRequest.list('-created_date', 200),
+    queryFn: () => base44.entities.ProtectedRequest.list('-created_date', 200),
   });
   const { data: alerts = [] } = useQuery({
     queryKey: ['io_alerts'],

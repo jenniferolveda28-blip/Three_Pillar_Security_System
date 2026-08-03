@@ -19,12 +19,12 @@ export default function Authenticator() {
 
   const { data: tokens = [], refetch: refetchTokens } = useQuery({
     queryKey: ['tokenRegistrations'],
-    queryFn: () => base44.entities.TokenRegistration.list('-created_date'),
+    queryFn: () => base44.entities.BioVerifyRegistration.list('-created_date'),
   });
 
   const { data: linkedAccounts = [], refetch: refetchAccounts } = useQuery({
     queryKey: ['linkedAccounts'],
-    queryFn: () => base44.entities.LinkedAccount.list('-created_date'),
+    queryFn: () => base44.entities.BioVerifyLinkedAccount.list('-created_date'),
   });
 
   const { data: subscriptions = [], refetch: refetchSubscriptions } = useQuery({

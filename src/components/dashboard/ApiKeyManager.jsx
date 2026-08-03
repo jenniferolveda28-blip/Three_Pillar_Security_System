@@ -21,8 +21,8 @@ export default function ApiKeyManager({ universe, onKeysUpdated }) {
 
     setLoading(true);
     try {
-      await base44.entities.UniversalKey.create({
-        universe_id: universe.id,
+      await base44.entities.CipherPass.create({
+        endpoint_group_id: universe.id,
         key_name: `${universe.name} Key`,
         encrypted_value: btoa(newKey), // Simple encoding for demo
         rotation_interval: 86400 * 30, // 30 days

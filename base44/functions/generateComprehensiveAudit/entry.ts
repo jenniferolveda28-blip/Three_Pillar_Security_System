@@ -43,13 +43,13 @@ Deno.serve(async (req) => {
       base44.asServiceRole.entities.AnalyticsMetric.filter({}),
       base44.asServiceRole.entities.IncidentRule.filter({}),
       base44.asServiceRole.entities.ScramblingSession.filter({}),
-      base44.asServiceRole.entities.HardwareToken.filter({}),
-      base44.asServiceRole.entities.Universe.filter({}),
+      base44.asServiceRole.entities.BioVerifyToken.filter({}),
+      base44.asServiceRole.entities.ProtectedEndpointGroup.filter({}),
       base44.asServiceRole.entities.AuditFeedback.filter({}),
       base44.asServiceRole.entities.SecurityReport.filter({}),
       base44.asServiceRole.entities.WebhookEndpoint.filter({}),
       base44.asServiceRole.entities.Subscription.filter({}),
-      base44.asServiceRole.entities.TokenRegistration.filter({}),
+      base44.asServiceRole.entities.BioVerifyRegistration.filter({}),
     ]);
 
     // Filter to recent

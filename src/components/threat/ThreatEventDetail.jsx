@@ -31,7 +31,7 @@ export default function ThreatEventDetail({ event, onClose, alerts, logs }) {
       )).slice(0, 5)
     : logs.filter(l => l.id !== event.id && (
         (l.data?.ip_address || l.ip_address) === e.ip_address ||
-        (l.data?.universe_id || l.universe_id) === e.universe_id
+        (l.data?.endpoint_group_id || l.endpoint_group_id) === e.endpoint_group_id
       )).slice(0, 5);
 
   return (
@@ -84,13 +84,13 @@ export default function ThreatEventDetail({ event, onClose, alerts, logs }) {
             </div>
           )}
 
-          {e.universe_id && (
+          {e.endpoint_group_id && (
             <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
               <div className="flex items-center gap-2 text-slate-400 mb-1">
                 <Shield className="w-4 h-4" />
                 <span className="text-xs font-semibold">Universe</span>
               </div>
-              <p className="text-slate-200">{e.universe_id}</p>
+              <p className="text-slate-200">{e.endpoint_group_id}</p>
             </div>
           )}
 

@@ -24,7 +24,7 @@ export default function Analytics() {
 
   const { data: universes = [] } = useQuery({
     queryKey: ['universes'],
-    queryFn: () => base44.entities.Universe.list('-created_date'),
+    queryFn: () => base44.entities.ProtectedEndpointGroup.list('-created_date'),
   });
 
   const apiMetrics = metrics.filter(m => m.metric_type === 'api_call');

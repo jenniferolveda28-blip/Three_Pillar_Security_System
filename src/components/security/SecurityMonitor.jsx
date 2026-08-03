@@ -20,7 +20,7 @@ export default function SecurityMonitor({ logs }) {
     access_denied: XCircle,
     fingerprint_verified: Shield,
     suspicious_activity: AlertTriangle,
-    universe_accessed: Activity
+    endpoint_group_accessed: Activity
   };
 
   const recentLogs = logs.slice(0, 10);

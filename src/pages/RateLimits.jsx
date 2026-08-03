@@ -16,7 +16,7 @@ export default function RateLimits() {
     try {
       const [s, u] = await Promise.all([
         base44.entities.Subscription.list('-created_date', 50),
-        base44.entities.Universe.list('-created_date', 50),
+        base44.entities.ProtectedEndpointGroup.list('-created_date', 50),
       ]);
       setSubs(s);
       setUniverses(u);

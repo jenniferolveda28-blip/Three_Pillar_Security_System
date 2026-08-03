@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 
 const permLabels = {
   view_dashboard: 'Dashboard', view_analytics: 'Analytics', view_threats: 'Threats',
-  manage_universes: 'Universes', manage_keys: 'Keys', manage_users: 'Users',
+  manage_endpoint_groups: 'Universes', manage_keys: 'Keys', manage_users: 'Users',
   manage_roles: 'Roles', view_security_logs: 'Logs', manage_reports: 'Reports',
   emergency_protocols: 'Emergency',
 };

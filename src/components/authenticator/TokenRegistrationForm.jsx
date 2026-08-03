@@ -31,7 +31,7 @@ export default function TokenRegistrationForm({ onRegistered, tokens }) {
         .map(b => b.toString(16).padStart(2, '0'))
         .join('');
       
-      await base44.entities.TokenRegistration.create({
+      await base44.entities.BioVerifyRegistration.create({
         token_serial: formData.token_serial,
         registered_by_email: formData.registered_by_email || user.email,
         registration_status: 'dna_verified',

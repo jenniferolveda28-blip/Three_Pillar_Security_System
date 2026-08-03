@@ -80,7 +80,7 @@ export default function SelfCertificationForm() {
       // Generate a simulated DNA hash
       const dnaHash = 'BVFY-' + Math.random().toString(36).substring(2, 18).toUpperCase();
 
-      await base44.entities.TokenRegistration.create({
+      await base44.entities.BioVerifyRegistration.create({
         token_serial: formData.token_serial,
         registered_by_email: formData.email,
         registration_status: 'dna_verified',

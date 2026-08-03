@@ -28,7 +28,7 @@ export default function AnomalyInvestigation() {
 
   const { data: tokens = [] } = useQuery({
     queryKey: ['tokens-inv'],
-    queryFn: () => base44.entities.HardwareToken.list('-created_date', 20),
+    queryFn: () => base44.entities.BioVerifyToken.list('-created_date', 20),
     enabled: !!selected,
   });
 

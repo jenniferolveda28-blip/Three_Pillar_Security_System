@@ -24,7 +24,7 @@ export default function HardwareTokenManager({ tokens, onUpdate }) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     const code = Array.from({ length: 6 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
     
-    await base44.entities.HardwareToken.update(token.id, {
+    await base44.entities.BioVerifyToken.update(token.id, {
       current_code: code,
       last_code_generated: new Date().toISOString()
     });
@@ -48,7 +48,7 @@ export default function HardwareTokenManager({ tokens, onUpdate }) {
     setVerifying(true);
     try {
       if (verificationCode.toUpperCase() === activeToken.current_code) {
-        await base44.entities.HardwareToken.update(activeToken.id, {
+        await base44.entities.BioVerifyToken.update(activeToken.id, {
           last_used: new Date().toISOString(),
           failed_attempts: 0
         });
@@ -64,7 +64,7 @@ export default function HardwareTokenManager({ tokens, onUpdate }) {
         setVerificationCode('');
       } else {
         const newAttempts = (activeToken.failed_attempts || 0) + 1;
-        await base44.entities.HardwareToken.update(activeToken.id, {
+        await base44.entities.BioVerifyToken.update(activeToken.id, {
           failed_attempts: newAttempts,
           is_active: newAttempts < 3
         });
@@ -89,7 +89,7 @@ export default function HardwareTokenManager({ tokens, onUpdate }) {
   };
 
   const handleUnlock = async (token) => {
-    await base44.entities.HardwareToken.update(token.id, {
+    await base44.entities.BioVerifyToken.update(token.id, {
       failed_attempts: 0,
       is_active: true
     });

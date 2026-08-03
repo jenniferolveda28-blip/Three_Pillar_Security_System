@@ -15,7 +15,7 @@ export default function UniverseHealthMonitor({ universes, onUpdate }) {
 
   const checkHealth = async (universe) => {
     try {
-      await base44.entities.Universe.update(universe.id, {
+      await base44.entities.ProtectedEndpointGroup.update(universe.id, {
         last_check: new Date().toISOString(),
         status: Math.random() > 0.1 ? 'active' : 'degraded'
       });

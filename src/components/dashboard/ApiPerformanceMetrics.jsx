@@ -7,7 +7,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 export default function ApiPerformanceMetrics({ universes, metrics, detailed = false }) {
     const performanceData = useMemo(() => {
         return universes.map(universe => {
-            const universeMetrics = metrics.filter(m => m.universe_id === universe.id);
+            const universeMetrics = metrics.filter(m => m.endpoint_group_id === universe.id);
             
             const avgLatency = universeMetrics.length > 0
                 ? universeMetrics.reduce((sum, m) => sum + (m.latency_ms || 0), 0) / universeMetrics.length

@@ -51,7 +51,7 @@ Deno.serve(async (req) => {
     const created = await res.json();
 
     await base44.asServiceRole.entities.SecurityLog.create({
-      event_type: 'universe_accessed',
+      event_type: 'endpoint_group_accessed',
       success: true,
       details: `Follow-up task created for investor: ${meeting.investor_name}`,
       threat_level: 'none',

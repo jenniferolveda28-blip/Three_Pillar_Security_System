@@ -33,7 +33,7 @@ export default function EmergencyRecovery({ tokenSerial }) {
     }
 
     try {
-      await base44.entities.LinkedAccount.create({
+      await base44.entities.BioVerifyLinkedAccount.create({
         token_serial: tokenSerial,
         account_provider: 'Recovery Contact',
         account_identifier: recoveryEmail || recoveryPhone,

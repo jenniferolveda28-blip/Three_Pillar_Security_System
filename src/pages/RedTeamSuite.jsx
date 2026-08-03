@@ -32,7 +32,7 @@ export default function RedTeamSuite() {
   const [log, setLog] = useState([]);
   const timerRef = useRef(null);
 
-  const { data: universes = [] } = useQuery({ queryKey: ['rt-universes'], queryFn: () => base44.entities.Universe.list() });
+  const { data: universes = [] } = useQuery({ queryKey: ['rt-universes'], queryFn: () => base44.entities.ProtectedEndpointGroup.list() });
   const [targetUniverse, setTargetUniverse] = useState('all');
 
   const startAttack = (vector) => {

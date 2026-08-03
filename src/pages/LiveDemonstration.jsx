@@ -58,13 +58,13 @@ export default function LiveDemonstration() {
 
   const { data: tokens = [] } = useQuery({
     queryKey: ['demo-tokens'],
-    queryFn: () => base44.entities.HardwareToken.list('-created_date', 10),
+    queryFn: () => base44.entities.BioVerifyToken.list('-created_date', 10),
     refetchInterval: 2000
   });
 
   const { data: registrations = [] } = useQuery({
     queryKey: ['demo-registrations'],
-    queryFn: () => base44.entities.TokenRegistration.list('-created_date', 10),
+    queryFn: () => base44.entities.BioVerifyRegistration.list('-created_date', 10),
     refetchInterval: 2000
   });
 

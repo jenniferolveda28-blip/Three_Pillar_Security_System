@@ -6,7 +6,7 @@ import { Database } from 'lucide-react';
 export default function ResourceUtilizationChart({ universes, metrics }) {
     const chartData = useMemo(() => {
         return universes.map(universe => {
-            const universeMetrics = metrics.filter(m => m.universe_id === universe.id);
+            const universeMetrics = metrics.filter(m => m.endpoint_group_id === universe.id);
             
             const requests = universeMetrics.length;
             const avgLatency = universeMetrics.length > 0

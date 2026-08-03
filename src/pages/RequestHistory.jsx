@@ -65,7 +65,7 @@ export default function RequestHistory() {
 
   const { data: requests = [], isLoading } = useQuery({
     queryKey: ['universalRequests'],
-    queryFn: () => base44.entities.UniversalRequest.list('-created_date', 200),
+    queryFn: () => base44.entities.ProtectedRequest.list('-created_date', 200),
   });
 
   const filtered = requests.filter(r => {

@@ -29,20 +29,20 @@ export default function PerformanceMonitor({ metrics = [], universes = [], timeR
   const universePerformance = useMemo(() => {
     const grouped = {};
     metrics.forEach(m => {
-      if (m.universe_id && m.latency_ms) {
-        if (!grouped[m.universe_id]) {
-          const universe = universes.find(u => u.id === m.universe_id);
-          grouped[m.universe_id] = { 
+      if (m.endpoint_group_id && m.latency_ms) {
+        if (!grouped[m.endpoint_group_id]) {
+          const universe = universes.find(u => u.id === m.endpoint_group_id);
+          grouped[m.endpoint_group_id] = { 
             name: universe?.name || 'Unknown', 
             total: 0,
             count: 0,
             errors: 0
           };
         }
-        grouped[m.universe_id].total += m.latency_ms;
-        grouped[m.universe_id].count++;
+        grouped[m.endpoint_group_id].total += m.latency_ms;
+        grouped[m.endpoint_group_id].count++;
         if (!m.success) {
-          grouped[m.universe_id].errors++;
+          grouped[m.endpoint_group_id].errors++;
         }
       }
     });
