@@ -74,6 +74,8 @@ import BioVerifyHandbook from './pages/BioVerifyHandbook';
 import SelfCertificationForm from './pages/SelfCertificationForm';
 import ExposureShield from './pages/ExposureShield';
 import WeeklyExposureSummary from './pages/WeeklyExposureSummary';
+import OwnersSecurityReport from './pages/owners_security_report';
+import UserSecurityReport from './pages/user_security_report';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -187,6 +189,8 @@ const AuthenticatedApp = () => {
         <Route path="/bioverify-handbook" element={<LayoutWrapper currentPageName="bioverify-handbook"><BioVerifyHandbook /></LayoutWrapper>} />
         <Route path="/self-certification" element={<LayoutWrapper currentPageName="self-certification"><SelfCertificationForm /></LayoutWrapper>} />
         <Route path="/weekly-exposure-summary" element={<LayoutWrapper currentPageName="weekly-exposure-summary"><WeeklyExposureSummary /></LayoutWrapper>} />
+        <Route path="/owners-security-report" element={<LayoutWrapper currentPageName="owners-security-report"><OwnersSecurityReport /></LayoutWrapper>} />
+        <Route path="/user-security-report" element={<LayoutWrapper currentPageName="user-security-report"><UserSecurityReport /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />
