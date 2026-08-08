@@ -58,6 +58,7 @@ export default function AuditorAccess() {
     try {
       await base44.functions.invoke('submitAuditorQuestionnaire', {
         pass_id: passId,
+        passcode: passcode,
         answers: answers
       });
       setStep('done');

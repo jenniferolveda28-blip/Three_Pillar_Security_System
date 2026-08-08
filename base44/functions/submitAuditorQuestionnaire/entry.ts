@@ -8,11 +8,11 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
     const body = await req.json();
-    const { pass_id, answers } = body;
+    const { pass_id, passcode, answers } = body;
 
-    if (!pass_id || !answers) {
+    if (!pass_id || !passcode || !answers) {
       return Response.json(
-        { error: 'Pass ID and answers are required.' },
+        { error: 'Pass ID, passcode, and answers are required.' },
         { status: 400 }
       );
     }
@@ -20,6 +20,11 @@ Deno.serve(async (req) => {
     const pass = await base44.asServiceRole.entities.AuditorAccessPass.get(pass_id);
     if (!pass) {
       return Response.json({ error: 'Access pass not found.' }, { status: 404 });
+    }
+
+    // Prevent IDOR: only the auditor who knows this pass's passcode may submit
+    if (String(pass.passcode || '').trim() !== String(passcode).trim()) {
+      return Response.json({ error: 'Passcode does not match this access pass.' }, { status: 403 });
     }
 
     const now = new Date().toISOString();
