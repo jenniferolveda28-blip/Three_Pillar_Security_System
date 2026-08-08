@@ -88,6 +88,9 @@ import AuditorPortal from './pages/AuditorPortal';
 import TokenKeyRotation from './pages/TokenKeyRotation';
 import IdentityDashboard from './pages/IdentityDashboard';
 import AuditorComplianceLog from './pages/AuditorComplianceLog';
+import PendingRemovalDashboard from './pages/PendingRemovalDashboard';
+import AuditorCertificatePortal from './pages/AuditorCertificatePortal';
+import MovingTargetDefenseHistory from './pages/MovingTargetDefenseHistory';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -215,6 +218,9 @@ const AuthenticatedApp = () => {
         <Route path="/token-key-rotation" element={<LayoutWrapper currentPageName="token-key-rotation"><TokenKeyRotation /></LayoutWrapper>} />
         <Route path="/identity-dashboard" element={<LayoutWrapper currentPageName="identity-dashboard"><IdentityDashboard /></LayoutWrapper>} />
         <Route path="/auditor-compliance-log" element={<LayoutWrapper currentPageName="auditor-compliance-log"><AuditorComplianceLog /></LayoutWrapper>} />
+        <Route path="/pending-removal-dashboard" element={<LayoutWrapper currentPageName="pending-removal-dashboard"><PendingRemovalDashboard /></LayoutWrapper>} />
+        <Route path="/auditor-certificate-portal" element={<LayoutWrapper currentPageName="auditor-certificate-portal"><AuditorCertificatePortal /></LayoutWrapper>} />
+        <Route path="/moving-target-defense-history" element={<LayoutWrapper currentPageName="moving-target-defense-history"><MovingTargetDefenseHistory /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />
