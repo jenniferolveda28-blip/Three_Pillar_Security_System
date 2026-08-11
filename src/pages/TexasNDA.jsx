@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { FileText, Printer, Download, Shield } from 'lucide-react';
+import { FileText, Download, Shield } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import { format } from 'date-fns';
 import { toast } from 'sonner';

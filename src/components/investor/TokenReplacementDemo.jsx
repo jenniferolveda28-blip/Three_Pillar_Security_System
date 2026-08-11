@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { Play, Pause, RotateCcw, Package, DollarSign, Clock, Zap, AlertTriangle, CheckCircle2, XCircle, Dna, Search } from 'lucide-react';
+import { Play, Pause, RotateCcw, Package, DollarSign, Clock, Zap, AlertTriangle, CheckCircle2, Dna, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 

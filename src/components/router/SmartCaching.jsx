@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from "@/api/base44Client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Database, Zap, Clock, CheckCircle, TrendingUp } from "lucide-react";
+import { Database, Zap, Clock, TrendingUp } from "lucide-react";
 
 export default function SmartCaching() {
   const { data: cacheEntries = [] } = useQuery({

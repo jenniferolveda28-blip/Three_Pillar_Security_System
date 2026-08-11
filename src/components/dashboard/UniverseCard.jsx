@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Globe, Zap, AlertCircle, CheckCircle2, TrendingUp } from "lucide-react";
+import { Globe, Zap, AlertCircle, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function UniverseCard({ universe }) {

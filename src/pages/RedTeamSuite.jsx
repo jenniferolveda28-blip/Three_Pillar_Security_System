@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Shield, Target, Zap, Lock, AlertTriangle, CheckCircle, Play, Square, RefreshCw } from 'lucide-react';
+import { Target, AlertTriangle, CheckCircle, Play, Square, RefreshCw } from 'lucide-react';
 import PrintReportButton from '../components/PrintReportButton';
 
 const ATTACK_VECTORS = [

@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Users, TrendingUp, Star, Calendar, Activity, ArrowRight, Mail, Phone, FileText } from 'lucide-react';
+import { Users, TrendingUp, Calendar, Activity, Mail } from 'lucide-react';
 import { format } from 'date-fns';
 import ExportAllPagesButton from '@/components/reports/ExportAllPagesButton';
 

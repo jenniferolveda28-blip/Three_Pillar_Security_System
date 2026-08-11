@@ -1,6 +1,6 @@
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
-import { Star, Calendar, Building2 } from 'lucide-react';
+import { Calendar, Building2 } from 'lucide-react';
 
 const COLUMNS = [
   { id: 'Contacted', color: 'border-blue-500/50', headerBg: 'bg-blue-900/30', dot: 'bg-blue-400' },

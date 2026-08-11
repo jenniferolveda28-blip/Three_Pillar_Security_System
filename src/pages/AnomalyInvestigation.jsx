@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { AlertTriangle, Shield, CheckCircle, XCircle, User, Clock, Monitor, Activity } from 'lucide-react';
+import { AlertTriangle, Shield, CheckCircle, XCircle, Monitor, Activity } from 'lucide-react';
 import PrintReportButton from '../components/PrintReportButton';
 import { format } from 'date-fns';
 

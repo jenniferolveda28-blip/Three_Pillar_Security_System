@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Key, Plus, Eye, EyeOff, Trash2, RefreshCw } from "lucide-react";
+import { Key, Plus, Eye, EyeOff, RefreshCw } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { toast } from "sonner";
 

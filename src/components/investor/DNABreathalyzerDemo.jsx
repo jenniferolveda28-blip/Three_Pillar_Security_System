@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Slider } from '@/components/ui/slider';
 import { Play, Pause, RotateCcw, Dna, Activity, Lock, Shield, CheckCircle2, XCircle, ArrowRight, Wind } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';

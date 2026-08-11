@@ -2,9 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { TrendingUp, TrendingDown, AlertTriangle, Clock, Activity, Zap } from 'lucide-react';
+import { TrendingUp, Clock, Activity, Zap } from 'lucide-react';
 import PrintReportButton from '../components/PrintReportButton';
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, AreaChart, Area, CartesianGrid } from 'recharts';
+import { XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, AreaChart, Area, CartesianGrid } from 'recharts';
 import { format, subHours } from 'date-fns';
 
 function computeTTF(requests) {

@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
-  Shield, AlertTriangle, Lock, CheckCircle2, XCircle, Activity, Dna,
-  CreditCard, Zap, Eye, Fingerprint, AlertCircle, Play, Pause, RotateCcw,
-  Database, Server, Clock, DollarSign, Package, ArrowRight, Key
+  Shield, AlertTriangle, Lock, CheckCircle2, XCircle, Dna, Zap, Eye, Play,
+  Database, Clock, DollarSign, Package, ArrowRight, Key
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export default function InvestorDemo() {
   const [activeDemo, setActiveDemo] = useState('dna-storage');

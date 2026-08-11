@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import {
-  ShieldCheck, ShieldAlert, Eye, Trash2, RefreshCw, ExternalLink,
+  ShieldCheck, ShieldAlert, Eye, RefreshCw, ExternalLink,
   Camera, AlertTriangle, Search, CheckCircle2, Clock, Activity,
-  Globe, UserX, Fingerprint, TrendingDown
+  Globe, UserX, TrendingDown
 } from "lucide-react";
 import { useToast } from '@/components/ui/use-toast';
 

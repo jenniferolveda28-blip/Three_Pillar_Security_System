@@ -4,9 +4,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
-  Dna, Shield, Zap, Mail, ExternalLink, AlertTriangle, CheckCircle2,
-  Microscope, FlaskConical, Lightbulb, TrendingUp, Users, Lock,
-  ArrowRight, Star, Globe, Phone, Cpu, Eye, BrainCircuit
+  Dna, Shield, Zap, Mail, AlertTriangle, CheckCircle2,
+  Microscope, FlaskConical, Lightbulb, TrendingUp, Users,
+  ArrowRight, Star, Cpu, Eye, BrainCircuit
 } from 'lucide-react';
 import PrintReportButton from '@/components/PrintReportButton';
 import ContactLeadForm from '@/components/investor/ContactLeadForm';

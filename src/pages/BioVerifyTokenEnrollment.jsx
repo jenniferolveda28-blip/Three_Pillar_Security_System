@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Fingerprint, Dna, ScanLine, CheckCircle2, Cpu, Activity } from 'lucide-react';
+import { Fingerprint, Dna, ScanLine, Cpu, Activity } from 'lucide-react';
 
 const steps = [
   { icon: Cpu, title: 'Unbox & Power On', desc: 'Power on the BioVerify token and confirm the OLED display activates with the device serial number visible.' },

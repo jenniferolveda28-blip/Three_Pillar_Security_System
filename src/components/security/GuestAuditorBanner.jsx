@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGuestAuditor } from '@/lib/useGuestAuditor';
-import { ShieldAlert, HardDrive, Lock } from 'lucide-react';
+import { HardDrive } from 'lucide-react';
 
 export default function GuestAuditorBanner() {
   const { isGuestAuditor } = useGuestAuditor();

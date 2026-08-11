@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Activity, Database, Shield, AlertTriangle, CheckCircle2, XCircle, ArrowLeft, Download } from 'lucide-react';
+import { Activity, Database, AlertTriangle, CheckCircle2, XCircle, ArrowLeft, Download } from 'lucide-react';
 import PrintReportButton from '../components/PrintReportButton';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';

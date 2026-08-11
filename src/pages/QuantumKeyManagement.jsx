@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Key, RefreshCw, Shield, AlertTriangle, CheckCircle, Layers } from 'lucide-react';
+import { Key, RefreshCw, CheckCircle, Layers } from 'lucide-react';
 import PrintReportButton from '../components/PrintReportButton';
 import { format } from 'date-fns';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis } from 'recharts';

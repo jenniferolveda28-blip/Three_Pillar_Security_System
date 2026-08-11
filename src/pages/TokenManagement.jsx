@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { KeyRound, Loader2, RefreshCw, Fingerprint, Ban, RotateCw, MoreVertical, ShieldOff, CheckCircle2 } from 'lucide-react';
+import { KeyRound, Loader2, RefreshCw, Fingerprint, Ban, RotateCw, MoreVertical, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
 

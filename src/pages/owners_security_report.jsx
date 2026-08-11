@@ -5,7 +5,7 @@ import RoleGuard from '@/components/RoleGuard';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
-  Users, ShieldCheck, AlertTriangle, Webhook, BarChart3,
+  Users, AlertTriangle, Webhook, BarChart3,
   MessageSquareWarning, Gavel, Activity, Scale
 } from 'lucide-react';
 

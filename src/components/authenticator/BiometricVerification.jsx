@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { Fingerprint, Loader2, CheckCircle2, XCircle, Droplet, Wind, Zap, ShieldAlert } from "lucide-react";
+import { Fingerprint, Loader2, CheckCircle2, XCircle, Droplet, Wind, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { useAuditMode } from '@/lib/AuditModeContext';
 

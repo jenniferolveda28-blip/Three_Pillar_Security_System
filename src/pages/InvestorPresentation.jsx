@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { Shield, Dna, Layers, RefreshCw, BookOpen } from 'lucide-react';
 import IllegalActivityDetectionDemo from '@/components/investor/IllegalActivityDetectionDemo';
 import DNABreathalyzerDemo from '@/components/investor/DNABreathalyzerDemo';

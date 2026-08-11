@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { FileText, Plus, ArrowLeft, Calendar, Download, Mail } from 'lucide-react';
+import { FileText, Plus, ArrowLeft, Calendar, Download } from 'lucide-react';
 import PrintReportButton from '../components/PrintReportButton';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import ReportConfigForm from '../components/reports/ReportConfigForm';
 import ReportList from '../components/reports/ReportList';
 import ExecutiveReportGenerator from '../components/reports/ExecutiveReportGenerator';

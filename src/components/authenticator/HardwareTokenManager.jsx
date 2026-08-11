@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { base44 } from "@/api/base44Client";
 import { toast } from "sonner";
-import { Shield, Loader2, Lock, Unlock, RefreshCw, AlertTriangle } from "lucide-react";
+import { Shield, Loader2, Lock, Unlock, AlertTriangle } from "lucide-react";
 
 export default function HardwareTokenManager({ tokens, onUpdate }) {
   const [activeToken, setActiveToken] = useState(null);

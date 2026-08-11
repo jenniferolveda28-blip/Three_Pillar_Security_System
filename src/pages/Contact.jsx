@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Copy, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import ContactLeadForm from '@/components/investor/ContactLeadForm';
 

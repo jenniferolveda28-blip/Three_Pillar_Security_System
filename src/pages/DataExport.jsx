@@ -4,7 +4,6 @@ import { base44 } from '@/api/base44Client';
 import { FileDown, Download, Loader2, Database } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 
 const exportOptions = [
   { key: 'SecurityLog', label: 'Security Logs', entity: 'SecurityLog', icon: '🛡️' },

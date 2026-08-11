@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Shield, AlertTriangle, Zap, Clock, CheckCircle, XCircle, Activity, Filter, ChevronDown } from 'lucide-react';
+import { Shield, AlertTriangle, Zap, Clock, CheckCircle, XCircle, Activity, ChevronDown } from 'lucide-react';
 import PrintReportButton from '../components/PrintReportButton';
 import { format, formatDistanceToNow } from 'date-fns';
 

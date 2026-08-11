@@ -3,8 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
-  Cpu, Fingerprint, Shield, Dna, Wind, Lock, Zap, Activity,
-  CheckCircle2, KeyRound, FileBadge, ScanLine, BookOpen,
+  Cpu, Fingerprint, Shield, Activity, ScanLine, BookOpen,
   Eye, ArrowRight, Layers
 } from "lucide-react";
 
