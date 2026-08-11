@@ -91,6 +91,18 @@ import AuditorComplianceLog from './pages/AuditorComplianceLog';
 import PendingRemovalDashboard from './pages/PendingRemovalDashboard';
 import AuditorCertificatePortal from './pages/AuditorCertificatePortal';
 import MovingTargetDefenseHistory from './pages/MovingTargetDefenseHistory';
+import DataBrokerRegistry from './pages/DataBrokerRegistry';
+import AuditComplianceDashboard from './pages/AuditComplianceDashboard';
+import BioVerifyTokenEnrollment from './pages/BioVerifyTokenEnrollment';
+import SecurityLogMonitor from './pages/SecurityLogMonitor';
+import InvestorReportingHub from './pages/InvestorReportingHub';
+import DataRemovalLogs from './pages/DataRemovalLogs';
+import CipherPassInventory from './pages/CipherPassInventory';
+import AuditorAccessLogs from './pages/AuditorAccessLogs';
+import ThreatCorrelationMap from './pages/ThreatCorrelationMap';
+import ConfigurationSandbox from './pages/ConfigurationSandbox';
+import DataRemovalCalendar from './pages/DataRemovalCalendar';
+import UniverseConnectionManager from './pages/UniverseConnectionManager';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -221,6 +233,18 @@ const AuthenticatedApp = () => {
         <Route path="/pending-removal-dashboard" element={<LayoutWrapper currentPageName="pending-removal-dashboard"><PendingRemovalDashboard /></LayoutWrapper>} />
         <Route path="/auditor-certificate-portal" element={<LayoutWrapper currentPageName="auditor-certificate-portal"><AuditorCertificatePortal /></LayoutWrapper>} />
         <Route path="/moving-target-defense-history" element={<LayoutWrapper currentPageName="moving-target-defense-history"><MovingTargetDefenseHistory /></LayoutWrapper>} />
+        <Route path="/data-broker-registry" element={<LayoutWrapper currentPageName="data-broker-registry"><DataBrokerRegistry /></LayoutWrapper>} />
+        <Route path="/audit-compliance" element={<LayoutWrapper currentPageName="audit-compliance"><AuditComplianceDashboard /></LayoutWrapper>} />
+        <Route path="/token-enrollment" element={<LayoutWrapper currentPageName="token-enrollment"><BioVerifyTokenEnrollment /></LayoutWrapper>} />
+        <Route path="/security-log-monitor" element={<LayoutWrapper currentPageName="security-log-monitor"><SecurityLogMonitor /></LayoutWrapper>} />
+        <Route path="/investor-reporting" element={<LayoutWrapper currentPageName="investor-reporting"><InvestorReportingHub /></LayoutWrapper>} />
+        <Route path="/data-removal-logs" element={<LayoutWrapper currentPageName="data-removal-logs"><DataRemovalLogs /></LayoutWrapper>} />
+        <Route path="/cipherpass-inventory" element={<LayoutWrapper currentPageName="cipherpass-inventory"><CipherPassInventory /></LayoutWrapper>} />
+        <Route path="/auditor-access-logs" element={<LayoutWrapper currentPageName="auditor-access-logs"><AuditorAccessLogs /></LayoutWrapper>} />
+        <Route path="/threat-correlation" element={<LayoutWrapper currentPageName="threat-correlation"><ThreatCorrelationMap /></LayoutWrapper>} />
+        <Route path="/configuration-sandbox" element={<LayoutWrapper currentPageName="configuration-sandbox"><ConfigurationSandbox /></LayoutWrapper>} />
+        <Route path="/removal-calendar" element={<LayoutWrapper currentPageName="removal-calendar"><DataRemovalCalendar /></LayoutWrapper>} />
+        <Route path="/universe-manager" element={<LayoutWrapper currentPageName="universe-manager"><UniverseConnectionManager /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />
