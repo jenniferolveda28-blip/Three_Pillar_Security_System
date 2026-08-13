@@ -1,5 +1,6 @@
 {
-  "name": "Forged API (Smart Router)",
+  "name": "Three Pillar Plus Security",
+  "description": "Three Pillar Plus Security platform for security monitoring, threat analysis, protected API routing, exposure management, auditor workflows, and investor demonstration capabilities.",
   "site": {
     "installCommand": "npm install",
     "buildCommand": "npm run build",
