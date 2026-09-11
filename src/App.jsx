@@ -103,6 +103,7 @@ import ThreatCorrelationMap from './pages/ThreatCorrelationMap';
 import ConfigurationSandbox from './pages/ConfigurationSandbox';
 import DataRemovalCalendar from './pages/DataRemovalCalendar';
 import UniverseConnectionManager from './pages/UniverseConnectionManager';
+import SharedLegalCompliance from './pages/shared_LegalCompliance';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -245,6 +246,7 @@ const AuthenticatedApp = () => {
         <Route path="/configuration-sandbox" element={<LayoutWrapper currentPageName="configuration-sandbox"><ConfigurationSandbox /></LayoutWrapper>} />
         <Route path="/removal-calendar" element={<LayoutWrapper currentPageName="removal-calendar"><DataRemovalCalendar /></LayoutWrapper>} />
         <Route path="/universe-manager" element={<LayoutWrapper currentPageName="universe-manager"><UniverseConnectionManager /></LayoutWrapper>} />
+        <Route path="/legal-compliance" element={<LayoutWrapper currentPageName="legal-compliance"><SharedLegalCompliance /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />
