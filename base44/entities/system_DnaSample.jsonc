@@ -1,0 +1,100 @@
+{
+  "name": "system_DnaSample",
+  "type": "object",
+  "properties": {
+    "sample_id": {
+      "type": "string",
+      "description": "Unique barcode / accession ID printed on the sample tube"
+    },
+    "sample_type": {
+      "type": "string",
+      "enum": [
+        "saliva",
+        "blood",
+        "hair"
+      ],
+      "default": "saliva",
+      "description": "Type of biological sample collected"
+    },
+    "submitter_name": {
+      "type": "string",
+      "description": "Full name of the individual the sample belongs to"
+    },
+    "submitter_email": {
+      "type": "string",
+      "description": "Email of the individual the sample belongs to"
+    },
+    "received_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the sample arrived at the facility / lab intake"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "received",
+        "in_transit",
+        "lab_processing",
+        "hash_generated",
+        "activated",
+        "rejected",
+        "destroyed"
+      ],
+      "default": "received",
+      "description": "Current processing status of the sample"
+    },
+    "lab_name": {
+      "type": "string",
+      "description": "CLIA-certified lab partner processing the sample"
+    },
+    "tracking_number": {
+      "type": "string",
+      "description": "Courier / shipping tracking number for the sample kit"
+    },
+    "kit_serial": {
+      "type": "string",
+      "description": "Serial number of the collection kit used"
+    },
+    "dna_hash": {
+      "type": "string",
+      "description": "Cryptographic hash returned by the lab once processing completes"
+    },
+    "processed_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the lab completed processing and returned the hash"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Internal staff notes on sample condition, issues, or context"
+    }
+  },
+  "required": [
+    "sample_id",
+    "sample_type",
+    "submitter_name"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

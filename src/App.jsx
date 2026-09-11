@@ -104,6 +104,7 @@ import ConfigurationSandbox from './pages/ConfigurationSandbox';
 import DataRemovalCalendar from './pages/DataRemovalCalendar';
 import UniverseConnectionManager from './pages/UniverseConnectionManager';
 import SharedLegalCompliance from './pages/shared_LegalCompliance';
+import SystemDnaSampleTracker from './pages/system_DnaSampleTracker';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -247,6 +248,7 @@ const AuthenticatedApp = () => {
         <Route path="/removal-calendar" element={<LayoutWrapper currentPageName="removal-calendar"><DataRemovalCalendar /></LayoutWrapper>} />
         <Route path="/universe-manager" element={<LayoutWrapper currentPageName="universe-manager"><UniverseConnectionManager /></LayoutWrapper>} />
         <Route path="/legal-compliance" element={<LayoutWrapper currentPageName="legal-compliance"><SharedLegalCompliance /></LayoutWrapper>} />
+        <Route path="/dna-sample-tracker" element={<LayoutWrapper currentPageName="dna-sample-tracker"><SystemDnaSampleTracker /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />
