@@ -64,6 +64,11 @@
       "format": "date-time",
       "description": "When the lab completed processing and returned the hash"
     },
+    "retention_expires_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Mandatory destruction / retention expiry date for the stored genetic hash"
+    },
     "notes": {
       "type": "string",
       "maxLength": 1000,

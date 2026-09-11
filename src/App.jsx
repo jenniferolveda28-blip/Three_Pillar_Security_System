@@ -104,7 +104,11 @@ import ConfigurationSandbox from './pages/ConfigurationSandbox';
 import DataRemovalCalendar from './pages/DataRemovalCalendar';
 import UniverseConnectionManager from './pages/UniverseConnectionManager';
 import SharedLegalCompliance from './pages/shared_LegalCompliance';
+import SharedDestructionPolicy from './pages/shared_DestructionPolicy';
+import SharedDnaEnrollment from './pages/shared_DnaEnrollment';
 import SystemDnaSampleTracker from './pages/system_DnaSampleTracker';
+import SystemNameTester from './pages/system_NameTester';
+import SystemDestructionMonitor from './pages/system_DestructionMonitor';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -249,6 +253,10 @@ const AuthenticatedApp = () => {
         <Route path="/universe-manager" element={<LayoutWrapper currentPageName="universe-manager"><UniverseConnectionManager /></LayoutWrapper>} />
         <Route path="/legal-compliance" element={<LayoutWrapper currentPageName="legal-compliance"><SharedLegalCompliance /></LayoutWrapper>} />
         <Route path="/dna-sample-tracker" element={<LayoutWrapper currentPageName="dna-sample-tracker"><SystemDnaSampleTracker /></LayoutWrapper>} />
+        <Route path="/destruction-policy" element={<LayoutWrapper currentPageName="destruction-policy"><SharedDestructionPolicy /></LayoutWrapper>} />
+        <Route path="/dna-enrollment" element={<LayoutWrapper currentPageName="dna-enrollment"><SharedDnaEnrollment /></LayoutWrapper>} />
+        <Route path="/name-tester" element={<LayoutWrapper currentPageName="name-tester"><SystemNameTester /></LayoutWrapper>} />
+        <Route path="/destruction-monitor" element={<LayoutWrapper currentPageName="destruction-monitor"><SystemDestructionMonitor /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />

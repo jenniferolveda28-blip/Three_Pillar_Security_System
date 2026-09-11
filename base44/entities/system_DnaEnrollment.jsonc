@@ -1,0 +1,109 @@
+{
+  "name": "system_DnaEnrollment",
+  "type": "object",
+  "properties": {
+    "enroll_name": {
+      "type": "string",
+      "description": "Full legal name of the enrolling individual"
+    },
+    "enroll_email": {
+      "type": "string",
+      "description": "Email address of the enrolling individual"
+    },
+    "sample_type": {
+      "type": "string",
+      "enum": [
+        "saliva",
+        "blood",
+        "hair"
+      ],
+      "default": "saliva",
+      "description": "Preferred biological sample type for collection"
+    },
+    "consent_collection": {
+      "type": "boolean",
+      "default": false,
+      "description": "Consent to collect the biological sample"
+    },
+    "consent_storage": {
+      "type": "boolean",
+      "default": false,
+      "description": "Consent to store the resulting genetic hash"
+    },
+    "consent_usage": {
+      "type": "boolean",
+      "default": false,
+      "description": "Consent to use the hash solely for identity authentication"
+    },
+    "consent_gina_acknowledged": {
+      "type": "boolean",
+      "default": false,
+      "description": "Acknowledged GINA protections and no-secondary-use terms"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Typed full name acting as electronic signature"
+    },
+    "enrollment_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the enrollment consent was submitted"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "kit_shiped",
+        "sample_received",
+        "complete",
+        "withdrawn"
+      ],
+      "default": "pending",
+      "description": "Enrollment workflow status"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional notes from the enrolling user or staff"
+    }
+  },
+  "required": [
+    "enroll_name",
+    "enroll_email",
+    "sample_type"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
