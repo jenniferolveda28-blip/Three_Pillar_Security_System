@@ -1,0 +1,38 @@
+{
+  "name": "Investor Meeting Change Handler",
+  "description": "Logs investor interaction history (status changes, follow-ups, feedback) and creates pre-meeting preparation checklist in Google Tasks when a meeting is scheduled.",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "entity",
+      "events": [
+        "create",
+        "update"
+      ],
+      "entity_name": "InvestorMeeting"
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "investor_meeting_change_handler",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "run_function": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "handleInvestorMeetingChange",
+            "args": {}
+          },
+          "then": "end"
+        }
+      }
+    ]
+  },
+  "x-base44-migrated-from-automation": {
+    "legacy_payload_function": "handleInvestorMeetingChange"
+  }
+}

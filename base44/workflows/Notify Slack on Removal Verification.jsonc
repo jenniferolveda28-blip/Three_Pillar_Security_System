@@ -1,0 +1,37 @@
+{
+  "name": "Notify Slack on Removal Verification",
+  "description": "Sends an instant Slack message when an exposure listing is verified as scrubbed/removed.",
+  "trigger": {
+    "condition": "${ ((.trigger.data.status == \"scrubbed\") and (.trigger.old_data.status != \"scrubbed\")) }",
+    "config": {
+      "trigger_type": "entity",
+      "events": [
+        "update"
+      ],
+      "entity_name": "ExposureRecord"
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "notify_slack_on_removal_verification",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "run_function": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "sendExposureSlackNotification",
+            "args": {}
+          },
+          "then": "end"
+        }
+      }
+    ]
+  },
+  "x-base44-migrated-from-automation": {
+    "legacy_payload_function": "sendExposureSlackNotification"
+  }
+}
