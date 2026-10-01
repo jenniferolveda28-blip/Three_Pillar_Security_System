@@ -8,7 +8,7 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from '@/components/ui/select';
 import {
-  FlaskConical, ArrowLeft, Copy, Check, FileText, ShieldCheck, Eye
+  FlaskConical, ArrowLeft, Copy, Check, FileText, ShieldCheck, Eye, Download
 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -80,9 +80,14 @@ export default function SystemNameTester() {
   const [template, setTemplate] = useState('privacy');
   const [copied, setCopied] = useState(false);
 
+  const safeName = name || '[PLATFORM_NAME]';
   const rendered = useMemo(
-    () => TEMPLATES[template].content.replaceAll(PLACEHOLDER, name || '[PLATFORM_NAME]'),
+    () => TEMPLATES[template].content.replaceAll(PLACEHOLDER, safeName),
     [template, name]
+  );
+  const replacements = useMemo(
+    () => (TEMPLATES[template].content.match(new RegExp(PLACEHOLDER.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length,
+    [template]
   );
 
   const copy = async () => {
@@ -94,6 +99,17 @@ export default function SystemNameTester() {
     } catch {
       toast({ variant: 'destructive', title: 'Copy failed' });
     }
+  };
+
+  const download = () => {
+    const blob = new Blob([rendered], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${TEMPLATES[template].label.replace(/\s+/g, '_')}_${safeName.replace(/\s+/g, '_')}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast({ title: 'Downloaded', description: `${TEMPLATES[template].label} exported with “${safeName}” inserted.` });
   };
 
   const ActiveIcon = TEMPLATES[template].icon;
@@ -141,10 +157,15 @@ export default function SystemNameTester() {
                   </SelectContent>
                 </Select>
               </div>
-              <Button onClick={copy} variant="outline" className="w-full border-slate-700 text-slate-300">
-                {copied ? <Check className="w-4 h-4 mr-1 text-emerald-400" /> : <Copy className="w-4 h-4 mr-1" />}
-                {copied ? 'Copied' : 'Copy Document'}
-              </Button>
+              <div className="grid grid-cols-2 gap-2">
+                <Button onClick={copy} variant="outline" className="border-slate-700 text-slate-300">
+                  {copied ? <Check className="w-4 h-4 mr-1 text-emerald-400" /> : <Copy className="w-4 h-4 mr-1" />}
+                  {copied ? 'Copied' : 'Copy'}
+                </Button>
+                <Button onClick={download} className="bg-cyan-600 hover:bg-cyan-500">
+                  <Download className="w-4 h-4 mr-1" /> Export
+                </Button>
+              </div>
             </CardContent>
           </Card>
 
@@ -173,7 +194,7 @@ export default function SystemNameTester() {
               <CardTitle className="text-base flex items-center gap-2">
                 <ActiveIcon className="w-4 h-4 text-cyan-400" /> {TEMPLATES[template].label}
               </CardTitle>
-              <span className="text-xs text-slate-500">Rendered with “{name || '[PLATFORM_NAME]'}”</span>
+              <span className="text-xs text-slate-500">{replacements} insertions · “{safeName}”</span>
             </div>
           </CardHeader>
           <CardContent className="pt-5">
