@@ -16,6 +16,7 @@ import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
 import ResetPassword from '@/pages/ResetPassword';
+import OAuthConsent from '@/pages/OAuthConsent';
 import DailyThreatEmail from './pages/DailyThreatEmail';
 import SeekingPartners from './pages/SeekingPartners';
 import InvestorCRM from './pages/InvestorCRM';
@@ -109,6 +110,7 @@ import SharedDnaEnrollment from './pages/shared_DnaEnrollment';
 import SystemDnaSampleTracker from './pages/system_DnaSampleTracker';
 import SystemNameTester from './pages/system_NameTester';
 import SystemDestructionMonitor from './pages/system_DestructionMonitor';
+import Connect from './pages/Connect';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -146,6 +148,8 @@ const AuthenticatedApp = () => {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/auditor-access" element={<AuditorAccess />} />
+      <Route path="/connect" element={<Connect />} />
+      <Route path="/oauth/consent" element={<OAuthConsent />} />
 
       {/* All app routes gated by ProtectedRoute */}
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>

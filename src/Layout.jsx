@@ -169,6 +169,9 @@ export default function Layout({ children, currentPageName }) {
                 <Link to="/Contact" className="text-slate-400 hover:text-cyan-400 text-sm font-medium transition-colors">
                   Contact
                 </Link>
+                <Link to="/connect" className="text-slate-400 hover:text-cyan-400 text-sm font-medium transition-colors">
+                  Connect AI
+                </Link>
               </nav>
             </div>
           </div>
