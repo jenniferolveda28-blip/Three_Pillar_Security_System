@@ -108,7 +108,7 @@ async function createPreMeetingChecklist(accessToken: string, meeting: any) {
   const checklist = [
     {
       title: `📋 Prepare pitch deck — ${meeting.investor_name}`,
-      notes: `Customize the Three-Pillar Security System pitch deck for ${investorLabel}.\nFocus pillars: ${(meeting.pillars_discussed || ['All Three']).join(', ')}.`,
+      notes: `Customize the Reclaim Me pitch deck for ${investorLabel}.\nFocus capabilities: ${(meeting.pillars_discussed || ['All Three']).join(', ')}.`,
     },
     {
       title: `🔍 Research ${meeting.investor_name}'s background & portfolio`,
@@ -124,7 +124,7 @@ async function createPreMeetingChecklist(accessToken: string, meeting: any) {
     },
     {
       title: `📧 Send calendar invite with agenda to ${meeting.investor_name}`,
-      notes: `Meeting date: ${meeting.meeting_date || 'TBD'}\nLocation: ${locationStr || 'TBD'}\nEmail: ${meeting.email || 'N/A'}\nPhone: ${meeting.phone || 'N/A'}\n\nAgenda:\n1. Introduction & company overview\n2. Three-Pillar Architecture deep dive\n3. Live demonstration\n4. Market opportunity & business model\n5. Q&A and next steps`,
+      notes: `Meeting date: ${meeting.meeting_date || 'TBD'}\nLocation: ${locationStr || 'TBD'}\nEmail: ${meeting.email || 'N/A'}\nPhone: ${meeting.phone || 'N/A'}\n\nAgenda:\n1. Introduction & company overview\n2. Reclaim Me Architecture deep dive\n3. Live demonstration\n4. Market opportunity & business model\n5. Q&A and next steps`,
     },
     {
       title: `📊 Prepare handout materials — ${meeting.investor_name}`,

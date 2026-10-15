@@ -14,7 +14,7 @@ Deno.serve(async (req) => {
     const feedback = await base44.asServiceRole.entities.AuditFeedback.list('-created_date', 500);
 
     const now = new Date().toISOString();
-    let content = `# Auditor Notes — Three-Pillar Security System\n\n`;
+    let content = `# Auditor Notes — Reclaim Me\n\n`;
     content += `**Last Synced:** ${new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })}\n`;
     content += `**Total Observations:** ${feedback.length}\n\n---\n\n`;
 
@@ -30,7 +30,7 @@ Deno.serve(async (req) => {
       content += `---\n\n`;
     });
 
-    const fileName = 'Auditor Notes — Three-Pillar Security System.md';
+    const fileName = 'Auditor Notes — Reclaim Me.md';
 
     // Search for existing file
     const searchUrl = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(`name='${fileName}'`)}&fields=files(id,name,modifiedTime)`;

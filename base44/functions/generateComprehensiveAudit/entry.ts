@@ -127,7 +127,7 @@ Deno.serve(async (req) => {
       doc.setTextColor(34, 211, 238);
       doc.setFontSize(16);
       doc.setFont('helvetica', 'bold');
-      doc.text('THREE-PILLAR SECURITY SYSTEM', margin, 13);
+      doc.text('RECLAIM ME', margin, 13);
       doc.setFontSize(10);
       doc.setTextColor(148, 163, 184);
       doc.setFont('helvetica', 'normal');
@@ -144,7 +144,7 @@ Deno.serve(async (req) => {
     const addFooter = (pageNum) => {
       doc.setFontSize(7);
       doc.setTextColor(148, 163, 184);
-      doc.text('Three-Pillar Security System · Comprehensive Audit Report · DEMO ENVIRONMENT (INTERNAL TESTING ONLY)', margin, pageHeight - 8);
+      doc.text('Reclaim Me · Comprehensive Audit Report · DEMO ENVIRONMENT (INTERNAL TESTING ONLY)', margin, pageHeight - 8);
       doc.text(`Page ${pageNum}`, pageWidth - margin - 15, pageHeight - 8);
       doc.setTextColor(0, 0, 0);
     };

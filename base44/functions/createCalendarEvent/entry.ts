@@ -23,7 +23,7 @@ Deno.serve(async (req) => {
 
     const event = {
       summary: `Investor Meeting: ${meeting.investor_name}${meeting.company ? ' (' + meeting.company + ')' : ''}`,
-      description: `Three-Pillar Security System — Investor CRM Meeting\n\nStatus: ${meeting.status}\nLocation: ${meeting.meeting_location || 'TBD'}, ${meeting.county || 'Travis'} County, TX\nInterest Level: ${meeting.interest_level || 3}/5\nPillars Discussed: ${(meeting.pillars_discussed || []).join(', ') || 'N/A'}\n\nFeedback:\n${meeting.feedback || 'N/A'}\n\nNext Steps:\n${meeting.next_steps || 'N/A'}`,
+      description: `Reclaim Me — Investor CRM Meeting\n\nStatus: ${meeting.status}\nLocation: ${meeting.meeting_location || 'TBD'}, ${meeting.county || 'Travis'} County, TX\nInterest Level: ${meeting.interest_level || 3}/5\nCapabilities Discussed: ${(meeting.pillars_discussed || []).join(', ') || 'N/A'}\n\nFeedback:\n${meeting.feedback || 'N/A'}\n\nNext Steps:\n${meeting.next_steps || 'N/A'}`,
       start: { date: eventDate },
       end: { date: endDate.toISOString().split('T')[0] },
     };

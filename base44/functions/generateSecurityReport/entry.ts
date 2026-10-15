@@ -148,7 +148,7 @@ Deno.serve(async (req) => {
         for (let p = 1; p <= totalPages; p++) {
             doc.setPage(p);
             doc.setFontSize(7);
-            doc.text('THREE-PILLAR SECURITY SYSTEM — DEMO ENVIRONMENT (INTERNAL TESTING ONLY)', 20, 290);
+            doc.text('RECLAIM ME — DEMO ENVIRONMENT (INTERNAL TESTING ONLY)', 20, 290);
             doc.text(`Page ${p} of ${totalPages}`, 160, 290);
         }
 

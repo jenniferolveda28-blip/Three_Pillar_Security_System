@@ -21,7 +21,7 @@ Deno.serve(async (req) => {
             doc.text('COMPLETE SYSTEM DOCUMENTATION', 20, y);
             y += 12;
             doc.setFontSize(11);
-            doc.text('Three-Pillar Security Platform - Full Overview', 20, y);
+            doc.text('Reclaim Me Platform - Full Overview', 20, y);
             y += 25;
 
             // Table of Contents
@@ -31,7 +31,7 @@ Deno.serve(async (req) => {
             doc.setFontSize(10);
             const sections = [
                 '1. Executive Summary',
-                '2. Three-Pillar Architecture',
+                '2. Reclaim Me Architecture',
                 '3. AI Threat Detection',
                 '4. Analytics & Performance',
                 '5. Authentication Systems',
@@ -54,7 +54,7 @@ Deno.serve(async (req) => {
             doc.text('EXECUTIVE SUMMARY', 20, y);
             y += 12;
             doc.setFontSize(10);
-            doc.text('Next-generation authentication platform built on three interlocking layers:', 20, y);
+            doc.text('Reclaim Me is built on three interlocking layers:', 20, y);
             y += 6;
             doc.text('HelixVerify DNA authentication, CipherPass gateway, and Dynamic Scrambler.', 20, y);
             y += 10;
@@ -73,13 +73,13 @@ Deno.serve(async (req) => {
             doc.addPage();
             y = 20;
 
-            // Three-Pillar Architecture
+            // Reclaim Me Architecture
             doc.setFontSize(18);
-            doc.text('THREE-PILLAR ARCHITECTURE', 20, y);
+            doc.text('RECLAIM ME ARCHITECTURE', 20, y);
             y += 15;
             
             doc.setFontSize(14);
-            doc.text('Pillar 1: HelixVerify DNA Authentication', 20, y);
+            doc.text('Layer 1: HelixVerify DNA Authentication', 20, y);
             y += 10;
             doc.setFontSize(9);
             doc.text('DNA-based wearable identity anchor with hardware-backed rotation and liveness.', 25, y);
@@ -90,7 +90,7 @@ Deno.serve(async (req) => {
             y += 15;
 
             doc.setFontSize(14);
-            doc.text('Pillar 2: CipherPass Protected API Gateway', 20, y);
+            doc.text('Layer 2: CipherPass Protected API Gateway', 20, y);
             y += 10;
             doc.setFontSize(9);
             doc.text('Protected key and API gateway layer for all your APIs. Intelligent routing with', 25, y);
@@ -99,7 +99,7 @@ Deno.serve(async (req) => {
             y += 15;
 
             doc.setFontSize(14);
-            doc.text('Pillar 3: Dynamic Scrambler', 20, y);
+            doc.text('Layer 3: Dynamic Scrambler', 20, y);
             y += 10;
             doc.setFontSize(9);
             doc.text('Continuous moving-target defense rotating keys, paths, and encryption layers.', 25, y);
@@ -210,7 +210,7 @@ Deno.serve(async (req) => {
             y += 12;
 
             doc.setFontSize(14);
-            doc.text('3. Three-Pillar Integration', 20, y);
+            doc.text('3. Reclaim Me Integration', 20, y);
             y += 8;
             doc.setFontSize(9);
             doc.text('Live visualization of all three authentication layers working together.', 25, y);
@@ -225,7 +225,7 @@ Deno.serve(async (req) => {
         } else if (type === 'brochure') {
             // Product Brochure
             doc.setFontSize(24);
-            doc.text('Three-Pillar Authentication System', 20, y);
+            doc.text('Reclaim Me', 20, y);
             y += 15;
 
             doc.setFontSize(12);
@@ -233,7 +233,7 @@ Deno.serve(async (req) => {
             y += 20;
 
             doc.setFontSize(14);
-            doc.text('Pillar 1: HelixVerify DNA Authentication', 20, y);
+            doc.text('Layer 1: HelixVerify DNA Authentication', 20, y);
             y += 10;
             doc.setFontSize(10);
             doc.text('- DNA-based wearable identity anchor with hardware-backed rotation and liveness', 25, y);
@@ -244,7 +244,7 @@ Deno.serve(async (req) => {
             y += 15;
 
             doc.setFontSize(14);
-            doc.text('Pillar 2: CipherPass Protected API Gateway', 20, y);
+            doc.text('Layer 2: CipherPass Protected API Gateway', 20, y);
             y += 10;
             doc.setFontSize(10);
             doc.text('- Protected key and API gateway layer across all your APIs', 25, y);
@@ -255,7 +255,7 @@ Deno.serve(async (req) => {
             y += 15;
 
             doc.setFontSize(14);
-            doc.text('Pillar 3: Dynamic Scrambler', 20, y);
+            doc.text('Layer 3: Dynamic Scrambler', 20, y);
             y += 10;
             doc.setFontSize(10);
             doc.text('- API keys rotate every 2-5 seconds', 25, y);

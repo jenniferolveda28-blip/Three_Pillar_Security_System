@@ -22,9 +22,9 @@ Deno.serve(async (req) => {
         let prompt = '';
         
         if (type === 'demo') {
-            prompt = `Professional product demonstration video: Three-Pillar Authentication System featuring HelixVerify wearable DNA authentication, CipherPass gateway, and Dynamic Scrambler, futuristic UI with blue and purple color scheme, modern tech aesthetic, smooth camera movements`;
+            prompt = `Professional product demonstration video: Reclaim Me featuring HelixVerify wearable DNA authentication, CipherPass gateway, and Dynamic Scrambler, futuristic UI with blue and purple color scheme, modern tech aesthetic, smooth camera movements`;
         } else if (type === 'explainer') {
-            prompt = `Educational explainer video: next-generation authentication concepts illustrated with clean animations, showing three pillars (HelixVerify DNA authentication, CipherPass protected API gateway, Dynamic Scrambler), infographic style with icons and diagrams, professional business presentation`;
+            prompt = `Educational explainer video: Reclaim Me next-generation authentication concepts illustrated with clean animations, showing HelixVerify DNA authentication, CipherPass protected API gateway, and Dynamic Scrambler, infographic style with icons and diagrams, professional business presentation`;
         }
 
         // Generate video with Runway Gen-3 Alpha

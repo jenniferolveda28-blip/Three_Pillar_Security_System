@@ -19,7 +19,7 @@ export default async function(req) {
 
     // Build certificate document content
     const issueDate = issuedDate || new Date().toISOString();
-    const certContent = `THREE-PILLAR SECURITY SYSTEM
+    const certContent = `RECLAIM ME
 ==============================
 IDENTITY CERTIFICATE
 ==============================
@@ -32,7 +32,7 @@ Access Passcode: ${passcode || 'N/A'}
 ISSUANCE DETAILS
 ----------------
 Issue Date: ${new Date(issueDate).toLocaleString()}
-Issuing Authority: Three-Pillar Security System
+Issuing Authority: Reclaim Me
 Jurisdiction: Texas, USA
 
 BIOMETRIC VERIFICATION
@@ -44,7 +44,7 @@ Verification Method: HelixVerify Wearable DNA + Liveness Detection
 SCOPE OF ACCESS
 ---------------
 This certificate authorizes the named auditor to access the
-Three-Pillar Security System audit portal for the purpose of
+Reclaim Me audit portal for the purpose of
 conducting security and compliance reviews.
 
 This certificate is non-transferable and bound to the biometric
@@ -52,7 +52,7 @@ identity of the named auditor. Any unauthorized use constitutes
 a security violation and will be logged to the immutable audit trail.
 
 ==============================
-Three-Pillar Security System (c) 2024-2026
+Reclaim Me (c) 2024-2026
 Texas, USA
 `;
 

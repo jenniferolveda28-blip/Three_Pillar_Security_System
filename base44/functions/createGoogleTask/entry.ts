@@ -30,7 +30,7 @@ Deno.serve(async (req) => {
 
     const task = {
       title: `Follow up with ${meeting.investor_name}${meeting.company ? ' (' + meeting.company + ')' : ''}`,
-      notes: `Three-Pillar Security System — Investor Follow-up Task\n\nStatus: ${meeting.status}\nEmail: ${meeting.email || 'N/A'}\nPhone: ${meeting.phone || 'N/A'}\nInterest Level: ${meeting.interest_level || 3}/5\nPillars Discussed: ${(meeting.pillars_discussed || []).join(', ') || 'N/A'}\n\nNext Steps:\n${meeting.next_steps || 'N/A'}\n\nFeedback:\n${meeting.feedback || 'N/A'}`,
+      notes: `Reclaim Me — Investor Follow-up Task\n\nStatus: ${meeting.status}\nEmail: ${meeting.email || 'N/A'}\nPhone: ${meeting.phone || 'N/A'}\nInterest Level: ${meeting.interest_level || 3}/5\nCapabilities Discussed: ${(meeting.pillars_discussed || []).join(', ') || 'N/A'}\n\nNext Steps:\n${meeting.next_steps || 'N/A'}\n\nFeedback:\n${meeting.feedback || 'N/A'}`,
       due: dueDate.toISOString(),
     };
 

@@ -74,7 +74,7 @@ Deno.serve(async (req) => {
         doc.text('Performance Report', 20, 24);
         doc.setFontSize(9);
         doc.setTextColor(148, 163, 184);
-        doc.text('THREE-PILLAR SECURITY SYSTEM · PIRANHA POOL DYNAMIC OBFUSCATION', 20, 30);
+        doc.text('RECLAIM ME · DYNAMIC SCRAMBLER OBFUSCATION', 20, 30);
 
         y = 45;
         doc.setTextColor(0, 0, 0);
@@ -201,7 +201,7 @@ Deno.serve(async (req) => {
             doc.setPage(p);
             doc.setFontSize(7);
             doc.setTextColor(100, 116, 139);
-            doc.text('THREE-PILLAR SECURITY SYSTEM — DEMO ENVIRONMENT (INTERNAL TESTING ONLY)', 20, 290);
+            doc.text('RECLAIM ME — DEMO ENVIRONMENT (INTERNAL TESTING ONLY)', 20, 290);
             doc.text(`Page ${p} of ${totalPages}`, 160, 290);
         }
 

@@ -23,17 +23,17 @@ Deno.serve(async (req) => {
     const company = meeting.company ? ` at ${meeting.company}` : '';
     const pillars = (meeting.pillars_discussed || []).length > 0
       ? meeting.pillars_discussed.join(', ')
-      : 'our three-pillar security architecture';
+      : 'our Reclaim Me security architecture';
 
-    const subject = `Three-Pillar Security System — Technical Overview & Next Steps`;
+    const subject = `Reclaim Me — Technical Overview & Next Steps`;
 
     const textBody = `Dear ${investorName},
 
-Thank you for your interest in the Three-Pillar Security System. Following our recent discussion${company}, I wanted to share a comprehensive technical overview of our platform and outline the next steps for our engagement.
+Thank you for your interest in Reclaim Me. Following our recent discussion${company}, I wanted to share a comprehensive technical overview of our platform and outline the next steps for our engagement.
 
 PLATFORM OVERVIEW
 
-The Three-Pillar Security System is a next-generation authentication platform built on three interlocking layers:
+Reclaim Me is a next-generation authentication platform built on three interlocking layers:
 
 1. HelixVerify DNA Authentication
    - DNA-based wearable identity anchor with hardware-backed rotation and liveness
@@ -73,21 +73,21 @@ NEXT STEPS
 Please don't hesitate to reach out with any questions. I look forward to continuing our conversation.
 
 Best regards,
-${user.full_name || 'The Three-Pillar Security Team'}
-Three-Pillar Security System
+${user.full_name || 'The Reclaim Me Team'}
+Reclaim Me
 Texas, USA`;
 
     const htmlBody = `<div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; color: #1e293b;">
   <div style="background: #0f172a; padding: 24px; border-radius: 8px 8px 0 0; border-left: 4px solid #06b6d4;">
-    <h1 style="color: #06b6d4; margin: 0; font-size: 22px;">Three-Pillar Security System</h1>
+    <h1 style="color: #06b6d4; margin: 0; font-size: 22px;">Reclaim Me</h1>
     <p style="color: #94a3b8; margin: 4px 0 0; font-size: 13px;">Technical Overview &amp; Next Steps</p>
   </div>
   <div style="padding: 28px; background: #ffffff; border: 1px solid #e2e8f0; border-top: none;">
     <p style="font-size: 15px;">Dear ${investorName},</p>
-    <p style="font-size: 15px;">Thank you for your interest in the Three-Pillar Security System. Following our recent discussion${company}, I wanted to share a comprehensive technical overview of our platform and outline the next steps for our engagement.</p>
+    <p style="font-size: 15px;">Thank you for your interest in Reclaim Me. Following our recent discussion${company}, I wanted to share a comprehensive technical overview of our platform and outline the next steps for our engagement.</p>
 
     <h2 style="color: #06b6d4; font-size: 18px; margin-top: 28px;">Platform Overview</h2>
-    <p style="font-size: 15px;">The Three-Pillar Security System is a next-generation authentication platform built on three interlocking layers:</p>
+    <p style="font-size: 15px;">Reclaim Me is a next-generation authentication platform built on three interlocking layers:</p>
 
     <div style="background: #f0f9ff; border-left: 3px solid #0ea5e9; padding: 16px; margin: 16px 0; border-radius: 4px;">
       <h3 style="color: #0ea5e9; margin: 0 0 8px; font-size: 15px;">1. HelixVerify DNA Authentication</h3>
@@ -143,12 +143,12 @@ Texas, USA`;
     <p style="font-size: 15px; margin-top: 28px;">Please don't hesitate to reach out with any questions. I look forward to continuing our conversation.</p>
 
     <p style="font-size: 15px; margin-top: 24px;">Best regards,<br>
-    <strong>${user.full_name || 'The Three-Pillar Security Team'}</strong><br>
-    Three-Pillar Security System<br>
+    <strong>${user.full_name || 'The Reclaim Me Team'}</strong><br>
+    Reclaim Me<br>
     Texas, USA</p>
   </div>
   <div style="background: #0f172a; padding: 12px 24px; border-radius: 0 0 8px 8px; text-align: center;">
-    <p style="color: #64748b; font-size: 11px; margin: 0;">Three-Pillar Security System — Confidential Investor Communication</p>
+    <p style="color: #64748b; font-size: 11px; margin: 0;">Reclaim Me — Confidential Investor Communication</p>
   </div>
 </div>`;
 

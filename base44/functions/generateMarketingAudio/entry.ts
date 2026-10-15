@@ -26,18 +26,18 @@ Deno.serve(async (req) => {
 
 Picture this: A security architecture so advanced, it uses your DNA for authentication. Not your fingerprint. Not your face. Your actual DNA. Combined with technology that scrambles API keys every 30 milliseconds, making stolen credentials worthless before hackers can use them.
 
-This is the Three-Pillar Security System. And it's about to change everything about how we protect our digital lives.
+This is Reclaim Me. And it's about to change everything about how we protect our digital lives.
 
 Over the next few minutes, we'll explore how this breakthrough technology is protecting Fortune 500 companies, government agencies, and could soon protect you too.`;
 
         } else if (type === 'deepdive') {
-            script = `Welcome to this deep dive on the Three-Pillar Authentication System. We're facing an authentication crisis. Traditional passwords, even two-factor authentication, are being breached daily.
+            script = `Welcome to this deep dive on Reclaim Me. We're facing an authentication crisis. Traditional passwords, even two-factor authentication, are being breached daily.
 
-Our first pillar: HelixVerify — our DNA-based wearable identity anchor with hardware-backed rotation and liveness. We capture your unique genetic signature and convert it to an irreversible hash, making it impossible to steal or replicate.
+Our first layer: HelixVerify — our DNA-based wearable identity anchor with hardware-backed rotation and liveness. We capture your unique genetic signature and convert it to an irreversible hash, making it impossible to steal or replicate.
 
-Second pillar: CipherPass — our protected key and API gateway layer. One hardware token replaces hundreds of passwords, connecting to all your accounts through intelligent routing that adapts in real-time.
+Second layer: CipherPass — our protected key and API gateway layer. One hardware token replaces hundreds of passwords, connecting to all your accounts through intelligent routing that adapts in real-time.
 
-Third pillar: Dynamic Scrambler — continuous moving-target defense. Every 30 milliseconds, the system reorganizes its internal structure. API keys, data paths, and encryption layers shift continuously. It's like trying to break into a building that's constantly rearranging its rooms.
+Third layer: Dynamic Scrambler — continuous moving-target defense. Every 30 milliseconds, the system reorganizes its internal structure. API keys, data paths, and encryption layers shift continuously. It's like trying to break into a building that's constantly rearranging its rooms.
 
 The AI threat detection layer monitors millions of data points, identifying attack patterns before they succeed. We've seen simulated attacks neutralized in under 50 milliseconds.
 
