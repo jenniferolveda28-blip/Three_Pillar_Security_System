@@ -32,6 +32,7 @@ import AlertNotificationCenter from '../components/security/AlertNotificationCen
 import ScramblerMonitor from '../components/security/ScramblerMonitor';
 import AuditModeToggle from '../components/security/AuditModeToggle';
 import ThreatNeutralizationChart from '../components/investor/ThreatNeutralizationChart';
+import SharedPersonalRecoveryStory from '../components/dashboard/shared_PersonalRecoveryStory';
 import { FileText, Users, UserCheck, Database, Watch, ListChecks, Settings, Gavel, KeyRound, ScrollText, Bell, ShieldCheck, FileSearch } from 'lucide-react';
 
 export default function Dashboard() {
@@ -358,6 +359,9 @@ export default function Dashboard() {
         <div className="mb-8">
           <AuditModeToggle />
         </div>
+
+        {/* Founder's Personal Recovery Story */}
+        <SharedPersonalRecoveryStory />
 
         {/* Universe Status Widget + Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
