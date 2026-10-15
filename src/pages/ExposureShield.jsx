@@ -34,6 +34,7 @@ const EXPOSURE_LABELS = {
 };
 
 import { Send } from 'lucide-react';
+import UserIdentityTheftProtection from '@/components/exposure/user_IdentityTheftProtection';
 
 export default function ExposureShield() {
   const { user } = useAuth();
@@ -292,6 +293,13 @@ export default function ExposureShield() {
           })}
         </div>
       )}
+
+      {/* Identity Theft Protection Overview, Checklist, Active Monitoring & Compromise Reporting */}
+      <UserIdentityTheftProtection
+        user={user}
+        exposureRecords={records}
+        onExposuresUpdated={loadRecords}
+      />
 
       {/* How It Works */}
       <Separator className="my-8 bg-slate-800" />

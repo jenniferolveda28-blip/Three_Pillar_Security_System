@@ -1,0 +1,79 @@
+{
+  "name": "user_IdentityCompromiseReport",
+  "type": "object",
+  "properties": {
+    "reporter_email": {
+      "type": "string",
+      "description": "Email of the user reporting the suspected identity compromise"
+    },
+    "reporter_name": {
+      "type": "string",
+      "description": "Full name of the reporting user"
+    },
+    "compromise_type": {
+      "type": "string",
+      "enum": [
+        "stolen_device_lockout",
+        "account_takeover",
+        "unauthorized_financial_activity",
+        "data_broker_impersonation",
+        "credential_leak",
+        "other"
+      ],
+      "default": "stolen_device_lockout",
+      "description": "Primary nature of the suspected compromise"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "high"
+    },
+    "affected_accounts": {
+      "type": "string",
+      "description": "Accounts, providers, or services affected (e.g., Google Photos, email, bank)"
+    },
+    "incident_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Approximate date when the compromise or lockout occurred"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Description of what happened and what access or data is at risk"
+    },
+    "checklist_completed_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of emergency checklist items completed by the user"
+    },
+    "auto_scrub_triggered": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether automated opt-out escalation was triggered for discovered broker exposures"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "submitted",
+        "under_review",
+        "mitigation_in_progress",
+        "resolved"
+      ],
+      "default": "submitted",
+      "description": "Case follow-up status"
+    }
+  },
+  "required": [
+    "reporter_email",
+    "compromise_type",
+    "summary"
+  ]
+}
