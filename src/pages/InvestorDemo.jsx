@@ -655,7 +655,7 @@ export default function InvestorDemo() {
                       <div className="flex-1">
                         <h3 className="text-xl font-bold mb-2">Receive Hardware Token</h3>
                         <p className="text-slate-300 mb-3">
-                          Customer receives proprietary BioVerify Token in the mail. Device contains:
+                          Customer receives proprietary HelixVerify Token in the mail. Device contains:
                         </p>
                         <div className="grid grid-cols-2 gap-2">
                           <div className="bg-slate-900 p-3 rounded">
@@ -672,7 +672,7 @@ export default function InvestorDemo() {
                           </div>
                           <div className="bg-slate-900 p-3 rounded">
                             <p className="text-xs text-slate-400">Serial Number</p>
-                            <p className="text-sm font-semibold font-mono">BIOVERIFY-8472-ALPHA</p>
+                            <p className="text-sm font-semibold font-mono">HELIXVERIFY-8472-ALPHA</p>
                           </div>
                         </div>
                       </div>
@@ -810,7 +810,7 @@ export default function InvestorDemo() {
                               <CheckCircle2 className="h-8 w-8 text-green-500" />
                               <div>
                                 <p className="font-bold text-green-400 text-lg">Registration Complete!</p>
-                                <p className="text-sm text-slate-300">Token BIOVERIFY-8472-ALPHA is now active</p>
+                                <p className="text-sm text-slate-300">Token HELIXVERIFY-8472-ALPHA is now active</p>
                               </div>
                             </div>
                             <div className="grid grid-cols-2 gap-3">
@@ -911,26 +911,26 @@ export default function InvestorDemo() {
                       step: 1,
                       title: "User Authenticates with DNA Breathalyzer",
                       color: "blue",
-                      content: "User blows into BioVerify token. DNA hash generated in 0.5s and compared against stored hash. Match confidence: 99.8%.",
-                      systems: ["BioVerify DNA System"]
+                      content: "User blows into HelixVerify token. DNA hash generated in 0.5s and compared against stored hash. Match confidence: 99.8%.",
+                      systems: ["HelixVerify DNA System"]
                     },
                     {
                       step: 2,
-                      title: "Forged API Receives Authentication Request",
+                      title: "CipherPass Receives Authentication Request",
                       color: "purple",
-                      content: "User's app sends API request to access weather data via Forged API. Request includes DNA-verified session token.",
-                      systems: ["BioVerify", "Forged API"]
+                      content: "User's app sends API request to access weather data via CipherPass. Request includes DNA-verified session token.",
+                      systems: ["HelixVerify", "CipherPass"]
                     },
                     {
                       step: 3,
                       title: "IP Shield Scrambles Environment",
                       color: "orange",
                       content: "Before processing request, IP Shield executes its 100ms scramble cycle. API keys rotated, encryption layer mutated, execution paths randomized.",
-                      systems: ["BioVerify", "Forged API", "IP Shield"]
+                      systems: ["HelixVerify", "CipherPass", "IP Shield"]
                     },
                     {
                       step: 4,
-                      title: "Forged API Routes to OpenWeather Universe",
+                      title: "CipherPass Routes to OpenWeather Universe",
                       color: "green",
                       content: "AI analyzes request intent ('get weather'), selects optimal Universe (OpenWeather), retrieves current scrambled API key, makes request.",
                       systems: ["All Three Active"]
@@ -1052,7 +1052,7 @@ export default function InvestorDemo() {
                     <div className="bg-red-950/30 p-4 rounded-lg border border-red-500/30">
                       <h4 className="font-bold text-red-400 mb-2">1. Report Lost Token (Immediate)</h4>
                       <p className="text-sm text-slate-300">
-                        Log into your account from any device → "Report Lost Token" → Old token serial BIOVERIFY-8472-ALPHA 
+                        Log into your account from any device → "Report Lost Token" → Old token serial HELIXVERIFY-8472-ALPHA 
                         is <strong>immediately revoked</strong>. Device becomes a paperweight in under 1 second. Anyone finding 
                         it cannot access your accounts.
                       </p>
@@ -1061,7 +1061,7 @@ export default function InvestorDemo() {
                     <div className="bg-blue-950/30 p-4 rounded-lg border border-blue-500/30">
                       <h4 className="font-bold text-blue-400 mb-2">2. Order Replacement Token ($29.99)</h4>
                       <p className="text-sm text-slate-300">
-                        New BioVerify token shipped with new serial number (e.g., BIOVERIFY-9153-BETA). Ships within 24 hours. 
+                        New HelixVerify token shipped with new serial number (e.g., HELIXVERIFY-9153-BETA). Ships within 24 hours. 
                         Your DNA hash remains safely stored in the cloud—<strong>no biological data needs to be resubmitted</strong>.
                       </p>
                     </div>
@@ -1120,16 +1120,16 @@ export default function InvestorDemo() {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
                 <div className="bg-slate-900/50 p-4 rounded-lg">
-                  <h3 className="font-bold text-lg mb-2 text-green-400">DNA Security</h3>
-                  <p className="text-sm text-slate-300">Biological identity that cannot be stolen, faked, or phished. Compliance-ready. GDPR/HIPAA approved architecture.</p>
+                  <h3 className="font-bold text-lg mb-2 text-green-400">1. HelixVerify</h3>
+                  <p className="text-sm text-slate-300">DNA-based wearable identity anchor with hardware-backed rotation and liveness. Cannot be stolen, faked, or phished.</p>
                 </div>
                 <div className="bg-slate-900/50 p-4 rounded-lg">
-                  <h3 className="font-bold text-lg mb-2 text-blue-400">Forged API</h3>
-                  <p className="text-sm text-slate-300">Universal API gateway with AI routing. Reduces integration complexity by 90%. $500k+ value for enterprise clients.</p>
+                  <h3 className="font-bold text-lg mb-2 text-blue-400">2. CipherPass</h3>
+                  <p className="text-sm text-slate-300">Protected key and API gateway layer with AI routing. Reduces integration complexity by 90%. $500k+ value for enterprise clients.</p>
                 </div>
                 <div className="bg-slate-900/50 p-4 rounded-lg">
-                  <h3 className="font-bold text-lg mb-2 text-orange-400">IP Shield</h3>
-                  <p className="text-sm text-slate-300">300x faster than Google Authenticator. Makes real-time attacks designed to be computationally infeasible. Zero breaches in simulation.</p>
+                  <h3 className="font-bold text-lg mb-2 text-orange-400">3. Dynamic Scrambler</h3>
+                  <p className="text-sm text-slate-300">Continuous moving-target defense across keys, paths, and encryption layers. 300x faster than Google Authenticator.</p>
                 </div>
               </div>
             </CardContent>

@@ -114,9 +114,9 @@ export default function BatchDownloadButton({ universes = [], requests = [], key
 
   const reports = [
     {
-      title: 'Forged API — API Key & Universe Management',
+      title: 'CipherPass — API Key & Universe Management',
       subtitle: 'Live system status and API key management report',
-      filename: 'forged-api-key-report',
+      filename: 'cipherpass-key-report',
       sections: [
         {
           heading: 'LIVE SYSTEM STATUS',
@@ -145,12 +145,12 @@ export default function BatchDownloadButton({ universes = [], requests = [], key
         },
         {
           heading: 'API KEY SECURITY ARCHITECTURE',
-          body: 'Every API key in Forged API is bound to a DNA-verified hardware token and rotates automatically every 0.1–5 seconds via IP Shield. Keys are never stored in plaintext. Even if intercepted, they expire before they can be replayed.\n\nLayer 1: DNA Authentication\nLayer 2: Key Validation (rotating TOTP)\nLayer 3: Rate Limiting\nLayer 4: AI Threat Analysis\nLayer 5: Immutable Audit Logging'
+          body: 'Every API key in CipherPass is bound to a HelixVerify DNA-verified wearable token and rotates automatically every 0.1–5 seconds via Dynamic Scrambler. Keys are never stored in plaintext. Even if intercepted, they expire before they can be replayed.\n\nLayer 1: HelixVerify DNA Authentication\nLayer 2: Key Validation (rotating TOTP)\nLayer 3: Rate Limiting\nLayer 4: AI Threat Analysis\nLayer 5: Immutable Audit Logging'
         },
       ]
     },
     {
-      title: 'Forged API — Security Threat Intelligence Report',
+      title: 'CipherPass — Security Threat Intelligence Report',
       subtitle: 'Live security logs and threat activity summary',
       filename: 'security-threat-report',
       sections: [
@@ -178,7 +178,7 @@ export default function BatchDownloadButton({ universes = [], requests = [], key
       ]
     },
     {
-      title: 'Forged API — Request History & Performance Report',
+      title: 'CipherPass — Request History & Performance Report',
       subtitle: 'API request routing history and performance metrics',
       filename: 'request-history-report',
       sections: [
@@ -205,7 +205,7 @@ export default function BatchDownloadButton({ universes = [], requests = [], key
       ]
     },
     {
-      title: 'Forged API — Hardware Token & BioVerify Status',
+      title: 'CipherPass — Hardware Token & HelixVerify Status',
       subtitle: 'DNA authentication hardware and biometric token status',
       filename: 'hardware-token-report',
       sections: [
@@ -213,8 +213,7 @@ export default function BatchDownloadButton({ universes = [], requests = [], key
           heading: 'HARDWARE TOKEN SUMMARY',
           rows: [
             ['Active Tokens', hardwareTokens.length],
-            ['Biometric Method', 'DNA Breathalyzer (saliva nano-sensor)'],
-            ['Backup Authentication', 'Fingerprint + Facial Recognition'],
+            ['Biometric Method', 'HelixVerify DNA Wearable Token (hardware-backed rotation & liveness)'],
             ['Match Confidence', '99.7 – 99.8%'],
             ['DNA Storage Method', 'SHA-256 one-way hash, AES-256-GCM encrypted'],
             ['Raw DNA Retention', 'ZERO — discarded immediately after hashing'],
@@ -228,7 +227,7 @@ export default function BatchDownloadButton({ universes = [], requests = [], key
         },
         {
           heading: 'TOKEN REPLACEMENT POLICY',
-          body: 'Lost token: Report via app → immediate global revocation in < 1 second.\nReplacement: New BioVerify token shipped for $29.99, delivered in 2-3 days.\nRe-activation: One breath required — existing DNA hash matched in 30 seconds.\nNo biological re-collection required. Your DNA hash remains securely stored.'
+          body: 'Lost token: Report via app → immediate global revocation in < 1 second.\nReplacement: New HelixVerify token shipped for $29.99, delivered in 2-3 days.\nRe-activation: Instant re-binding — existing DNA hash matched in 30 seconds.\nNo biological re-collection required. Your DNA hash remains securely stored.'
         }
       ]
     },

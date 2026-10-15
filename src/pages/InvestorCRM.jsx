@@ -33,7 +33,7 @@ const STATUS_COLORS = {
   'Passed': 'bg-slate-600',
 };
 
-const PILLARS = ['DNA Breathalyzer', 'IP Shield', 'Forged API', 'All Three', 'Business Model', 'Market Size'];
+const PILLARS = ['HelixVerify', 'CipherPass', 'Dynamic Scrambler', 'All Three', 'Business Model', 'Market Size'];
 
 function MeetingForm({ initial, onSave, onClose }) {
   const [form, setForm] = useState(initial || {

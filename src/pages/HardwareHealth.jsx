@@ -14,7 +14,7 @@ const statusBadge = (token) => {
 export default function HardwareHealth() {
   const { data: tokens = [], isLoading } = useQuery({
     queryKey: ['hardwareTokensHealth'],
-    queryFn: () => base44.entities.BioVerifyToken.list('-created_date', 100),
+    queryFn: () => base44.entities.HelixVerifyToken.list('-created_date', 100),
   });
 
   const active = tokens.filter(t => t.is_active && t.failed_attempts < 3);
@@ -29,7 +29,7 @@ export default function HardwareHealth() {
         <h1 className="text-3xl font-bold text-white flex items-center gap-3">
           <Cpu className="w-8 h-8 text-cyan-400" /> Hardware Health
         </h1>
-        <p className="text-slate-400 mt-1">Status of all registered BioVerify hardware tokens</p>
+        <p className="text-slate-400 mt-1">Status of all registered HelixVerify hardware tokens</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">

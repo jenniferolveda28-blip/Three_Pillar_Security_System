@@ -14,7 +14,7 @@ const LAYERS = [
     subtitle: 'The Physical Gate',
     icon: Cpu,
     color: 'cyan',
-    description: 'The physical silicon and onboard logic that forms the unclonable foundation of every BioVerify token.',
+    description: 'The physical silicon and onboard logic that forms the unclonable foundation of every HelixVerify token.',
     components: [
       {
         name: 'Unique Identifier Module (UIM)',
@@ -115,10 +115,10 @@ export default function BioVerifyBlueprint() {
       <div className="mb-8 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800 border border-slate-700 mb-4">
           <ScanLine className="w-4 h-4 text-cyan-400" />
-          <span className="text-xs font-mono text-slate-400 tracking-wider">ENGINEERING SPECIFICATION · BVFY-REV-1.0</span>
+          <span className="text-xs font-mono text-slate-400 tracking-wider">ENGINEERING SPECIFICATION · HLXV-REV-1.0</span>
         </div>
         <h1 className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-          BioVerify™ Token
+          HelixVerify™ Token
         </h1>
         <p className="text-slate-400 text-lg">
           System Blueprint & Component Architecture
@@ -136,7 +136,7 @@ export default function BioVerifyBlueprint() {
             Security Assurance Summary
           </CardTitle>
           <CardDescription className="text-slate-400">
-            The following guarantees are enforced by the BioVerify architecture at all times.
+            The following guarantees are enforced by the HelixVerify architecture at all times.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -266,7 +266,7 @@ export default function BioVerifyBlueprint() {
 
       {/* Document Footer */}
       <div className="text-center text-slate-600 text-xs pb-12">
-        <p className="font-mono">END OF SPECIFICATION · BVFY-REV-1.0</p>
+        <p className="font-mono">END OF SPECIFICATION · HLXV-REV-1.0</p>
         <p className="mt-1">Three-Pillar Security System © 2024–2026 · Texas, USA</p>
       </div>
     </div>

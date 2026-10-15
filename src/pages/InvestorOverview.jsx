@@ -139,9 +139,9 @@ export default function InvestorOverview() {
                   ['Auto-Neutralized', stats.neutralized],
                   ['Neutralization Rate', stats.threats > 0 ? Math.round((stats.neutralized / stats.threats) * 100) + '%' : '100%'],
                 ]},
-                { heading: 'THREE-PILLAR ARCHITECTURE', body: 'PILLAR 1 — DNA Breathalyzer (BioVerify Token): Saliva-based DNA extraction with one-way cryptographic hashing. Raw DNA is never stored. Biometric identity that cannot be stolen, photographed, or cloned.\n\nPILLAR 2 — IP Shield (Moving Target Defense): API keys, routes, encryption layers, and execution paths rotate every 100ms — 300x faster than Google Authenticator. By the time an attacker completes reconnaissance, every path they mapped is obsolete.\n\nPILLAR 3 — Forged API (Universal AI Router): AI-driven behavior analysis detects attack patterns in real time. Criminal activity is auto-flagged, auto-blocked, and authorities notified. Reduces enterprise API integration complexity by ~90%.' },
+                { heading: 'THREE-PILLAR ARCHITECTURE', body: 'PILLAR 1 — HelixVerify (DNA Wearable Identity Anchor): DNA-based wearable authentication with hardware-backed rotation, liveness detection, and one-way cryptographic hashing. Raw DNA is never stored.\n\nPILLAR 2 — CipherPass (Protected API Gateway): Protected key and API gateway layer with AI-driven routing, real-time threat detection, and automatic failover.\n\nPILLAR 3 — Dynamic Scrambler (Moving-Target Defense): API keys, routes, and encryption layers rotate every 100ms — 300x faster than Google Authenticator. By the time an attacker completes reconnaissance, every path they mapped is obsolete.' },
                 { heading: 'RECENT THREAT TIMELINE', body: timeline.length > 0 ? timeline.map((t, i) => `${i+1}. [${t.severity?.toUpperCase()}] ${t.type}: ${t.title}${t.detail ? ' — ' + t.detail : ''} (${t.status})`).join('\n') : 'No threats detected in the current reporting period.' },
-                { heading: 'INVESTMENT THESIS', body: 'This is working software, not a pitch deck. Every metric in this report is pulled from live system data. The architecture is proven. What remains is building the physical DNA breathalyzer hardware prototype — seeking $250k-$2M seed funding and scientific/hardware partners.' },
+                { heading: 'INVESTMENT THESIS', body: 'This is a working next-generation authentication platform, not a pitch deck. Every metric in this report is pulled from live system data. What remains is building the physical HelixVerify wearable token prototype — seeking $250k-$2M seed funding and scientific/hardware partners.' },
                 { heading: 'CONTACT', rows: [
                   ['Email', 'threepillarsecurity@proton.me'],
                   ['Location', 'Texas, USA'],
@@ -269,9 +269,9 @@ export default function InvestorOverview() {
         {/* ── PILLAR SUMMARY CARDS ── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { icon: Lock, title: 'DNA Breathalyzer', tag: 'Pillar 1', desc: 'Biometric auth via saliva DNA hash. Cannot be cloned or stolen.', color: 'text-blue-400', border: 'border-blue-500/40' },
-            { icon: Zap, title: 'IP Shield', tag: 'Pillar 2', desc: `${stats.totalScrambles.toLocaleString()} scramble iterations executed. 100ms rotation.`, color: 'text-orange-400', border: 'border-orange-500/40' },
-            { icon: Brain, title: 'Forged API', tag: 'Pillar 3', desc: `${stats.neutralized} threats auto-neutralized. AI-driven real-time detection.`, color: 'text-purple-400', border: 'border-purple-500/40' },
+            { icon: Lock, title: 'HelixVerify', tag: 'Pillar 1', desc: 'DNA-based wearable identity anchor with hardware-backed rotation and liveness.', color: 'text-blue-400', border: 'border-blue-500/40' },
+            { icon: Brain, title: 'CipherPass', tag: 'Pillar 2', desc: `Protected key and API gateway layer. ${stats.neutralized} threats auto-neutralized.`, color: 'text-purple-400', border: 'border-purple-500/40' },
+            { icon: Zap, title: 'Dynamic Scrambler', tag: 'Pillar 3', desc: `Continuous moving-target defense. ${stats.totalScrambles.toLocaleString()} scramble iterations executed.`, color: 'text-orange-400', border: 'border-orange-500/40' },
           ].map((p, i) => (
             <Card key={i} className={`bg-slate-800/60 ${p.border}`}>
               <CardContent className="p-5">

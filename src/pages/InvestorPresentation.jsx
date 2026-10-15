@@ -24,9 +24,9 @@ export default function InvestorPresentation() {
     },
     {
       id: 'dna',
-      title: 'DNA Breathalyzer',
+      title: 'HelixVerify DNA Auth',
       icon: Dna,
-      description: 'Secure biometric registration process',
+      description: 'Wearable DNA authentication & enrollment',
       component: DNABreathalyzerDemo,
       color: 'blue'
     },
@@ -34,7 +34,7 @@ export default function InvestorPresentation() {
       id: 'integrated',
       title: 'Three Pillars Integration',
       icon: Layers,
-      description: 'Complete security ecosystem in action',
+      description: 'Complete authentication system in action',
       component: ThreePillarIntegratedDemo,
       color: 'purple'
     },
@@ -54,21 +54,21 @@ export default function InvestorPresentation() {
         {/* Header */}
         <div className="mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-center md:text-left">
-            <h1 className="text-5xl font-bold gradient-text mb-3">Live Security Demonstrations</h1>
-            <p className="text-xl text-slate-400">Interactive demonstrations showcasing our three-pillar security technology</p>
+            <h1 className="text-5xl font-bold gradient-text mb-3">Live Authentication Demonstrations</h1>
+            <p className="text-xl text-slate-400">Interactive demonstrations showcasing our three-pillar authentication platform</p>
           </div>
           <PrintReportButton
-            reportTitle="Live Security Demonstrations"
-            subtitle="Three-Pillar Security System — Investor Technical Overview"
+            reportTitle="Live Authentication Demonstrations"
+            subtitle="Three-Pillar Authentication System — Investor Technical Overview"
             filename="live-demo-presentation-{date}.pdf"
             sections={[
-              { heading: 'DEMONSTRATION OVERVIEW', body: 'This document captures the Four core demonstrations of the Three-Pillar Security System: Illegal Activity Detection, DNA Breathalyzer Registration, IP Shield vs Google Authenticator Comparison, and the Full Integrated System walkthrough.' },
-              { heading: 'PILLAR 1 — DNA BREATHALYZER (BioVerify Token)', body: 'Saliva-based DNA extraction. Raw DNA never stored. One-way SHA-256 hash only. Re-registration after loss: 30 seconds, one breath. GDPR/HIPAA compliant architecture.' },
-              { heading: 'PILLAR 2 — IP SHIELD (Moving Target Defense)', body: 'API keys, routes, encryption layers, and execution paths all rotate every 100ms. 300× faster refresh rate than Google Authenticator. Attacker window: 0.1 seconds vs 30 seconds. Mathematically provable: real-time exploitation is impossible.' },
-              { heading: 'PILLAR 3 — FORGED API (Universal AI Router)', body: 'AI-driven behavior analysis detects attack patterns in real time. Criminal activity auto-flagged, auto-blocked, authorities notified. Correlates events across sessions to identify multi-stage attack chains. Enterprise API integration complexity reduced by ~90%.' },
-              { heading: 'ATTACK SIMULATION RESULTS', rows: [['Detection Time', '0.05 seconds'],['Behavior Analysis', '0.08 seconds'],['IP Shield Response', '0.10 seconds'],['Source Blocked', '0.15 seconds'],['Data Compromised', '0 bytes'],['Total Attack Cost to Breach', 'Mathematically infinite']] },
-              { heading: 'MARKET OPPORTUNITY (2026)', rows: [['Global Cybercrime Cost', '$10.5T+ annually (Cybersecurity Ventures)'],['Growth Rate', '15% year-over-year, tracking toward $12.2T by 2031'],['Global Cybersecurity Market', '$300B+ and expanding'],['Identity & Access Management TAM', '$55B'],['Biometric Market CAGR', '20.4% (Grand View Research, 2023–2030)'],['Credential-Based Breaches', '81% of all breaches involve stolen credentials'],['Direct Competitors', 'None combine DNA + moving-target + AI in one platform']] },
-              { heading: 'INVESTMENT THESIS', body: 'This is working software, not a pitch deck. Every claim in this demonstration is backed by an interactive, real-time simulation. Seeking scientific co-founders, hardware engineers, and seed-stage investors to build the physical DNA breathalyzer prototype. Target raise: $250k–$2M.' },
+              { heading: 'DEMONSTRATION OVERVIEW', body: 'This document captures the four core demonstrations of the Three-Pillar Authentication System: Illegal Activity Detection, HelixVerify DNA Registration, Dynamic Scrambler vs Google Authenticator Comparison, and the Full Integrated System walkthrough.' },
+              { heading: 'PILLAR 1 — HELIXVERIFY (DNA Wearable Identity Anchor)', body: 'DNA-based wearable identity anchor with hardware-backed rotation and liveness. Raw DNA never stored. One-way SHA-256 hash only. Re-registration after loss: 30 seconds. GDPR/HIPAA compliant architecture.' },
+              { heading: 'PILLAR 2 — CIPHERPASS (Protected API Gateway)', body: 'Protected key and API gateway layer with AI-driven routing, real-time threat detection, and automatic failover. Enterprise API integration complexity reduced by ~90%.' },
+              { heading: 'PILLAR 3 — DYNAMIC SCRAMBLER (Moving-Target Defense)', body: 'API keys, routes, and encryption layers continuously rotate every 100ms. 300× faster refresh rate than Google Authenticator. Attacker window: 0.1 seconds vs 30 seconds.' },
+              { heading: 'ATTACK SIMULATION RESULTS', rows: [['Detection Time', '0.05 seconds'],['Behavior Analysis', '0.08 seconds'],['Dynamic Scrambler Response', '0.10 seconds'],['Source Blocked', '0.15 seconds'],['Data Compromised', '0 bytes'],['Total Attack Cost to Breach', 'Mathematically infinite']] },
+              { heading: 'MARKET OPPORTUNITY (2026)', rows: [['Global Cybercrime Cost', '$10.5T+ annually (Cybersecurity Ventures)'],['Growth Rate', '15% year-over-year, tracking toward $12.2T by 2031'],['Global Cybersecurity Market', '$300B+ and expanding'],['Identity & Access Management TAM', '$55B'],['Biometric Market CAGR', '20.4% (Grand View Research, 2023–2030)'],['Credential-Based Breaches', '81% of all breaches involve stolen credentials'],['Direct Competitors', 'None combine DNA + moving-target + AI gateway in one authentication platform']] },
+              { heading: 'INVESTMENT THESIS', body: 'This is working software, not a pitch deck. Every claim in this demonstration is backed by an interactive, real-time simulation. Seeking scientific co-founders, hardware engineers, and seed-stage investors to build the physical HelixVerify wearable token prototype. Target raise: $250k–$2M.' },
             ]}
           />
         </div>

@@ -14,7 +14,7 @@ const LAYERS = [
     icon: Cpu,
     color: 'cyan',
     analogy: 'Think of it like a physical key that cannot be copied.',
-    description: 'Every BioVerify token is a small physical device. It contains a tiny computer chip that has a unique serial number burned into it at the factory. This number cannot be changed, duplicated, or faked.',
+    description: 'Every HelixVerify token is a small physical device. It contains a tiny computer chip that has a unique serial number burned into it at the factory. This number cannot be changed, duplicated, or faked.',
     components: [
       { name: 'Unique Serial Number', plain: 'A one-of-a-kind ID etched into the chip. No two tokens share it.' },
       { name: 'Rolling Code Generator', plain: 'The token displays a new 6-digit code every 3 seconds. By the time someone copies a code, it has already expired.' },
@@ -74,21 +74,21 @@ const COLOR_MAP = {
   emerald: { border: 'border-emerald-500/40', bg: 'bg-emerald-500/10', text: 'text-emerald-400' }
 };
 
-export default function BioVerifyHandbook() {
+export default function HelixVerifyHandbook() {
   return (
     <div className="min-h-screen text-slate-100 p-4 md:p-8 max-w-4xl mx-auto">
       {/* Cover */}
       <div className="text-center mb-10">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800 border border-slate-700 mb-4">
           <BookOpen className="w-4 h-4 text-cyan-400" />
-          <span className="text-xs font-mono text-slate-400 tracking-wider">STAKEHOLDER HANDBOOK · BVFY-HB-1.0</span>
+          <span className="text-xs font-mono text-slate-400 tracking-wider">STAKEHOLDER HANDBOOK · HLXV-HB-1.0</span>
         </div>
         <h1 className="text-3xl md:text-5xl font-bold gradient-text mb-3">
-          BioVerify™ Token
+          HelixVerify™ Token
         </h1>
         <p className="text-slate-300 text-xl mb-1">A Plain-Language Guide</p>
         <p className="text-slate-500 text-sm">
-          How the BioVerify token protects identity using hardware, biology, and real-time verification.
+          How the HelixVerify token protects identity using hardware, biology, and real-time verification.
         </p>
       </div>
 
@@ -97,15 +97,15 @@ export default function BioVerifyHandbook() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-slate-100">
             <Layers className="w-5 h-5 text-cyan-400" />
-            What Is BioVerify?
+            What Is HelixVerify?
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-slate-300 leading-relaxed">
-            BioVerify is a security token that combines a <span className="text-cyan-400 font-semibold">physical device</span>,
+            HelixVerify is a security token that combines a <span className="text-cyan-400 font-semibold">physical device</span>,
             your <span className="text-purple-400 font-semibold">DNA</span>, and a <span className="text-emerald-400 font-semibold">real-time
             check</span> to confirm you are exactly who you say you are. Traditional passwords can be stolen, guessed, or phished.
-            BioVerify replaces passwords with something you <em>have</em> (the token), something you <em>are</em> (your DNA),
+            HelixVerify replaces passwords with something you <em>have</em> (the token), something you <em>are</em> (your DNA),
             and proof that you are <em>alive</em> (your breath) — making identity theft practically impossible.
           </p>
         </CardContent>
@@ -175,7 +175,7 @@ export default function BioVerifyHandbook() {
         <CardContent>
           <ol className="space-y-4">
             {[
-              'You press the button on your BioVerify token. It displays a fresh 6-digit code.',
+              'You press the button on your HelixVerify token. It displays a fresh 6-digit code.',
               'You enter the code into the login screen along with your email.',
               'The system checks that the code is valid and has not expired (3-second window).',
               'The system asks you to provide a saliva swab and breathe into the sensor.',
@@ -215,7 +215,7 @@ export default function BioVerifyHandbook() {
 
       {/* Footer */}
       <div className="text-center text-slate-600 text-xs pt-10 pb-12">
-        <p className="font-mono">END OF HANDBOOK · BVFY-HB-1.0</p>
+        <p className="font-mono">END OF HANDBOOK · HLXV-HB-1.0</p>
         <p className="mt-1">Three-Pillar Security System © 2024–2026 · Texas, USA</p>
       </div>
     </div>
