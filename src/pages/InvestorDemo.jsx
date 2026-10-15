@@ -660,7 +660,7 @@ export default function InvestorDemo() {
                         <div className="grid grid-cols-2 gap-2">
                           <div className="bg-slate-900 p-3 rounded">
                             <p className="text-xs text-slate-400">Component</p>
-                            <p className="text-sm font-semibold">DNA Breathalyzer Sensor</p>
+                            <p className="text-sm font-semibold">HelixVerify DNA Wearable Sensor</p>
                           </div>
                           <div className="bg-slate-900 p-3 rounded">
                             <p className="text-xs text-slate-400">Component</p>
@@ -909,7 +909,7 @@ export default function InvestorDemo() {
                   {[
                     {
                       step: 1,
-                      title: "User Authenticates with DNA Breathalyzer",
+                      title: "User Authenticates with HelixVerify DNA Token",
                       color: "blue",
                       content: "User blows into HelixVerify token. DNA hash generated in 0.5s and compared against stored hash. Match confidence: 99.8%.",
                       systems: ["HelixVerify DNA System"]

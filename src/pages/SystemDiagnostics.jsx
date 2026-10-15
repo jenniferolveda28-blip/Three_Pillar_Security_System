@@ -141,7 +141,7 @@ export default function SystemDiagnostics() {
 
   const generateReport = () => {
     const reportContent = `
-FORGED API SYSTEM DIAGNOSTICS REPORT
+THREE-PILLAR AUTHENTICATION SYSTEM DIAGNOSTICS REPORT
 Generated: ${new Date().toLocaleString()}
 Database Mode: ${testComplete ? 'Test Database' : 'Production Database'}
 
@@ -153,7 +153,7 @@ Health Score: ${systemHealth.score}/100
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-1. API UNIVERSES (Forged API Gateway)
+1. API UNIVERSES (CipherPass Protected Gateway)
    • Total Universes: ${diagnostics.universes.total}
    • Active: ${diagnostics.universes.active}
    • Degraded: ${diagnostics.universes.degraded}
@@ -173,7 +173,7 @@ Health Score: ${systemHealth.score}/100
    • Low: ${diagnostics.security.threatLevels.low}
    • None: ${diagnostics.security.threatLevels.none}
 
-3. BIOVERIFY (DNA Authentication System)
+3. HELIXVERIFY (DNA Wearable Authentication System)
    • Total Hardware Tokens: ${diagnostics.authentication.totalTokens}
    • Active Tokens: ${diagnostics.authentication.activeTokens}
    • Total Failed Attempts: ${diagnostics.authentication.failedAttempts}
@@ -181,7 +181,7 @@ Health Score: ${systemHealth.score}/100
    • Successful: ${diagnostics.authentication.successfulAuth}
    • Failed: ${diagnostics.authentication.failedAuth}
 
-4. DYNAMIC SCRAMBLING SYSTEM (IP Shield)
+4. DYNAMIC SCRAMBLER (Moving-Target Defense)
    • Active Scrambling Sessions: ${diagnostics.scrambling.activeSessions}/${diagnostics.scrambling.totalSessions}
    • Total Scramble Iterations: ${diagnostics.scrambling.totalIterations}
    • Average Protection Score: ${diagnostics.scrambling.avgProtection}%
@@ -304,7 +304,7 @@ SYSTEM STATUS: ${systemHealth.status === 'healthy' ? '✓ ALL SYSTEMS OPERATIONA
             <Card className="multi-layer-card card-layer-auth border">
               <CardHeader>
                 <CardTitle className="text-slate-100">API Universes</CardTitle>
-                <CardDescription className="text-slate-400">Forged API Gateway Status</CardDescription>
+                <CardDescription className="text-slate-400">CipherPass Gateway Status</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between text-sm">
@@ -352,11 +352,11 @@ SYSTEM STATUS: ${systemHealth.status === 'healthy' ? '✓ ALL SYSTEMS OPERATIONA
               </CardContent>
             </Card>
 
-            {/* BioVerify */}
+            {/* HelixVerify */}
             <Card className="multi-layer-card card-layer-data border">
               <CardHeader>
-                <CardTitle className="text-slate-100">BioVerify</CardTitle>
-                <CardDescription className="text-slate-400">DNA Authentication System</CardDescription>
+                <CardTitle className="text-slate-100">HelixVerify</CardTitle>
+                <CardDescription className="text-slate-400">DNA Wearable Authentication</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between text-sm">
@@ -381,8 +381,8 @@ SYSTEM STATUS: ${systemHealth.status === 'healthy' ? '✓ ALL SYSTEMS OPERATIONA
             {/* Dynamic Scrambler */}
             <Card className="multi-layer-card card-layer-scramble border">
               <CardHeader>
-                <CardTitle className="text-slate-100">IP Shield</CardTitle>
-                <CardDescription className="text-slate-400">Dynamic Scrambling System</CardDescription>
+                <CardTitle className="text-slate-100">Dynamic Scrambler</CardTitle>
+                <CardDescription className="text-slate-400">Moving-Target Defense System</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between text-sm">
