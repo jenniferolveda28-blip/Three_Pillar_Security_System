@@ -17,7 +17,7 @@ const batteryBar = (lvl) => lvl > 60 ? 'bg-emerald-500' : lvl > 20 ? 'bg-amber-5
 export default function BioVerifyHardwareStatus() {
   const { data = [], isLoading } = useQuery({
     queryKey: ['bioverifyHardware'],
-    queryFn: () => base44.entities.BioVerifyToken.list('-created_date', 50),
+    queryFn: () => base44.entities.HelixVerifyToken.list('-created_date', 50),
     refetchInterval: 15000
   });
   const total = data.length;
@@ -29,8 +29,8 @@ export default function BioVerifyHardwareStatus() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-8 space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-white flex items-center gap-2"><Watch className="w-7 h-7 text-cyan-400" /> BioVerify Hardware Status</h1>
-        <p className="text-slate-400 mt-1">Real-time operational status of physical BioVerify tokens — auto-refreshes every 15s.</p>
+        <h1 className="text-3xl font-bold text-white flex items-center gap-2"><Watch className="w-7 h-7 text-cyan-400" /> HelixVerify Hardware Status</h1>
+        <p className="text-slate-400 mt-1">Real-time operational status of physical HelixVerify wearable tokens — auto-refreshes every 15s.</p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="bg-slate-900/60 border-slate-700"><CardContent className="pt-5"><div className="text-xs text-slate-500 uppercase">Total Devices</div><div className="text-2xl font-bold text-white">{total}</div></CardContent></Card>
@@ -52,7 +52,7 @@ export default function BioVerifyHardwareStatus() {
       </Card>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {isLoading && <p className="text-slate-500">Loading devices…</p>}
-        {!isLoading && data.length === 0 && <p className="text-slate-500">No BioVerify devices registered.</p>}
+        {!isLoading && data.length === 0 && <p className="text-slate-500">No HelixVerify devices registered.</p>}
         {data.map(d => {
           const battery = d.battery_level ?? 100;
           return (

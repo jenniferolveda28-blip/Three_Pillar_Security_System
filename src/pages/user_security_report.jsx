@@ -45,7 +45,7 @@ export default function UserSecurityReport() {
 
   const devices = useQuery({
     queryKey: ['user-report', 'hardwareTokens'],
-    queryFn: () => base44.entities.BioVerifyToken.list('-created_date', 20)
+    queryFn: () => base44.entities.HelixVerifyToken.list('-created_date', 20)
   });
   const rotations = useQuery({
     queryKey: ['user-report', 'scramblingSessions'],
@@ -53,7 +53,7 @@ export default function UserSecurityReport() {
   });
   const linked = useQuery({
     queryKey: ['user-report', 'linkedAccounts'],
-    queryFn: () => base44.entities.BioVerifyLinkedAccount.list('-created_date', 20)
+    queryFn: () => base44.entities.HelixVerifyLinkedAccount.list('-created_date', 20)
   });
   const threats = useQuery({
     queryKey: ['user-report', 'threatCorrelations'],
@@ -99,21 +99,21 @@ export default function UserSecurityReport() {
         <div>
           <h1 className="text-3xl font-bold text-white">Your Security Report</h1>
           <p className="text-slate-400 mt-1">
-            BioVerify device, CipherPass rotation, linked accounts, threats, exposure findings &amp; removal requests for your account.
+            HelixVerify device, CipherPass rotation, linked accounts, threats, exposure findings &amp; removal requests for your account.
           </p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <StatCard icon={Watch} label="BioVerify Devices" value={dv.filter(d => d.is_active).length} accent="bg-cyan-600/30" />
+          <StatCard icon={Watch} label="HelixVerify Devices" value={dv.filter(d => d.is_active).length} accent="bg-cyan-600/30" />
           <StatCard icon={KeyRound} label="Active Rotations" value={ro.filter(r => r.status === 'active').length} accent="bg-amber-600/30" />
           <StatCard icon={Link2} label="Linked Accounts" value={la.length} accent="bg-blue-600/30" />
           <StatCard icon={Radar} label="Exposure Findings" value={ex.length} accent="bg-red-600/30" />
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          <Section icon={Watch} title="BioVerify Device Status">
+          <Section icon={Watch} title="HelixVerify Device Status">
             <div className="space-y-2 max-h-72 overflow-y-auto">
-              {dv.length === 0 && <p className="text-slate-500 text-sm">No BioVerify devices registered.</p>}
+              {dv.length === 0 && <p className="text-slate-500 text-sm">No HelixVerify devices registered.</p>}
               {dv.slice(0, 8).map(d => (
                 <div key={d.id} className="flex items-center justify-between border-b border-slate-800 pb-2">
                   <div>

@@ -65,7 +65,7 @@ export default function SystemDiagnostics() {
 
   const { data: tokens = [] } = useQuery({
     queryKey: ['diag-tokens'],
-    queryFn: () => base44.entities.BioVerifyToken.list(),
+    queryFn: () => base44.entities.HelixVerifyToken.list(),
   });
 
   // Calculate diagnostics
@@ -256,8 +256,8 @@ SYSTEM STATUS: ${systemHealth.status === 'healthy' ? '✓ ALL SYSTEMS OPERATIONA
                   { heading: 'SYSTEM HEALTH OVERVIEW', rows: [['System Status', systemHealth.status.toUpperCase()], ['Health Score', `${systemHealth.score}/100`]] },
                   { heading: 'API UNIVERSES', rows: [['Total', diagnostics.universes.total], ['Active', diagnostics.universes.active], ['Degraded', diagnostics.universes.degraded], ['Offline', diagnostics.universes.offline], ['Avg Success Rate', `${diagnostics.universes.avgSuccessRate}%`]] },
                   { heading: 'SECURITY INFRASTRUCTURE', rows: [['Total Logs', diagnostics.security.totalLogs], ['Critical Alerts', diagnostics.security.criticalAlerts], ['High Alerts', diagnostics.security.highAlerts], ['Auto-Blocked', diagnostics.security.autoBlocked], ['Critical Threats', diagnostics.security.threatLevels.critical], ['High Threats', diagnostics.security.threatLevels.high]] },
-                  { heading: 'BIOVERIFY AUTHENTICATION', rows: [['Total Tokens', diagnostics.authentication.totalTokens], ['Active Tokens', diagnostics.authentication.activeTokens], ['Auth Attempts', diagnostics.authentication.authMetrics], ['Successful Auth', diagnostics.authentication.successfulAuth], ['Failed Auth', diagnostics.authentication.failedAuth]] },
-                  { heading: 'IP SHIELD (SCRAMBLING)', rows: [['Active Sessions', diagnostics.scrambling.activeSessions], ['Total Sessions', diagnostics.scrambling.totalSessions], ['Total Iterations', diagnostics.scrambling.totalIterations], ['Avg Protection Score', `${diagnostics.scrambling.avgProtection}%`]] },
+                  { heading: 'HELIXVERIFY AUTHENTICATION', rows: [['Total Tokens', diagnostics.authentication.totalTokens], ['Active Tokens', diagnostics.authentication.activeTokens], ['Auth Attempts', diagnostics.authentication.authMetrics], ['Successful Auth', diagnostics.authentication.successfulAuth], ['Failed Auth', diagnostics.authentication.failedAuth]] },
+                  { heading: 'DYNAMIC SCRAMBLER', rows: [['Active Sessions', diagnostics.scrambling.activeSessions], ['Total Sessions', diagnostics.scrambling.totalSessions], ['Total Iterations', diagnostics.scrambling.totalIterations], ['Avg Protection Score', `${diagnostics.scrambling.avgProtection}%`]] },
                   { heading: 'AI THREAT INTELLIGENCE', rows: [['Attack Chains', diagnostics.ai.attackChains], ['Active Chains', diagnostics.ai.activeChains], ['Anomalies', diagnostics.ai.anomalies], ['Detected', diagnostics.ai.detectedAnomalies], ['Confirmed Threats', diagnostics.ai.confirmedThreats]] },
                   { heading: 'PERFORMANCE', rows: [['Total Requests', diagnostics.performance.totalRequests], ['Successful', diagnostics.performance.successfulRequests], ['Failed', diagnostics.performance.failedRequests], ['Avg Latency', `${diagnostics.performance.avgLatency}ms`]] },
                   { heading: 'ACCESS CONTROL & REPORTING', rows: [['Total Roles', diagnostics.rbac.totalRoles], ['System Roles', diagnostics.rbac.systemRoles], ['Custom Roles', diagnostics.rbac.customRoles], ['Total Reports', diagnostics.reporting.totalReports], ['Active Schedules', diagnostics.reporting.activeReports]] },

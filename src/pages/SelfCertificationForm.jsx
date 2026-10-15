@@ -77,9 +77,9 @@ export default function SelfCertificationForm() {
     setSubmitting(true);
     try {
       // Generate a simulated DNA hash
-      const dnaHash = 'BVFY-' + Math.random().toString(36).substring(2, 18).toUpperCase();
+      const dnaHash = 'HLXV-' + Math.random().toString(36).substring(2, 18).toUpperCase();
 
-      await base44.entities.BioVerifyRegistration.create({
+      await base44.entities.HelixVerifyRegistration.create({
         token_serial: formData.token_serial,
         registered_by_email: formData.email,
         registration_status: 'dna_verified',
@@ -98,7 +98,7 @@ export default function SelfCertificationForm() {
       setCompleted(true);
       toast({
         title: "Enrollment complete",
-        description: `BioVerify token registered with DNA hash ${dnaHash.substring(0, 12)}...`
+        description: `HelixVerify token registered with DNA hash ${dnaHash.substring(0, 12)}...`
       });
     } catch (err) {
       toast({ title: "Enrollment failed", variant: "destructive" });
@@ -133,7 +133,7 @@ export default function SelfCertificationForm() {
             </div>
             <h2 className="text-2xl font-bold text-slate-100 mb-2">Enrollment Successful</h2>
             <p className="text-slate-400 text-sm mb-6">
-              Your BioVerify token has been securely registered. The system now recognizes your physical
+              Your HelixVerify token has been securely registered. The system now recognizes your physical
               token, your DNA hash, and your liveness profile as a single, bound identity.
             </p>
             <div className="bg-slate-800/60 rounded-lg p-4 mb-6 text-left">
@@ -165,8 +165,8 @@ export default function SelfCertificationForm() {
           <ScanLine className="w-4 h-4 text-purple-400" />
           <span className="text-xs font-mono text-slate-400 tracking-wider">SELF-CERTIFICATION · PROTOTYPE</span>
         </div>
-        <h1 className="text-2xl md:text-3xl font-bold gradient-text mb-2">BioVerify Enrollment</h1>
-        <p className="text-slate-400 text-sm">Simulated registration flow for testing the BioVerify token enrollment pipeline.</p>
+        <h1 className="text-2xl md:text-3xl font-bold gradient-text mb-2">HelixVerify Enrollment</h1>
+        <p className="text-slate-400 text-sm">Simulated registration flow for testing the HelixVerify token enrollment pipeline.</p>
       </div>
 
       {/* Step Progress */}
@@ -254,7 +254,7 @@ export default function SelfCertificationForm() {
           {step === 1 && (
             <>
               <p className="text-sm text-slate-400">
-                Enter the serial number printed on your BioVerify hardware token. This binds your identity
+                Enter the serial number printed on your HelixVerify hardware token. This binds your identity
                 to a specific physical device.
               </p>
               <div>
@@ -264,7 +264,7 @@ export default function SelfCertificationForm() {
                   <Input
                     value={formData.token_serial}
                     onChange={(e) => update('token_serial', e.target.value.toUpperCase())}
-                    placeholder="BVFY-XXXX-XXXX"
+                    placeholder="HLXV-XXXX-XXXX"
                     className="bg-slate-800 border-slate-600 text-slate-100 font-mono"
                   />
                 </div>

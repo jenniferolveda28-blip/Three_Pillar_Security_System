@@ -74,10 +74,10 @@ const PDF_TEMPLATES = {
     title: 'Complete System Documentation',
     filename: 'complete-system-documentation.pdf',
     sections: [
-      { heading: 'SYSTEM OVERVIEW', body: 'The Three-Pillar Security System is a next-generation cybersecurity platform designed to provide architected-for-resilience protection through biometric DNA authentication, dynamic IP scrambling, and AI-driven threat intelligence.\n\nThe platform operates across three core pillars: BioVerify (DNA biometric authentication), IP Shield (dynamic data scrambling), and Forged API (intelligent multi-universe API routing).' },
-      { heading: 'BIOVERIFY — DNA AUTHENTICATION', body: 'BioVerify replaces traditional passwords with DNA-based biometric authentication. Users register hardware tokens via saliva sample analysis. The system generates a cryptographic hash of the DNA signature, ensuring that no two users share credentials.\n\nKey features:\n• Hardware token registration with DNA verification\n• Continuous liveness detection\n• Breathalyzer integration for substance detection\n• Genetic trait-based access control\n• TOTP-based 2FA with 2-second rotation windows' },
-      { heading: 'IP SHIELD — DYNAMIC SCRAMBLING', body: 'IP Shield continuously rotates API keys, data paths, and execution sequences to create a moving target defense. Attackers cannot exploit static credentials because they are invalidated every few seconds.\n\nScrambling modes:\n• API Key Rotation (every 0.1–5 seconds)\n• Data Path Randomization\n• Execution Sequence Shuffling\n• Full Encryption Layer Cycling\n• Quantum-resistant key generation' },
-      { heading: 'FORGED API — INTELLIGENT ROUTING', body: 'Forged API acts as an intelligent gateway that routes requests across multiple API universes, automatically failing over to backups when degradation is detected.\n\nCapabilities:\n• Multi-universe load balancing\n• Circuit breaker patterns\n• Smart caching with TTL management\n• Real-time latency monitoring\n• AI-powered route selection' },
+      { heading: 'SYSTEM OVERVIEW', body: 'The Three-Pillar Security System is a next-generation authentication platform built on three interlocking layers: HelixVerify (DNA-based wearable identity anchor with hardware-backed rotation and liveness), CipherPass (protected key and API gateway layer), and Dynamic Scrambler (continuous moving-target defense across keys, paths, and encryption layers). Data-broker exposure search and one-click removal provide added identity protection.' },
+      { heading: '1. HELIXVERIFY — DNA WEARABLE AUTHENTICATION', body: 'HelixVerify replaces traditional passwords with DNA-based wearable biometric authentication. Users register hardware tokens via biological sample analysis. The system generates a cryptographic hash of the DNA signature, ensuring that no two users share credentials.\n\nKey features:\n• Wearable hardware token registration with DNA verification\n• Continuous liveness detection\n• Hardware-backed rotation\n• TOTP-based 2FA with 2-second rotation windows' },
+      { heading: '2. CIPHERPASS — PROTECTED API GATEWAY', body: 'CipherPass is the protected key and API gateway layer that routes requests across multiple API universes, automatically failing over to backups when degradation is detected.\n\nCapabilities:\n• Protected API key vault and gateway\n• Multi-universe load balancing\n• Circuit breaker patterns\n• Real-time latency monitoring and AI-powered route selection' },
+      { heading: '3. DYNAMIC SCRAMBLER — MOVING-TARGET DEFENSE', body: 'Dynamic Scrambler continuously rotates API keys, data paths, and encryption layers to create a moving-target defense. Attackers cannot exploit static credentials because they are invalidated every few seconds.\n\nScrambling modes:\n• API Key Rotation (every 0.1–5 seconds)\n• Data Path Randomization\n• Execution Sequence Shuffling\n• Full Encryption Layer Cycling\n• Quantum-resistant key generation' },
       { heading: 'AI THREAT INTELLIGENCE', body: 'The AI Threat Detection layer continuously analyzes behavioral patterns, correlates attack chains, and auto-responds to criminal activity.\n\nFeatures:\n• Behavioral anomaly detection\n• Attack chain correlation engine\n• Criminal activity alerting with confidence scoring\n• Auto-blocking of malicious actors\n• Law enforcement notification protocols' },
       { heading: 'COMPLIANCE & REPORTING', body: 'The platform generates automated compliance reports covering:\n• Executive summary dashboards\n• Threat detection metrics\n• Authentication audit trails\n• Incident response documentation\n• GDPR, HIPAA, and SOC 2 readiness indicators' },
     ]
@@ -88,7 +88,7 @@ const PDF_TEMPLATES = {
     sections: [
       { heading: 'WHO WE ARE', body: 'We are building the world\'s most secure authentication and API protection system. Our three-pillar approach eliminates credential theft, API abuse, and identity fraud through cutting-edge biometric and AI technology.' },
       { heading: 'THE PROBLEM', body: 'Traditional security relies on passwords, static API keys, and reactive threat detection. These are fundamentally broken:\n• 81% of data breaches involve stolen credentials\n• Static API keys are easily compromised\n• Rule-based detection misses sophisticated attacks\n• Identity fraud costs $52B annually' },
-      { heading: 'OUR SOLUTION', body: 'Three interlocking pillars of defense:\n\n1. BioVerify — DNA biometric authentication. You cannot steal someone\'s DNA.\n2. IP Shield — Dynamic scrambling. Moving targets cannot be hit.\n3. Forged API — Intelligent routing. No single point of failure.' },
+      { heading: 'OUR SOLUTION', body: 'A next-generation authentication platform built on three interlocking layers:\n\n1. HelixVerify — DNA-based wearable identity anchor with hardware-backed rotation and liveness.\n2. CipherPass — Protected key and API gateway layer.\n3. Dynamic Scrambler — Continuous moving-target defense (keys, paths, encryption layers).' },
       { heading: 'MARKET OPPORTUNITY', body: 'The global cybersecurity market is valued at $172B (2023) and growing at 13.4% CAGR. Our total addressable market includes:\n• Enterprise authentication: $18B\n• API security: $12B\n• AI threat detection: $8B' },
       { heading: 'COMPETITIVE ADVANTAGE', body: 'No competitor combines DNA authentication + dynamic scrambling + AI routing in a single integrated platform. We are 3–5 years ahead of any known alternative.' },
     ]
@@ -97,7 +97,7 @@ const PDF_TEMPLATES = {
     title: 'Technical Whitepaper',
     filename: 'technical-whitepaper.pdf',
     sections: [
-      { heading: 'ARCHITECTURE OVERVIEW', body: 'The Three-Pillar system is built on a microservices architecture with the following components:\n• BioVerify Authentication Service (biometric processing)\n• IP Shield Scrambling Engine (key rotation daemon)\n• Forged API Gateway (request routing layer)\n• AI Threat Engine (ML-based anomaly detection)\n• Compliance Reporting Service (automated audit trail)' },
+      { heading: 'ARCHITECTURE OVERVIEW', body: 'The Three-Pillar authentication platform is built on a microservices architecture with the following components:\n• HelixVerify Authentication Service (wearable DNA identity anchor)\n• CipherPass Protected API Gateway (key & request routing layer)\n• Dynamic Scrambler Engine (continuous moving-target rotation daemon)\n• AI Threat Engine (ML-based anomaly detection)\n• Compliance Reporting Service (automated audit trail)' },
       { heading: 'DNA AUTHENTICATION PROTOCOL', body: 'DNA verification follows a four-stage process:\n1. Sample Collection — Saliva or blood sample analyzed at point-of-registration\n2. Hash Generation — Genomic markers converted to a 256-bit cryptographic hash\n3. Token Binding — Hash bound to hardware token using HMAC-SHA256\n4. Continuous Verification — TOTP codes generated from DNA hash + timestamp\n\nFalse accept rate: < 0.0001%. False reject rate: < 0.01%.' },
       { heading: 'SCRAMBLING ENGINE DESIGN', body: 'The IP Shield engine uses a multi-layered approach:\n• Layer 1: AES-256-GCM encrypted API keys with 0.1–5 second rotation\n• Layer 2: Data path randomization using Fisher-Yates shuffle\n• Layer 3: Execution sequence reordering with dependency graph validation\n• Layer 4: Quantum-resistant key generation using lattice-based cryptography (CRYSTALS-Kyber)\n\nProtection score is calculated as: (encryption_strength × 0.4) + (rotation_frequency × 0.4) + (complexity × 0.2)' },
       { heading: 'AI THREAT DETECTION', body: 'The behavioral analysis engine uses:\n• LSTM neural networks for sequence anomaly detection\n• Isolation Forest for outlier identification\n• BERT-based natural language processing for log analysis\n• Federated learning for privacy-preserving model updates\n\nDetection latency: < 50ms. False positive rate: < 2%.' },
@@ -110,7 +110,7 @@ const PDF_TEMPLATES = {
     sections: [
       { heading: 'EXECUTIVE SUMMARY', body: 'Three-Pillar Security is seeking $5M Series A to commercialize the world\'s first DNA-authenticated, dynamically-scrambled API security platform. We protect enterprises from credential theft, API abuse, and AI-powered cyberattacks.' },
       { heading: 'THE OPPORTUNITY', body: 'Cybercrime costs the global economy $8 trillion annually. Enterprise security spending exceeds $200B/year yet breaches continue to rise. The root cause: static, reactive security systems.\n\nOur platform is the first to address all three root causes simultaneously:\n1. Identity verification (DNA biometrics)\n2. Credential security (dynamic scrambling)\n3. Threat response (AI-powered detection)' },
-      { heading: 'TRACTION', body: '• Fully functional platform with live demonstrations\n• All three pillars operational (BioVerify, IP Shield, Forged API)\n• Executive dashboard, predictive analytics, and red team testing suite complete\n• Patent-pending DNA authentication protocol\n• Letters of Intent from 3 enterprise prospects' },
+      { heading: 'TRACTION', body: '• Fully functional authentication platform with live demonstrations\n• All three pillars operational (HelixVerify, CipherPass, Dynamic Scrambler)\n• Executive dashboard, predictive analytics, and red team testing suite complete\n• Patent-pending HelixVerify DNA authentication protocol\n• Letters of Intent from 3 enterprise prospects' },
       { heading: 'BUSINESS MODEL', body: 'SaaS subscription model:\n• Starter: $499/month (up to 100 users, basic features)\n• Professional: $1,999/month (up to 1,000 users, full AI features)\n• Enterprise: Custom pricing (unlimited users, dedicated support)\n\nProjected ARR by Year 3: $12M' },
       { heading: 'USE OF FUNDS', body: '$5M Allocation:\n• Engineering (40%) — Scale platform, harden security\n• Sales & Marketing (30%) — Enterprise sales team\n• Compliance (15%) — SOC 2, FIPS certifications\n• Operations (10%) — Infrastructure\n• Legal (5%) — Patent portfolio' },
       { heading: 'TEAM', body: 'Founding team with combined experience in:\n• Cybersecurity operations\n• Machine learning & AI\n• Enterprise software development\n• Regulatory compliance (HIPAA, SOC 2)\n\nAdvisors include veterans from major security firms.' },
@@ -132,7 +132,7 @@ const PDF_TEMPLATES = {
     filename: 'three-pillar-security-nda.pdf',
     sections: [
       { heading: 'NON-DISCLOSURE AGREEMENT', body: `This Non-Disclosure Agreement ("Agreement") is entered into as of the date last signed below ("Effective Date") between Three-Pillar Security Systems, LLC ("Disclosing Party"), and the undersigned recipient ("Receiving Party").` },
-      { heading: '1. PURPOSE', body: 'The Disclosing Party possesses certain confidential and proprietary information relating to its Three-Pillar Security System, including but not limited to: DNA biometric authentication protocols, IP Shield dynamic scrambling technology, Forged API intelligent routing architecture, AI-driven threat detection algorithms, business plans, financial projections, customer data, technical specifications, and trade secrets (collectively, "Confidential Information").\n\nThe parties wish to explore a potential business relationship. In connection with that purpose, the Disclosing Party may share Confidential Information with the Receiving Party.' },
+      { heading: '1. PURPOSE', body: 'The Disclosing Party possesses certain confidential and proprietary information relating to its Three-Pillar Security System, including but not limited to: HelixVerify wearable DNA authentication protocols, CipherPass protected API gateway architecture, Dynamic Scrambler moving-target defense technology, AI-driven threat detection algorithms, business plans, financial projections, customer data, technical specifications, and trade secrets (collectively, "Confidential Information").\n\nThe parties wish to explore a potential business relationship. In connection with that purpose, the Disclosing Party may share Confidential Information with the Receiving Party.' },
       { heading: '2. DEFINITION OF CONFIDENTIAL INFORMATION', body: '"Confidential Information" means any data or information, oral or written, that relates to the Disclosing Party\'s business, technology, or operations, and that is designated as confidential or that reasonably should be understood to be confidential given the nature of the information and the circumstances of disclosure.\n\nConfidential Information includes, but is not limited to:\n• Proprietary source code, algorithms, and software\n• DNA authentication methods and biometric processing protocols\n• API key rotation and scrambling engine design\n• AI threat detection models and training data\n• Customer lists, pricing, and business strategies\n• Financial data, forecasts, and funding information\n• Patent-pending inventions and trade secrets' },
       { heading: '3. OBLIGATIONS OF RECEIVING PARTY', body: 'The Receiving Party agrees to:\n\n(a) Hold all Confidential Information in strict confidence and protect it with at least the same degree of care used to protect its own confidential information, but in no event less than reasonable care.\n\n(b) Not disclose, publish, or disseminate any Confidential Information to any third party without the prior written consent of the Disclosing Party.\n\n(c) Use Confidential Information solely for the purpose of evaluating a potential business relationship with the Disclosing Party.\n\n(d) Limit disclosure of Confidential Information to its employees, contractors, or advisors who have a need to know and who are bound by confidentiality obligations at least as protective as those set forth herein.\n\n(e) Promptly notify the Disclosing Party upon discovering any unauthorized disclosure or use of Confidential Information.' },
       { heading: '4. EXCLUSIONS FROM CONFIDENTIAL INFORMATION', body: 'This Agreement does not apply to information that:\n\n(a) Is or becomes publicly known through no fault of the Receiving Party;\n(b) Was known to the Receiving Party prior to disclosure, as evidenced by written records;\n(c) Is rightfully received from a third party without restriction;\n(d) Is independently developed by the Receiving Party without use of or reference to Confidential Information;\n(e) Is required to be disclosed by law, regulation, or court order, provided the Receiving Party gives the Disclosing Party prompt prior written notice and cooperates with efforts to seek a protective order.' },
@@ -149,9 +149,9 @@ const PDF_TEMPLATES = {
     title: 'Live Demo Summary',
     filename: 'live-demo-summary.pdf',
     sections: [
-      { heading: 'DEMO 1: DNA BREATHALYZER AUTHENTICATION', body: 'Demonstration of real-time DNA verification with breathalyzer integration. The system analyzes genetic markers from breath samples and binds them to a cryptographic hardware token. Fallback methods include fingerprint and facial recognition.\n\nKey takeaway: Authentication without passwords. No credentials to steal.' },
+      { heading: 'DEMO 1: HELIXVERIFY DNA AUTHENTICATION', body: 'Demonstration of real-time DNA verification via the HelixVerify wearable identity anchor with hardware-backed rotation and liveness detection.\n\nKey takeaway: Authentication without passwords. No credentials to steal.' },
       { heading: 'DEMO 2: ILLEGAL ACTIVITY DETECTION', body: 'Live demonstration of AI-powered criminal activity detection. The system analyzes 47 behavioral indicators simultaneously, including access patterns, geographic anomalies, and request sequences.\n\nKey takeaway: Detects fraud, identity theft, and unauthorized access in real-time with > 95% accuracy.' },
-      { heading: 'DEMO 3: THREE-PILLAR INTEGRATED DEFENSE', body: 'End-to-end demonstration of all three pillars working in concert. Simulated attack vectors are repelled simultaneously by:\n1. BioVerify blocking unauthorized authentication attempts\n2. IP Shield invalidating captured credentials before reuse\n3. Forged API rerouting around compromised endpoints\n\nKey takeaway: Layered defense creates exponentially higher attack costs.' },
+      { heading: 'DEMO 3: THREE-PILLAR INTEGRATED DEFENSE', body: 'End-to-end demonstration of all three pillars working in concert. Simulated attack vectors are repelled simultaneously by:\n1. HelixVerify blocking unauthorized authentication attempts\n2. CipherPass protecting keys and rerouting around compromised endpoints\n3. Dynamic Scrambler invalidating captured credentials before reuse\n\nKey takeaway: Layered defense creates exponentially higher attack costs.' },
       { heading: 'DEMO 4: TOKEN REPLACEMENT PROTOCOL', body: 'Demonstration of emergency token replacement following hardware compromise. The system walks through:\n1. Detecting anomalous token usage\n2. Revoking the compromised token\n3. Issuing a replacement with re-verification\n4. Auditing all access during the compromise window\n\nKey takeaway: Zero-downtime incident response.' },
       { heading: 'TECHNICAL SETUP NOTES', body: 'The live demo environment runs on the production platform. All data shown is synthetic and generated for demonstration purposes. The platform is available for extended evaluation upon request.\n\nContact: demo@three-pillar-security.com' },
     ]
@@ -202,45 +202,45 @@ NARRATOR: "Every 39 seconds, a cyberattack occurs. Passwords are stolen. APIs ar
 [SCENE 2 — 0:20–0:45] Show the Three-Pillar dashboard
 NARRATOR: "Introducing the Three-Pillar Security System — the first platform to combine DNA biometric authentication, dynamic IP scrambling, and AI-driven threat intelligence in a single unified platform."
 
-[SCENE 3 — 0:45–1:30] BioVerify demonstration
-NARRATOR: "Pillar One: BioVerify. Authentication using your DNA. No passwords. No PINs. No secrets that can be stolen. Just you."
-[Show breathalyzer device, DNA hash generation, hardware token activation]
+[SCENE 3 — 0:45–1:30] HelixVerify demonstration
+NARRATOR: "Pillar One: HelixVerify. Wearable DNA authentication with hardware-backed rotation and liveness. No passwords. No PINs. No secrets that can be stolen. Just you."
+[Show HelixVerify wearable token, DNA hash generation, hardware token activation]
 
-[SCENE 4 — 1:30–2:00] IP Shield demonstration  
-NARRATOR: "Pillar Two: IP Shield. We rotate every API key, every data path, every execution sequence — every 100 milliseconds. By the time an attacker captures a credential, it's already gone."
-[Show key rotation counter spinning, protection score at 100%]
-
-[SCENE 5 — 2:00–2:30] Forged API demonstration
-NARRATOR: "Pillar Three: Forged API. Our AI routes every request across multiple universes, automatically detecting failures and rerouting before you notice anything."
+[SCENE 4 — 1:30–2:00] CipherPass demonstration
+NARRATOR: "Pillar Two: CipherPass. Our protected key and API gateway layer routes every request across multiple universes, automatically detecting failures and rerouting before you notice anything."
 [Show request routing, latency graphs, circuit breaker diagram]
 
+[SCENE 5 — 2:00–2:30] Dynamic Scrambler demonstration  
+NARRATOR: "Pillar Three: Dynamic Scrambler. Continuous moving-target defense rotating every API key, every data path, every encryption layer — every 100 milliseconds. By the time an attacker captures a credential, it's already gone."
+[Show key rotation counter spinning, protection score at 100%]
+
 [SCENE 6 — 2:30–3:00] Closing
-NARRATOR: "Three pillars. One platform. Zero compromises. Contact us to schedule a live demonstration."
+NARRATOR: "Three pillars. One authentication platform. Zero compromises. Contact us to schedule a live demonstration."
 [Logo animation, contact information overlay]`;
 
   const PODCAST_SCRIPT = `THREE-PILLAR SECURITY SYSTEM — PODCAST INTRODUCTION SCRIPT
 Generated: ${format(new Date(), 'MMMM d, yyyy')}
 Duration: ~2 minutes
 
-HOST 1: "Welcome back to the show. Today we're talking about something that's going to fundamentally change how we think about cybersecurity."
+HOST 1: "Welcome back to the show. Today we're talking about a next-generation authentication platform built on three interlocking layers."
 
-HOST 2: "That's right. We're looking at a system that replaces passwords with DNA, rotates your API keys 10 times per second, and uses AI to detect hackers before they even know they've been detected."
+HOST 2: "That's right. We're looking at a system that replaces passwords with DNA via a wearable token, protects API keys behind an intelligent gateway, and rotates keys and paths 10 times per second."
 
-HOST 1: "Let's start with the DNA part, because that's the one that blew my mind. You're telling me that instead of typing a password, you... breathe?"
+HOST 1: "Let's start with the DNA part, because that's the one that blew my mind."
 
-HOST 2: "Exactly. The BioVerify system analyzes genetic markers from a breath or saliva sample. It generates a cryptographic hash — think of it like a fingerprint, but a billion times more unique — and binds it to a hardware token."
+HOST 2: "Exactly. HelixVerify is a DNA-based wearable identity anchor with hardware-backed rotation and liveness. It generates an irreversible cryptographic hash from your genetic markers and binds it to your wearable token."
 
 HOST 1: "And nobody can steal your DNA."
 
-HOST 2: "Well, not without you noticing. And if they did — the system also runs a liveness detection check to make sure it's actually you, in real-time."
+HOST 2: "Not without you noticing. And HelixVerify runs continuous liveness detection to make sure it's actually you in real-time."
 
-HOST 1: "Now the scrambling piece — IP Shield. Walk me through that."
+HOST 1: "Now walk me through the second and third pillars — CipherPass and Dynamic Scrambler."
 
-HOST 2: "Think of it like this. Traditional security uses a lock with one key. IP Shield uses a lock that changes its entire mechanism every 100 milliseconds. By the time a hacker captures your API key, it's already dead."
+HOST 2: "CipherPass is the protected key and API gateway layer. And Dynamic Scrambler is continuous moving-target defense — changing keys, paths, and encryption layers every 100 milliseconds so any intercepted key is already dead."
 
-HOST 1: "Unreal. And then on top of all that, there's an AI watching for anything suspicious."
+HOST 1: "And on top of that, behavioral AI watches for anything suspicious."
 
-HOST 2: "Right. The Forged API layer and the AI threat engine work together. If your usage pattern suddenly changes — different location, unusual hours, too many requests — it flags it immediately and can auto-block."
+HOST 2: "Right. CipherPass and the AI threat engine work together. If usage patterns suddenly change — different location, unusual hours, too many requests — it flags it immediately and auto-blocks."
 
 HOST 1: "Three layers of defense. DNA, scrambling, and AI. Listeners, we'll link the full demo in the show notes. Stay secure out there."`;
 

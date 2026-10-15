@@ -60,7 +60,7 @@ export default function Dashboard() {
 
   const { data: hardwareTokens = [] } = useQuery({
     queryKey: ['hardwareTokens'],
-    queryFn: () => base44.entities.BioVerifyToken.filter({ is_active: true }),
+    queryFn: () => base44.entities.HelixVerifyToken.filter({ is_active: true }),
   });
 
   return (
@@ -75,7 +75,7 @@ export default function Dashboard() {
             </div>
             <div>
               <h1 className="text-4xl font-bold gradient-text">Three Pillar Plus Security Solution</h1>
-              <p className="text-slate-400">BioVerify • CipherPass • Exposure Shield</p>
+              <p className="text-slate-400">HelixVerify • CipherPass • Dynamic Scrambler</p>
             </div>
           </div>
           <div className="flex gap-2 flex-wrap">
@@ -90,12 +90,12 @@ export default function Dashboard() {
             />
             <PrintReportButton
               reportTitle="Three Pillar Plus Security Solution — CipherPass & Universe Management Report"
-              subtitle="What Three Pillar Plus Security Solution does for your API keys — and why no other system comes close."
-              filename="forged-api-report-{date}.pdf"
+              subtitle="Next-generation authentication built on HelixVerify, CipherPass, and Dynamic Scrambler."
+              filename="cipherpass-report-{date}.pdf"
               sections={[
                 {
-                  heading: 'WHAT THREE-PILLAR SECURITY DOES FOR YOUR API KEYS',
-                  body: 'Three Pillar Plus Security Solution is an intelligent multi-universe API gateway that eliminates every weakness of traditional API key management.\n\nTraditional API management: One static key. One endpoint. One point of failure.\nThree Pillar Plus Security Solution: Rotating keys across multiple universes with AI-powered routing, auto-failover, and real-time threat detection — all happening invisibly behind every request.'
+                  heading: 'WHAT THREE-PILLAR SECURITY DOES FOR YOUR AUTHENTICATION & API KEYS',
+                  body: 'Three Pillar Plus Security Solution is a next-generation authentication platform built on three interlocking layers: HelixVerify (DNA wearable identity anchor), CipherPass (protected API key and gateway layer), and Dynamic Scrambler (continuous moving-target defense).\n\nTraditional API management: One static key. One endpoint. One point of failure.\nThree Pillar Plus Security Solution: Rotating keys across multiple universes with AI-powered routing, auto-failover, and real-time threat detection — all happening invisibly behind every request.'
                 },
                 {
                   heading: 'LIVE SYSTEM STATUS',
@@ -103,7 +103,7 @@ export default function Dashboard() {
                     ['Connected API Universes', universes.length],
                     ['Total Requests Processed', requests.length],
                     ['Active API Keys', keys.length],
-                    ['Active Hardware Tokens', hardwareTokens.length],
+                    ['Active HelixVerify Tokens', hardwareTokens.length],
                     ['Security Logs', securityLogs.length],
                     ['Key Rotation', 'Continuous — every 0.1 to 5 seconds'],
                     ['Routing Algorithm', 'AI-powered latency + health scoring'],
@@ -112,15 +112,15 @@ export default function Dashboard() {
                 },
                 {
                   heading: 'THE API KEY PROBLEM — AND OUR SOLUTION',
-                  body: 'TRADITIONAL APPROACH (broken):\n• One API key, valid for months or years\n• Stored in environment variables or config files\n• Leaked via git commits, logs, or insider access\n• Single point of failure — one breach = full access\n• No visibility into who used the key, when, or why\n\nTHREE-PILLAR SECURITY APPROACH (architected for resilience):\n• Keys rotate every 0.1–5 seconds via CipherPass\n• Keys are bound to DNA-verified hardware tokens\n• Every request is logged with user, timestamp, and IP\n• Compromised keys expire before they can be replayed\n• Multiple universes provide instant failover if one is compromised'
+                  body: 'TRADITIONAL APPROACH (broken):\n• One API key, valid for months or years\n• Stored in environment variables or config files\n• Leaked via git commits, logs, or insider access\n• Single point of failure — one breach = full access\n• No visibility into who used the key, when, or why\n\nTHREE-PILLAR AUTHENTICATION APPROACH (architected for resilience):\n• Keys are protected by CipherPass and rotated every 0.1–5 seconds via Dynamic Scrambler\n• Keys are bound to HelixVerify DNA-verified wearable tokens\n• Every request is logged with user, timestamp, and IP\n• Compromised keys expire before they can be replayed\n• Multiple universes provide instant failover if one is compromised'
                 },
                 {
                   heading: 'INTELLIGENT ROUTING ACROSS UNIVERSES',
-                  body: 'Three Pillar Plus Security Solution routes every request across multiple API universes using an AI scoring algorithm that weighs:\n\n• Real-time latency (40% weight)\n• Success rate history (30% weight)\n• Current health status (20% weight)\n• Geographic proximity (10% weight)\n\nIf a universe degrades or goes offline, the system automatically reroutes to the next best option in < 50ms — completely transparently to the application.\n\nThis means your APIs have 99.9%+ availability even when individual providers fail.'
+                  body: 'CipherPass routes every request across multiple API universes using an AI scoring algorithm that weighs:\n\n• Real-time latency (40% weight)\n• Success rate history (30% weight)\n• Current health status (20% weight)\n• Geographic proximity (10% weight)\n\nIf a universe degrades or goes offline, the system automatically reroutes to the next best option in < 50ms — completely transparently to the application.\n\nThis means your APIs have 99.9%+ availability even when individual providers fail.'
                 },
                 {
                   heading: 'SECURITY LAYERS ON EVERY API CALL',
-                  body: 'Every request through Three Pillar Plus Security Solution passes through 5 security layers:\n\nLayer 1: DNA Authentication — Verify caller identity via BioVerify token\nLayer 2: Key Validation — Confirm current rotating key matches expected TOTP\nLayer 3: Rate Limiting — Enforce per-user and per-universe call limits\nLayer 4: Threat Analysis — AI checks request pattern against behavioral baseline\nLayer 5: Audit Logging — Full immutable record of every call with metadata\n\nAny layer can independently block a request. All five must pass for a call to succeed.'
+                  body: 'Every request through Three Pillar Plus Security Solution passes through 5 security layers:\n\nLayer 1: HelixVerify DNA Authentication — Verify caller identity via HelixVerify wearable token\nLayer 2: Key Validation — Confirm current rotating key matches expected TOTP\nLayer 3: Rate Limiting — Enforce per-user and per-universe call limits\nLayer 4: Threat Analysis — AI checks request pattern against behavioral baseline\nLayer 5: Audit Logging — Full immutable record of every call with metadata\n\nAny layer can independently block a request. All five must pass for a call to succeed.'
                 },
                 {
                   heading: 'CIRCUIT BREAKER & FAILOVER',
@@ -143,13 +143,13 @@ export default function Dashboard() {
               <Link to={createPageUrl('DynamicScrambler')}>
                 <Button variant="outline">
                   <RefreshCw className="w-4 h-4 mr-2" />
-                  IP Shield
+                  Dynamic Scrambler
                 </Button>
               </Link>
               <Link to={createPageUrl('Authenticator')}>
                 <Button variant="outline">
                   <Link2 className="w-4 h-4 mr-2" />
-                  BioVerify
+                  HelixVerify
                 </Button>
               </Link>
               <Link to={createPageUrl('Analytics')}>
@@ -269,7 +269,7 @@ export default function Dashboard() {
               <Link to="/bioverify-hardware-status">
                 <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
                   <Watch className="w-4 h-4 mr-2" />
-                  BioVerify Hardware
+                  HelixVerify Hardware
                 </Button>
               </Link>
               <Link to="/remediation-queue">

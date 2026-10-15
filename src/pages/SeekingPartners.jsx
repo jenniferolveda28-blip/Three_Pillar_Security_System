@@ -104,12 +104,12 @@ export default function SeekingPartners() {
 
           <FadeIn delay={0.2}>
             <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-4">
-              A fully functional cybersecurity platform built around three interlocking innovations — 
-              DNA-based biometric authentication, a real-time moving-target defense system, and an AI-driven 
-              universal API security layer.
+              A next-generation authentication platform built on three interlocking layers — 
+              <strong> HelixVerify</strong> (DNA-based wearable identity anchor), <strong>CipherPass</strong> (protected key and API gateway layer), 
+              and <strong>Dynamic Scrambler</strong> (continuous moving-target defense).
             </p>
             <p className="text-lg text-cyan-400 font-semibold mb-10">
-              The architecture is proven. The hardware prototype doesn't exist yet — that's where you come in.
+              The architecture is proven. The physical HelixVerify wearable token prototype doesn't exist yet — that's where you come in.
             </p>
           </FadeIn>
 
@@ -130,15 +130,15 @@ export default function SeekingPartners() {
               </Button>
               <PrintReportButton
                 reportTitle="Seeking Partners & Investors"
-                subtitle="Three-Pillar Security System — DNA Authentication · IP Shield · Forged API"
+                subtitle="Three-Pillar Authentication System — HelixVerify · CipherPass · Dynamic Scrambler"
                 filename="seeking-partners-{date}.pdf"
                 sections={[
-                  { heading: 'EXECUTIVE SUMMARY', body: 'A fully functional cybersecurity platform built around three interlocking innovations: DNA-based biometric authentication, a real-time moving-target defense system (IP Shield), and an AI-driven universal API security layer (Forged API). The architecture is proven and fully demonstrated in software. The physical DNA breathalyzer hardware prototype does not exist yet — that is the gap this partnership seeks to close.' },
+                  { heading: 'EXECUTIVE SUMMARY', body: 'A next-generation authentication platform built on three interlocking layers: HelixVerify (DNA-based wearable identity anchor with hardware-backed rotation and liveness), CipherPass (protected key and API gateway layer), and Dynamic Scrambler (continuous moving-target defense across keys, paths, and encryption layers). The architecture is demonstrated in software. The physical HelixVerify wearable hardware prototype does not exist yet — that is the gap this partnership seeks to close.' },
                   { heading: 'THE PROBLEM', body: 'Cybercrime damages are projected to reach $10.5T+ annually (Cybersecurity Ventures). 81% of breaches involve stolen credentials. Current authentication methods are structurally broken: passwords get phished, hardware tokens get cloned, 2FA codes are valid for up to 30 seconds (an eternity for automated attacks), and fingerprints/facial scans are spoofed with $200 of equipment. DNA, processed correctly, is the only biometric that cannot be copied from a photo, recording, or stolen device.' },
-                  { heading: 'PILLAR 1 — DNA BREATHALYZER AUTHENTICATION (BioVerify Token)', body: 'Saliva-based DNA extraction via a breath-into-device interface. Raw DNA is never stored — only a one-way cryptographic hash. A biometric that cannot be stolen from a photo, voice, or fingerprint scanner. Ships as a hardware token (no phone required). Re-registration after loss takes 30 seconds with one breath. GDPR/HIPAA compliant by design.' },
-                  { heading: 'PILLAR 2 — IP SHIELD (Moving Target Defense)', body: 'API keys, routes, encryption layers, and execution paths all rotate every 100ms. 300x faster refresh rate than Google Authenticator (0.1s vs 30s). By the time an attacker finishes reconnaissance, every path they mapped is obsolete. The architecture is mathematically sound: an attacker cannot exploit a target that changes faster than reconnaissance completes. Moving-target defense is an established NIST-recognized technique; this implementation applies it at a speed and granularity no existing commercial product matches. Software layer is ready for scientific validation now.' },
-                  { heading: 'PILLAR 3 — FORGED API (Universal AI Router)', body: 'A single authenticated session routes across any connected API securely. AI-driven behavior analysis detects attack patterns in real time. Criminal activity is auto-flagged, auto-blocked, and authorities notified. Correlates events across sessions to identify multi-stage attack chains. Reduces enterprise API integration complexity by ~90%. Fully functional software demo available now.' },
-                  { heading: 'WHAT EXISTS vs WHAT IS NEEDED', body: 'ALREADY BUILT: Full software platform, DNA hash storage/comparison/verification logic, IP Shield scrambling engine (software simulation), AI threat detection and attack chain correlation, criminal activity monitoring and auto-response, RBAC and audit logging, automated security report generation, investor-facing demos for all three pillars, full system architecture and data flow designs.\n\nSTILL NEEDED: Physical DNA breathalyzer hardware prototype, miniaturized saliva DNA extraction sensor (nano-sensor array), on-device hash generation chip (tamper-proof secure element), validation of DNA marker extraction speed (target: <2 seconds), accuracy testing at scale (false positive/negative rates), regulatory pathway mapping (FDA, FTC, GDPR, HIPAA), independent scientific peer review, angel or seed funding ($250k-$2M target).' },
+                  { heading: 'PILLAR 1 — HELIXVERIFY (DNA Wearable Identity Anchor)', body: 'DNA-based wearable identity anchor with hardware-backed rotation and liveness. Raw DNA is never stored — only a one-way cryptographic hash. A biometric that cannot be stolen from a photo, voice, or fingerprint scanner. Ships as a wearable hardware token. Re-registration after loss takes 30 seconds. GDPR/HIPAA compliant by design.' },
+                  { heading: 'PILLAR 2 — CIPHERPASS (Protected API Gateway)', body: 'Protected key and API gateway layer routing authenticated sessions across connected APIs. AI-driven behavior analysis detects attack patterns in real time. Criminal activity is auto-flagged and auto-blocked. Reduces enterprise API integration complexity by ~90%. Fully functional software demo available now.' },
+                  { heading: 'PILLAR 3 — DYNAMIC SCRAMBLER (Moving-Target Defense)', body: 'API keys, routes, encryption layers, and execution paths rotate every 100ms. 300x faster refresh rate than Google Authenticator (0.1s vs 30s). By the time an attacker finishes reconnaissance, every path they mapped is obsolete. Software layer is ready for scientific validation now.' },
+                  { heading: 'WHAT EXISTS vs WHAT IS NEEDED', body: 'ALREADY BUILT: Full software platform, DNA hash storage/comparison/verification logic, CipherPass gateway, Dynamic Scrambler engine (software simulation), AI threat detection and attack chain correlation, RBAC and audit logging, automated report generation, investor-facing demos for all three pillars, plus Exposure Shield data-broker removal as an added benefit.\n\nSTILL NEEDED: Physical HelixVerify wearable hardware prototype, miniaturized DNA extraction sensor array, on-device hash generation chip (tamper-proof secure element), validation of DNA marker extraction speed, accuracy testing at scale, regulatory pathway mapping (FDA, FTC, GDPR, HIPAA), independent scientific peer review, angel or seed funding ($250k-$2M target).' },
                   { heading: 'WHO WE ARE SEEKING', rows: [['Biomedical/Forensic Scientists', 'DNA extraction from saliva, miniaturized sensors, point-of-care diagnostics'], ['Embedded Systems / Hardware Engineers', 'Secure microcontrollers, tamper-proof chips, IoT biometric devices'], ['Angel Investors / Seed Funds', '$250k-$2M for prototype development. Equity available.'], ['University Research Labs', 'Funded collaboration in biometrics, security hardware, or biotech.'], ['Cybersecurity Researchers', 'Adversarial testing of the IP Shield or DNA hash model.'], ['Co-Founders / Technical Partners', 'Hardware or biotech background. Equity positions open.']] },
                   { heading: 'MARKET OPPORTUNITY', rows: [['Global Cybersecurity Market', '$300B+'], ['Identity & Access Management TAM', '$55B'], ['YoY Growth in Biometric Security', '23%'], ['Direct Competitors', '$0 — no product combines DNA + moving-target + AI in one platform']] },
                   { heading: 'THE HONEST PITCH', body: 'I am one person. I built all of this — the architecture, the software, the simulations, the security logic — without funding, without a team, and without formal backing. The idea works. The math checks out. What I cannot do alone is build a physical DNA sensor chip or fund prototype manufacturing. If you have those capabilities or connections, we should be talking. A conversation costs nothing.' },
@@ -220,49 +220,49 @@ export default function SeekingPartners() {
                 icon={Dna}
                 color="bg-blue-600"
                 bg="bg-blue-950/20 border-blue-500/50"
-                title="DNA Breathalyzer Authentication"
-                tagline="Pillar 1 — BioVerify Token"
+                title="HelixVerify DNA Authentication"
+                tagline="Pillar 1 — Wearable Identity Anchor"
                 points={[
-                  'Saliva-based DNA extraction — user just breathes into the device',
+                  'DNA-based wearable identity anchor with hardware-backed rotation and liveness',
                   'Raw DNA never stored. Only a one-way cryptographic hash.',
                   'Biometric that cannot be stolen from a photo, voice, or fingerprint scanner',
-                  'Hardware token ships to user — no phone required',
-                  'Re-registration after loss takes 30 seconds, one breath',
+                  'Wearable hardware token ships to user — no phone required',
+                  'Re-registration after loss takes 30 seconds via stored hash',
                   'GDPR / HIPAA compliant architecture by design',
                 ]}
               />
             </FadeIn>
             <FadeIn delay={0.1}>
               <PillarCard
-                icon={Zap}
-                color="bg-orange-600"
-                bg="bg-orange-950/20 border-orange-500/50"
-                title="IP Shield — Moving Target Defense"
-                tagline="Pillar 2 — Real-Time Scrambling"
-                points={[
-                  'API keys, routes, encryption layers, and execution paths all rotate every 100ms',
-                  '300× faster refresh rate than Google Authenticator (30s vs 0.1s)',
-                  'By the time an attacker finishes reconnaissance, every path they mapped is obsolete',
-                  'Mathematically provable: real-time exploitation is impossible',
-                  'No known real-world breach of a properly deployed moving-target defense system (NIST-recognized technique)',
-                  'Software layer — ready for scientific validation now',
-                ]}
-              />
-            </FadeIn>
-            <FadeIn delay={0.15}>
-              <PillarCard
                 icon={BrainCircuit}
                 color="bg-purple-600"
                 bg="bg-purple-950/20 border-purple-500/50"
-                title="Forged API — Universal AI Router"
-                tagline="Pillar 3 — Intelligent Security Gateway"
+                title="CipherPass — Protected API Gateway"
+                tagline="Pillar 2 — Key & Gateway Layer"
                 points={[
-                  'Single authenticated session routes across any connected API securely',
+                  'Protected key and API gateway layer across all connected APIs',
                   'AI-driven behavior analysis detects attack patterns in real time',
                   'Criminal activity auto-flagged, auto-blocked, authorities notified',
                   'Correlates events across sessions to identify multi-stage attack chains',
                   'Reduces enterprise API integration complexity by ~90%',
                   'Fully functional software demo available right now',
+                ]}
+              />
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <PillarCard
+                icon={Zap}
+                color="bg-orange-600"
+                bg="bg-orange-950/20 border-orange-500/50"
+                title="Dynamic Scrambler"
+                tagline="Pillar 3 — Moving-Target Defense"
+                points={[
+                  'Continuous moving-target defense: keys, paths, and encryption layers rotate every 100ms',
+                  '300× faster refresh rate than Google Authenticator (30s vs 0.1s)',
+                  'By the time an attacker finishes reconnaissance, every path they mapped is obsolete',
+                  'Mathematically provable: real-time exploitation is impossible',
+                  'NIST-recognized moving-target defense applied at sub-second granularity',
+                  'Software layer — ready for scientific validation now',
                 ]}
               />
             </FadeIn>
@@ -322,7 +322,7 @@ export default function SeekingPartners() {
                   </div>
                   <ul className="space-y-3">
                     {[
-                      'Physical DNA breathalyzer hardware prototype',
+                      'Physical HelixVerify wearable DNA hardware prototype',
                       'Miniaturized saliva DNA extraction sensor (nano-sensor array)',
                       'On-device hash generation chip (tamper-proof secure element)',
                       'Validation of DNA marker extraction speed (target: &lt;2 seconds)',

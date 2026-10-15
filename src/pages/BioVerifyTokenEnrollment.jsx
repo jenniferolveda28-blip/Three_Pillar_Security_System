@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Fingerprint, Dna, ScanLine, Cpu, Activity } from 'lucide-react';
 
 const steps = [
-  { icon: Cpu, title: 'Unbox & Power On', desc: 'Power on the BioVerify token and confirm the OLED display activates with the device serial number visible.' },
+  { icon: Cpu, title: 'Unbox & Power On', desc: 'Power on the HelixVerify token and confirm the OLED display activates with the device serial number visible.' },
   { icon: ScanLine, title: 'Register Serial', desc: 'Enter the token serial number printed on the device to begin the enrollment record.' },
   { icon: Dna, title: 'DNA / Biometric Capture', desc: 'Collect the saliva sample or backup biometric (fingerprint/facial) and submit for hashing. Confidence must be ≥ 95.' },
   { icon: Activity, title: 'Synchronize', desc: 'Hold the sync button for 3 seconds to pair with the cloud. Sync status must change to "synced".' },
@@ -25,10 +25,10 @@ export default function BioVerifyTokenEnrollment() {
   const qc = useQueryClient();
   const [serial, setSerial] = useState('');
   const [email, setEmail] = useState('');
-  const { data: regs = [], isLoading } = useQuery({ queryKey: ['bioVerifyRegs'], queryFn: () => base44.entities.BioVerifyRegistration.list('-created_date', 100) });
+  const { data: regs = [], isLoading } = useQuery({ queryKey: ['bioVerifyRegs'], queryFn: () => base44.entities.HelixVerifyRegistration.list('-created_date', 100) });
 
   const createReg = useMutation({
-    mutationFn: (data) => base44.entities.BioVerifyRegistration.create(data),
+    mutationFn: (data) => base44.entities.HelixVerifyRegistration.create(data),
     onSuccess: () => { qc.invalidateQueries(['bioVerifyRegs']); setSerial(''); setEmail(''); }
   });
 
@@ -40,8 +40,8 @@ export default function BioVerifyTokenEnrollment() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-8 space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-white flex items-center gap-2"><Fingerprint className="w-7 h-7 text-cyan-400" /> BioVerify Token Enrollment</h1>
-        <p className="text-slate-400 mt-1">Step-by-step hardware enrollment, synchronization, and biometric validation.</p>
+        <h1 className="text-3xl font-bold text-white flex items-center gap-2"><Fingerprint className="w-7 h-7 text-cyan-400" /> HelixVerify Token Enrollment</h1>
+        <p className="text-slate-400 mt-1">Step-by-step wearable hardware enrollment, synchronization, and DNA validation.</p>
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6">

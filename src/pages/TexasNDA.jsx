@@ -20,10 +20,10 @@ const TX_COUNTIES = [
 ];
 
 const DISCLOSURE_TYPES = [
-  'proprietary cybersecurity architecture and source code',
-  'DNA biometric authentication technology and processes',
-  'IP Shield moving-target defense system and algorithms',
-  'Forged API routing technology and AI threat detection logic',
+  'proprietary authentication architecture and source code',
+  'HelixVerify wearable DNA authentication technology and processes',
+  'CipherPass protected API gateway and AI threat detection logic',
+  'Dynamic Scrambler moving-target defense system and algorithms',
   'all three pillars of the Three-Pillar Security System',
   'business plans, financial projections, and investor materials',
 ];

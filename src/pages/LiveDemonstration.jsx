@@ -57,13 +57,13 @@ export default function LiveDemonstration() {
 
   const { data: tokens = [] } = useQuery({
     queryKey: ['demo-tokens'],
-    queryFn: () => base44.entities.BioVerifyToken.list('-created_date', 10),
+    queryFn: () => base44.entities.HelixVerifyToken.list('-created_date', 10),
     refetchInterval: 2000
   });
 
   const { data: registrations = [] } = useQuery({
     queryKey: ['demo-registrations'],
-    queryFn: () => base44.entities.BioVerifyRegistration.list('-created_date', 10),
+    queryFn: () => base44.entities.HelixVerifyRegistration.list('-created_date', 10),
     refetchInterval: 2000
   });
 
@@ -675,7 +675,7 @@ export default function LiveDemonstration() {
                     <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center font-bold flex-shrink-0">5</div>
                     <div>
                       <p className="font-semibold">Full Access Restored</p>
-                      <p className="text-sm text-slate-400">User can authenticate with DNA breathalyzer - all systems accessible</p>
+                      <p className="text-sm text-slate-400">User can authenticate with HelixVerify DNA token - all systems accessible</p>
                     </div>
                   </div>
                 </div>
