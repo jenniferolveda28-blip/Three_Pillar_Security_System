@@ -31,7 +31,7 @@ export default function TokenRegistrationForm({ onRegistered, tokens }) {
         .map(b => b.toString(16).padStart(2, '0'))
         .join('');
       
-      await base44.entities.BioVerifyRegistration.create({
+      await base44.entities.HelixVerifyRegistration.create({
         token_serial: formData.token_serial,
         registered_by_email: formData.registered_by_email || user.email,
         registration_status: 'dna_verified',
@@ -41,7 +41,7 @@ export default function TokenRegistrationForm({ onRegistered, tokens }) {
         verification_method: 'dna_saliva'
       });
 
-      toast.success('BioVerify device registered successfully!');
+      toast.success('HelixVerify device registered successfully!');
       setFormData({ token_serial: '', registered_by_email: '' });
       onRegistered();
     } catch (error) {
@@ -63,18 +63,18 @@ export default function TokenRegistrationForm({ onRegistered, tokens }) {
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Register BioVerify Device</CardTitle>
+          <CardTitle>Register HelixVerify Device</CardTitle>
           <CardDescription>
-            Register your physical BioVerify token for unhackable biometric authentication
+            Register your physical HelixVerify wearable token for DNA-based authentication
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="serial">BioVerify Serial Number</Label>
+              <Label htmlFor="serial">HelixVerify Serial Number</Label>
               <Input
                 id="serial"
-                placeholder="BVFY-XXXX-XXXX-XXXX"
+                placeholder="HLXV-XXXX-XXXX-XXXX"
                 value={formData.token_serial}
                 onChange={(e) => setFormData({...formData, token_serial: e.target.value})}
                 required
@@ -116,7 +116,7 @@ export default function TokenRegistrationForm({ onRegistered, tokens }) {
       {/* Registered Tokens */}
       <Card>
         <CardHeader>
-          <CardTitle>Your Registered BioVerify Devices</CardTitle>
+          <CardTitle>Your Registered HelixVerify Devices</CardTitle>
         </CardHeader>
         <CardContent>
           {tokens.length === 0 ? (

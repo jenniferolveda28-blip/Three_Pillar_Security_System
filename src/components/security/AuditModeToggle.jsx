@@ -29,7 +29,7 @@ export default function AuditModeToggle() {
           </Badge>
         </div>
         <CardDescription>
-          Skip the BioVerify login requirement for demonstration purposes. All bypass events are logged with timestamp and auditor email.
+          Skip the HelixVerify login requirement for demonstration purposes. All bypass events are logged with timestamp and auditor email.
         </CardDescription>
       </CardHeader>
       <CardContent>

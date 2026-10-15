@@ -33,24 +33,24 @@ Thank you for your interest in the Three-Pillar Security System. Following our r
 
 PLATFORM OVERVIEW
 
-The Three-Pillar Security System is a next-generation cybersecurity platform built on three integrated pillars:
+The Three-Pillar Security System is a next-generation authentication platform built on three interlocking layers:
 
-1. DNA Breathalyzer Authentication (BioVerify)
-   - Hardware token with saliva-based nano-sensor DNA verification
+1. HelixVerify DNA Authentication
+   - DNA-based wearable identity anchor with hardware-backed rotation and liveness
    - 99.7–99.8% match confidence with SHA-256 one-way hashing
    - Raw DNA is never stored — discarded immediately after hashing
-   - Token replacement: $29.99, shipped in 2-3 days, re-activated with one breath
+   - Token replacement: $29.99, shipped in 2-3 days, re-activated with existing genetic hash
 
-2. IP Shield (Dynamic Scrambler)
-   - Moving Target Defense: API keys, routing paths, and encryption layers rotate every 0.1–5 seconds
+2. CipherPass (Protected API Gateway)
+   - Protected key and API gateway layer with AI-powered routing across API universes and < 50ms automatic failover
+   - Real-time latency, health, and success-rate scoring algorithm
+   - Immutable audit logging and AI threat analysis on every request
+
+3. Dynamic Scrambler (Moving-Target Defense)
+   - Continuous moving-target defense: API keys, routing paths, and encryption layers rotate every 0.1–5 seconds
    - Attacker exploit window: 0.1 seconds (vs. 30 seconds for Google Authenticator)
    - Zero successful breaches in simulation by mathematical design
    - Continuous key rotation with AES-256-GCM encryption
-
-3. Forged API (Multi-Universe Router)
-   - AI-powered routing across multiple API universes with < 50ms automatic failover
-   - Real-time latency, health, and success-rate scoring algorithm
-   - Immutable audit logging and AI threat analysis on every request
 
 KEY DIFFERENTIATORS
 
@@ -87,35 +87,35 @@ Texas, USA`;
     <p style="font-size: 15px;">Thank you for your interest in the Three-Pillar Security System. Following our recent discussion${company}, I wanted to share a comprehensive technical overview of our platform and outline the next steps for our engagement.</p>
 
     <h2 style="color: #06b6d4; font-size: 18px; margin-top: 28px;">Platform Overview</h2>
-    <p style="font-size: 15px;">The Three-Pillar Security System is a next-generation cybersecurity platform built on three integrated pillars:</p>
+    <p style="font-size: 15px;">The Three-Pillar Security System is a next-generation authentication platform built on three interlocking layers:</p>
 
     <div style="background: #f0f9ff; border-left: 3px solid #0ea5e9; padding: 16px; margin: 16px 0; border-radius: 4px;">
-      <h3 style="color: #0ea5e9; margin: 0 0 8px; font-size: 15px;">1. DNA Breathalyzer Authentication (BioVerify)</h3>
+      <h3 style="color: #0ea5e9; margin: 0 0 8px; font-size: 15px;">1. HelixVerify DNA Authentication</h3>
       <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #334155;">
-        <li>Hardware token with saliva-based nano-sensor DNA verification</li>
+        <li>DNA-based wearable identity anchor with hardware-backed rotation and liveness</li>
         <li>99.7–99.8% match confidence with SHA-256 one-way hashing</li>
         <li>Raw DNA never stored — discarded immediately after hashing</li>
-        <li>Token replacement: $29.99, 2-3 day delivery, re-activated with one breath</li>
-      </ul>
-    </div>
-
-    <div style="background: #fffbeb; border-left: 3px solid #f59e0b; padding: 16px; margin: 16px 0; border-radius: 4px;">
-      <h3 style="color: #f59e0b; margin: 0 0 8px; font-size: 15px;">2. IP Shield (Dynamic Scrambler)</h3>
-      <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #334155;">
-        <li>Moving Target Defense: keys &amp; paths rotate every 0.1–5 seconds</li>
-        <li>Attacker exploit window: 0.1 seconds (vs. 30s for Google Authenticator)</li>
-        <li>Zero successful breaches in simulation by mathematical design</li>
-        <li>Continuous key rotation with AES-256-GCM encryption</li>
+        <li>Token replacement: $29.99, 2-3 day delivery, re-activated with existing genetic hash</li>
       </ul>
     </div>
 
     <div style="background: #f5f3ff; border-left: 3px solid #8b5cf6; padding: 16px; margin: 16px 0; border-radius: 4px;">
-      <h3 style="color: #8b5cf6; margin: 0 0 8px; font-size: 15px;">3. Forged API (Multi-Universe Router)</h3>
+      <h3 style="color: #8b5cf6; margin: 0 0 8px; font-size: 15px;">2. CipherPass (Protected API Gateway)</h3>
       <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #334155;">
-        <li>AI-powered routing across multiple API universes</li>
+        <li>Protected key and API gateway layer across multiple API universes</li>
         <li>&lt; 50ms automatic failover with zero downtime</li>
         <li>Real-time latency, health &amp; success-rate scoring</li>
         <li>Immutable audit logging and AI threat analysis</li>
+      </ul>
+    </div>
+
+    <div style="background: #fffbeb; border-left: 3px solid #f59e0b; padding: 16px; margin: 16px 0; border-radius: 4px;">
+      <h3 style="color: #f59e0b; margin: 0 0 8px; font-size: 15px;">3. Dynamic Scrambler (Moving-Target Defense)</h3>
+      <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #334155;">
+        <li>Continuous moving-target defense: keys, paths &amp; encryption layers rotate every 0.1–5 seconds</li>
+        <li>Attacker exploit window: 0.1 seconds (vs. 30s for Google Authenticator)</li>
+        <li>Zero successful breaches in simulation by mathematical design</li>
+        <li>Continuous key rotation with AES-256-GCM encryption</li>
       </ul>
     </div>
 

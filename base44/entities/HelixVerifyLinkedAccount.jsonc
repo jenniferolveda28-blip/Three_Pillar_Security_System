@@ -1,10 +1,10 @@
 {
-  "name": "BioVerifyLinkedAccount",
+  "name": "HelixVerifyLinkedAccount",
   "type": "object",
   "properties": {
     "token_serial": {
       "type": "string",
-      "description": "BioVerify token this account is linked to"
+      "description": "HelixVerify token this account is linked to"
     },
     "account_provider": {
       "type": "string",

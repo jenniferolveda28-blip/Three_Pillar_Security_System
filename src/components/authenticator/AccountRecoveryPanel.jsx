@@ -17,7 +17,7 @@ export default function AccountRecoveryPanel({ accounts, onUpdate }) {
   const handleInitiateRecovery = async (account) => {
     setProcessing(true);
     try {
-      await base44.entities.BioVerifyLinkedAccount.update(account.id, {
+      await base44.entities.HelixVerifyLinkedAccount.update(account.id, {
         status: 'pending',
         recovery_attempts: (account.recovery_attempts || 0) + 1
       });
@@ -48,7 +48,7 @@ export default function AccountRecoveryPanel({ accounts, onUpdate }) {
     
     setProcessing(true);
     try {
-      await base44.entities.BioVerifyLinkedAccount.update(selectedAccount.id, {
+      await base44.entities.HelixVerifyLinkedAccount.update(selectedAccount.id, {
         status: 'recovered',
         last_verified: new Date().toISOString(),
         recovery_attempts: 0
@@ -76,7 +76,7 @@ export default function AccountRecoveryPanel({ accounts, onUpdate }) {
     if (!confirm('Lock this account? This will prevent all access until recovered.')) return;
     
     try {
-      await base44.entities.BioVerifyLinkedAccount.update(account.id, {
+      await base44.entities.HelixVerifyLinkedAccount.update(account.id, {
         status: 'locked'
       });
       

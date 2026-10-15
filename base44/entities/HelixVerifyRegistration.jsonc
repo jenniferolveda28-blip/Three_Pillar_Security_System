@@ -1,10 +1,10 @@
 {
-  "name": "BioVerifyRegistration",
+  "name": "HelixVerifyRegistration",
   "type": "object",
   "properties": {
     "token_serial": {
       "type": "string",
-      "description": "Unique serial number on physical device"
+      "description": "Unique serial number on physical HelixVerify device"
     },
     "registration_status": {
       "type": "string",
@@ -19,7 +19,7 @@
     },
     "dna_hash": {
       "type": "string",
-      "description": "Hashed DNA signature from saliva sample"
+      "description": "Hashed DNA signature from biological sample"
     },
     "biometric_confidence": {
       "type": "number",
@@ -37,7 +37,7 @@
     "activation_date": {
       "type": "string",
       "format": "date-time",
-      "description": "When device was activated"
+      "description": "When HelixVerify device was activated"
     },
     "verification_method": {
       "type": "string",
@@ -47,11 +47,11 @@
         "facial_backup"
       ],
       "default": "dna_saliva",
-      "description": "Primary verification method"
+      "description": "Primary HelixVerify verification method"
     },
     "device_info": {
       "type": "object",
-      "description": "Physical device details"
+      "description": "Physical HelixVerify device details"
     },
     "description": {
       "type": "string",

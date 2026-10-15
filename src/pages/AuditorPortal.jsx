@@ -8,10 +8,10 @@ import { Badge } from '@/components/ui/badge';
 import { BookOpen, ClipboardCheck, KeyRound, FileText, ArrowRight, Gavel } from 'lucide-react';
 
 const links = [
-  { to: '/bioverify-handbook', icon: BookOpen, title: 'BioVerify Handbook', desc: 'Architecture & verification documentation' },
+  { to: '/bioverify-handbook', icon: BookOpen, title: 'HelixVerify Handbook', desc: 'Architecture & verification documentation' },
   { to: '/self-certification', icon: ClipboardCheck, title: 'Self-Certification Form', desc: 'Enroll a token & test identity verification' },
   { to: '/auditor-access', icon: KeyRound, title: 'Auditor Access Portal', desc: 'Verify passcode & complete questionnaire' },
-  { to: '/bioverify-blueprint', icon: FileText, title: 'BioVerify Blueprint', desc: 'Token architecture paperwork prototype' }
+  { to: '/bioverify-blueprint', icon: FileText, title: 'HelixVerify Blueprint', desc: 'Token architecture paperwork prototype' }
 ];
 
 export default function AuditorPortal() {
@@ -27,7 +27,7 @@ export default function AuditorPortal() {
     <div className="max-w-5xl mx-auto px-6 py-8 space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-white flex items-center gap-2"><Gavel className="w-7 h-7 text-cyan-400" /> Auditor Portal</h1>
-        <p className="text-slate-400 mt-1">Your assigned tasks, BioVerify documentation, and self-certification — in one place.</p>
+        <p className="text-slate-400 mt-1">Your assigned tasks, HelixVerify documentation, and self-certification — in one place.</p>
       </div>
       {myWarrant && (
         <Card className="bg-slate-900/60 border-cyan-700/40">

@@ -33,15 +33,15 @@ export default function ThreePillarIntegratedDemo() {
 
   useEffect(() => {
     // Update active pillars based on step
-    if (step === 1) setActivePillars(['BioVerify']);
-    if (step === 2) setActivePillars(['BioVerify', 'Forged API']);
-    if (step === 3) setActivePillars(['BioVerify', 'Forged API', 'IP Shield']);
-    if (step >= 4) setActivePillars(['BioVerify', 'Forged API', 'IP Shield']);
+    if (step === 1) setActivePillars(['HelixVerify']);
+    if (step === 2) setActivePillars(['HelixVerify', 'CipherPass']);
+    if (step === 3) setActivePillars(['HelixVerify', 'CipherPass', 'Dynamic Scrambler']);
+    if (step >= 4) setActivePillars(['HelixVerify', 'CipherPass', 'Dynamic Scrambler']);
   }, [step]);
 
   useEffect(() => {
     if (step >= 3) {
-      // Simulate IP Shield scrambling
+      // Simulate Dynamic Scrambler rotation
       const scrambleInterval = setInterval(() => {
         setScrambleCount(prev => prev + 1);
       }, 100);
@@ -62,7 +62,7 @@ export default function ThreePillarIntegratedDemo() {
     const apis = { weather: 'Weather Data', news: 'News Feed', stocks: 'Stock Prices' };
     
     toast.success(`Starting demo for ${users[selectedUser]}`, {
-      description: `Requesting ${apis[selectedApi]} via Forged API`
+      description: `Requesting ${apis[selectedApi]} via CipherPass`
     });
     setIsPlaying(true);
   };
@@ -70,27 +70,27 @@ export default function ThreePillarIntegratedDemo() {
   const steps = [
     {
       num: 1,
-      title: "User Authenticates with DNA",
-      description: "Jane blows into BioVerify token. DNA hash verified in 0.5s. Confidence: 99.8%",
+      title: "User Authenticates with HelixVerify",
+      description: "Jane verifies via HelixVerify wearable DNA token. DNA hash verified in 0.5s. Confidence: 99.8%",
       color: "blue",
       icon: Dna,
-      pillar: "BioVerify"
+      pillar: "HelixVerify"
     },
     {
       num: 2,
-      title: "Request Enters Forged API",
-      description: "Jane's app requests weather data. Forged API receives authenticated session token.",
+      title: "Request Enters CipherPass",
+      description: "Jane's app requests weather data. CipherPass gateway receives authenticated session token.",
       color: "purple",
       icon: Server,
-      pillar: "Forged API"
+      pillar: "CipherPass"
     },
     {
       num: 3,
-      title: "IP Shield Pre-Scramble",
+      title: "Dynamic Scrambler Pre-Scramble",
       description: "All API keys rotated, encryption mutated, execution paths randomized.",
       color: "orange",
       icon: Shield,
-      pillar: "IP Shield"
+      pillar: "Dynamic Scrambler"
     },
     {
       num: 4,
@@ -214,45 +214,45 @@ export default function ThreePillarIntegratedDemo() {
           <div className="grid grid-cols-3 gap-4">
             <motion.div
               animate={{
-                borderColor: activePillars.includes('BioVerify') ? 'rgb(59, 130, 246)' : 'rgb(71, 85, 105)',
-                backgroundColor: activePillars.includes('BioVerify') ? 'rgba(30, 58, 138, 0.4)' : 'rgba(30, 41, 59, 1)'
+                borderColor: activePillars.includes('HelixVerify') ? 'rgb(59, 130, 246)' : 'rgb(71, 85, 105)',
+                backgroundColor: activePillars.includes('HelixVerify') ? 'rgba(30, 58, 138, 0.4)' : 'rgba(30, 41, 59, 1)'
               }}
               className="p-6 rounded-lg border-2 text-center"
             >
-              <Dna className={`h-12 w-12 mx-auto mb-3 ${activePillars.includes('BioVerify') ? 'text-blue-400 animate-pulse' : 'text-slate-600'}`} />
-              <h3 className="font-bold text-lg mb-1">BioVerify</h3>
-              <p className="text-xs text-slate-400">DNA Authentication</p>
-              {activePillars.includes('BioVerify') && (
+              <Dna className={`h-12 w-12 mx-auto mb-3 ${activePillars.includes('HelixVerify') ? 'text-blue-400 animate-pulse' : 'text-slate-600'}`} />
+              <h3 className="font-bold text-lg mb-1">HelixVerify</h3>
+              <p className="text-xs text-slate-400">DNA Wearable Token</p>
+              {activePillars.includes('HelixVerify') && (
                 <Badge className="mt-3 bg-blue-600">ACTIVE</Badge>
               )}
             </motion.div>
 
             <motion.div
               animate={{
-                borderColor: activePillars.includes('Forged API') ? 'rgb(168, 85, 247)' : 'rgb(71, 85, 105)',
-                backgroundColor: activePillars.includes('Forged API') ? 'rgba(88, 28, 135, 0.4)' : 'rgba(30, 41, 59, 1)'
+                borderColor: activePillars.includes('CipherPass') ? 'rgb(168, 85, 247)' : 'rgb(71, 85, 105)',
+                backgroundColor: activePillars.includes('CipherPass') ? 'rgba(88, 28, 135, 0.4)' : 'rgba(30, 41, 59, 1)'
               }}
               className="p-6 rounded-lg border-2 text-center"
             >
-              <Server className={`h-12 w-12 mx-auto mb-3 ${activePillars.includes('Forged API') ? 'text-purple-400 animate-pulse' : 'text-slate-600'}`} />
-              <h3 className="font-bold text-lg mb-1">Forged API</h3>
-              <p className="text-xs text-slate-400">Universal Gateway</p>
-              {activePillars.includes('Forged API') && (
+              <Server className={`h-12 w-12 mx-auto mb-3 ${activePillars.includes('CipherPass') ? 'text-purple-400 animate-pulse' : 'text-slate-600'}`} />
+              <h3 className="font-bold text-lg mb-1">CipherPass</h3>
+              <p className="text-xs text-slate-400">Protected API Gateway</p>
+              {activePillars.includes('CipherPass') && (
                 <Badge className="mt-3 bg-purple-600">ACTIVE</Badge>
               )}
             </motion.div>
 
             <motion.div
               animate={{
-                borderColor: activePillars.includes('IP Shield') ? 'rgb(249, 115, 22)' : 'rgb(71, 85, 105)',
-                backgroundColor: activePillars.includes('IP Shield') ? 'rgba(124, 45, 18, 0.4)' : 'rgba(30, 41, 59, 1)'
+                borderColor: activePillars.includes('Dynamic Scrambler') ? 'rgb(249, 115, 22)' : 'rgb(71, 85, 105)',
+                backgroundColor: activePillars.includes('Dynamic Scrambler') ? 'rgba(124, 45, 18, 0.4)' : 'rgba(30, 41, 59, 1)'
               }}
               className="p-6 rounded-lg border-2 text-center"
             >
-              <Shield className={`h-12 w-12 mx-auto mb-3 ${activePillars.includes('IP Shield') ? 'text-orange-400 animate-pulse' : 'text-slate-600'}`} />
-              <h3 className="font-bold text-lg mb-1">IP Shield</h3>
-              <p className="text-xs text-slate-400">Dynamic Scrambling</p>
-              {activePillars.includes('IP Shield') && (
+              <Shield className={`h-12 w-12 mx-auto mb-3 ${activePillars.includes('Dynamic Scrambler') ? 'text-orange-400 animate-pulse' : 'text-slate-600'}`} />
+              <h3 className="font-bold text-lg mb-1">Dynamic Scrambler</h3>
+              <p className="text-xs text-slate-400">Moving-Target Defense</p>
+              {activePillars.includes('Dynamic Scrambler') && (
                 <div className="mt-3">
                   <Badge className="bg-orange-600">ACTIVE</Badge>
                   <p className="text-xs text-orange-400 mt-2 font-bold">

@@ -67,7 +67,7 @@ export default function BreathalyzerVerification({ token, onVerificationComplete
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Wind className="w-6 h-6 text-blue-600" />
-            BioVerify Breathalyzer Test
+            HelixVerify Liveness &amp; DNA Verification
           </CardTitle>
           <CardDescription>
             Blow into the device sensor to verify your unique biometric signature

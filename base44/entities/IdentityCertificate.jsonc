@@ -16,7 +16,7 @@
     },
     "token_serial": {
       "type": "string",
-      "description": "BioVerify token serial referenced"
+      "description": "HelixVerify token serial referenced"
     },
     "drive_file_url": {
       "type": "string",

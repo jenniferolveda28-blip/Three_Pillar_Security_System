@@ -54,17 +54,17 @@ Deno.serve(async (req) => {
             doc.text('EXECUTIVE SUMMARY', 20, y);
             y += 12;
             doc.setFontSize(10);
-            doc.text('Revolutionary cybersecurity platform combining DNA authentication,', 20, y);
+            doc.text('Next-generation authentication platform built on three interlocking layers:', 20, y);
             y += 6;
-            doc.text('universal API gateway, and dynamic scrambling technology.', 20, y);
+            doc.text('HelixVerify DNA authentication, CipherPass gateway, and Dynamic Scrambler.', 20, y);
             y += 10;
             doc.text('Key Features:', 20, y);
             y += 8;
-            doc.text('✓ 99.8% accuracy target (pending validation) — DNA biometric authentication', 25, y);
+            doc.text('✓ 99.8% accuracy target (pending validation) — HelixVerify DNA authentication', 25, y);
             y += 6;
             doc.text('✓ Real-time threat detection with AI', 25, y);
             y += 6;
-            doc.text('✓ API keys rotate every 2-5 seconds', 25, y);
+            doc.text('✓ API keys rotate every 2-5 seconds via Dynamic Scrambler', 25, y);
             y += 6;
             doc.text('✓ Zero successful breaches in simulation', 25, y);
             y += 6;
@@ -79,10 +79,10 @@ Deno.serve(async (req) => {
             y += 15;
             
             doc.setFontSize(14);
-            doc.text('Pillar 1: BioVerify DNA Authentication', 20, y);
+            doc.text('Pillar 1: HelixVerify DNA Authentication', 20, y);
             y += 10;
             doc.setFontSize(9);
-            doc.text('Hardware DNA breathalyzer tokens provide unhackable biometric security.', 25, y);
+            doc.text('DNA-based wearable identity anchor with hardware-backed rotation and liveness.', 25, y);
             y += 5;
             doc.text('Each device is paired to unique genetic markers, impossible to replicate.', 25, y);
             y += 5;
@@ -90,19 +90,19 @@ Deno.serve(async (req) => {
             y += 15;
 
             doc.setFontSize(14);
-            doc.text('Pillar 2: Forged API Universal Gateway', 20, y);
+            doc.text('Pillar 2: CipherPass Protected API Gateway', 20, y);
             y += 10;
             doc.setFontSize(9);
-            doc.text('Single authentication point for all your APIs. Intelligent routing with', 25, y);
+            doc.text('Protected key and API gateway layer for all your APIs. Intelligent routing with', 25, y);
             y += 5;
             doc.text('automatic failover, load balancing, and performance optimization.', 25, y);
             y += 15;
 
             doc.setFontSize(14);
-            doc.text('Pillar 3: IP Shield Dynamic Scrambling', 20, y);
+            doc.text('Pillar 3: Dynamic Scrambler', 20, y);
             y += 10;
             doc.setFontSize(9);
-            doc.text('Continuous rotation of encryption keys, API paths, and data structures.', 25, y);
+            doc.text('Continuous moving-target defense rotating keys, paths, and encryption layers.', 25, y);
             y += 5;
             doc.text('Makes stolen credentials worthless within seconds.', 25, y);
 
@@ -201,7 +201,7 @@ Deno.serve(async (req) => {
             y += 12;
 
             doc.setFontSize(14);
-            doc.text('2. DNA Breathalyzer Registration', 20, y);
+            doc.text('2. HelixVerify DNA Registration', 20, y);
             y += 8;
             doc.setFontSize(9);
             doc.text('Step-by-step demonstration of secure biometric enrollment process.', 25, y);
@@ -213,30 +213,30 @@ Deno.serve(async (req) => {
             doc.text('3. Three-Pillar Integration', 20, y);
             y += 8;
             doc.setFontSize(9);
-            doc.text('Live visualization of all three security layers working together.', 25, y);
+            doc.text('Live visualization of all three authentication layers working together.', 25, y);
             y += 12;
 
             doc.setFontSize(14);
             doc.text('4. Token Replacement Process', 20, y);
             y += 8;
             doc.setFontSize(9);
-            doc.text('Fast and secure device replacement with DNA re-verification.', 25, y);
+            doc.text('Fast and secure HelixVerify device replacement with DNA re-verification.', 25, y);
 
         } else if (type === 'brochure') {
             // Product Brochure
             doc.setFontSize(24);
-            doc.text('Three-Pillar Security System', 20, y);
+            doc.text('Three-Pillar Authentication System', 20, y);
             y += 15;
 
             doc.setFontSize(12);
-            doc.text('Revolutionary Multi-Layer Protection', 20, y);
+            doc.text('Next-Generation Multi-Layer Authentication', 20, y);
             y += 20;
 
             doc.setFontSize(14);
-            doc.text('Pillar 1: BioVerify DNA Authentication', 20, y);
+            doc.text('Pillar 1: HelixVerify DNA Authentication', 20, y);
             y += 10;
             doc.setFontSize(10);
-            doc.text('- Military-grade biometric security using DNA breathalyzer', 25, y);
+            doc.text('- DNA-based wearable identity anchor with hardware-backed rotation and liveness', 25, y);
             y += 7;
             doc.text('- 99.8% accuracy rate', 25, y);
             y += 7;
@@ -244,10 +244,10 @@ Deno.serve(async (req) => {
             y += 15;
 
             doc.setFontSize(14);
-            doc.text('Pillar 2: Forged API Universal Gateway', 20, y);
+            doc.text('Pillar 2: CipherPass Protected API Gateway', 20, y);
             y += 10;
             doc.setFontSize(10);
-            doc.text('- Single token accesses all your APIs', 25, y);
+            doc.text('- Protected key and API gateway layer across all your APIs', 25, y);
             y += 7;
             doc.text('- Intelligent routing and failover', 25, y);
             y += 7;
@@ -255,14 +255,14 @@ Deno.serve(async (req) => {
             y += 15;
 
             doc.setFontSize(14);
-            doc.text('Pillar 3: IP Shield Dynamic Scrambling', 20, y);
+            doc.text('Pillar 3: Dynamic Scrambler', 20, y);
             y += 10;
             doc.setFontSize(10);
             doc.text('- API keys rotate every 2-5 seconds', 25, y);
             y += 7;
             doc.text('- Stolen credentials expire instantly', 25, y);
             y += 7;
-            doc.text('- Makes hacking designed to be computationally infeasible', 25, y);
+            doc.text('- Continuous moving-target defense across keys, paths, and encryption layers', 25, y);
             y += 20;
 
             doc.setFontSize(16);
@@ -283,25 +283,25 @@ Deno.serve(async (req) => {
             doc.text('Technical Whitepaper', 20, y);
             y += 10;
             doc.setFontSize(12);
-            doc.text('Advanced Security Architecture', 20, y);
+            doc.text('Advanced Authentication Architecture', 20, y);
             y += 20;
 
             doc.setFontSize(14);
-            doc.text('DNA Biometric Authentication', 20, y);
+            doc.text('HelixVerify DNA Authentication', 20, y);
             y += 10;
             doc.setFontSize(9);
-            doc.text('Our proprietary breathalyzer technology extracts unique DNA markers from', 25, y);
+            doc.text('Our proprietary HelixVerify wearable token extracts unique DNA markers from', 25, y);
             y += 5;
-            doc.text('saliva samples, creating an unhackable biometric signature with 99.8%', 25, y);
+            doc.text('biological samples, creating an unhackable biometric signature with 99.8%', 25, y);
             y += 5;
             doc.text('accuracy. Unlike passwords or fingerprints, DNA cannot be stolen or replicated.', 25, y);
             y += 15;
 
             doc.setFontSize(14);
-            doc.text('Dynamic Key Rotation System', 20, y);
+            doc.text('Dynamic Scrambler Key Rotation System', 20, y);
             y += 10;
             doc.setFontSize(9);
-            doc.text('Our IP Shield scrambles API keys, execution paths, and encryption layers', 25, y);
+            doc.text('Our Dynamic Scrambler rotates API keys, execution paths, and encryption layers', 25, y);
             y += 5;
             doc.text('every 2-5 seconds. Even if an attacker intercepts credentials, they expire', 25, y);
             y += 5;

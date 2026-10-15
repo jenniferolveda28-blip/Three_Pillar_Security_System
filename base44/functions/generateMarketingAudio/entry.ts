@@ -31,13 +31,13 @@ This is the Three-Pillar Security System. And it's about to change everything ab
 Over the next few minutes, we'll explore how this breakthrough technology is protecting Fortune 500 companies, government agencies, and could soon protect you too.`;
 
         } else if (type === 'deepdive') {
-            script = `Welcome to this deep dive on the Three-Pillar Security System. We're facing a cybersecurity crisis. Traditional passwords, even two-factor authentication, are being breached daily.
+            script = `Welcome to this deep dive on the Three-Pillar Authentication System. We're facing an authentication crisis. Traditional passwords, even two-factor authentication, are being breached daily.
 
-Our first pillar: DNA biometric authentication. Using a breathalyzer device, we capture your unique genetic signature. It's converted to an irreversible hash, making it impossible to steal or replicate.
+Our first pillar: HelixVerify — our DNA-based wearable identity anchor with hardware-backed rotation and liveness. We capture your unique genetic signature and convert it to an irreversible hash, making it impossible to steal or replicate.
 
-Second pillar: The Universal API Gateway. One hardware token replaces hundreds of passwords. It connects to all your accounts through intelligent routing that adapts in real-time.
+Second pillar: CipherPass — our protected key and API gateway layer. One hardware token replaces hundreds of passwords, connecting to all your accounts through intelligent routing that adapts in real-time.
 
-Third pillar: Dynamic Scrambling. Every 30 milliseconds, the system reorganizes its internal structure. API keys, data paths, execution sequences all shift continuously. It's like trying to break into a building that's constantly rearranging its rooms.
+Third pillar: Dynamic Scrambler — continuous moving-target defense. Every 30 milliseconds, the system reorganizes its internal structure. API keys, data paths, and encryption layers shift continuously. It's like trying to break into a building that's constantly rearranging its rooms.
 
 The AI threat detection layer monitors millions of data points, identifying attack patterns before they succeed. We've seen simulated attacks neutralized in under 50 milliseconds.
 

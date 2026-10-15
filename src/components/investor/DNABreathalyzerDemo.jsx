@@ -77,7 +77,7 @@ export default function DNABreathalyzerDemo() {
       <CardHeader>
         <CardTitle className="text-3xl flex items-center gap-3">
           <Dna className="h-8 w-8 text-blue-500" />
-          Live Demo: DNA Breathalyzer Registration & Security
+          Live Demo: HelixVerify DNA Registration &amp; Security
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -161,8 +161,8 @@ export default function DNABreathalyzerDemo() {
             >
               <div className="text-center">
                 <Dna className={`h-24 w-24 mx-auto mb-4 ${step >= 1 ? 'text-blue-400 animate-pulse' : 'text-blue-600'}`} />
-                <h3 className="text-2xl font-bold mb-2">BioVerify Pro Token</h3>
-                <p className="text-slate-300">Serial: BIOVERIFY-8472-ALPHA</p>
+                <h3 className="text-2xl font-bold mb-2">HelixVerify Wearable Token</h3>
+                <p className="text-slate-300">Serial: HELIXVERIFY-8472-ALPHA</p>
                 {step >= 1 && step < 5 && (
                   <motion.div
                     initial={{ opacity: 0 }}

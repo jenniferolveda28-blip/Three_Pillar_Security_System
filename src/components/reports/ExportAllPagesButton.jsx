@@ -27,20 +27,20 @@ export default function ExportAllPagesButton() {
         base44.entities.ProtectedRequest.list('-created_date', 50),
         base44.entities.CipherPass.list('-created_date', 100),
         base44.entities.SecurityLog.list('-created_date', 50),
-        base44.entities.BioVerifyToken.filter({ is_active: true }),
+        base44.entities.HelixVerifyToken.filter({ is_active: true }),
         base44.entities.InvestorMeeting.list('-meeting_date', 100),
         base44.entities.CriminalActivityAlert.list('-created_date', 50),
         base44.entities.BehaviorAnomaly.list('-created_date', 50),
         base44.entities.ScramblingSession.list('-created_date', 50),
         base44.entities.ThreatCorrelation.list('-created_date', 50),
-        base44.entities.BioVerifyRegistration.list('-created_date', 50),
+        base44.entities.HelixVerifyRegistration.list('-created_date', 50),
         base44.entities.AnalyticsMetric.list('-created_date', 100),
         base44.entities.Subscription.list('-created_date', 50),
         base44.entities.Role.list('-created_date', 50),
-        base44.entities.BioVerifyLinkedAccount.list('-created_date', 50),
+        base44.entities.HelixVerifyLinkedAccount.list('-created_date', 50),
         base44.entities.SecurityReport.list('-created_date', 50),
         base44.entities.IncidentRule.list('-created_date', 50),
-        base44.entities.BioVerifyRegistration.list('-created_date', 50),
+        base44.entities.HelixVerifyRegistration.list('-created_date', 50),
         base44.entities.UserRoleAssignment.list('-created_date', 50),
         base44.entities.InvestorInteraction.list('-timestamp', 100),
       ]);
@@ -176,13 +176,13 @@ export default function ExportAllPagesButton() {
       ]);
 
       // 5. Authenticator
-      section('5. AUTHENTICATOR — BioVerify');
+      section('5. AUTHENTICATOR — HelixVerify');
       rows([
         ['Active Hardware Tokens', hardwareTokens.length],
         ['Linked Accounts', linkedAccounts.length],
         ['Active Subscriptions', subscriptions.length],
         ['Token Registrations', tokenRegs.length],
-        ['Biometric Method', 'DNA Breathalyzer (hardware prototype required)'],
+        ['Biometric Method', 'HelixVerify Wearable DNA Token (hardware prototype required)'],
         ['Token Replacement Cost', '$29.99 (projected retail — not yet sold)'],
       ]);
       body(hardwareTokens.length > 0
@@ -278,7 +278,7 @@ export default function ExportAllPagesButton() {
 
       // 15. ThreePillarView
       section('14. THREE-PILLAR ARCHITECTURE');
-      body('Pillar 1: DNA Authentication (Software Simulation) — BioVerify hardware tokens with genetic verification using saliva samples and breathalyzer backup. Tokens generate codes every 2 seconds and auto-lock after 3 failed attempts. NOTE: Hardware prototype required for full implementation; current system is a software simulation.\n\nPillar 2: Dynamic Scrambling (Framework Designed) — IP Shield is designed to rotate API keys every 0.1–5 seconds across multiple universes with quantum encryption. Keys are architected to be bound to DNA-verified tokens. NOTE: Full scrambling engine requires hardware integration; current implementation is a framework/architecture demo.\n\nPillar 3: AI Threat Detection (Architected) — Real-time behavioral analysis, criminal activity monitoring, and automated threat neutralization with anomaly orchestration. NOTE: Threat detection models are architected but not yet deployed against live attack traffic; data shown is internal test data.');
+      body('Pillar 1: HelixVerify DNA Authentication (Software Simulation) — DNA-based wearable identity anchor with hardware-backed rotation and liveness. Tokens generate codes every 2 seconds and auto-lock after 3 failed attempts. NOTE: Hardware prototype required for full implementation; current system is a software simulation.\n\nPillar 2: CipherPass Protected API Gateway — Protected key and API gateway layer across multiple API universes with intelligent routing, failover, and audit logging.\n\nPillar 3: Dynamic Scrambler (Framework Designed) — Continuous moving-target defense rotating API keys, paths, and encryption layers every 0.1–5 seconds across multiple universes. Keys are architected to be bound to HelixVerify DNA-verified tokens. NOTE: Full scrambling engine requires hardware integration; current implementation is a framework/architecture demo.');
 
       // 16. UniversePerformance
       section('15. UNIVERSE PERFORMANCE');

@@ -54,7 +54,7 @@ export default function TokenReplacementDemo() {
   };
 
   const reportLostToken = () => {
-    const serial = tokenSerial || 'BIOVERIFY-8472-ALPHA';
+    const serial = tokenSerial || 'HELIXVERIFY-8472-ALPHA';
     setReportedToken(serial);
     toast.success('Token reported lost', {
       description: `Serial ${serial} has been revoked globally`
@@ -103,7 +103,7 @@ export default function TokenReplacementDemo() {
                   </p>
                   <div className="flex gap-3">
                     <Input
-                      placeholder="Enter token serial (e.g., BIOVERIFY-XXXX-XXXX)"
+                      placeholder="Enter token serial (e.g., HELIXVERIFY-XXXX-XXXX)"
                       value={tokenSerial}
                       onChange={(e) => setTokenSerial(e.target.value)}
                       className="flex-1 font-mono"
@@ -177,7 +177,7 @@ export default function TokenReplacementDemo() {
                       <h3 className="text-2xl font-bold">Report Lost Token</h3>
                     </div>
                     <p className="text-slate-300 mb-4">
-                      User logs in from any device → Clicks "Report Lost Token" → Enters serial: <span className="font-mono text-red-400">BIOVERIFY-8472-ALPHA</span>
+                      User logs in from any device → Clicks "Report Lost Token" → Enters serial: <span className="font-mono text-red-400">HELIXVERIFY-8472-ALPHA</span>
                     </p>
                     
                     <div className="bg-red-900/40 p-4 rounded border border-red-500/50">
@@ -236,7 +236,7 @@ export default function TokenReplacementDemo() {
                       <h3 className="text-2xl font-bold">Order Replacement ($29.99)</h3>
                     </div>
                     <p className="text-slate-300 mb-4">
-                      New BioVerify token ships within 24 hours. New serial: <span className="font-mono text-blue-400">BIOVERIFY-9153-BETA</span>
+                      New HelixVerify token ships within 24 hours. New serial: <span className="font-mono text-blue-400">HELIXVERIFY-9153-BETA</span>
                     </p>
                     
                     <div className="bg-blue-900/40 p-4 rounded border border-blue-500/50">

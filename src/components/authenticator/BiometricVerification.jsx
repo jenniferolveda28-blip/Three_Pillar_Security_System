@@ -19,7 +19,7 @@ export default function BiometricVerification({ onVerified, tokenSerial }) {
     if (bypassActive) {
       setStage('success');
       setProgress(100);
-      toast.info('Audit Mode: BioVerify authentication bypassed for demonstration.');
+      toast.info('Audit Mode: HelixVerify authentication bypassed for demonstration.');
       setTimeout(() => onVerified?.({
         confidence: 100,
         markers: 5,

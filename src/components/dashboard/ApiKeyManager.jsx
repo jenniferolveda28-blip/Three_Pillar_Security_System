@@ -93,7 +93,7 @@ export default function ApiKeyManager({ universe, onKeysUpdated }) {
               🔒 Encrypted at rest
             </Badge>
             <Badge variant="outline" className="text-xs">
-              🔐 BioVerify required
+              🔐 HelixVerify required
             </Badge>
           </div>
         </div>

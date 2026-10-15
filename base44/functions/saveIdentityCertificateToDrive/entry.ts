@@ -37,9 +37,9 @@ Jurisdiction: Texas, USA
 
 BIOMETRIC VERIFICATION
 ----------------------
-BioVerify Token Serial: ${tokenSerial || 'N/A'}
+HelixVerify Token Serial: ${tokenSerial || 'N/A'}
 Biometric Confidence: ${biometricConfidence || 'N/A'}%
-Verification Method: DNA Saliva + Breath Liveness Detection
+Verification Method: HelixVerify Wearable DNA + Liveness Detection
 
 SCOPE OF ACCESS
 ---------------

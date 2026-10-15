@@ -120,7 +120,7 @@ async function createPreMeetingChecklist(accessToken: string, meeting: any) {
     },
     {
       title: `🖥️ Set up demo environment`,
-      notes: 'Verify the following demos are operational:\n• DNA Breathalyzer simulation\n• IP Shield key rotation visualization\n• Forged API playground\n• AI Threat Detection dashboard',
+      notes: 'Verify the following demos are operational:\n• HelixVerify DNA authentication simulation\n• CipherPass API gateway playground\n• Dynamic Scrambler key rotation visualization\n• AI Threat Detection dashboard',
     },
     {
       title: `📧 Send calendar invite with agenda to ${meeting.investor_name}`,

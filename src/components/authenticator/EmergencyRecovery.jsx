@@ -33,7 +33,7 @@ export default function EmergencyRecovery({ tokenSerial }) {
     }
 
     try {
-      await base44.entities.BioVerifyLinkedAccount.create({
+      await base44.entities.HelixVerifyLinkedAccount.create({
         token_serial: tokenSerial,
         account_provider: 'Recovery Contact',
         account_identifier: recoveryEmail || recoveryPhone,
@@ -59,7 +59,7 @@ export default function EmergencyRecovery({ tokenSerial }) {
             Emergency Recovery
           </CardTitle>
           <CardDescription className="text-orange-700">
-            Set up backup methods in case your BioVerify device is lost or damaged
+            Set up backup methods in case your HelixVerify device is lost or damaged
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

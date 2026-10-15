@@ -36,7 +36,7 @@ export const AuditModeProvider = ({ children }) => {
       try {
         await base44.entities.SecurityLog.create({
           event_type: 'access_granted',
-          details: `AUDIT_MODE_BYPASS_ENABLED — Auditor ${user?.email} bypassed BioVerify authentication for demonstration. Hardware prototype required for real biometric verification.`,
+          details: `AUDIT_MODE_BYPASS_ENABLED — Auditor ${user?.email} bypassed HelixVerify authentication for demonstration. Hardware prototype required for real biometric verification.`,
           success: true,
           threat_level: 'low'
         });
@@ -48,7 +48,7 @@ export const AuditModeProvider = ({ children }) => {
       try {
         await base44.entities.SecurityLog.create({
           event_type: 'access_granted',
-          details: `AUDIT_MODE_BYPASS_DISABLED — Auditor ${user?.email} restored standard BioVerify authentication requirement.`,
+          details: `AUDIT_MODE_BYPASS_DISABLED — Auditor ${user?.email} restored standard HelixVerify authentication requirement.`,
           success: true,
           threat_level: 'none'
         });

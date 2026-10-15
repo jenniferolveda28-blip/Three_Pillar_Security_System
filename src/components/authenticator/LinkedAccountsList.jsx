@@ -33,7 +33,7 @@ export default function LinkedAccountsList({ accounts, onUpdate }) {
     setLoading(true);
 
     try {
-      await base44.entities.BioVerifyLinkedAccount.create({
+      await base44.entities.HelixVerifyLinkedAccount.create({
         ...formData,
         link_date: new Date().toISOString(),
         status: 'active'
@@ -65,7 +65,7 @@ export default function LinkedAccountsList({ accounts, onUpdate }) {
             <div>
               <CardTitle>Linked Accounts</CardTitle>
               <CardDescription>
-                Protect all your accounts with BioVerify authentication
+                Protect all your accounts with HelixVerify authentication
               </CardDescription>
             </div>
             <Button onClick={() => setShowForm(!showForm)} className="bg-blue-600 hover:bg-blue-700">
@@ -79,9 +79,9 @@ export default function LinkedAccountsList({ accounts, onUpdate }) {
             <form onSubmit={handleSubmit} className="space-y-4 mb-6 p-4 bg-blue-50 rounded-lg">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>BioVerify Serial</Label>
+                  <Label>HelixVerify Serial</Label>
                   <Input
-                    placeholder="BVFY-XXXX-XXXX"
+                    placeholder="HLXV-XXXX-XXXX"
                     value={formData.token_serial}
                     onChange={(e) => setFormData({...formData, token_serial: e.target.value})}
                     required
@@ -189,7 +189,7 @@ export default function LinkedAccountsList({ accounts, onUpdate }) {
                     
                     <div className="flex items-center gap-2 text-xs text-gray-500">
                       <Shield className="w-3 h-3" />
-                      <span>Protected by BVFY: {account.token_serial}</span>
+                      <span>Protected by HelixVerify: {account.token_serial}</span>
                     </div>
                     
                     {account.recovery_email && (

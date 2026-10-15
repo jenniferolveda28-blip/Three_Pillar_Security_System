@@ -24,18 +24,18 @@ export default function DemoExplanation({ demoId, demoTitle }) {
         the 0.15 second response time, behavior analysis, attack chain identification, and automated law enforcement 
         integration. Format in markdown with clear sections.`,
         
-        dna: `Generate a detailed technical explanation for our "DNA Breathalyzer" biometric authentication demo. 
-        Cover: How DNA gets encoded into the device, the zero-knowledge architecture where we never store actual DNA 
-        (only cryptographic hashes), GDPR/HIPAA compliance advantages, the mathematical impossibility of reverse 
-        engineering, and why this is revolutionary for investors. Include technical details about SHA-256 hashing, 
-        AES-256-GCM encryption, and the 2-second registration process. Format in markdown with clear sections.`,
+        dna: `Generate a detailed technical explanation for our "HelixVerify DNA Authentication" wearable token demo. 
+        Cover: How DNA gets encoded into the HelixVerify wearable identity anchor with hardware-backed rotation and liveness, 
+        the zero-knowledge architecture where we never store actual DNA (only cryptographic hashes), GDPR/HIPAA compliance advantages, 
+        the mathematical impossibility of reverse engineering, and why this is revolutionary for investors. Include technical details 
+        about SHA-256 hashing, AES-256-GCM encryption, and the 2-second registration process. Format in markdown with clear sections.`,
         
         integrated: `Generate a detailed technical explanation for our "Three Pillars Integration" demo showcasing 
-        BioVerify + Forged API + IP Shield working together. Cover: How the three security layers create an 
-        impenetrable defense, real-world attack scenario simulation, the synergy between biological authentication, 
-        universal API access, and dynamic scrambling, and the competitive moat this creates. Include specific examples 
-        of how an attack is detected, analyzed, and neutralized across all three systems simultaneously. Format in 
-        markdown with clear sections.`,
+        HelixVerify + CipherPass + Dynamic Scrambler working together as a next-generation authentication platform. Cover: How the three 
+        interlocking authentication layers create an impenetrable defense, real-world attack scenario simulation, the synergy between 
+        HelixVerify DNA wearable authentication, CipherPass protected API gateway, and Dynamic Scrambler continuous moving-target defense, 
+        and the competitive moat this creates. Include specific examples of how an attack is detected, analyzed, and neutralized across 
+        all three systems simultaneously. Format in markdown with clear sections.`,
         
         replacement: `Generate a detailed technical explanation for our "Token Replacement" demo. Cover: The $29.99 
         replacement cost advantage, 2-3 day shipping timeline, 30-second reactivation process, how DNA verification 

@@ -26,36 +26,36 @@ export default function ThreePillarArchitecture() {
     const pillars = [
         {
             id: 'bioverify',
-            name: 'BioVerify',
-            subtitle: 'DNA Authentication',
+            name: 'HelixVerify',
+            subtitle: 'DNA Wearable Identity Anchor',
             icon: Shield,
             color: 'from-cyan-500 to-blue-600',
             borderColor: 'border-cyan-500',
             glowColor: 'shadow-cyan-500/50',
             description: 'WHO YOU ARE',
-            details: ['DNA verification', 'Hardware tokens', 'Continuous auth', 'Multi-biometric']
+            details: ['DNA verification', 'Wearable hardware token', 'Hardware-backed rotation', 'Liveness detection']
         },
         {
             id: 'forgedapi',
-            name: 'Forged API',
-            subtitle: 'Universal Gateway',
+            name: 'CipherPass',
+            subtitle: 'Protected API Gateway',
             icon: Globe,
             color: 'from-emerald-500 to-green-600',
             borderColor: 'border-emerald-500',
             glowColor: 'shadow-emerald-500/50',
             description: 'WHAT YOU ACCESS',
-            details: ['AI routing', 'Key encryption', 'Auto-fallback', 'Rate limiting']
+            details: ['Protected key gateway', 'AI routing', 'Auto-fallback', 'Rate limiting']
         },
         {
             id: 'ipshield',
-            name: 'IP Shield',
-            subtitle: 'Dynamic Scrambling',
+            name: 'Dynamic Scrambler',
+            subtitle: 'Moving-Target Defense',
             icon: Zap,
             color: 'from-violet-500 to-purple-600',
             borderColor: 'border-violet-500',
             glowColor: 'shadow-violet-500/50',
             description: 'HOW YOU\'RE PROTECTED',
-            details: ['100ms scramble (target)', 'Key rotation (simulated)', 'Path shifting (architected)', 'Multi-layer path randomization']
+            details: ['100ms scramble (target)', 'Key rotation (simulated)', 'Path shifting (architected)', 'Encryption layer rotation']
         }
     ];
 
@@ -186,9 +186,9 @@ export default function ThreePillarArchitecture() {
                                 <div className="space-y-1 text-xs text-slate-300">
                                     <p>• 0.00s: Hacker intercepts API call</p>
                                     <p>• 0.05s: Hacker analyzes encryption</p>
-                                    <p>• 0.10s: <span className="text-violet-400 font-semibold">IP Shield scrambles</span> - pattern changed</p>
-                                    <p>• 0.15s: <span className="text-cyan-400 font-semibold">BioVerify fails</span> - DNA mismatch</p>
-                                    <p>• 0.20s: <span className="text-violet-400 font-semibold">IP Shield scrambles again</span> - code path shifted</p>
+                                    <p>• 0.10s: <span className="text-violet-400 font-semibold">Dynamic Scrambler rotates</span> - pattern changed</p>
+                                    <p>• 0.15s: <span className="text-cyan-400 font-semibold">HelixVerify fails</span> - DNA mismatch</p>
+                                    <p>• 0.20s: <span className="text-violet-400 font-semibold">Dynamic Scrambler rotates again</span> - code path shifted</p>
                                     <p className="text-red-400 font-semibold pt-2">→ Attack failed. System logged. Criminal alert triggered.</p>
                                 </div>
                             </div>
@@ -201,9 +201,9 @@ export default function ThreePillarArchitecture() {
                             <div className="flex items-start gap-4">
                                 <Lock className="w-12 h-12 text-cyan-400 flex-shrink-0" />
                                 <div>
-                                    <h4 className="text-lg font-bold text-white mb-2">The Architected Trinity</h4>
+                                    <h4 className="text-lg font-bold text-white mb-2">The Three-Pillar Authentication System</h4>
                                     <p className="text-slate-300 text-sm leading-relaxed">
-                                        Your DNA unlocks the universal gateway (BioVerify → Forged API), and the gateway is designed to exist in a state of constant flux every 100 milliseconds (IP Shield). Unauthorized access is designed to be computationally infeasible—the system architecture changes faster than attack reconnaissance can complete. Hardware prototype required for full implementation.
+                                        Your DNA unlocks the protected gateway (HelixVerify → CipherPass), and the gateway exists in a state of constant flux every 100 milliseconds (Dynamic Scrambler). Unauthorized access is designed to be computationally infeasible—the authentication architecture changes faster than attack reconnaissance can complete. Hardware prototype required for full implementation.
                                     </p>
                                 </div>
                             </div>

@@ -10,7 +10,7 @@ import { jsPDF } from 'jspdf';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
-const PILLAR_OPTIONS = ['DNA Breathalyzer', 'IP Shield', 'Forged API', 'All Three', 'Business Model', 'Market Size'];
+const PILLAR_OPTIONS = ['HelixVerify', 'CipherPass', 'Dynamic Scrambler', 'All Three', 'Business Model', 'Market Size'];
 
 const FIELD_STYLES = 'bg-slate-900 border-slate-600 text-white placeholder:text-slate-500';
 

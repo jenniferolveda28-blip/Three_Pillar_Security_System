@@ -80,7 +80,7 @@ export default function AuditLog() {
                 Audit Bypass Log
               </h1>
               <p className="text-sm text-slate-400 mt-1">
-                Every time an auditor enabled or disabled the BioVerify authentication bypass.
+                Every time an auditor enabled or disabled the HelixVerify authentication bypass.
               </p>
             </div>
           </div>

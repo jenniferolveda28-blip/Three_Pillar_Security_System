@@ -1,10 +1,10 @@
 {
-  "name": "BioVerifyToken",
+  "name": "HelixVerifyToken",
   "type": "object",
   "properties": {
     "device_name": {
       "type": "string",
-      "description": "Name of the physical BioVerify hardware token"
+      "description": "Name of the physical HelixVerify hardware token"
     },
     "device_id": {
       "type": "string",

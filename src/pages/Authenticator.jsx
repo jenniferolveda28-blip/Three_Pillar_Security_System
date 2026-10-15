@@ -19,12 +19,12 @@ export default function Authenticator() {
 
   const { data: tokens = [], refetch: refetchTokens } = useQuery({
     queryKey: ['tokenRegistrations'],
-    queryFn: () => base44.entities.BioVerifyRegistration.list('-created_date'),
+    queryFn: () => base44.entities.HelixVerifyRegistration.list('-created_date'),
   });
 
   const { data: linkedAccounts = [], refetch: refetchAccounts } = useQuery({
     queryKey: ['linkedAccounts'],
-    queryFn: () => base44.entities.BioVerifyLinkedAccount.list('-created_date'),
+    queryFn: () => base44.entities.HelixVerifyLinkedAccount.list('-created_date'),
   });
 
   const { data: subscriptions = [], refetch: refetchSubscriptions } = useQuery({
@@ -51,27 +51,26 @@ export default function Authenticator() {
                 <Shield className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold text-gray-900">BioVerify (BVFY)</h1>
-                <p className="text-gray-600">Biometric authentication — hardware integration required</p>
+                <h1 className="text-4xl font-bold text-gray-900">HelixVerify (HLXV)</h1>
+                <p className="text-gray-600">DNA-based wearable identity anchor with hardware-backed rotation and liveness</p>
               </div>
             </div>
             <PrintReportButton
-              reportTitle="BioVerify — Breathalyzer & DNA Authentication Report"
-              subtitle="How the breathalyzer authenticator works — and why it cannot be faked."
-              filename="bioverify-authenticator-report-{date}.pdf"
+              reportTitle="HelixVerify — Wearable DNA Authentication Report"
+              subtitle="How the HelixVerify wearable DNA authenticator works — and why it cannot be faked."
+              filename="helixverify-authenticator-report-{date}.pdf"
               sections={[
                 {
-                  heading: 'WHAT IS BIOVERIFY?',
-                  body: 'BioVerify (BVFY) is the world\'s first DNA-based biometric authentication system. Instead of passwords, PINs, or security questions — all of which can be stolen — BioVerify uses your unique genetic signature to verify your identity.\n\nYou cannot steal someone\'s DNA. You cannot guess it. You cannot fake it. This makes BioVerify the strongest authentication factor ever deployed in a commercial system.'
+                  heading: 'WHAT IS HELIXVERIFY?',
+                  body: 'HelixVerify (HLXV) is our DNA-based wearable identity anchor with hardware-backed rotation and liveness. Instead of passwords, PINs, or security questions — all of which can be stolen — HelixVerify uses your unique genetic signature to verify your identity.\n\nYou cannot steal someone\'s DNA. You cannot guess it. You cannot fake it. This makes HelixVerify the foundational first pillar of the Three-Pillar Authentication System.'
                 },
                 {
                   heading: 'LIVE SYSTEM STATUS',
                   rows: [
-                    ['Registered BioVerify Devices', tokens.length],
+                    ['Registered HelixVerify Devices', tokens.length],
                     ['Linked Accounts Protected', linkedAccounts.length],
                     ['Active Subscriptions', subscriptions.filter(s => (s.data?.status || s.status) === 'active').length],
-                    ['Primary Auth Method', 'DNA Breathalyzer (saliva/breath sample)'],
-                    ['Backup Auth Methods', 'Fingerprint, Facial Recognition'],
+                    ['Primary Auth Method', 'HelixVerify Wearable DNA Authentication'],
                     ['TOTP Code Rotation', 'Every 2 seconds'],
                     ['DNA Hash Algorithm', 'HMAC-SHA256 (256-bit cryptographic binding)'],
                     ['False Accept Rate', '< 0.0001%'],
@@ -79,12 +78,12 @@ export default function Authenticator() {
                   ]
                 },
                 {
-                  heading: 'HOW THE BREATHALYZER AUTHENTICATOR WORKS',
-                  body: 'Step 1 — SAMPLE COLLECTION\nThe user breathes into or provides a saliva sample to the BioVerify hardware token. The device contains a nano-biosensor array that identifies 47 unique genetic markers from the sample in real-time.\n\nStep 2 — GENETIC MARKER EXTRACTION\nThe biosensor reads Single Nucleotide Polymorphisms (SNPs) — unique DNA variations that differ between every human being. These markers are the cryptographic seed for the user\'s authentication token.\n\nStep 3 — CRYPTOGRAPHIC HASH GENERATION\nThe 47 markers are combined and processed through HMAC-SHA256, producing a unique 256-bit hash. This hash is bound to the physical hardware token using a Trusted Platform Module (TPM).\n\nStep 4 — TOTP CODE GENERATION\nThe DNA hash + current timestamp generate a 6-digit Time-based One-Time Password (TOTP) that changes every 2 seconds. Even if an attacker captures the code, it expires before they can use it.\n\nStep 5 — LIVENESS DETECTION\nThe system verifies the sample is from a living person — not a recorded or synthetic source — using temperature, CO2 levels, and real-time chemical analysis.\n\nResult: Authentication that cannot be replicated, stolen, or guessed.'
+                  heading: 'HOW HELIXVERIFY DNA AUTHENTICATION WORKS',
+                  body: 'Step 1 — SAMPLE ENROLLMENT\nThe user enrolls via a biological sample bound to the HelixVerify wearable hardware token.\n\nStep 2 — GENETIC MARKER EXTRACTION\nSingle Nucleotide Polymorphisms (SNPs) — unique DNA variations that differ between every human being — serve as the cryptographic seed for the user\'s authentication token.\n\nStep 3 — CRYPTOGRAPHIC HASH GENERATION\nThe markers are combined and processed through HMAC-SHA256, producing a unique 256-bit hash bound to the physical HelixVerify hardware token using a Trusted Platform Module (TPM).\n\nStep 4 — TOTP CODE GENERATION\nThe DNA hash + current timestamp generate a 6-digit Time-based One-Time Password (TOTP) that changes every 2 seconds. Even if an attacker captures the code, it expires before they can use it.\n\nStep 5 — LIVENESS DETECTION\nThe wearable token verifies continuous physiological liveness so the credential cannot be used from a removed or stolen device.\n\nResult: Authentication that cannot be replicated, stolen, or guessed.'
                 },
                 {
                   heading: 'CONTINUOUS AUTHENTICATION',
-                  body: 'Unlike traditional systems that authenticate once at login, BioVerify performs continuous authentication throughout the session:\n\n• Every 30 seconds — Silent DNA re-verification in background\n• Every 5 minutes — Liveness check to detect session handoff\n• On behavioral anomaly — Immediate re-authentication triggered\n• On location change — Full re-verification required\n\nIf a user walks away from their device and someone else sits down, the system detects the change within 30 seconds and locks the session automatically.'
+                  body: 'Unlike traditional systems that authenticate once at login, HelixVerify performs continuous authentication throughout the session:\n\n• Every 30 seconds — Silent hardware-backed re-verification in background\n• Every 5 minutes — Liveness check to detect session handoff\n• On behavioral anomaly — Immediate re-authentication triggered\n• On location change — Full re-verification required\n\nIf a user walks away from their device and someone else sits down, the system detects the change within 30 seconds and locks the session automatically.'
                 },
                 {
                   heading: 'WHY THE BREATHALYZER CANNOT BE FAKED',
@@ -109,7 +108,7 @@ export default function Authenticator() {
           <div className="bg-white rounded-xl p-6 border-2 border-purple-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">BioVerify Devices</p>
+                <p className="text-sm text-gray-600">HelixVerify Devices</p>
                 <p className="text-3xl font-bold text-purple-600">{tokens.length}</p>
               </div>
               <Key className="w-10 h-10 text-purple-200" />
@@ -140,7 +139,7 @@ export default function Authenticator() {
           <TabsList className="mb-6">
             <TabsTrigger value="register" className="flex items-center gap-2">
               <Key className="w-4 h-4" />
-              Register BioVerify
+              Register HelixVerify
             </TabsTrigger>
             <TabsTrigger value="accounts" className="flex items-center gap-2">
               <Link2 className="w-4 h-4" />
