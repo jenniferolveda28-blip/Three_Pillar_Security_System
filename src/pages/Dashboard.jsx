@@ -74,7 +74,7 @@ export default function Dashboard() {
               <Sparkles className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold gradient-text">Three Pillar Plus Security Solution</h1>
+              <h1 className="text-4xl font-bold gradient-text">Reclaim Me</h1>
               <p className="text-slate-400">HelixVerify • CipherPass • Dynamic Scrambler</p>
             </div>
           </div>
@@ -89,13 +89,13 @@ export default function Dashboard() {
               hardwareTokens={hardwareTokens}
             />
             <PrintReportButton
-              reportTitle="Three Pillar Plus Security Solution — CipherPass & Universe Management Report"
+              reportTitle="Reclaim Me — CipherPass & Universe Management Report"
               subtitle="Next-generation authentication built on HelixVerify, CipherPass, and Dynamic Scrambler."
               filename="cipherpass-report-{date}.pdf"
               sections={[
                 {
-                  heading: 'WHAT THREE-PILLAR SECURITY DOES FOR YOUR AUTHENTICATION & API KEYS',
-                  body: 'Three Pillar Plus Security Solution is a next-generation authentication platform built on three interlocking layers: HelixVerify (DNA wearable identity anchor), CipherPass (protected API key and gateway layer), and Dynamic Scrambler (continuous moving-target defense).\n\nTraditional API management: One static key. One endpoint. One point of failure.\nThree Pillar Plus Security Solution: Rotating keys across multiple universes with AI-powered routing, auto-failover, and real-time threat detection — all happening invisibly behind every request.'
+                  heading: 'WHAT RECLAIM ME DOES FOR YOUR AUTHENTICATION & API KEYS',
+                  body: 'Reclaim Me is a next-generation authentication platform built on three interlocking layers: HelixVerify (DNA wearable identity anchor), CipherPass (protected API key and gateway layer), and Dynamic Scrambler (continuous moving-target defense).\n\nTraditional API management: One static key. One endpoint. One point of failure.\nReclaim Me: Rotating keys across multiple universes with AI-powered routing, auto-failover, and real-time threat detection — all happening invisibly behind every request.'
                 },
                 {
                   heading: 'LIVE SYSTEM STATUS',
@@ -112,7 +112,7 @@ export default function Dashboard() {
                 },
                 {
                   heading: 'THE API KEY PROBLEM — AND OUR SOLUTION',
-                  body: 'TRADITIONAL APPROACH (broken):\n• One API key, valid for months or years\n• Stored in environment variables or config files\n• Leaked via git commits, logs, or insider access\n• Single point of failure — one breach = full access\n• No visibility into who used the key, when, or why\n\nTHREE-PILLAR AUTHENTICATION APPROACH (architected for resilience):\n• Keys are protected by CipherPass and rotated every 0.1–5 seconds via Dynamic Scrambler\n• Keys are bound to HelixVerify DNA-verified wearable tokens\n• Every request is logged with user, timestamp, and IP\n• Compromised keys expire before they can be replayed\n• Multiple universes provide instant failover if one is compromised'
+                  body: 'TRADITIONAL APPROACH (broken):\n• One API key, valid for months or years\n• Stored in environment variables or config files\n• Leaked via git commits, logs, or insider access\n• Single point of failure — one breach = full access\n• No visibility into who used the key, when, or why\n\nRECLAIM ME AUTHENTICATION APPROACH (architected for resilience):\n• Keys are protected by CipherPass and rotated every 0.1–5 seconds via Dynamic Scrambler\n• Keys are bound to HelixVerify DNA-verified wearable tokens\n• Every request is logged with user, timestamp, and IP\n• Compromised keys expire before they can be replayed\n• Multiple universes provide instant failover if one is compromised'
                 },
                 {
                   heading: 'INTELLIGENT ROUTING ACROSS UNIVERSES',
@@ -120,7 +120,7 @@ export default function Dashboard() {
                 },
                 {
                   heading: 'SECURITY LAYERS ON EVERY API CALL',
-                  body: 'Every request through Three Pillar Plus Security Solution passes through 5 security layers:\n\nLayer 1: HelixVerify DNA Authentication — Verify caller identity via HelixVerify wearable token\nLayer 2: Key Validation — Confirm current rotating key matches expected TOTP\nLayer 3: Rate Limiting — Enforce per-user and per-universe call limits\nLayer 4: Threat Analysis — AI checks request pattern against behavioral baseline\nLayer 5: Audit Logging — Full immutable record of every call with metadata\n\nAny layer can independently block a request. All five must pass for a call to succeed.'
+                  body: 'Every request through Reclaim Me passes through 5 security layers:\n\nLayer 1: HelixVerify DNA Authentication — Verify caller identity via HelixVerify wearable token\nLayer 2: Key Validation — Confirm current rotating key matches expected TOTP\nLayer 3: Rate Limiting — Enforce per-user and per-universe call limits\nLayer 4: Threat Analysis — AI checks request pattern against behavioral baseline\nLayer 5: Audit Logging — Full immutable record of every call with metadata\n\nAny layer can independently block a request. All five must pass for a call to succeed.'
                 },
                 {
                   heading: 'CIRCUIT BREAKER & FAILOVER',

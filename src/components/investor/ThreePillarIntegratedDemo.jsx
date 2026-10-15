@@ -139,7 +139,7 @@ export default function ThreePillarIntegratedDemo() {
       <CardHeader>
         <CardTitle className="text-3xl flex items-center gap-3">
           <Zap className="h-8 w-8 text-purple-500 animate-pulse" />
-          Live Demo: All Three Pillars Working Together
+          Live Demo: Reclaim Me Capabilities Working Together
         </CardTitle>
       </CardHeader>
       <CardContent>

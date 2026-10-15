@@ -246,7 +246,7 @@ export default function AuditFixSummary() {
       </Card>
 
       <div className="text-center text-slate-500 text-xs pt-4 border-t border-slate-800">
-        Three-Pillar Security System · Backend Audit Report · Generated {today}
+        Reclaim Me · Backend Audit Report · Generated {today}
       </div>
     </div>
   );

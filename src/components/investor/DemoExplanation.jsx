@@ -30,8 +30,8 @@ export default function DemoExplanation({ demoId, demoTitle }) {
         the mathematical impossibility of reverse engineering, and why this is revolutionary for investors. Include technical details 
         about SHA-256 hashing, AES-256-GCM encryption, and the 2-second registration process. Format in markdown with clear sections.`,
         
-        integrated: `Generate a detailed technical explanation for our "Three Pillars Integration" demo showcasing 
-        HelixVerify + CipherPass + Dynamic Scrambler working together as a next-generation authentication platform. Cover: How the three 
+        integrated: `Generate a detailed technical explanation for our "Reclaim Me Integration" demo showcasing 
+        HelixVerify + CipherPass + Dynamic Scrambler working together as the Reclaim Me authentication platform. Cover: How the three 
         interlocking authentication layers create an impenetrable defense, real-world attack scenario simulation, the synergy between 
         HelixVerify DNA wearable authentication, CipherPass protected API gateway, and Dynamic Scrambler continuous moving-target defense, 
         and the competitive moat this creates. Include specific examples of how an attack is detected, analyzed, and neutralized across 

@@ -65,7 +65,7 @@ Keep the tone professional, consistent, and concise. Do not use markdown headers
     doc.text(`${meeting.investor_name}${meeting.company ? ' — ' + meeting.company : ''}`, 12, 28);
     doc.setFontSize(8);
     doc.setTextColor(100, 116, 139);
-    doc.text(`Generated: ${format(new Date(), 'MMMM d, yyyy')} | Three-Pillar Security System`, 12, 38);
+    doc.text(`Generated: ${format(new Date(), 'MMMM d, yyyy')} | Reclaim Me`, 12, 38);
 
     let y = 58;
     const lines = doc.splitTextToSize(summary || 'No summary generated yet.', 184);
@@ -85,7 +85,7 @@ Keep the tone professional, consistent, and concise. Do not use markdown headers
       doc.rect(0, 282, 210, 15, 'F');
       doc.setFontSize(8);
       doc.setTextColor(100, 116, 139);
-      doc.text('THREE-PILLAR SECURITY SYSTEM — EXECUTIVE SUMMARY', 12, 289);
+      doc.text('RECLAIM ME — EXECUTIVE SUMMARY', 12, 289);
       doc.text(`Page ${i} of ${pages}`, 175, 289);
     }
 

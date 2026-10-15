@@ -25,7 +25,7 @@ function drawHeader(doc, title, subtitle) {
   doc.setTextColor(...BRAND.white);
   doc.setFontSize(16);
   doc.setFont(undefined, 'bold');
-  doc.text('Three-Pillar Security System', 14, 16);
+  doc.text('Reclaim Me', 14, 16);
   doc.setFontSize(10);
   doc.setFont(undefined, 'normal');
   doc.setTextColor(...BRAND.primary);
@@ -47,7 +47,7 @@ function drawFooter(doc) {
   doc.line(14, pageHeight - 12, pageWidth - 14, pageHeight - 12);
   doc.setFontSize(8);
   doc.setTextColor(...BRAND.slate);
-  doc.text('Three-Pillar Security System · Confidential', 14, pageHeight - 6);
+  doc.text('Reclaim Me · Confidential', 14, pageHeight - 6);
   doc.text(`Page ${pageNum}`, pageWidth - 14, pageHeight - 6, { align: 'right' });
 }
 

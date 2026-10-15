@@ -62,7 +62,7 @@ export default function Authenticator() {
               sections={[
                 {
                   heading: 'WHAT IS HELIXVERIFY?',
-                  body: 'HelixVerify (HLXV) is our DNA-based wearable identity anchor with hardware-backed rotation and liveness. Instead of passwords, PINs, or security questions — all of which can be stolen — HelixVerify uses your unique genetic signature to verify your identity.\n\nYou cannot steal someone\'s DNA. You cannot guess it. You cannot fake it. This makes HelixVerify the foundational first pillar of the Three-Pillar Authentication System.'
+                  body: 'HelixVerify (HLXV) is our DNA-based wearable identity anchor with hardware-backed rotation and liveness. Instead of passwords, PINs, or security questions — all of which can be stolen — HelixVerify uses your unique genetic signature to verify your identity.\n\nYou cannot steal someone\'s DNA. You cannot guess it. You cannot fake it. This makes HelixVerify the foundational identity layer of Reclaim Me.'
                 },
                 {
                   heading: 'LIVE SYSTEM STATUS',

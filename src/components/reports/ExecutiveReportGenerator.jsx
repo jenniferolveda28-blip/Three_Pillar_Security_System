@@ -25,7 +25,7 @@ export default function ExecutiveReportGenerator({ logs = [], alerts = [], sessi
       doc.text('EXECUTIVE COMPLIANCE REPORT', 20, 20);
       doc.setFontSize(10);
       doc.setTextColor(148, 163, 184);
-      doc.text(`Three-Pillar Security System  |  Generated: ${today}`, 20, 33);
+      doc.text(`Reclaim Me  |  Generated: ${today}`, 20, 33);
 
       let y = 55;
 
@@ -127,7 +127,7 @@ export default function ExecutiveReportGenerator({ logs = [], alerts = [], sessi
         doc.setPage(i);
         doc.setFontSize(8);
         doc.setTextColor(148, 163, 184);
-        doc.text(`Three-Pillar Security System — CONFIDENTIAL — Page ${i} of ${pageCount}`, 20, 285);
+        doc.text(`Reclaim Me — CONFIDENTIAL — Page ${i} of ${pageCount}`, 20, 285);
         doc.text(`Report ID: EXEC-${reportDate}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`, 150, 285);
       }
 

@@ -73,7 +73,7 @@ export default function Connect() {
           <CardHeader>
             <CardTitle className="text-base flex items-center gap-2"><Bot className="w-4 h-4 text-cyan-400" /> Your MCP Server URL</CardTitle>
             <CardDescription>
-              This is the address every AI client connects to. It exposes safe, read-only data from Three Pillar Plus Security.
+              This is the address every AI client connects to. It exposes safe, read-only data from Reclaim Me.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -115,7 +115,7 @@ export default function Connect() {
                   steps={[
                     <>Open the <strong>profile menu</strong> (your avatar) and choose <strong>Settings</strong>.</>,
                     <>Go to <strong>Connectors</strong> and click <strong>Add custom connector</strong>.</>,
-                    <>Give it a name (e.g. “Three Pillar Plus”) and paste the server URL above.</>,
+                    <>Give it a name (e.g. “Reclaim Me”) and paste the server URL above.</>,
                     <>Click <strong>Add</strong>. Claude will load the available tools from this platform.</>,
                   ]}
                 />

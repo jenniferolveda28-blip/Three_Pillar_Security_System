@@ -24,21 +24,21 @@ const DISCLOSURE_TYPES = [
   'HelixVerify wearable DNA authentication technology and processes',
   'CipherPass protected API gateway and AI threat detection logic',
   'Dynamic Scrambler moving-target defense system and algorithms',
-  'all three pillars of the Three-Pillar Security System',
+  'all core capabilities of Reclaim Me (HelixVerify, CipherPass, and Dynamic Scrambler)',
   'business plans, financial projections, and investor materials',
 ];
 
 export default function TexasNDA() {
   const today = format(new Date(), 'MMMM d, yyyy');
   const [form, setForm] = useState({
-    disclosingParty: 'Three-Pillar Security System (Sole Proprietor)',
+    disclosingParty: 'Reclaim Me (Sole Proprietor)',
     disclosingAddress: 'Texas, United States',
     receivingParty: '',
     receivingAddress: '',
     receivingTitle: '',
     county: 'Travis',
     city: 'Austin',
-    disclosureType: 'all three pillars of the Three-Pillar Security System',
+    disclosureType: 'all core capabilities of Reclaim Me (HelixVerify, CipherPass, and Dynamic Scrambler)',
     purposeDescription: 'evaluating a potential investment, research collaboration, or co-founding partnership',
     termYears: '3',
     date: today,

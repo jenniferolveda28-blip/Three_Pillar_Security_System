@@ -61,7 +61,7 @@ export default function PrintReportButton({ reportTitle, subtitle, sections = []
 
       doc.setFontSize(9);
       doc.setTextColor(100, 116, 139);
-      doc.text(`Generated: ${today}  |  Three-Pillar Security System`, 12, 43);
+      doc.text(`Generated: ${today}  |  Reclaim Me`, 12, 43);
 
       // Demo environment notice
       doc.setFillColor(255, 237, 213);
@@ -162,7 +162,7 @@ export default function PrintReportButton({ reportTitle, subtitle, sections = []
         doc.setFontSize(8);
         doc.setFont('helvetica', 'normal');
         doc.setTextColor(100, 116, 139);
-        doc.text('THREE-PILLAR SECURITY SYSTEM — DEMO ENVIRONMENT', 12, 289);
+        doc.text('RECLAIM ME — DEMO ENVIRONMENT', 12, 289);
         doc.text(`Page ${i} of ${pageCount}  |  ${dateStr}`, 155, 289);
       }
 

@@ -82,7 +82,7 @@ export default function InvestorDemo() {
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="text-5xl font-bold gradient-text mb-4">Investor Technical Demonstration</h1>
-          <p className="text-xl text-slate-400">Live simulations proving the superiority of our three-pillar security architecture</p>
+          <p className="text-xl text-slate-400">Live simulations proving the superiority of the Reclaim Me security architecture</p>
           <p className="text-lg text-blue-400 mt-2">Real-time visual proof • Not just theory • Watch it work</p>
         </div>
 

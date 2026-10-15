@@ -178,7 +178,7 @@ function printMeetingPDF(meeting) {
   doc.text('INVESTOR MEETING RECORD', 12, 18);
   doc.setFontSize(10);
   doc.setTextColor(148, 163, 184);
-  doc.text(`Three-Pillar Security System  |  ${format(new Date(), 'MMMM d, yyyy')}`, 12, 30);
+  doc.text(`Reclaim Me  |  ${format(new Date(), 'MMMM d, yyyy')}`, 12, 30);
 
   // Demo environment notice
   doc.setFillColor(180, 83, 9);
@@ -257,7 +257,7 @@ function printMeetingPDF(meeting) {
   doc.rect(0, 282, 210, 15, 'F');
   doc.setFontSize(8);
   doc.setTextColor(100, 116, 139);
-  doc.text('THREE-PILLAR SECURITY SYSTEM — DEMO ENVIRONMENT', 12, 289);
+  doc.text('RECLAIM ME — DEMO ENVIRONMENT', 12, 289);
   doc.text(format(new Date(), 'yyyy-MM-dd'), 180, 289);
 
   const blob = doc.output('blob');
@@ -372,7 +372,7 @@ export default function InvestorCRM() {
             <ExportAllPagesButton />
             <PrintReportButton
               reportTitle="Investor Pipeline Summary"
-              subtitle="Three-Pillar Security System — CRM Export"
+              subtitle="Reclaim Me — CRM Export"
               filename="investor-pipeline-{date}.pdf"
               sections={[
                 { heading: 'PIPELINE SUMMARY', body: `As of ${format(new Date(), 'MMMM d, yyyy')}, the investor pipeline includes ${stats.total} logged meeting${stats.total !== 1 ? 's' : ''}. ${stats.interested} investor${stats.interested !== 1 ? 's' : ''} currently interested or negotiating. Average interest score: ${stats.avgInterest}/5. ${stats.followUps} upcoming follow-up${stats.followUps !== 1 ? 's' : ''} scheduled.` },

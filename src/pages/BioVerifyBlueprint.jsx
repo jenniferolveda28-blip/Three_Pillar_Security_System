@@ -124,7 +124,7 @@ export default function BioVerifyBlueprint() {
           System Blueprint & Component Architecture
         </p>
         <p className="text-slate-600 text-sm mt-2">
-          Three-Pillar Security System · Texas, USA · Classification: Internal Engineering
+          Reclaim Me · Texas, USA · Classification: Internal Engineering
         </p>
       </div>
 
@@ -267,7 +267,7 @@ export default function BioVerifyBlueprint() {
       {/* Document Footer */}
       <div className="text-center text-slate-600 text-xs pb-12">
         <p className="font-mono">END OF SPECIFICATION · HLXV-REV-1.0</p>
-        <p className="mt-1">Three-Pillar Security System © 2024–2026 · Texas, USA</p>
+        <p className="mt-1">Reclaim Me © 2024–2026 · Texas, USA</p>
       </div>
     </div>
   );

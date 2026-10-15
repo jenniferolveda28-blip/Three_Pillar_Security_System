@@ -81,7 +81,7 @@ export default function AuditorAccess() {
           <div className="inline-flex p-4 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl shadow-lg shadow-cyan-500/30 mb-4">
             <ShieldCheck className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white">Three-Pillar Security</h1>
+          <h1 className="text-3xl font-bold text-white">Reclaim Me</h1>
           <p className="text-slate-400 mt-1">Auditor Access Portal</p>
         </div>
 

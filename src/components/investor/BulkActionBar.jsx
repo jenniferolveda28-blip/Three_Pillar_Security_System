@@ -52,7 +52,7 @@ export function exportSelectedLeadsPDF(meetings) {
   doc.text('SELECTED LEADS EXPORT', 12, 18);
   doc.setFontSize(10);
   doc.setTextColor(148, 163, 184);
-  doc.text(`Three-Pillar Security System  |  ${format(new Date(), 'MMMM d, yyyy')}`, 12, 30);
+  doc.text(`Reclaim Me  |  ${format(new Date(), 'MMMM d, yyyy')}`, 12, 30);
   doc.text(`Total Leads: ${meetings.length}`, 12, 36);
 
   let y = 50;
@@ -91,7 +91,7 @@ export function exportSelectedLeadsPDF(meetings) {
     doc.rect(0, 282, 210, 15, 'F');
     doc.setFontSize(8);
     doc.setTextColor(100, 116, 139);
-    doc.text('THREE-PILLAR SECURITY SYSTEM — SELECTED LEADS EXPORT', 12, 289);
+    doc.text('RECLAIM ME — SELECTED LEADS EXPORT', 12, 289);
     doc.text(`Page ${i} of ${pages}  |  ${format(new Date(), 'yyyy-MM-dd')}`, 150, 289);
   }
 

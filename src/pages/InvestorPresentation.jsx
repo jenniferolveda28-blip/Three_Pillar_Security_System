@@ -32,7 +32,7 @@ export default function InvestorPresentation() {
     },
     {
       id: 'integrated',
-      title: 'Three Pillars Integration',
+      title: 'Reclaim Me Integration',
       icon: Layers,
       description: 'Complete authentication system in action',
       component: ThreePillarIntegratedDemo,
@@ -55,14 +55,14 @@ export default function InvestorPresentation() {
         <div className="mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-center md:text-left">
             <h1 className="text-5xl font-bold gradient-text mb-3">Live Authentication Demonstrations</h1>
-            <p className="text-xl text-slate-400">Interactive demonstrations showcasing our three-pillar authentication platform</p>
+            <p className="text-xl text-slate-400">Interactive demonstrations showcasing the Reclaim Me authentication platform</p>
           </div>
           <PrintReportButton
             reportTitle="Live Authentication Demonstrations"
-            subtitle="Three-Pillar Authentication System — Investor Technical Overview"
+            subtitle="Reclaim Me — Investor Technical Overview"
             filename="live-demo-presentation-{date}.pdf"
             sections={[
-              { heading: 'DEMONSTRATION OVERVIEW', body: 'This document captures the four core demonstrations of the Three-Pillar Authentication System: Illegal Activity Detection, HelixVerify DNA Registration, Dynamic Scrambler vs Google Authenticator Comparison, and the Full Integrated System walkthrough.' },
+              { heading: 'DEMONSTRATION OVERVIEW', body: 'This document captures the four core demonstrations of Reclaim Me: Illegal Activity Detection, HelixVerify DNA Registration, Dynamic Scrambler vs Google Authenticator Comparison, and the Full Integrated System walkthrough.' },
               { heading: 'PILLAR 1 — HELIXVERIFY (DNA Wearable Identity Anchor)', body: 'DNA-based wearable identity anchor with hardware-backed rotation and liveness. Raw DNA never stored. One-way SHA-256 hash only. Re-registration after loss: 30 seconds. GDPR/HIPAA compliant architecture.' },
               { heading: 'PILLAR 2 — CIPHERPASS (Protected API Gateway)', body: 'Protected key and API gateway layer with AI-driven routing, real-time threat detection, and automatic failover. Enterprise API integration complexity reduced by ~90%.' },
               { heading: 'PILLAR 3 — DYNAMIC SCRAMBLER (Moving-Target Defense)', body: 'API keys, routes, and encryption layers continuously rotate every 100ms. 300× faster refresh rate than Google Authenticator. Attacker window: 0.1 seconds vs 30 seconds.' },

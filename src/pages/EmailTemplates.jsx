@@ -14,22 +14,22 @@ const DEFAULT_TEMPLATES = [
     name: 'Initial Investor Introduction',
     sequence_type: 'initial_intro',
     trigger: 'New lead logged in CRM',
-    subject: 'Three-Pillar Security System — Introduction',
+    subject: 'Reclaim Me — Introduction',
     body: `Dear {{investor_name}},
 
-I hope this message finds you well. I'm reaching out from the Three-Pillar Security System team to introduce you to a groundbreaking approach to API security.
+I hope this message finds you well. I'm reaching out from the Reclaim Me team to introduce you to a groundbreaking approach to identity and API security.
 
-Our system combines three pillars:
-1. DNA-based biometric authentication
-2. Dynamic key scrambling (IP Shield)
-3. AI-powered threat detection
+Our platform combines three core capabilities:
+1. HelixVerify — DNA-based biometric authentication
+2. CipherPass — Protected API gateway & AI threat detection
+3. Dynamic Scrambler — Continuous moving-target defense
 
 I'd love to schedule a brief call to discuss how this technology could be of interest to {{company}}.
 
 Would you be available next week for a 30-minute introduction?
 
 Best regards,
-The Three-Pillar Security Team`,
+The Reclaim Me Team`,
   },
   {
     name: 'NDA Follow-Up',
@@ -38,17 +38,17 @@ The Three-Pillar Security Team`,
     subject: 'Your Texas NDA — Please Review & Sign',
     body: `Dear {{investor_name}},
 
-Thank you for your interest in the Three-Pillar Security System. As discussed, I've attached a Texas-governed Mutual Non-Disclosure Agreement for your review.
+Thank you for your interest in Reclaim Me. As discussed, I've attached a Texas-governed Mutual Non-Disclosure Agreement for your review.
 
 This NDA covers:
-• DNA authentication technology disclosures
-• API key scrambling architecture details
+• HelixVerify DNA authentication technology disclosures
+• CipherPass gateway and Dynamic Scrambler architecture details
 • AI threat detection methodology
 
 Please review, sign, and return at your earliest convenience so we can schedule a deeper technical dive.
 
 Best regards,
-The Three-Pillar Security Team`,
+The Reclaim Me Team`,
   },
   {
     name: 'Post-Meeting Thank You',
@@ -57,7 +57,7 @@ The Three-Pillar Security Team`,
     subject: 'Thank you for your time — Next Steps',
     body: `Dear {{investor_name}},
 
-Thank you for taking the time to meet with us on {{meeting_date}}. We appreciated the opportunity to demonstrate the Three-Pillar Security System and discuss how it aligns with {{company}}'s investment thesis.
+Thank you for taking the time to meet with us on {{meeting_date}}. We appreciated the opportunity to demonstrate Reclaim Me and discuss how it aligns with {{company}}'s investment thesis.
 
 As discussed, our next steps are:
 {{next_steps}}
@@ -65,29 +65,29 @@ As discussed, our next steps are:
 Please don't hesitate to reach out with any follow-up questions. We look forward to continuing the conversation.
 
 Best regards,
-The Three-Pillar Security Team`,
+The Reclaim Me Team`,
   },
   {
     name: 'Follow-Up Reminder (7 days)',
     sequence_type: 'followup_reminder',
     trigger: 'No response after 7 days',
-    subject: 'Following up — Three-Pillar Security System',
+    subject: 'Following up — Reclaim Me',
     body: `Dear {{investor_name}},
 
-I wanted to follow up on my previous email regarding the Three-Pillar Security System. I understand you're busy, so I'll keep this brief.
+I wanted to follow up on my previous email regarding Reclaim Me. I understand you're busy, so I'll keep this brief.
 
 We're currently scheduling lab visits and live demonstrations for interested partners. Would you like me to reserve a slot for {{company}}?
 
 Happy to answer any questions you may have.
 
 Best regards,
-The Three-Pillar Security Team`,
+The Reclaim Me Team`,
   },
   {
     name: 'Daily Threat Digest Header',
     sequence_type: 'daily_digest',
     trigger: 'Daily automated email',
-    subject: 'Three-Pillar Security — Daily Threat Summary for {{date}}',
+    subject: 'Reclaim Me — Daily Threat Summary for {{date}}',
     body: `SECURITY STATUS REPORT — {{date}}
 
 SYSTEM OVERVIEW:
@@ -98,7 +98,7 @@ SYSTEM OVERVIEW:
 
 This automated digest is generated daily to keep stakeholders informed of the system's security posture.
 
-— Three-Pillar Security System`,
+— Reclaim Me`,
   },
 ];
 

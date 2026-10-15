@@ -141,7 +141,7 @@ export default function SystemDiagnostics() {
 
   const generateReport = () => {
     const reportContent = `
-THREE-PILLAR AUTHENTICATION SYSTEM DIAGNOSTICS REPORT
+RECLAIM ME DIAGNOSTICS REPORT
 Generated: ${new Date().toLocaleString()}
 Database Mode: ${testComplete ? 'Test Database' : 'Production Database'}
 

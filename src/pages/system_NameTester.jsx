@@ -76,7 +76,7 @@ const TEMPLATES = {
 
 export default function SystemNameTester() {
   const { toast } = useToast();
-  const [name, setName] = useState('Three Pillar Plus');
+  const [name, setName] = useState('Reclaim Me');
   const [template, setTemplate] = useState('privacy');
   const [copied, setCopied] = useState(false);
 

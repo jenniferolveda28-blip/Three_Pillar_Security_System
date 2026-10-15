@@ -120,10 +120,10 @@ export default function InvestorOverview() {
             </Link>
             <PrintReportButton
               reportTitle="Investor System Overview"
-              subtitle="Three-Pillar Security System — Live Status & Threat History"
+              subtitle="Reclaim Me — Live Status & Threat History"
               filename="investor-overview-{date}.pdf"
               sections={[
-                { heading: 'EXECUTIVE SUMMARY', body: `As of ${today}, the Three-Pillar Security System is operational across ${stats.universes} connected API universes with ${stats.requests} total requests processed. The system has detected ${stats.threats} threats, automatically neutralized ${stats.neutralized} criminal activities, and maintains an average protection score of ${stats.avgProtection}%. The IP Shield scrambling engine has executed ${stats.totalScrambles} iterations across ${stats.activeSessions} active sessions.` },
+                { heading: 'EXECUTIVE SUMMARY', body: `As of ${today}, Reclaim Me is operational across ${stats.universes} connected API universes with ${stats.requests} total requests processed. The system has detected ${stats.threats} threats, automatically neutralized ${stats.neutralized} criminal activities, and maintains an average protection score of ${stats.avgProtection}%. The Dynamic Scrambler engine has executed ${stats.totalScrambles} iterations across ${stats.activeSessions} active sessions.` },
                 { heading: 'SYSTEM STATUS', rows: [
                   ['Connected API Universes', stats.universes],
                   ['Total Requests Processed', stats.requests],
@@ -139,7 +139,7 @@ export default function InvestorOverview() {
                   ['Auto-Neutralized', stats.neutralized],
                   ['Neutralization Rate', stats.threats > 0 ? Math.round((stats.neutralized / stats.threats) * 100) + '%' : '100%'],
                 ]},
-                { heading: 'THREE-PILLAR ARCHITECTURE', body: 'PILLAR 1 — HelixVerify (DNA Wearable Identity Anchor): DNA-based wearable authentication with hardware-backed rotation, liveness detection, and one-way cryptographic hashing. Raw DNA is never stored.\n\nPILLAR 2 — CipherPass (Protected API Gateway): Protected key and API gateway layer with AI-driven routing, real-time threat detection, and automatic failover.\n\nPILLAR 3 — Dynamic Scrambler (Moving-Target Defense): API keys, routes, and encryption layers rotate every 100ms — 300x faster than Google Authenticator. By the time an attacker completes reconnaissance, every path they mapped is obsolete.' },
+                { heading: 'RECLAIM ME ARCHITECTURE', body: 'LAYER 1 — HelixVerify (DNA Wearable Identity Anchor): DNA-based wearable authentication with hardware-backed rotation, liveness detection, and one-way cryptographic hashing. Raw DNA is never stored.\n\nLAYER 2 — CipherPass (Protected API Gateway): Protected key and API gateway layer with AI-driven routing, real-time threat detection, and automatic failover.\n\nLAYER 3 — Dynamic Scrambler (Moving-Target Defense): API keys, routes, and encryption layers rotate every 100ms — 300x faster than Google Authenticator. By the time an attacker completes reconnaissance, every path they mapped is obsolete.' },
                 { heading: 'RECENT THREAT TIMELINE', body: timeline.length > 0 ? timeline.map((t, i) => `${i+1}. [${t.severity?.toUpperCase()}] ${t.type}: ${t.title}${t.detail ? ' — ' + t.detail : ''} (${t.status})`).join('\n') : 'No threats detected in the current reporting period.' },
                 { heading: 'INVESTMENT THESIS', body: 'This is a working next-generation authentication platform, not a pitch deck. Every metric in this report is pulled from live system data. What remains is building the physical HelixVerify wearable token prototype — seeking $250k-$2M seed funding and scientific/hardware partners.' },
                 { heading: 'CONTACT', rows: [

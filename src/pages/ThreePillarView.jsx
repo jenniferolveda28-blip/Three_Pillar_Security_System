@@ -18,14 +18,14 @@ export default function ThreePillarView() {
                         </Button>
                     </Link>
                     <PrintReportButton
-                        reportTitle="Three-Pillar Authentication Architecture"
+                        reportTitle="Reclaim Me Authentication Architecture"
                         subtitle="Overview of the three interlocking authentication layers: HelixVerify, CipherPass, and Dynamic Scrambler"
-                        filename="three-pillar-architecture-{date}.pdf"
+                        filename="reclaim-me-architecture-{date}.pdf"
                         sections={[
-                            { heading: 'PILLAR 1 — HELIXVERIFY (DNA WEARABLE IDENTITY ANCHOR)', body: 'DNA-based wearable identity anchor with hardware-backed rotation and liveness. Wearable hardware tokens generate rotating TOTP codes every 2 seconds, ensuring no static credentials ever exist.' },
-                            { heading: 'PILLAR 2 — CIPHERPASS (PROTECTED API GATEWAY)', body: 'Protected key and API gateway layer with AI-powered routing, behavioral threat detection, and automatic failover across connected API universes.' },
-                            { heading: 'PILLAR 3 — DYNAMIC SCRAMBLER (MOVING-TARGET DEFENSE)', body: 'Continuous moving-target defense rotating API keys, data paths, and encryption layers on a sub-second interval so captured credentials expire before they can be exploited.' },
-                            { heading: 'WHY THREE PILLARS', body: 'A single-layer authentication model is vulnerable to single points of failure. The Three-Pillar approach ensures that compromising one layer does not grant access — HelixVerify, CipherPass, and Dynamic Scrambler work as one interlocking authentication system.' },
+                            { heading: 'LAYER 1 — HELIXVERIFY (DNA WEARABLE IDENTITY ANCHOR)', body: 'DNA-based wearable identity anchor with hardware-backed rotation and liveness. Wearable hardware tokens generate rotating TOTP codes every 2 seconds, ensuring no static credentials ever exist.' },
+                            { heading: 'LAYER 2 — CIPHERPASS (PROTECTED API GATEWAY)', body: 'Protected key and API gateway layer with AI-powered routing, behavioral threat detection, and automatic failover across connected API universes.' },
+                            { heading: 'LAYER 3 — DYNAMIC SCRAMBLER (MOVING-TARGET DEFENSE)', body: 'Continuous moving-target defense rotating API keys, data paths, and encryption layers on a sub-second interval so captured credentials expire before they can be exploited.' },
+                            { heading: 'WHY RECLAIM ME', body: 'A single-layer authentication model is vulnerable to single points of failure. Reclaim Me ensures that compromising one layer does not grant access — HelixVerify, CipherPass, and Dynamic Scrambler work as one interlocking authentication system.' },
                         ]}
                     />
                 </div>

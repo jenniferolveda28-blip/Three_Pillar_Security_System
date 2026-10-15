@@ -51,7 +51,7 @@ export default function ContactLeadForm() {
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(148, 163, 184);
-    doc.text('Three-Pillar Security System', 12, 32);
+    doc.text('Reclaim Me', 12, 32);
     doc.setFontSize(9);
     doc.setTextColor(100, 116, 139);
     doc.text(`Submitted: ${today}`, 12, 43);
@@ -118,7 +118,7 @@ export default function ContactLeadForm() {
       doc.setFontSize(8);
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(100, 116, 139);
-      doc.text('THREE-PILLAR SECURITY SYSTEM — LEAD CONTACT RECORD', 12, 289);
+      doc.text('RECLAIM ME — LEAD CONTACT RECORD', 12, 289);
       doc.text(`Page ${i} of ${pages}`, 175, 289);
     }
 

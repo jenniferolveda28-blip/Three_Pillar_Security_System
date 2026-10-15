@@ -41,7 +41,7 @@ function buildPDF(reportTitle, subtitle, sections) {
 
   doc.setFontSize(8);
   doc.setTextColor(100, 116, 139);
-  doc.text(`Generated: ${today}  |  Three-Pillar Security System`, 12, 43);
+  doc.text(`Generated: ${today}  |  Reclaim Me`, 12, 43);
 
   let y = 62;
 
@@ -99,7 +99,7 @@ function buildPDF(reportTitle, subtitle, sections) {
     doc.setFillColor(15, 23, 42);
     doc.rect(0, 282, 210, 15, 'F');
     doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(100, 116, 139);
-    doc.text('THREE-PILLAR SECURITY SYSTEM — CONFIDENTIAL', 12, 289);
+    doc.text('RECLAIM ME — CONFIDENTIAL', 12, 289);
     doc.text(`Page ${i} of ${pageCount}  |  ${dateStr}`, 155, 289);
   }
 

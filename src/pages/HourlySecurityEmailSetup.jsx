@@ -32,7 +32,7 @@ function generateSecurityPDF(anomalies, alerts, sessions, logs) {
   doc.text('Automated Security & Scrambler Performance Report', 12, 32);
   doc.setFontSize(9);
   doc.setTextColor(100, 116, 139);
-  doc.text(`Generated: ${dateStr}  |  Three-Pillar Security System`, 12, 43);
+  doc.text(`Generated: ${dateStr}  |  Reclaim Me`, 12, 43);
 
   let y = 62;
   const checkPage = () => {
@@ -97,7 +97,7 @@ function generateSecurityPDF(anomalies, alerts, sessions, logs) {
     doc.setPage(i);
     doc.setFillColor(15, 23, 42); doc.rect(0, 282, 210, 15, 'F');
     doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(100, 116, 139);
-    doc.text('THREE-PILLAR SECURITY SYSTEM — HOURLY AUTOMATED REPORT — CONFIDENTIAL', 12, 289);
+    doc.text('RECLAIM ME — HOURLY AUTOMATED REPORT — CONFIDENTIAL', 12, 289);
     doc.text(`Page ${i} of ${pages}`, 185, 289);
   }
 
@@ -131,7 +131,7 @@ export default function HourlySecurityEmailSetup() {
       await base44.integrations.Core.SendEmail({
         to: savedEmail,
         subject: `[${isManual ? 'MANUAL' : 'HOURLY'}] Security Report — Score: ${score}/100 — ${format(new Date(), 'MMM d, yyyy HH:mm')} UTC`,
-        body: `<h2 style="color:#0891b2">Three-Pillar Security — Hourly Summary</h2>
+        body: `<h2 style="color:#0891b2">Reclaim Me — Hourly Summary</h2>
 <p><strong>Generated:</strong> ${format(new Date(), 'MMMM d, yyyy HH:mm')} UTC</p>
 <hr/>
 <h3>Threat Summary</h3>
@@ -149,7 +149,7 @@ export default function HourlySecurityEmailSetup() {
 </ul>
 <h3>Overall Protection Score: ${score}/100</h3>
 <p>${score >= 80 ? '✅ PROTECTED' : score >= 60 ? '⚠️ MODERATE RISK' : '🔴 HIGH RISK'}</p>
-<p style="color:#64748b;font-size:12px">This is an automated report from your Three-Pillar Security System. A detailed PDF is attached.</p>`,
+<p style="color:#64748b;font-size:12px">This is an automated report from Reclaim Me. A detailed PDF is attached.</p>`,
       });
 
       const entry = { time: new Date(), type: isManual ? 'manual' : 'scheduled', score, critCount, anomalyCount, success: true };

@@ -97,7 +97,7 @@ export default function PartnerSummaryReport() {
         <Card className="bg-slate-900/50 border-slate-800">
           <CardContent className="pt-6">
             <p className="text-sm text-slate-400">
-              <span className="font-semibold text-slate-200">Three Pillar Plus Security Solution</span> — platform impact summary as of <span className="text-slate-300">{today}</span>. This report aggregates the number of threats detected across our Three-Pillar authentication platform (HelixVerify, CipherPass, and Dynamic Scrambler), plus the volume of personal information removed from data brokers by our Exposure Shield added-benefit service.
+              <span className="font-semibold text-slate-200">Reclaim Me</span> — platform impact summary as of <span className="text-slate-300">{today}</span>. This report aggregates the number of threats detected across our Reclaim Me authentication platform (HelixVerify, CipherPass, and Dynamic Scrambler), plus the volume of personal information removed from data brokers by our Exposure Shield added-benefit service.
             </p>
           </CardContent>
         </Card>

@@ -1,6 +1,6 @@
 {
-  "name": "Three Pillar Plus Security",
-  "description": "Three Pillar Plus Security platform for security monitoring, threat analysis, protected API routing, exposure management, auditor workflows, and investor demonstration capabilities.",
+  "name": "Reclaim Me",
+  "description": "Reclaim Me platform for identity recovery, DNA-based authentication, protected API routing, exposure management, auditor workflows, and investor demonstration capabilities.",
   "site": {
     "installCommand": "npm install",
     "buildCommand": "npm run build",

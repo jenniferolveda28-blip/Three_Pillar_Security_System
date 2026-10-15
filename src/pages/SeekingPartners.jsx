@@ -130,7 +130,7 @@ export default function SeekingPartners() {
               </Button>
               <PrintReportButton
                 reportTitle="Seeking Partners & Investors"
-                subtitle="Three-Pillar Authentication System — HelixVerify · CipherPass · Dynamic Scrambler"
+                subtitle="Reclaim Me — HelixVerify · CipherPass · Dynamic Scrambler"
                 filename="seeking-partners-{date}.pdf"
                 sections={[
                   { heading: 'EXECUTIVE SUMMARY', body: 'A next-generation authentication platform built on three interlocking layers: HelixVerify (DNA-based wearable identity anchor with hardware-backed rotation and liveness), CipherPass (protected key and API gateway layer), and Dynamic Scrambler (continuous moving-target defense across keys, paths, and encryption layers). The architecture is demonstrated in software. The physical HelixVerify wearable hardware prototype does not exist yet — that is the gap this partnership seeks to close.' },
@@ -199,16 +199,16 @@ export default function SeekingPartners() {
         </div>
       </section>
 
-      {/* ── THREE PILLARS ── */}
+      {/* ── CORE CAPABILITIES ── */}
       <section id="pillars" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-black mb-4">
-                Three Pillars. <span className="text-cyan-400">One System.</span>
+                Reclaim Me. <span className="text-cyan-400">Three Interlocking Layers.</span>
               </h2>
               <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                Each pillar is independently novel. Together, they create a security architecture 
+                Each capability is independently novel. Together, they create a security architecture 
                 that no existing product comes close to matching.
               </p>
             </div>
@@ -526,7 +526,7 @@ export default function SeekingPartners() {
 
           <FadeIn delay={0.2}>
             <p className="text-slate-600 text-sm mt-10">
-              Three-Pillar Security System · Built independently · Texas, USA · 2024–2026
+              Reclaim Me · Built independently · Texas, USA · 2024–2026
             </p>
           </FadeIn>
         </div>

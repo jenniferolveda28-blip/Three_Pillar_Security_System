@@ -62,7 +62,7 @@ export default function ExportAllPagesButton() {
       doc.setFontSize(11);
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(148, 163, 184);
-      doc.text('Three-Pillar Security System', 14, 120);
+      doc.text('Reclaim Me', 14, 120);
       doc.text('All Pages — Single Document', 14, 128);
       doc.setFontSize(9);
       doc.setTextColor(100, 116, 139);
@@ -221,11 +221,11 @@ export default function ExportAllPagesButton() {
 
       // 9. LiveDemonstration
       section('8. LIVE DEMONSTRATION');
-      body('Live demonstration capabilities include real-time DNA verification, dynamic key rotation visualization, AI threat detection in action, and multi-universe API routing. The demo showcases the three-pillar architecture with live data from the demo environment.');
+      body('Live demonstration capabilities include real-time DNA verification, dynamic key rotation visualization, AI threat detection in action, and multi-universe API routing. The demo showcases the Reclaim Me architecture with live data from the demo environment.');
 
       // 10. MarketingMaterials
       section('9. MARKETING MATERIALS');
-      body('Marketing materials include pitch decks, technical whitepapers, demo videos, and audio content. Materials cover the three-pillar security system, DNA-based authentication, dynamic key scrambling, and AI threat detection. All materials are available for download and investor distribution.');
+      body('Marketing materials include pitch decks, technical whitepapers, demo videos, and audio content. Materials cover the Reclaim Me platform, DNA-based authentication, dynamic key scrambling, and AI threat detection. All materials are available for download and investor distribution.');
 
       // 11. RoleManagement
       section('10. ROLE MANAGEMENT');
@@ -277,8 +277,8 @@ export default function ExportAllPagesButton() {
         : '');
 
       // 15. ThreePillarView
-      section('14. THREE-PILLAR ARCHITECTURE');
-      body('Pillar 1: HelixVerify DNA Authentication (Software Simulation) — DNA-based wearable identity anchor with hardware-backed rotation and liveness. Tokens generate codes every 2 seconds and auto-lock after 3 failed attempts. NOTE: Hardware prototype required for full implementation; current system is a software simulation.\n\nPillar 2: CipherPass Protected API Gateway — Protected key and API gateway layer across multiple API universes with intelligent routing, failover, and audit logging.\n\nPillar 3: Dynamic Scrambler (Framework Designed) — Continuous moving-target defense rotating API keys, paths, and encryption layers every 0.1–5 seconds across multiple universes. Keys are architected to be bound to HelixVerify DNA-verified tokens. NOTE: Full scrambling engine requires hardware integration; current implementation is a framework/architecture demo.');
+      section('14. RECLAIM ME ARCHITECTURE');
+      body('Layer 1: HelixVerify DNA Authentication (Software Simulation) — DNA-based wearable identity anchor with hardware-backed rotation and liveness. Tokens generate codes every 2 seconds and auto-lock after 3 failed attempts. NOTE: Hardware prototype required for full implementation; current system is a software simulation.\n\nLayer 2: CipherPass Protected API Gateway — Protected key and API gateway layer across multiple API universes with intelligent routing, failover, and audit logging.\n\nLayer 3: Dynamic Scrambler (Framework Designed) — Continuous moving-target defense rotating API keys, paths, and encryption layers every 0.1–5 seconds across multiple universes. Keys are architected to be bound to HelixVerify DNA-verified tokens. NOTE: Full scrambling engine requires hardware integration; current implementation is a framework/architecture demo.');
 
       // 16. UniversePerformance
       section('15. UNIVERSE PERFORMANCE');
@@ -321,7 +321,7 @@ export default function ExportAllPagesButton() {
 
       // 19. ExecutiveSummary
       section('18. EXECUTIVE SUMMARY');
-      body(`System Status: ${degradedUniverses.length === 0 ? 'OPERATIONAL' : 'DEGRADED'}\n\nThe Three-Pillar Security System is currently ${degradedUniverses.length === 0 ? 'fully operational' : 'experiencing degradation in ' + degradedUniverses.length + ' universe(s)'}. Key metrics:\n• ${universes.length} API universes connected with ${Math.round(universes.reduce((s, u) => s + (u.success_rate || 100), 0) / Math.max(universes.length, 1))}% average success rate\n• ${securityLogs.length} security events logged in recent period\n• ${threats.length} active threat correlations under monitoring\n• ${anomalies.length} behavior anomalies tracked\n• ${meetings.length} investor pipeline leads with ${meetings.filter(m => m.status === 'Interested' || m.status === 'Negotiating').length} active negotiations\n• ${hardwareTokens.length} hardware tokens active\n• ${scrambling.filter(s => s.status === 'active').length} scrambling sessions protecting the system\n\nRecommendation: ${alerts.filter(a => a.status === 'open').length > 0 ? 'Review open criminal activity alerts immediately.' : 'All systems nominal in demo environment — continue internal testing'}`);
+      body(`System Status: ${degradedUniverses.length === 0 ? 'OPERATIONAL' : 'DEGRADED'}\n\nReclaim Me is currently ${degradedUniverses.length === 0 ? 'fully operational' : 'experiencing degradation in ' + degradedUniverses.length + ' universe(s)'}. Key metrics:\n• ${universes.length} API universes connected with ${Math.round(universes.reduce((s, u) => s + (u.success_rate || 100), 0) / Math.max(universes.length, 1))}% average success rate\n• ${securityLogs.length} security events logged in recent period\n• ${threats.length} active threat correlations under monitoring\n• ${anomalies.length} behavior anomalies tracked\n• ${meetings.length} investor pipeline leads with ${meetings.filter(m => m.status === 'Interested' || m.status === 'Negotiating').length} active negotiations\n• ${hardwareTokens.length} hardware tokens active\n• ${scrambling.filter(s => s.status === 'active').length} scrambling sessions protecting the system\n\nRecommendation: ${alerts.filter(a => a.status === 'open').length > 0 ? 'Review open criminal activity alerts immediately.' : 'All systems nominal in demo environment — continue internal testing'}`);
       body('[DEMO ENVIRONMENT NOTE] This report reflects internal test data from a demo environment. Security metrics are simulated. Hardware prototype required for full functionality. Not for production use.');
 
       // 20. QuantumKeyManagement
@@ -385,7 +385,7 @@ export default function ExportAllPagesButton() {
 
       // 27. SeekingPartners
       section('25. SEEKING PARTNERS');
-      body('The Three-Pillar Security System is seeking strategic partners in cybersecurity, API infrastructure, and biometric authentication. Partnership opportunities include technology integration, co-development, distribution agreements, and investment. The system is based in Texas, USA and operates under Texas state jurisdiction with NDA-protected disclosures.');
+      body('Reclaim Me is seeking strategic partners in cybersecurity, API infrastructure, and biometric authentication. Partnership opportunities include technology integration, co-development, distribution agreements, and investment. The system is based in Texas, USA and operates under Texas state jurisdiction with NDA-protected disclosures.');
 
       // 28. InvestorCRM
       section('26. INVESTOR CRM');
@@ -423,11 +423,11 @@ export default function ExportAllPagesButton() {
 
       // 32. About
       section('30. ABOUT');
-      body('The Three-Pillar Security System is a next-generation API security platform combining DNA-based biometric authentication, dynamic key scrambling, and AI-powered threat detection. Built in Texas, USA, the system provides architected-for-resilience API key management through rotating credentials bound to genetic identity, with real-time threat neutralization and multi-universe failover. Founded 2024.');
+      body('Reclaim Me is a next-generation identity and API security platform combining DNA-based biometric authentication, dynamic key scrambling, and AI-powered threat detection. Built in Texas, USA, the system provides architected-for-resilience API key management through rotating credentials bound to genetic identity, with real-time threat neutralization and multi-universe failover. Founded 2024.');
 
       // 33. Contact
       section('31. CONTACT');
-      body('For inquiries, partnerships, or demonstrations of the Three-Pillar Security System, please use the contact form available on the Contact page. The system is based in Texas, USA and operates under Texas state jurisdiction. All technology disclosures require a signed Texas NDA prior to detailed discussions.');
+      body('For inquiries, partnerships, or demonstrations of Reclaim Me, please use the contact form available on the Contact page. The system is based in Texas, USA and operates under Texas state jurisdiction. All technology disclosures require a signed Texas NDA prior to detailed discussions.');
 
       // Criminal Activity Alerts (full detail)
       section('32. CRIMINAL ACTIVITY ALERTS');
@@ -589,7 +589,7 @@ export default function ExportAllPagesButton() {
         doc.rect(0, 282, 210, 15, 'F');
         doc.setFontSize(8);
         doc.setTextColor(100, 116, 139);
-        doc.text('THREE-PILLAR SECURITY SYSTEM — DEMO ENVIRONMENT (INTERNAL TESTING ONLY)', 10, 289);
+        doc.text('RECLAIM ME — DEMO ENVIRONMENT (INTERNAL TESTING ONLY)', 10, 289);
         doc.text(`Page ${i} of ${pages}  |  ${dateStr}`, 150, 289);
       }
 

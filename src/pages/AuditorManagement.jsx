@@ -68,8 +68,8 @@ export default function AuditorManagement() {
 
       if (email) {
         const appUrl = window.location.origin + '/auditor-access';
-        const body = `Hello ${firstName},\n\nYou have been granted auditor access to the Three-Pillar Security System.\n\nApp login email (shared): auditor4threepillarsecurity@proton.me\nYour unique access passcode: ${code}\n\nAccess portal: ${appUrl}\n\nInstructions:\n1. Visit the access portal link above\n2. Log in with the shared email above, then enter your first name, last name, and passcode\n3. Complete the security audit questionnaire\n\nThis passcode is unique to you. Do not share it with others.\n\nThank you,\nThree-Pillar Security Team`;
-        await emailMutation.mutateAsync({ to: email, subject: 'Your Auditor Access Passcode — Three-Pillar Security', body });
+        const body = `Hello ${firstName},\n\nYou have been granted auditor access to Reclaim Me.\n\nApp login email (shared): auditor4threepillarsecurity@proton.me\nYour unique access passcode: ${code}\n\nAccess portal: ${appUrl}\n\nInstructions:\n1. Visit the access portal link above\n2. Log in with the shared email above, then enter your first name, last name, and passcode\n3. Complete the security audit questionnaire\n\nThis passcode is unique to you. Do not share it with others.\n\nThank you,\nReclaim Me Team`;
+        await emailMutation.mutateAsync({ to: email, subject: 'Your Auditor Access Passcode — Reclaim Me', body });
         toast({ title: 'Passcode generated & emailed', description: `${firstName} ${lastName} received their passcode.` });
       } else {
         toast({ title: 'Passcode generated', description: 'Copy the passcode to share with the auditor manually.' });
@@ -95,9 +95,9 @@ export default function AuditorManagement() {
       return;
     }
     const appUrl = window.location.origin + '/auditor-access';
-    const body = `Hello ${pass.first_name},\n\nYour auditor access passcode: ${pass.passcode}\n\nApp login email (shared): auditor4threepillarsecurity@proton.me\nAccess portal: ${appUrl}\n\nInstructions:\n1. Visit the access portal link above\n2. Log in with the shared email above, then enter your first name, last name, and passcode\n3. Complete the security audit questionnaire\n\nThank you,\nThree-Pillar Security Team`;
+    const body = `Hello ${pass.first_name},\n\nYour auditor access passcode: ${pass.passcode}\n\nApp login email (shared): auditor4threepillarsecurity@proton.me\nAccess portal: ${appUrl}\n\nInstructions:\n1. Visit the access portal link above\n2. Log in with the shared email above, then enter your first name, last name, and passcode\n3. Complete the security audit questionnaire\n\nThank you,\nReclaim Me Team`;
     try {
-      await emailMutation.mutateAsync({ to: pass.auditor_email, subject: 'Your Auditor Access Passcode — Three-Pillar Security', body });
+      await emailMutation.mutateAsync({ to: pass.auditor_email, subject: 'Your Auditor Access Passcode — Reclaim Me', body });
       toast({ title: 'Email sent', description: `Passcode re-sent to ${pass.auditor_email}.` });
     } catch (err) {
       toast({ title: 'Email failed', description: err.message, variant: 'destructive' });
@@ -118,7 +118,7 @@ export default function AuditorManagement() {
       return;
     }
     const appUrl = window.location.origin + '/auditor-access';
-    const body = `Hello ${pass.first_name},\n\nThis is a follow-up reminder regarding your pending security audit questionnaire.\n\nOur records show you have accessed the Three-Pillar Security System audit portal but have not yet completed the required questionnaire.\n\nAccess portal: ${appUrl}\nApp login email (shared): auditor4threepillarsecurity@proton.me\nYour passcode: ${pass.passcode}\n\nPlease complete the questionnaire at your earliest convenience. If you have already submitted it, please disregard this message.\n\nThank you,\nThree-Pillar Security Team`;
+    const body = `Hello ${pass.first_name},\n\nThis is a follow-up reminder regarding your pending security audit questionnaire.\n\nOur records show you have accessed the Reclaim Me audit portal but have not yet completed the required questionnaire.\n\nAccess portal: ${appUrl}\nApp login email (shared): auditor4threepillarsecurity@proton.me\nYour passcode: ${pass.passcode}\n\nPlease complete the questionnaire at your earliest convenience. If you have already submitted it, please disregard this message.\n\nThank you,\nReclaim Me Team`;
     try {
       await emailMutation.mutateAsync({ to: pass.auditor_email, subject: 'Reminder: Complete Your Security Audit Questionnaire', body });
       toast({ title: 'Follow-up sent', description: `Reminder sent to ${pass.first_name} ${pass.last_name}.` });

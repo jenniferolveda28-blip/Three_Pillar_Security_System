@@ -70,7 +70,7 @@ export default function DailyThreatEmail() {
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0f172a; color: #f1f5f9; padding: 24px; border-radius: 12px;">
   <div style="border-left: 4px solid #06b6d4; padding-left: 16px; margin-bottom: 24px;">
     <h1 style="color: #06b6d4; margin: 0; font-size: 22px;">🛡️ Daily Threat Summary</h1>
-    <p style="color: #94a3b8; margin: 4px 0 0; font-size: 13px;">Three-Pillar Security System — Last 24 Hours<br>${format(new Date(), 'MMMM d, yyyy HH:mm')} CST</p>
+    <p style="color: #94a3b8; margin: 4px 0 0; font-size: 13px;">Reclaim Me — Last 24 Hours<br>${format(new Date(), 'MMMM d, yyyy HH:mm')} CST</p>
   </div>
 
   <div style="background: #1e293b; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
@@ -111,7 +111,7 @@ export default function DailyThreatEmail() {
   </div>
 
   <p style="color: #475569; font-size: 11px; text-align: center; margin: 16px 0 0;">
-    Daily automated report · Three-Pillar Security System · Next report: ${format(addDays(new Date(), 1), 'MMM d, yyyy')}
+    Daily automated report · Reclaim Me · Next report: ${format(addDays(new Date(), 1), 'MMM d, yyyy')}
   </p>
 </div>`;
 

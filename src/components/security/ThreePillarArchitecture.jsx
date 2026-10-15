@@ -72,7 +72,7 @@ export default function ThreePillarArchitecture() {
                 <CardHeader>
                     <CardTitle className="flex items-center gap-3">
                         <Lock className="w-6 h-6 text-cyan-400" />
-                        <span className="gradient-text">The Key to the City: Three-Pillar Architecture</span>
+                        <span className="gradient-text">The Key to the City: Reclaim Me Architecture</span>
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-8">
@@ -201,7 +201,7 @@ export default function ThreePillarArchitecture() {
                             <div className="flex items-start gap-4">
                                 <Lock className="w-12 h-12 text-cyan-400 flex-shrink-0" />
                                 <div>
-                                    <h4 className="text-lg font-bold text-white mb-2">The Three-Pillar Authentication System</h4>
+                                    <h4 className="text-lg font-bold text-white mb-2">The Reclaim Me Authentication System</h4>
                                     <p className="text-slate-300 text-sm leading-relaxed">
                                         Your DNA unlocks the protected gateway (HelixVerify → CipherPass), and the gateway exists in a state of constant flux every 100 milliseconds (Dynamic Scrambler). Unauthorized access is designed to be computationally infeasible—the authentication architecture changes faster than attack reconnaissance can complete. Hardware prototype required for full implementation.
                                     </p>

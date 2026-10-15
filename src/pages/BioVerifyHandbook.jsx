@@ -216,7 +216,7 @@ export default function HelixVerifyHandbook() {
       {/* Footer */}
       <div className="text-center text-slate-600 text-xs pt-10 pb-12">
         <p className="font-mono">END OF HANDBOOK · HLXV-HB-1.0</p>
-        <p className="mt-1">Three-Pillar Security System © 2024–2026 · Texas, USA</p>
+        <p className="mt-1">Reclaim Me © 2024–2026 · Texas, USA</p>
       </div>
     </div>
   );

@@ -8,16 +8,16 @@ export default function About() {
     <div className="min-h-screen text-white">
       <div className="max-w-4xl mx-auto px-6 py-16">
         <h1 className="text-4xl md:text-5xl font-black mb-8 gradient-text">
-          About Three-Pillar Security System
+          About Reclaim Me
         </h1>
 
         <div className="space-y-6 text-slate-300 text-lg leading-relaxed">
           <p>
-            The Three-Pillar Security System is a next-generation authentication platform built on three
+            Reclaim Me is a next-generation authentication platform built on three
             interlocking layers: <strong>HelixVerify</strong> (DNA-based wearable identity anchor with hardware-backed
             rotation and liveness), <strong>CipherPass</strong> (protected key and API gateway layer), and
             <strong> Dynamic Scrambler</strong> (continuous moving-target defense across keys, paths, and encryption
-            layers). Together, these three pillars create an authentication architecture that combines uncopyable
+            layers). Together, these capabilities create an authentication architecture that combines uncopyable
             identity verification with infrastructure that changes faster than attackers can exploit it.
           </p>
           <p>
@@ -83,7 +83,7 @@ export default function About() {
               let y = 20;
               doc.setFontSize(20);
               doc.setTextColor(15, 23, 42);
-              doc.text('Three-Pillar Security System', 20, y);
+              doc.text('Reclaim Me', 20, y);
               y += 10;
               doc.setFontSize(11);
               doc.setTextColor(100, 116, 139);
@@ -95,7 +95,7 @@ export default function About() {
               y += 8;
 
               const sections = [
-                'The Three-Pillar Security System is a next-generation authentication platform built on three interlocking layers: HelixVerify (DNA-based wearable identity anchor with hardware-backed rotation and liveness), CipherPass (protected key and API gateway layer), and Dynamic Scrambler (continuous moving-target defense across keys, paths, and encryption layers).',
+                'Reclaim Me is a next-generation authentication platform built on three interlocking layers: HelixVerify (DNA-based wearable identity anchor with hardware-backed rotation and liveness), CipherPass (protected key and API gateway layer), and Dynamic Scrambler (continuous moving-target defense across keys, paths, and encryption layers).',
                 'Beyond core authentication, the platform includes automated data-broker exposure search, one-click removal requests, and identity protection as an added benefit. It is designed for enterprises, government agencies, and biomedical/hardware partners helping bring the physical HelixVerify wearable token prototype to life.',
                 'The system was built independently by a solo developer based in Texas, USA. Every component — the HelixVerify authentication workflow, CipherPass gateway, Dynamic Scrambler simulation, AI threat detection, and investor demonstrations — was created from scratch.',
                 'Our mission is simple: make digital identity verification uncopyable, make API access self-defending, and make credential theft mathematically impractical by rotating keys, routes, and encryption layers continuously.',
@@ -122,7 +122,7 @@ export default function About() {
               ];
               doc.setFontSize(16);
               doc.setTextColor(15, 23, 42);
-              doc.text('The Three Pillars', 20, y);
+              doc.text('Core Capabilities', 20, y);
               y += 12;
               pillars.forEach(p => {
                 if (y > 250) { doc.addPage(); y = 20; }
@@ -137,7 +137,7 @@ export default function About() {
                 y += 6;
               });
 
-              doc.save('three-pillar-security-about.pdf');
+              doc.save('reclaim-me-about.pdf');
             }}
             className="inline-flex items-center justify-center gap-2 border border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-bold px-8 py-4 rounded-lg transition-colors"
           >
@@ -153,7 +153,7 @@ export default function About() {
 
         <div className="mt-12 flex items-center gap-3 text-slate-500 text-sm">
           <Shield className="w-5 h-5" />
-          Three-Pillar Security System · Built independently · Texas, USA · 2024–2026
+          Reclaim Me · Built independently · Texas, USA · 2024–2026
         </div>
       </div>
     </div>
