@@ -135,7 +135,16 @@
     "update": {
       "$or": [
         {
-          "data.user_email": "{{user.email}}"
+          "$and": [
+            {
+              "data.user_email": "{{user.email}}"
+            },
+            {
+              "data.status": {
+                "$ne": "scrubbed"
+              }
+            }
+          ]
         },
         {
           "user_condition": {
