@@ -97,13 +97,19 @@ export default function ExposureShield() {
 
   const handleVerify = async (record) => {
     try {
+      const nextStatus = user?.role === 'admin' ? 'scrubbed' : 'pending_verification';
       await base44.entities.ExposureRecord.update(record.id, {
-        status: 'scrubbed',
-        scrubbed_date: new Date().toISOString(),
+        status: nextStatus,
+        ...(nextStatus === 'scrubbed' ? { scrubbed_date: new Date().toISOString() } : {}),
         last_verified: new Date().toISOString(),
         re_scan_count: (record.re_scan_count || 0) + 1
       });
-      toast({ title: "Removal verified", description: `${record.broker_name} listing confirmed scrubbed.` });
+      toast({
+        title: nextStatus === 'scrubbed' ? "Removal verified" : "Verification requested",
+        description: nextStatus === 'scrubbed'
+          ? `${record.broker_name} listing confirmed scrubbed.`
+          : `${record.broker_name} queued for administrative removal verification.`
+      });
       loadRecords();
     } catch (err) {
       toast({ title: "Verification failed", variant: "destructive" });

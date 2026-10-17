@@ -60,12 +60,14 @@ export default function UserSecurityReport() {
     queryFn: () => base44.entities.ThreatCorrelation.list('-created_date', 10)
   });
   const exposures = useQuery({
-    queryKey: ['user-report', 'exposureFindings'],
-    queryFn: () => base44.entities.ExposureRecord.list('-created_date', 50)
+    queryKey: ['user-report', 'exposureFindings', user?.email],
+    queryFn: () => base44.entities.ExposureRecord.filter({ user_email: user.email }, '-created_date', 50),
+    enabled: !!user?.email
   });
   const logs = useQuery({
-    queryKey: ['user-report', 'securityLogs'],
-    queryFn: () => base44.entities.SecurityLog.list('-created_date', 20)
+    queryKey: ['user-report', 'securityLogs', user?.id],
+    queryFn: () => base44.entities.SecurityLog.filter({ created_by_id: user.id }, '-created_date', 20),
+    enabled: !!user?.id
   });
 
   const dv = devices.data || [];

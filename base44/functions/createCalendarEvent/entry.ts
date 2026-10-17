@@ -5,12 +5,16 @@ Deno.serve(async (req) => {
     const base44 = createClientFromRequest(req);
     const user = await base44.auth.me();
     if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
+    if (user.role !== 'admin') return Response.json({ error: 'Forbidden — admin only' }, { status: 403 });
 
     const body = await req.json();
-    // Works both as automation handler (body.data = entity) and direct call (body.meeting_id)
-    let meeting = body.data;
-    if (!meeting && body.meeting_id) {
-      meeting = await base44.asServiceRole.entities.InvestorMeeting.get(body.meeting_id);
+    // Load verified meeting from database if ID is available, fallback to automation trigger payload
+    let meeting = null;
+    const meetingId = body.meeting_id || body.data?.id;
+    if (meetingId) {
+      meeting = await base44.asServiceRole.entities.InvestorMeeting.get(meetingId);
+    } else if (body.data) {
+      meeting = body.data;
     }
     if (!meeting) return Response.json({ error: 'No meeting data provided' }, { status: 400 });
 

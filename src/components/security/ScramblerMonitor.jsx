@@ -45,13 +45,15 @@ export default function ScramblerMonitor() {
         }
     });
 
-    // Auto-scramble every 0.01 seconds (10ms) — strict uniform interval
+    // Auto-scramble on a safe 30-second backend cadence (visual 10ms pulse runs locally in ScrambleIntervalVerifier)
     useEffect(() => {
         if (!autoScramble) return;
 
         const interval = setInterval(() => {
-            scrambleMutation.mutate();
-        }, 10);
+            if (!scrambleMutation.isPending) {
+                scrambleMutation.mutate();
+            }
+        }, 30000);
 
         return () => clearInterval(interval);
     }, [autoScramble]);

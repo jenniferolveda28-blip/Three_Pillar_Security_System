@@ -6,13 +6,14 @@ Deno.serve(async (req) => {
     const base44 = createClientFromRequest(req);
     const user = await base44.auth.me();
     if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
+    if (user.role !== 'admin') return Response.json({ error: 'Forbidden — admin only' }, { status: 403 });
 
     const body = await req.json();
-    // Works as automation handler (body.data = entity) or direct call (body.meeting_id)
-    let meeting = body.data;
-    if (!meeting && body.meeting_id) {
-      meeting = await base44.asServiceRole.entities.InvestorMeeting.get(body.meeting_id);
-    }
+    // Always load verified InvestorMeeting record from database by ID to prevent arbitrary email relay
+    const meetingId = body.meeting_id || body.data?.id;
+    const meeting = meetingId
+      ? await base44.asServiceRole.entities.InvestorMeeting.get(meetingId)
+      : null;
     if (!meeting) return Response.json({ error: 'No meeting data provided' }, { status: 400 });
     if (!meeting.email) return Response.json({ error: 'Investor has no email address' }, { status: 400 });
 

@@ -3,6 +3,19 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
+    const user = await base44.auth.me();
+    if (!user) {
+      return Response.json({ error: 'Unauthorized: Please sign in first.' }, { status: 401 });
+    }
+    const allowedAuditorEmail = 'auditor4threepillarsecurity@proton.me';
+    if (
+      user.role !== 'admin' &&
+      user.role !== 'auditor' &&
+      user.email?.toLowerCase() !== allowedAuditorEmail
+    ) {
+      return Response.json({ error: 'Forbidden: Auditor credentials required.' }, { status: 403 });
+    }
+
     const body = await req.json();
     const { first_name, last_name, passcode } = body;
 

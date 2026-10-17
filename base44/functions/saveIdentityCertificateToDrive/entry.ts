@@ -27,7 +27,7 @@ IDENTITY CERTIFICATE
 Certificate ID: ${certificateId}
 Issued To: ${auditorName}
 Auditor Email: ${auditorEmail || 'N/A'}
-Access Passcode: ${passcode || 'N/A'}
+Access Passcode: ${passcode ? String(passcode).substring(0, 4) + '-****-**** (Redacted)' : 'N/A'}
 
 ISSUANCE DETAILS
 ----------------

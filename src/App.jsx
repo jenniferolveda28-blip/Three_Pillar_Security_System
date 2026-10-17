@@ -148,7 +148,9 @@ const AuthenticatedApp = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/auditor-access" element={<AuditorAccess />} />
+      <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
+        <Route path="/auditor-access" element={<AuditorAccess />} />
+      </Route>
       <Route path="/connect" element={<Connect />} />
       <Route path="/oauth/consent" element={<OAuthConsent />} />
 

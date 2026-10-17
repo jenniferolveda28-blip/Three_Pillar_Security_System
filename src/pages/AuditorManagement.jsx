@@ -19,7 +19,11 @@ const STATUS_COLORS = {
 
 function generatePasscode() {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  const segment = (n) => Array.from({ length: n }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+  const segment = (n) => {
+    const bytes = new Uint32Array(n);
+    crypto.getRandomValues(bytes);
+    return Array.from(bytes, (b) => chars[b % chars.length]).join('');
+  };
   return `BVFY-${segment(4)}-${segment(4)}`;
 }
 
@@ -269,9 +273,11 @@ export default function AuditorManagement() {
                       )}
                     </div>
                   </div>
-                  {/* Passcode display */}
+                  {/* Passcode display (masked at rest) */}
                   <div className="px-3 pb-2">
-                    <code className="text-xs text-cyan-400 font-mono">{p.passcode}</code>
+                    <code className="text-xs text-cyan-400 font-mono">
+                      {p.passcode ? `${p.passcode.slice(0, 4)}-••••-${p.passcode.slice(-4)}` : '—'}
+                    </code>
                     <span className="text-xs text-slate-600 ml-2">
                       · Accessed {p.access_count || 0}×
                       {p.accessed_date && ` · ${new Date(p.accessed_date).toLocaleString()}`}

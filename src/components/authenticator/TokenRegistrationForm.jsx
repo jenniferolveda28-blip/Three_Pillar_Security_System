@@ -34,9 +34,9 @@ export default function TokenRegistrationForm({ onRegistered, tokens }) {
       await base44.entities.HelixVerifyRegistration.create({
         token_serial: formData.token_serial,
         registered_by_email: formData.registered_by_email || user.email,
-        registration_status: 'dna_verified',
+        registration_status: 'pending',
         dna_hash: dnaHash,
-        biometric_confidence: Math.floor(Math.random() * 5) + 95,
+        biometric_confidence: 0,
         registration_date: new Date().toISOString(),
         verification_method: 'dna_saliva'
       });

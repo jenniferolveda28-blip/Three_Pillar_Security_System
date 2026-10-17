@@ -60,6 +60,11 @@ export default function SubscriptionManager({ subscriptions, onUpdate }) {
     try {
       const user = await base44.auth.me();
       
+      if (user?.role !== 'admin') {
+        toast.error('Plan upgrades require billing verification or administrator provisioning.');
+        return;
+      }
+
       await base44.entities.Subscription.create({
         token_serial: 'DNA-' + Math.random().toString(36).substr(2, 12).toUpperCase(),
         user_email: user.email,

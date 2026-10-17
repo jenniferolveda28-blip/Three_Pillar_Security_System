@@ -3,10 +3,19 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
-    const isAuth = await base44.auth.isAuthenticated();
-    if (!isAuth) {
+    const user = await base44.auth.me();
+    if (!user) {
       return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
+    const allowedAuditorEmail = 'auditor4threepillarsecurity@proton.me';
+    if (
+      user.role !== 'admin' &&
+      user.role !== 'auditor' &&
+      user.email?.toLowerCase() !== allowedAuditorEmail
+    ) {
+      return Response.json({ error: 'Forbidden: Auditor credentials required.' }, { status: 403 });
+    }
+
     const body = await req.json();
     const { pass_id, passcode, answers } = body;
 
@@ -27,6 +36,13 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Passcode does not match this access pass.' }, { status: 403 });
     }
 
+    if (pass.questionnaire_completed && user.role !== 'admin') {
+      return Response.json(
+        { error: 'Questionnaire has already been submitted and is locked against modification.' },
+        { status: 409 }
+      );
+    }
+
     const now = new Date().toISOString();
     await base44.asServiceRole.entities.AuditorAccessPass.update(pass_id, {
       questionnaire_answers: answers,
@@ -35,7 +51,7 @@ Deno.serve(async (req) => {
     });
 
     await base44.asServiceRole.entities.SecurityLog.create({
-      event_type: 'suspicious_activity',
+      event_type: 'access_granted',
       details: `AUDITOR_QUESTIONNAIRE_SUBMITTED — ${pass.first_name} ${pass.last_name} submitted their audit questionnaire.`,
       success: true,
       threat_level: 'none'
