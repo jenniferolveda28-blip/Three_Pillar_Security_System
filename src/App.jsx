@@ -113,6 +113,7 @@ import SystemDestructionMonitor from './pages/system_DestructionMonitor';
 import Connect from './pages/Connect';
 import PartnerSummaryReport from './pages/PartnerSummaryReport';
 import SharedHelixTokenRequirements from './pages/shared_HelixTokenRequirements';
+import SharedHelixTokenProductionBrief from './pages/shared_HelixTokenProductionBrief';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -267,6 +268,7 @@ const AuthenticatedApp = () => {
         <Route path="/destruction-monitor" element={<LayoutWrapper currentPageName="destruction-monitor"><SystemDestructionMonitor /></LayoutWrapper>} />
         <Route path="/partner-summary-report" element={<LayoutWrapper currentPageName="partner-summary-report"><PartnerSummaryReport /></LayoutWrapper>} />
         <Route path="/helix-token-requirements" element={<LayoutWrapper currentPageName="helix-token-requirements"><SharedHelixTokenRequirements /></LayoutWrapper>} />
+        <Route path="/helix-token-production-brief" element={<LayoutWrapper currentPageName="helix-token-production-brief"><SharedHelixTokenProductionBrief /></LayoutWrapper>} />
       </Route>
 
       <Route path="*" element={<PageNotFound />} />
