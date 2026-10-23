@@ -8,6 +8,7 @@ import { UserPlus, Mail, Lock, Loader2 } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import AuthLayout from "@/components/AuthLayout";
 import GoogleIcon from "@/components/GoogleIcon";
+import MicrosoftIcon from "@/components/MicrosoftIcon";
 import { toast } from "@/components/ui/use-toast";
 
 export default function Register() {
@@ -68,6 +69,10 @@ export default function Register() {
 
   const handleGoogle = () => {
     base44.auth.loginWithProvider("google", "/");
+  };
+
+  const handleMicrosoft = () => {
+    base44.auth.loginWithProvider("microsoft", "/");
   };
 
   if (showOtp) {
@@ -145,6 +150,14 @@ export default function Register() {
       >
         <GoogleIcon className="w-5 h-5 mr-2" />
         Continue with Google
+      </Button>
+      <Button
+        variant="outline"
+        className="w-full h-12 text-sm font-medium mb-6 -mt-3"
+        onClick={handleMicrosoft}
+      >
+        <MicrosoftIcon className="w-5 h-5 mr-2" />
+        Continue with Microsoft
       </Button>
 
       <div className="relative mb-6">
