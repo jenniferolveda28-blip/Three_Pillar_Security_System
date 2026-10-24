@@ -7,6 +7,228 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="manifest" href="/manifest.json" />
     <title>Reclaim Me</title>
+    <script>
+(function () {
+  var KEY = "YOUR_WRITE_KEY", BASE = "https://app.payani.ai";
+  var DEBUG = false;
+  try { DEBUG = /[?&]payaniDebug=1\b/.test(location.search) || localStorage.getItem("payani_debug") === "1"; } catch (e) {}
+  function dbg() { try { if (DEBUG) console.log.apply(console, ["[payani]"].concat([].slice.call(arguments))); } catch (e) {} }
+  function vid() {
+    try {
+      var k = "pyn_vid", v = localStorage.getItem(k);
+      if (!v) { v = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random()); localStorage.setItem(k, v); }
+      return v;
+    } catch (e) { return ""; }
+  }
+  function utm() {
+    var p = new URLSearchParams(location.search), o = {};
+    ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].forEach(function (k) { if (p.get(k)) o[k] = p.get(k); });
+    return o;
+  }
+  function attribution() {
+    try {
+      var p = new URLSearchParams(location.search), cur = {}, has = false, K = "pyn_attr";
+      var g = p.get("gclid") || p.get("wbraid") || p.get("gbraid");
+      if (g) { cur.gclid = g; has = true; }
+      ["gclid", "wbraid", "gbraid", "msclkid", "fbclid", "ttclid", "li_fat_id", "twclid"].forEach(function (k) { if (p.get(k)) { cur[k] = p.get(k); has = true; } });
+      ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].forEach(function (k) { if (p.get(k)) { cur[k] = p.get(k); has = true; } });
+      if (has) { cur.ts = Date.now(); localStorage.setItem(K, JSON.stringify(cur)); return cur; }
+      var s = localStorage.getItem(K); return s ? JSON.parse(s) : {};
+    } catch (e) { return {}; }
+  }
+  function send(path, data) {
+    var url = BASE + path, body = JSON.stringify(data);
+    dbg("POST", url, data);
+    try {
+      if (!DEBUG && navigator.sendBeacon) { navigator.sendBeacon(url, new Blob([body], { type: "text/plain" })); }
+      else { fetch(url, { method: "POST", body: body, keepalive: true, headers: { "content-type": "text/plain" } }).then(function (r) { dbg("response", r.status); }).catch(function (e) { dbg("network error", e); }); }
+    } catch (e) { dbg("send error", e); }
+  }
+  window.payani = {
+    track: function (type, props) { send("/api/collect", { key: KEY, visitor_id: vid(), event_type: type || "pageview", url: location.href, referrer: document.referrer, utm: utm(), attribution: attribution(), properties: props || {} }); },
+    form: function (name, fields) { send("/api/forms/ingest", { key: KEY, visitor_id: vid(), form_name: name, fields: fields || {}, url: location.href, utm: utm(), attribution: attribution() }); }
+  };
+  if (!window.__payaniVidBridge) { window.__payaniVidBridge = 1; (function(){
+    var B = BASE; if (!B) return;
+    function reply(w, o){ try { w.postMessage({ type: "payani:vid", vid: vid(), page: location.href }, o); } catch (e) {} }
+    window.addEventListener("message", function(e){ try { if (!e.data || e.data.type !== "payani:vid-request" || e.origin !== B || !e.source) return; reply(e.source, e.origin); } catch (err) {} });
+    var t = null;
+    function loaded(f){ try { void f.contentWindow.location.href; return false; } catch (e) { return true; } }
+    function push(){ try { var fr = document.getElementsByTagName("iframe"); for (var i = 0; i < fr.length; i++) { var f = fr[i], s = f.getAttribute("src") || ""; if (s.indexOf(B + "/f/") !== 0 || !f.contentWindow) continue; if (loaded(f)) reply(f.contentWindow, B); else if (!f.__pynWait) { f.__pynWait = 1; f.addEventListener("load", later); } } } catch (e) {} }
+    function later(){ clearTimeout(t); t = setTimeout(push, 250); }
+    push(); setTimeout(push, 1500); setTimeout(push, 4000);
+    try { new MutationObserver(later).observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {}
+    window.addEventListener("load", later);
+  })(); }
+  var EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  function findEmail(f) { for (var k in f) { if (typeof f[k] === "string" && EMAIL.test(String(f[k]).trim())) return String(f[k]).trim().toLowerCase(); } return null; }
+  function looksLikeLead(f) {
+    if (findEmail(f)) return true;
+    var keys = Object.keys(f), hasName = false, hasContact = false;
+    keys.forEach(function (k) { if (/name/i.test(k)) hasName = true; if (/phone|tel|message|company|subject|help|enquir|inquir|comment|note/i.test(k)) hasContact = true; });
+    return hasName && hasContact;
+  }
+  function serialize(form) {
+    var out = {}, els = form.querySelectorAll("input,select,textarea"), i, el, type, name, val;
+    for (i = 0; i < els.length; i++) {
+      el = els[i]; type = (el.type || "").toLowerCase();
+      if (["password","hidden","submit","button","file","reset","search"].indexOf(type) >= 0) continue;
+      name = (el.name || el.id || "").trim();
+      if (!name) { if (type === "email") name = "email"; else if (type === "tel") name = "phone"; }
+      if (!name) name = (el.getAttribute("aria-label") || el.placeholder || "").trim();
+      if (!name) continue;
+      if (type === "checkbox") { if (!el.checked) continue; val = (el.value && el.value !== "on") ? el.value : true; }
+      else if (type === "radio") { if (!el.checked) continue; val = el.value; }
+      else val = el.value;
+      if (val == null || val === "") continue;
+      if (out[name] == null || out[name] === "") out[name] = val;
+    }
+    return out;
+  }
+  function fname(form) { return form.getAttribute("name") || form.getAttribute("id") || form.getAttribute("aria-label") || document.title || "Website form"; }
+  var AUTH_KEY = /^otp$|one[_-]?time|verification[_-]?code|auth[_-]?code|security[_-]?code|^token$/i;
+  var PASS_KEY = /pass(word|wd|code|phrase)?$|^pwd$/i;
+  var AUTH_URL = /(^|[/])(log[-_]?in|sign[-_]?in|log[-_]?out|auth|oauth|sso|password|reset[-_]?password|forgot|verify|wp-login|token|session|users[/]sign_in)([/]|$|[.?#])/i;
+  var ADMIN_URL = /(^|[/])(admin|administrator|wp-admin|backend|backoffice|manage|management|dashboard|cms|console|staff|internal)([/]|$|[.?#])/i;
+  var ADMIN_HOST = /^(admin|backoffice|staff|manage)[.]/i;
+  function isAdminPage() { try { return ADMIN_URL.test(location.pathname) || ADMIN_HOST.test(location.hostname); } catch (e) { return false; } }
+  function isIgnored(form) {
+    try {
+      if (form.closest && form.closest("[data-payani-ignore]")) return true;
+      var sel = window.payaniIgnoreForms;
+      if (sel && sel.length) for (var i = 0; i < sel.length; i++) { try { if (form.matches(sel[i]) || form.closest(sel[i])) return true; } catch (e) {} }
+    } catch (e) {}
+    return false;
+  }
+  var SIGNUP_ATTR = /sign-?up|register|registration|create-?account|join|get-?started|trial|enroll/i;
+  var LOGIN_ATTR = /log-?in|sign-?in|log-?out|sign-?out|password|passwd|reset|forgot|otp|verify|mfa|2fa/i;
+  var SIGNUP_PATH = /(^|[/])(sign-?up|register|registration|create-?account|join)([/]|$|[.?#])/i;
+  function isAuthForm(form) {
+    try {
+      if (form.querySelector('[autocomplete="one-time-code"]')) return true;
+      var s = [form.getAttribute("action"), form.id, form.className, form.getAttribute("name"), form.getAttribute("aria-label"), form.getAttribute("data-testid")].join(" ");
+      var signup = SIGNUP_ATTR.test(s) || SIGNUP_PATH.test(location.pathname);
+      if (LOGIN_ATTR.test(s) && !signup) return true;
+      var hasPassword = !!form.querySelector('input[type="password"],[autocomplete*="password"]');
+      if (hasPassword && !signup) return true;
+    } catch (e) {}
+    return false;
+  }
+  function hasAuthKeys(f) {
+    var pw = false, code = false, lead = false;
+    for (var k in f) { if (AUTH_KEY.test(k)) code = true; if (PASS_KEY.test(k)) pw = true; if (/name|phone|tel|company|message|comment|title|job|role|website/i.test(k)) lead = true; }
+    if (code) return true;
+    return pw && !lead && !SIGNUP_PATH.test(location.pathname);
+  }
+  function isAuthUrl(u) { if (isAdminPage()) return true; try { var p = new URL(u, location.href).pathname; return AUTH_URL.test(p) || ADMIN_URL.test(p); } catch (e) { return AUTH_URL.test(String(u || "")) || ADMIN_URL.test(String(u || "")); } }
+  function fieldsFromBody(body) {
+    var out = {};
+    function put(k, v) { if ((typeof v === "string" || typeof v === "number" || typeof v === "boolean") && out[k] == null) out[k] = String(v); }
+    try {
+      if (!body) return out;
+      if (typeof FormData !== "undefined" && body instanceof FormData) { body.forEach(function (v, k) { put(k, typeof v === "string" ? v : ""); }); return out; }
+      if (typeof URLSearchParams !== "undefined" && body instanceof URLSearchParams) { body.forEach(function (v, k) { put(k, v); }); return out; }
+      if (typeof body === "string") {
+        var s = body.trim();
+        if (s.charAt(0) === "{" || s.charAt(0) === "[") {
+          (function walk(o, p) { if (o && typeof o === "object") { for (var k in o) walk(o[k], k); } else { put(p, o); } })(JSON.parse(s), "");
+          return out;
+        }
+        new URLSearchParams(s).forEach(function (v, k) { put(k, v); });
+      }
+    } catch (e) {}
+    return out;
+  }
+  if (!window.__payaniCapture) {
+    window.__payaniCapture = 1;
+    var recent = {};
+    function emit(source, name, fields) {
+      var sig = (findEmail(fields) || JSON.stringify(fields)).toLowerCase(), now = Date.now();
+      if (now - (recent[sig] || 0) < 6000) { dbg("duplicate ignored (" + source + ")"); return; }
+      recent[sig] = now; dbg("captured via " + source, fields); window.payani.form(name, fields);
+    }
+    document.addEventListener("submit", function (e) {
+      try { var form = e.target; if (!form || form.tagName !== "FORM") return; if (isAdminPage()) { dbg("skipped: admin page"); return; } if (isIgnored(form) || isAuthForm(form)) { dbg("skipped: auth or opted-out form"); return; } var f = serialize(form); if (!looksLikeLead(f) || hasAuthKeys(f)) { dbg("submit seen but not lead-like", f); return; } emit("submit", fname(form), f); } catch (err) { dbg("submit error", err); }
+    }, true);
+    document.addEventListener("click", function (e) {
+      try {
+        var btn = e.target && e.target.closest ? e.target.closest("button,[type=submit],input[type=submit],[role=button]") : null;
+        if (!btn) return; var form = btn.closest("form"); if (!form) return;
+        if (isAdminPage() || isIgnored(form) || isAuthForm(form)) return;
+        setTimeout(function () { try { var f = serialize(form); if (looksLikeLead(f) && !hasAuthKeys(f)) emit("click", fname(form), f); } catch (err) {} }, 400);
+      } catch (err) {}
+    }, true);
+    try {
+      var of = window.fetch;
+      if (typeof of === "function") {
+        window.fetch = function () {
+          try {
+            var input = arguments[0], init = arguments[1] || {};
+            var method = ((init.method || (input && input.method) || "GET") + "").toUpperCase();
+            var url = typeof input === "string" ? input : (input && input.url) || "";
+            if ((method === "POST" || method === "PUT") && url.indexOf(BASE) === -1 && !isAuthUrl(url)) { var f = fieldsFromBody(init.body); if (looksLikeLead(f) && !hasAuthKeys(f)) emit("fetch", "Website form", f); }
+          } catch (err) { dbg("fetch capture error", err); }
+          return of.apply(this, arguments);
+        };
+      }
+    } catch (err) {}
+    try {
+      var xo = XMLHttpRequest.prototype.open, xs = XMLHttpRequest.prototype.send;
+      XMLHttpRequest.prototype.open = function () { try { this.__pm = (arguments[0] || "").toUpperCase(); this.__pu = arguments[1] || ""; } catch (e) {} return xo.apply(this, arguments); };
+      XMLHttpRequest.prototype.send = function () { try { if ((this.__pm === "POST" || this.__pm === "PUT") && (this.__pu || "").indexOf(BASE) === -1 && !isAuthUrl(this.__pu || "")) { var f = fieldsFromBody(arguments[0]); if (looksLikeLead(f) && !hasAuthKeys(f)) emit("xhr", "Website form", f); } } catch (err) {} return xs.apply(this, arguments); };
+    } catch (err) {}
+    dbg("auto capture installed");
+  }
+  if (!window.__payaniHubSpotForms) {
+    window.__payaniHubSpotForms = 1;
+    (function () {
+      var seen = {};
+      var EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+      var SECRET = /pass(word|wd)?$|^pwd$|otp|one[_-]?time|token/i;
+      window.addEventListener("message", function (e) {
+        try {
+          if (e.origin !== location.origin) return;
+          var d = e.data;
+          if (!d || typeof d !== "object" || d.type !== "hsFormCallback" || d.eventName !== "onFormSubmitted" || !d.data) return;
+          var v = d.data.submissionValues;
+          if (!v || typeof v !== "object") return;
+          var guid = String(d.data.formGuid || d.id || "").replace(/[^A-Za-z0-9-]/g, "");
+          if (window.__payaniCapture && guid && document.querySelector('form[id*="' + guid + '"],form[data-form-id="' + guid + '"]')) return;
+          var f = {}, email = null, hasName = false, hasContact = false, k, x;
+          for (k in v) {
+            if (SECRET.test(k)) continue;
+            x = v[k];
+            if (Object.prototype.toString.call(x) === "[object Array]") x = x.join(", ");
+            if (typeof x !== "string" && typeof x !== "number" && typeof x !== "boolean") continue;
+            x = String(x).trim();
+            if (x === "") continue;
+            f[k] = x;
+            if (!email && EMAIL.test(x)) email = x.toLowerCase();
+            if (/name/i.test(k)) hasName = true;
+            if (/phone|tel|message|company|subject|comment|note/i.test(k)) hasContact = true;
+          }
+          if (!email && !(hasName && hasContact)) return;
+          var sig = (email || JSON.stringify(f)).toLowerCase(), now = Date.now();
+          if (now - (seen[sig] || 0) < 6000) return;
+          seen[sig] = now;
+          var name = "HubSpot form on " + (location.pathname.replace(/\/+$/, "") || "/");
+          if (window.payani && typeof window.payani.form === "function") window.payani.form(name, f);
+        } catch (err) {}
+      });
+    })();
+  }
+  window.payani.track("pageview");
+  try {
+    if (!window.__payaniChatLoaded) {
+      window.__payaniChatLoaded = 1;
+      var cs = document.createElement("script");
+      cs.async = true;
+      cs.src = BASE + "/api/chat/widget.js?k=" + encodeURIComponent(KEY);
+      (document.body || document.documentElement).appendChild(cs);
+    }
+  } catch (e) { dbg("chat load error", e); }
+})();
+    </script>
   </head>
   <body>
     <div id="root"></div>
