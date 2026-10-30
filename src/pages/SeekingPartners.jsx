@@ -128,6 +128,15 @@ export default function SeekingPartners() {
               >
                 See the Technology <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="border-cyan-500/60 text-cyan-300 hover:bg-cyan-950/50 text-lg px-8 py-4 h-auto font-semibold"
+              >
+                <a href="/helix-prototype-schematics">
+                  <Cpu className="w-5 h-5 mr-2" /> View Prototype Schematics
+                </a>
+              </Button>
               <PrintReportButton
                 reportTitle="Seeking Partners & Investors"
                 subtitle="Reclaim Me — HelixVerify · CipherPass · Dynamic Scrambler"

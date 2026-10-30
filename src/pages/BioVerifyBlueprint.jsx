@@ -126,6 +126,14 @@ export default function BioVerifyBlueprint() {
         <p className="text-slate-600 text-sm mt-2">
           Reclaim Me · Texas, USA · Classification: Internal Engineering
         </p>
+        <div className="mt-4">
+          <a
+            href="/helix-prototype-schematics"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500/10 border border-cyan-500/40 text-cyan-300 text-xs font-mono hover:bg-cyan-500/20 transition-colors"
+          >
+            <Cpu className="w-4 h-4" /> OPEN INTERACTIVE CAD &amp; BIO-CRYPTO PROTOTYPE SCHEMATICS →
+          </a>
+        </div>
       </div>
 
       {/* Security Assurance Summary */}

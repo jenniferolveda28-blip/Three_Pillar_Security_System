@@ -201,6 +201,12 @@ export default function Dashboard() {
                   Seeking Partners
                 </Button>
               </Link>
+              <Link to="/helix-prototype-schematics">
+                <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
+                  <Watch className="w-4 h-4 mr-2" />
+                  Prototype Schematics
+                </Button>
+              </Link>
               <Link to="/InvestorOverview">
                 <Button variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
                   <BarChart3 className="w-4 h-4 mr-2" />
