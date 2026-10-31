@@ -33,6 +33,7 @@ import ScramblerMonitor from '../components/security/ScramblerMonitor';
 import AuditModeToggle from '../components/security/AuditModeToggle';
 import ThreatNeutralizationChart from '../components/investor/ThreatNeutralizationChart';
 import SharedPersonalRecoveryStory from '../components/dashboard/shared_PersonalRecoveryStory';
+import UserHelixTokenStatusView from '../components/dashboard/user_HelixTokenStatusView';
 import { FileText, Users, UserCheck, Database, Watch, ListChecks, Settings, Gavel, KeyRound, ScrollText, Bell, ShieldCheck, FileSearch } from 'lucide-react';
 
 export default function Dashboard() {
@@ -404,6 +405,9 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
+
+        {/* HelixVerify Token Active & Usage Health Status View */}
+        <UserHelixTokenStatusView />
 
         {/* Main Content */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
