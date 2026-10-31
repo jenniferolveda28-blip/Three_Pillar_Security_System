@@ -34,6 +34,7 @@ import AuditModeToggle from '../components/security/AuditModeToggle';
 import ThreatNeutralizationChart from '../components/investor/ThreatNeutralizationChart';
 import SharedPersonalRecoveryStory from '../components/dashboard/shared_PersonalRecoveryStory';
 import UserHelixTokenStatusView from '../components/dashboard/user_HelixTokenStatusView';
+import SharedThreatsDetectedSection from '../components/dashboard/shared_ThreatsDetectedSection';
 import SharedZonedDashboardNavigation from '../components/dashboard/shared_ZonedDashboardNavigation';
 import OwnersUserManagementSection from '../components/dashboard/owners_UserManagementSection';
 import { FileText, Users } from 'lucide-react';
@@ -197,6 +198,14 @@ export default function Dashboard() {
 
         {/* HelixVerify Token Active & Usage Health Status View */}
         <UserHelixTokenStatusView />
+
+        {/* Threats Detected & Weekly Security Activity Summary Section */}
+        <SharedThreatsDetectedSection
+          securityLogs={securityLogs}
+          universes={universes}
+          requests={requests}
+          hardwareTokens={hardwareTokens}
+        />
 
         {/* Main Content */}
         <div id="dashboard-main-tabs">
