@@ -1,39 +1,58 @@
-**Welcome to your Base44 project** 
+# Three Pillar Security System
 
-**About**
+A security and identity-protection platform covering threat detection, auditor access, identity verification and personal-data exposure removal. The repo carries 128 page-level screens and 36 entities, so it is the largest of the Base44 apps here.
 
-View and Edit  your app on [Base44.com](http://Base44.com) 
+Built as a Base44 app, two-way synced with the Base44 Builder.
 
-This project contains everything you need to run your app locally.
+## Stack
 
-**Edit the code in your local development environment**
+- React + Vite (JavaScript), Tailwind CSS, shadcn-style components
+- Base44 SDK for auth, entities and functions
+- ESLint (`npm run lint`, `npm run lint:fix`)
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+## Run locally
 
-**Prerequisites:** 
-
-1. Clone the repository using the project's Git URL 
-2. Navigate to the project directory
-3. Install dependencies: `npm install`
-4. Create an `.env.local` file and set the right environment variables
-
-```
-VITE_BASE44_APP_ID=your_app_id
-VITE_BASE44_APP_BASE_URL=your_backend_url
-
-e.g.
-VITE_BASE44_APP_ID=cbef744a8545c389ef439ea6
-VITE_BASE44_APP_BASE_URL=https://my-to-do-list-81bfaad7.base44.app
+```bash
+git clone <repo-url>
+cd Three_Pillar_Security_System
+npm install
+npm install -g base44@latest
+base44 dev
 ```
 
-Run the app: `npm run dev`
+## Feature areas (from `src/pages`)
 
-**Publish your changes**
+| Area | Representative pages |
+| --- | --- |
+| Threat intelligence | `AIThreatDetection`, `AIThreatAnalysis`, `ThreatCorrelation`, `CriminalActivityAlerts`, `AlertFeed` |
+| Anomaly analysis | `AnomalyInsights`, `AnomalyInvestigation`, `AnomalyOrchestration`, `BehaviorAnomalies` |
+| Auditor workflow | `AuditorPortal`, `AuditorManagement`, `AuditorAccess`, `AuditorAccessLogs`, `AuditorCertificatePortal`, `AuditComplianceDashboard`, `AuditFeedbackTracker` |
+| Identity verification | `BioVerifyBlueprint`, `BioVerifyHandbook`, `HelixVerify*` screens, `Authenticator`, `HardwareToken` |
+| Exposure removal | `DataBroker` screens, `Exposure*`, `Scrubbing` sessions |
+| Platform health | `APIGatewayHealth`, `Analytics`, `SecurityLog`, `SecurityConfig` |
 
-Open [Base44.com](http://Base44.com) and click on Publish.
+## Data model (`base44/entities`)
 
-**Docs & Support**
+36 entities, grouped roughly as:
 
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
+- Identity and access: `User`, `Role`, `UserRoleAssignment`, `AuditorAccessPass`, `AuditorAccessLog`, `HelixVerifyToken`, `HelixVerifyRegistration`, `HelixVerifyLinkedAccount`, `LinkedAccount`, `HardwareToken`, `IdentityCertificate`
+- Threat and anomaly: `BehaviorAnomaly`, `CriminalActivityAlert`, `ThreatCorrelation`, `IncidentRule`, `SecurityLog`, `ProtectedRequest`, `AnalyticsMetric`
+- Exposure and privacy: `DataBroker`, `ExposureRecord`, `ScramblingSession`, `UniversalKey`, `CipherPass`
+- Operations: `Subscription`, `SecurityConfig`, `SecurityReport`, `AuditFeedback`, `InvestorMeeting`, `InvestorInteraction`, `ProtectedEndpointGroup`
 
-Support: [https://app.base44.com/support](https://app.base44.com/support)
+## Notes
+
+- `src/components` holds only 11 shared components; most UI is page-local, which is why page count is high. Expect each page to carry its own logic.
+- `DemoBanner` and `PrintReportButton` signal a demo mode and print/PDF report output. Keep both in mind when changing shared layout.
+
+## Related repositories
+
+| Repository | What it is |
+| --- | --- |
+| `blackthorn-manor` | Haunted-house adventure game |
+| `Three_Pillar_Security_System` | This app: security and identity protection |
+| `lumigery-creators-hq` | Creator and podcast operations workspace |
+| `cognipath` | Mental-wellness and learning companion |
+| `game-day-jukebox` | Music tournament and voting app |
+| `claude-live` | Avatar-based live chat sessions |
+| `vite-react` | Bare Vite starter, no app code |
