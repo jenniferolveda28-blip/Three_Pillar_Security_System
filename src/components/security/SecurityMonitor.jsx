@@ -20,6 +20,7 @@ export default function SecurityMonitor({ logs }) {
     access_denied: XCircle,
     fingerprint_verified: Shield,
     suspicious_activity: AlertTriangle,
+    token_activation_failure: XCircle,
     endpoint_group_accessed: Activity
   };
 

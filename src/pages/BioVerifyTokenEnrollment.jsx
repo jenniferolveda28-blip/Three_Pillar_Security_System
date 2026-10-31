@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Fingerprint, Dna, ScanLine, Cpu, Activity } from 'lucide-react';
+import SystemSubdermalActivationProtocol from '@/components/tokens/system_SubdermalActivationProtocol';
 
 const steps = [
   { icon: Cpu, title: 'Unbox & Power On', desc: 'Power on the HelixVerify token and confirm the OLED display activates with the device serial number visible.' },
@@ -17,6 +18,7 @@ const steps = [
 const statusStyle = {
   pending: 'border-amber-600/50 text-amber-300',
   dna_verified: 'border-blue-600/50 text-blue-300',
+  manual_review_required: 'border-orange-600/50 text-orange-300',
   activated: 'border-emerald-600/50 text-emerald-300',
   rejected: 'border-red-600/50 text-red-300'
 };
@@ -101,6 +103,9 @@ export default function BioVerifyTokenEnrollment() {
           </Card>
         </div>
       </div>
+
+      {/* Formal Subdermal Chip Activation Protocol & Failure Logging */}
+      <SystemSubdermalActivationProtocol />
     </div>
   );
 }

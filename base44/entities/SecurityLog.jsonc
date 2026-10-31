@@ -10,7 +10,8 @@
         "access_denied",
         "dna_verified",
         "suspicious_activity",
-        "endpoint_group_accessed"
+        "endpoint_group_accessed",
+        "token_activation_failure"
       ],
       "description": "Type of security event"
     },
@@ -60,7 +61,8 @@
             {
               "data.event_type": {
                 "$in": [
-                  "suspicious_activity"
+                  "suspicious_activity",
+                  "token_activation_failure"
                 ]
               }
             }

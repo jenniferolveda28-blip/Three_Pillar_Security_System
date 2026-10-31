@@ -10,6 +10,16 @@
       "type": "string",
       "description": "Unique hardware identifier (can't be cloned)"
     },
+    "form_factor": {
+      "type": "string",
+      "enum": [
+        "wearable_band",
+        "skin_patch",
+        "subdermal_chip"
+      ],
+      "default": "wearable_band",
+      "description": "Hardware form factor of the HelixVerify token"
+    },
     "secret_key": {
       "type": "string",
       "description": "TOTP secret (stored encrypted)"
@@ -27,6 +37,16 @@
       "type": "boolean",
       "default": true,
       "description": "Is this token authorized"
+    },
+    "manual_identity_verified": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether manual identity check was verified prior to activation"
+    },
+    "rf_read_locked": {
+      "type": "boolean",
+      "default": false,
+      "description": "When true, token RF interface is locked and cannot be read or used"
     },
     "last_used": {
       "type": "string",

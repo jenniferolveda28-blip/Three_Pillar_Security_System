@@ -24,8 +24,9 @@ export default function SecurityLogMonitor() {
   if (isLoading) return <div className="p-8 text-slate-400">Loading live monitor…</div>;
 
   const rotations = logs.filter(l => l.event_type === 'key_rotation');
+  const activationFailures = logs.filter(l => l.event_type === 'token_activation_failure');
   const anomaliesActive = anomalies.filter(a => a.status === 'detected' || a.status === 'investigating');
-  const critical = logs.filter(l => l.threat_level === 'critical').length + anomalies.filter(a => a.severity === 'critical').length;
+  const critical = logs.filter(l => l.threat_level === 'critical' || l.event_type === 'token_activation_failure').length + anomalies.filter(a => a.severity === 'critical').length;
 
   return (
     <div className="p-6 space-y-6">
@@ -41,7 +42,7 @@ export default function SecurityLogMonitor() {
         <Card className="bg-slate-800/50 border-slate-700"><CardContent className="pt-6 flex items-center justify-between"><div><p className="text-sm text-slate-400">Access Events</p><p className="text-2xl font-bold text-white">{logs.length}</p></div><Activity className="w-8 h-8 text-cyan-500/50" /></CardContent></Card>
         <Card className="bg-slate-800/50 border-slate-700"><CardContent className="pt-6 flex items-center justify-between"><div><p className="text-sm text-slate-400">Key Rotations</p><p className="text-2xl font-bold text-violet-400">{rotations.length}</p></div><Key className="w-8 h-8 text-violet-500/50" /></CardContent></Card>
         <Card className="bg-slate-800/50 border-slate-700"><CardContent className="pt-6 flex items-center justify-between"><div><p className="text-sm text-slate-400">Active Anomalies</p><p className="text-2xl font-bold text-amber-400">{anomaliesActive.length}</p></div><AlertTriangle className="w-8 h-8 text-amber-500/50" /></CardContent></Card>
-        <Card className="bg-slate-800/50 border-slate-700"><CardContent className="pt-6 flex items-center justify-between"><div><p className="text-sm text-slate-400">Critical</p><p className="text-2xl font-bold text-red-400">{critical}</p></div><AlertTriangle className="w-8 h-8 text-red-500/50" /></CardContent></Card>
+        <Card className="bg-slate-800/50 border-slate-700"><CardContent className="pt-6 flex items-center justify-between"><div><p className="text-sm text-slate-400">Critical / Activation Failures</p><p className="text-2xl font-bold text-red-400">{critical} <span className="text-xs font-normal text-slate-400">({activationFailures.length} token failures)</span></p></div><AlertTriangle className="w-8 h-8 text-red-500/50" /></CardContent></Card>
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6">

@@ -37,14 +37,25 @@ function evaluateTokenHealth(token) {
   const battery = token.battery_level ?? 100;
   const failed = token.failed_attempts ?? 0;
   const sync = token.sync_status || 'synced';
+  const isSubdermal = token.form_factor === 'subdermal_chip';
 
   if (!token.is_active) issues.push('Inactive');
+  if (token.rf_read_locked || (isSubdermal && !token.manual_identity_verified)) {
+    issues.push('RF Read-Locked (Manual ID Required)');
+  }
   if (sync === 'error') issues.push('Sync error');
   else if (sync === 'offline') issues.push('Offline');
   if (battery <= 20) issues.push(`Low battery (${battery}%)`);
   if (failed > 0) issues.push(`${failed}/3 failed auths`);
 
-  if (!token.is_active || sync === 'error' || failed >= 3 || battery <= 10) {
+  if (
+    !token.is_active ||
+    token.rf_read_locked ||
+    (isSubdermal && !token.manual_identity_verified) ||
+    sync === 'error' ||
+    failed >= 3 ||
+    battery <= 10
+  ) {
     return { status: 'critical', label: 'Needs Attention', issues };
   }
   if (issues.length > 0) {
@@ -300,13 +311,21 @@ export default function UserHelixTokenStatusView() {
         </div>
       )}
 
-      <div className="mt-3 pt-2 border-t border-slate-800/60 flex items-center justify-between text-xs">
-        <Link
-          to="/bioverify-hardware-status"
-          className="text-cyan-400 hover:text-cyan-300 transition-colors"
-        >
-          Full hardware diagnostics →
-        </Link>
+      <div className="mt-3 pt-2 border-t border-slate-800/60 flex items-center justify-between flex-wrap gap-2 text-xs">
+        <div className="flex items-center gap-4">
+          <Link
+            to="/bioverify-hardware-status"
+            className="text-cyan-400 hover:text-cyan-300 transition-colors"
+          >
+            Full hardware diagnostics →
+          </Link>
+          <Link
+            to="/token-enrollment"
+            className="text-amber-300 hover:text-amber-200 transition-colors"
+          >
+            Subdermal activation protocol →
+          </Link>
+        </div>
         <Link
           to="/token-management"
           className="text-slate-400 hover:text-slate-200 transition-colors"

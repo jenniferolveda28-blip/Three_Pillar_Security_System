@@ -6,11 +6,22 @@
       "type": "string",
       "description": "Unique serial number on physical HelixVerify device"
     },
+    "form_factor": {
+      "type": "string",
+      "enum": [
+        "wearable_band",
+        "skin_patch",
+        "subdermal_chip"
+      ],
+      "default": "wearable_band",
+      "description": "Hardware form factor of the HelixVerify token"
+    },
     "registration_status": {
       "type": "string",
       "enum": [
         "pending",
         "dna_verified",
+        "manual_review_required",
         "activated",
         "rejected"
       ],
@@ -48,6 +59,38 @@
       ],
       "default": "dna_saliva",
       "description": "Primary HelixVerify verification method"
+    },
+    "manual_identity_verified": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether a formal manual identity check was completed before activation"
+    },
+    "identity_verifier_email": {
+      "type": "string",
+      "description": "Email of the authorized verifier who completed the manual identity check"
+    },
+    "identity_document_ref": {
+      "type": "string",
+      "description": "Reference ID of the verified government ID and enrollment dossier"
+    },
+    "rf_read_lock_engaged": {
+      "type": "boolean",
+      "default": true,
+      "description": "When true, the subdermal chip cannot be read or used until manual identity verification succeeds"
+    },
+    "manual_intervention_required": {
+      "type": "boolean",
+      "default": false,
+      "description": "Flagged true when chip fails activation and requires manual intervention"
+    },
+    "activation_failure_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of failed activation attempts on this token"
+    },
+    "last_failure_reason": {
+      "type": "string",
+      "description": "Reason for the most recent token activation failure"
     },
     "device_info": {
       "type": "object",
