@@ -83,6 +83,12 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="flex gap-2 flex-wrap">
+            <Link to="/token-management">
+              <Button className="bg-cyan-600 hover:bg-cyan-500 text-white">
+                <Key className="w-4 h-4 mr-2" />
+                View All Active Tokens ({hardwareTokens.length})
+              </Button>
+            </Link>
             <ComprehensiveAuditButton daysBack={7} />
             <ExportAllPagesButton />
             <BatchDownloadButton

@@ -1,0 +1,41 @@
+{
+  "name": "Gmail Alert on Threat or Unauthorized Token Access",
+  "description": "Automatically sends an email via Gmail whenever SecurityLog records a potential security threat or an unauthorized HelixVerify token access/activation attempt.",
+  "trigger": {
+    "config": {
+      "trigger_type": "entity",
+      "entity_name": "SecurityLog",
+      "events": [
+        "create"
+      ]
+    },
+    "condition": "${ (.trigger.data.event_type | IN(\"access_denied\", \"suspicious_activity\", \"token_activation_failure\")) or (.trigger.data.threat_level | IN(\"medium\", \"high\", \"critical\")) or (.trigger.data.success == false) }"
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "gmail_alert_on_threat_or_unauthorized_token_access",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "send_gmail_threat_alert": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "sendThreatGmailAlert",
+            "args": {
+              "log_id": "${ .trigger.entity_id }",
+              "event_data": "${ .trigger.data }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Send Gmail security alert",
+            "description": "Emails threat and token access details via Gmail"
+          }
+        }
+      }
+    ]
+  }
+}

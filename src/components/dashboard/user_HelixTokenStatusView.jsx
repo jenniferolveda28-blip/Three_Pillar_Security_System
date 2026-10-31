@@ -4,6 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Watch,
   CheckCircle2,
@@ -66,6 +67,7 @@ function evaluateTokenHealth(token) {
 
 export default function UserHelixTokenStatusView() {
   const { user } = useAuth();
+  const [filterActiveOnly, setFilterActiveOnly] = React.useState(false);
 
   const { data: tokens = [], isLoading, refetch, isFetching } = useQuery({
     queryKey: ['helixVerifyTokenHealth', user?.id, user?.role],
@@ -92,6 +94,9 @@ export default function UserHelixTokenStatusView() {
   const activeCount = tokens.filter((t) => t.is_active).length;
   const healthyCount = evaluatedTokens.filter((t) => t.health.status === 'healthy').length;
   const attentionCount = evaluatedTokens.length - healthyCount;
+  const displayedTokens = filterActiveOnly
+    ? evaluatedTokens.filter(({ token }) => token.is_active)
+    : evaluatedTokens;
 
   return (
     <div className="multi-layer-card card-layer-auth rounded-xl p-5 border mb-8">
@@ -129,6 +134,30 @@ export default function UserHelixTokenStatusView() {
             <AlertTriangle className="w-3.5 h-3.5" />
             {attentionCount} Needs Attention
           </span>
+          <Button
+            type="button"
+            size="sm"
+            variant={filterActiveOnly ? 'default' : 'outline'}
+            onClick={() => setFilterActiveOnly((prev) => !prev)}
+            className={
+              filterActiveOnly
+                ? 'h-7 px-3 text-xs bg-cyan-600 hover:bg-cyan-500 text-white'
+                : 'h-7 px-3 text-xs border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/10'
+            }
+          >
+            <Watch className="w-3.5 h-3.5 mr-1.5" />
+            {filterActiveOnly ? `Showing Active Tokens (${activeCount})` : `View All Active Tokens (${activeCount})`}
+          </Button>
+          <Link to="/token-management">
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              className="h-7 px-3 text-xs border-slate-700 text-slate-200 hover:bg-slate-800"
+            >
+              Open Token Directory
+            </Button>
+          </Link>
           <button
             type="button"
             onClick={() => refetch()}
@@ -162,7 +191,7 @@ export default function UserHelixTokenStatusView() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          {evaluatedTokens.map(({ token, health }) => {
+          {displayedTokens.map(({ token, health }) => {
             const battery = token.battery_level ?? 100;
             const sync = token.sync_status || 'synced';
             const failed = token.failed_attempts ?? 0;
