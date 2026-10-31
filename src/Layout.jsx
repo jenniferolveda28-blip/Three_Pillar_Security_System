@@ -4,6 +4,7 @@ import { Printer, FileDown } from 'lucide-react';
 import DemoBanner from '@/components/DemoBanner';
 import AuditModeBanner from '@/components/security/AuditModeBanner';
 import GuestAuditorBanner from '@/components/security/GuestAuditorBanner';
+import SharedDeviceTypeBar from '@/components/shared_DeviceTypeBar';
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
@@ -137,6 +138,7 @@ export default function Layout({ children, currentPageName }) {
       <AuditModeBanner />
       <GuestAuditorBanner />
       <DemoBanner />
+      <SharedDeviceTypeBar />
 
       {/* Global Print / Export PDF button — visible on every page */}
       <button
