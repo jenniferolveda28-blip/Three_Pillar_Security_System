@@ -28,14 +28,12 @@ export default function SystemDestructionMonitor() {
     mutationFn: async (s) => {
       const expires = getExpiry(s);
       const daysLeft = Math.ceil(moment(expires).diff(moment(), 'days', true));
-      const subject = `Action required: your biological sample nearing mandatory destruction`;
-      const body = `Hello ${s.submitter_name},\n\n` +
-        `This is a courtesy notice from the platform. The biological identity data associated with sample ${s.sample_id} is nearing its mandatory retention expiry.\n\n` +
-        `Destruction date: ${moment(expires).format('MMMM D, YYYY')} (${daysLeft} day(s) remaining)\n\n` +
-        `Under our Data Destruction Policy and Texas genetic privacy law, your stored genetic hash will be permanently destroyed on or after this date unless you renew consent.\n\n` +
-        `If you wish to extend retention, withdraw consent early, or request immediate destruction, please contact us via the platform.\n\n` +
-        `— Platform Privacy Team`;
-      return base44.integrations.Core.SendEmail({ to: s.submitter_email, subject, body });
+      return base44.functions.invoke('sendSecurityEmail', {
+        kind: 'destruction_reminder',
+        sample_id: s.id,
+        destruction_date: moment(expires).format('MMMM D, YYYY'),
+        days_left: daysLeft,
+      });
     },
     onMutate: (s) => setSendingId(s.id),
     onSuccess: () => {

@@ -51,8 +51,8 @@ export default function AuditorManagement() {
   });
 
   const emailMutation = useMutation({
-    mutationFn: ({ to, subject, body }) =>
-      base44.integrations.Core.SendEmail({ to, subject, body }),
+    mutationFn: (passId) =>
+      base44.functions.invoke('sendSecurityEmail', { kind: 'auditor_passcode', pass_id: passId }),
   });
 
   const handleGenerate = async (e) => {
@@ -61,7 +61,7 @@ export default function AuditorManagement() {
     setGeneratedCode(code);
 
     try {
-      await createMutation.mutateAsync({
+      const createdPass = await createMutation.mutateAsync({
         first_name: firstName,
         last_name: lastName,
         auditor_email: email,
@@ -71,9 +71,7 @@ export default function AuditorManagement() {
       });
 
       if (email) {
-        const appUrl = window.location.origin + '/auditor-access';
-        const body = `Hello ${firstName},\n\nYou have been granted auditor access to Reclaim Me.\n\nApp login email (shared): auditor4threepillarsecurity@proton.me\nYour unique access passcode: ${code}\n\nAccess portal: ${appUrl}\n\nInstructions:\n1. Visit the access portal link above\n2. Log in with the shared email above, then enter your first name, last name, and passcode\n3. Complete the security audit questionnaire\n\nThis passcode is unique to you. Do not share it with others.\n\nThank you,\nReclaim Me Team`;
-        await emailMutation.mutateAsync({ to: email, subject: 'Your Auditor Access Passcode — Reclaim Me', body });
+        await emailMutation.mutateAsync(createdPass.id);
         toast({ title: 'Passcode generated & emailed', description: `${firstName} ${lastName} received their passcode.` });
       } else {
         toast({ title: 'Passcode generated', description: 'Copy the passcode to share with the auditor manually.' });

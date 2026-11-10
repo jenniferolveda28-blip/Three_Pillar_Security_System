@@ -65,10 +65,10 @@ export default function ThreatIntelligenceFeed({ alerts, logs, onEventClick }) {
       });
 
       // Step 3: Send alert email
-      await base44.integrations.Core.SendEmail({
-        to: 'security-team@threepillar.ai',
-        subject: `🚨 THREAT NEUTRALIZED: ${event.title}`,
-        body: `Security team,\n\nA threat has been neutralized by an operator.\n\nType: ${event.title}\nSeverity: ${event.severity?.toUpperCase()}\nTime: ${new Date().toLocaleString()}\nAction: Node isolated, active credentials revoked.\n\nPlease verify and follow up as needed.\n\n— Reclaim Me`
+      await base44.functions.invoke('sendSecurityEmail', {
+        kind: 'threat_neutralized',
+        title: event.title,
+        severity: event.severity
       });
 
       setNeutralized(prev => ({ ...prev, [event.id]: true }));

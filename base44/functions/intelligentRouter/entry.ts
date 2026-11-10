@@ -57,7 +57,7 @@ Respond with JSON containing:
 - "confidence": 0-100 score of how confident you are
 `;
 
-        const aiResponse = await base44.integrations.Core.InvokeLLM({
+        const aiResponse = await base44.asServiceRole.integrations.Core.InvokeLLM({
             prompt: routingPrompt,
             response_json_schema: {
                 type: "object",
@@ -83,7 +83,7 @@ Respond with JSON containing:
         const mockPrompt = `Generate a realistic API response for this request: "${intent}". 
 Keep it concise and realistic. Return only the data, no explanations.`;
 
-        const mockResponse = await base44.integrations.Core.InvokeLLM({
+        const mockResponse = await base44.asServiceRole.integrations.Core.InvokeLLM({
             prompt: mockPrompt,
             response_json_schema: {
                 type: "object",

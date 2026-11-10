@@ -1,5 +1,6 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.54';
 import { createMimeMessage } from 'npm:mimetext@3.0.24';
+import { escapeHtml } from '../../shared/escapeHtml.ts';
 
 export default async function(req) {
   try {
@@ -25,12 +26,13 @@ export default async function(req) {
       }
     }
 
-    const eventType = eventData.event_type || 'suspicious_activity';
-    const threatLevel = eventData.threat_level || 'high';
-    const details =
+    const eventType = String(eventData.event_type || 'suspicious_activity');
+    const threatLevel = String(eventData.threat_level || 'high');
+    const details = String(
       eventData.details ||
-      'Potential security threat or unauthorized HelixVerify token access attempt detected.';
-    const ipAddress = eventData.ip_address || 'Unknown origin';
+      'Potential security threat or unauthorized HelixVerify token access attempt detected.'
+    );
+    const ipAddress = String(eventData.ip_address || 'Unknown origin');
     const timestamp = eventData.created_date
       ? new Date(eventData.created_date).toLocaleString()
       : new Date().toLocaleString();
@@ -89,21 +91,21 @@ export default async function(req) {
   <div style="padding:24px;background:#1e293b;border-bottom:3px solid ${badgeColor};">
     <p style="margin:0 0 6px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#38bdf8;">Reclaim Me Security Automation</p>
     <h1 style="margin:0;font-size:20px;color:#ffffff;">${alertTitle}</h1>
-    <p style="margin:6px 0 0;font-size:12px;color:#94a3b8;">Detected at ${timestamp}</p>
+    <p style="margin:6px 0 0;font-size:12px;color:#94a3b8;">Detected at ${escapeHtml(timestamp)}</p>
   </div>
   <div style="padding:24px;">
     <table style="width:100%;border-collapse:collapse;font-size:14px;color:#e2e8f0;">
       <tr>
         <td style="padding:8px 0;color:#94a3b8;width:150px;">Event Type:</td>
-        <td style="padding:8px 0;font-weight:bold;">${eventType.replace(/_/g, ' ').toUpperCase()}</td>
+        <td style="padding:8px 0;font-weight:bold;">${escapeHtml(eventType.replace(/_/g, ' ').toUpperCase())}</td>
       </tr>
       <tr>
         <td style="padding:8px 0;color:#94a3b8;">Threat Level:</td>
-        <td style="padding:8px 0;font-weight:bold;color:${badgeColor};text-transform:uppercase;">${threatLevel}</td>
+        <td style="padding:8px 0;font-weight:bold;color:${badgeColor};text-transform:uppercase;">${escapeHtml(threatLevel)}</td>
       </tr>
       <tr>
         <td style="padding:8px 0;color:#94a3b8;">Origin / Gate:</td>
-        <td style="padding:8px 0;font-family:monospace;">${ipAddress}</td>
+        <td style="padding:8px 0;font-family:monospace;">${escapeHtml(ipAddress)}</td>
       </tr>
       <tr>
         <td style="padding:8px 0;color:#94a3b8;">Access Status:</td>
@@ -112,7 +114,7 @@ export default async function(req) {
     </table>
     <div style="margin-top:16px;padding:16px;background:#090d16;border-left:4px solid ${badgeColor};border-radius:6px;">
       <p style="margin:0 0 6px;font-size:12px;color:#94a3b8;text-transform:uppercase;">Event Details</p>
-      <p style="margin:0;font-size:14px;line-height:1.5;color:#f8fafc;">${details}</p>
+      <p style="margin:0;font-size:14px;line-height:1.5;color:#f8fafc;">${escapeHtml(details)}</p>
     </div>
     <p style="margin-top:20px;font-size:12px;color:#64748b;">
       This automated Gmail notification was sent by your Reclaim Me threat &amp; HelixVerify token monitoring workflow.

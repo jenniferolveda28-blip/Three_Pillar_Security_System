@@ -13,11 +13,11 @@ export default function AIThreatAssistant() {
 
   const aiMutation = useMutation({
     mutationFn: async (prompt) => {
-      const result = await base44.integrations.Core.InvokeLLM({
-        prompt: `You are an advanced cybersecurity AI assistant. Analyze the following security query and provide actionable recommendations:\n\n${prompt}\n\nProvide: 1) Risk assessment 2) Mitigation strategies 3) Response playbook steps`,
-        add_context_from_internet: false
+      const res = await base44.functions.invoke('generateSecurityInsight', {
+        kind: 'threat_assistant',
+        query: prompt
       });
-      return result;
+      return res.data.text;
     },
     onSuccess: (data) => {
       setResponse(data);

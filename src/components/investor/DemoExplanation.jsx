@@ -17,39 +17,12 @@ export default function DemoExplanation({ demoId, demoTitle }) {
   const generateExplanation = async () => {
     setIsLoading(true);
     try {
-      const prompts = {
-        detection: `Generate a detailed technical explanation for our "Illegal Activity Detection" security demo. 
-        Cover: What the demo showcases, the AI-powered threat detection technology, real-time response mechanisms, 
-        economic warfare against hackers, and business impact for investors. Include specific technical details about 
-        the 0.15 second response time, behavior analysis, attack chain identification, and automated law enforcement 
-        integration. Format in markdown with clear sections.`,
-        
-        dna: `Generate a detailed technical explanation for our "HelixVerify DNA Authentication" wearable token demo. 
-        Cover: How DNA gets encoded into the HelixVerify wearable identity anchor with hardware-backed rotation and liveness, 
-        the zero-knowledge architecture where we never store actual DNA (only cryptographic hashes), GDPR/HIPAA compliance advantages, 
-        the mathematical impossibility of reverse engineering, and why this is revolutionary for investors. Include technical details 
-        about SHA-256 hashing, AES-256-GCM encryption, and the 2-second registration process. Format in markdown with clear sections.`,
-        
-        integrated: `Generate a detailed technical explanation for our "Reclaim Me Integration" demo showcasing 
-        HelixVerify + CipherPass + Dynamic Scrambler working together as the Reclaim Me authentication platform. Cover: How the three 
-        interlocking authentication layers create an impenetrable defense, real-world attack scenario simulation, the synergy between 
-        HelixVerify DNA wearable authentication, CipherPass protected API gateway, and Dynamic Scrambler continuous moving-target defense, 
-        and the competitive moat this creates. Include specific examples of how an attack is detected, analyzed, and neutralized across 
-        all three systems simultaneously. Format in markdown with clear sections.`,
-        
-        replacement: `Generate a detailed technical explanation for our "Token Replacement" demo. Cover: The $29.99 
-        replacement cost advantage, 2-3 day shipping timeline, 30-second reactivation process, how DNA verification 
-        works without resubmitting samples (cloud-stored hash comparison), zero password reset hassle, and the 
-        customer experience benefits. Include the business case for investors on recurring revenue potential and 
-        customer lock-in through biological identity. Format in markdown with clear sections.`
-      };
-
-      const result = await base44.integrations.Core.InvokeLLM({
-        prompt: prompts[demoId],
-        add_context_from_internet: false
+      const res = await base44.functions.invoke('generateSecurityInsight', {
+        kind: 'demo_explanation',
+        demo_id: demoId
       });
 
-      setExplanation(result);
+      setExplanation(res.data.text);
     } catch (error) {
       console.error('Failed to generate explanation:', error);
       setExplanation('**Error generating explanation.** Please try refreshing the page.');

@@ -119,10 +119,11 @@ export default function DailyThreatEmail() {
     if (!savedEmail) { toast.error('Save a recipient email first.'); return; }
     setSending(true);
     try {
-      await base44.integrations.Core.SendEmail({
+      await base44.functions.invoke('sendSecurityEmail', {
+        kind: 'security_digest',
         to: savedEmail,
         subject: `[DAILY THREAT SUMMARY] ${recentAnomalies.length + recentAlerts.length} threats | ${totalNeutralizations} neutralizations | Score: ${score}/100 — ${format(new Date(), 'MMM d, yyyy')}`,
-        body: buildEmailBody(),
+        html: buildEmailBody(),
       });
       const entry = { time: new Date(), type: isManual ? 'manual' : 'daily', score, threats: recentAnomalies.length + recentAlerts.length, neutralizations: totalNeutralizations, success: true };
       setLastSent(new Date());

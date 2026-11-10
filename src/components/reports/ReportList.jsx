@@ -102,7 +102,15 @@ export default function ReportList({ reports, onEdit, onGenerate }) {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => window.open(report.file_url, '_blank')}
+                  onClick={() => {
+                    let parsed;
+                    try { parsed = new URL(report.file_url); } catch { parsed = null; }
+                    if (!parsed || parsed.protocol !== 'https:') {
+                      window.alert('This report link is not a valid secure file URL.');
+                      return;
+                    }
+                    window.open(parsed.href, '_blank', 'noopener,noreferrer');
+                  }}
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Download Last

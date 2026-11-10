@@ -128,10 +128,11 @@ export default function HourlySecurityEmailSetup() {
       const anomalyCount = anomalies.filter(a => ['high', 'critical'].includes(a.data?.severity)).length;
       const score = Math.max(0, 100 - critCount * 5 - anomalyCount * 4);
 
-      await base44.integrations.Core.SendEmail({
+      await base44.functions.invoke('sendSecurityEmail', {
+        kind: 'security_digest',
         to: savedEmail,
         subject: `[${isManual ? 'MANUAL' : 'HOURLY'}] Security Report — Score: ${score}/100 — ${format(new Date(), 'MMM d, yyyy HH:mm')} UTC`,
-        body: `<h2 style="color:#0891b2">Reclaim Me — Hourly Summary</h2>
+        html: `<h2 style="color:#0891b2">Reclaim Me — Hourly Summary</h2>
 <p><strong>Generated:</strong> ${format(new Date(), 'MMMM d, yyyy HH:mm')} UTC</p>
 <hr/>
 <h3>Threat Summary</h3>

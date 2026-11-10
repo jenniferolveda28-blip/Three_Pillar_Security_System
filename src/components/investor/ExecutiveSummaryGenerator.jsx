@@ -14,34 +14,11 @@ export default function ExecutiveSummaryGenerator({ meeting, onClose }) {
   const generate = async () => {
     setLoading(true);
     try {
-      const prompt = `You are a professional executive summary writer for an investor relations CRM. Transform the following meeting notes into a polished executive summary suitable for sharing with stakeholders or potential investors.
-
-MEETING DETAILS:
-- Investor: ${meeting.investor_name}
-- Company: ${meeting.company || 'N/A'}
-- Meeting Date: ${meeting.meeting_date}
-- Location: ${meeting.meeting_location || 'N/A'}, ${meeting.county || 'Travis'} County, TX
-- Pipeline Stage: ${meeting.status}
-- Interest Level: ${meeting.interest_level}/5
-- Pillars Discussed: ${(meeting.pillars_discussed || []).join(', ') || 'N/A'}
-- Documents Reviewed: ${meeting.documents_reviewed || 'N/A'}
-
-INVESTOR FEEDBACK:
-${meeting.feedback || 'N/A'}
-
-NEXT STEPS:
-${meeting.next_steps || 'N/A'}
-
-Create a professional executive summary with these sections (use plain text, no markdown symbols):
-1. EXECUTIVE OVERVIEW — A concise paragraph summarizing the meeting and investor engagement level.
-2. KEY DISCUSSION POINTS — 3-5 bullet points covering the main topics covered and investor reactions.
-3. INVESTOR SENTIMENT — A brief assessment of the investor's interest, concerns, and likelihood to proceed.
-4. RECOMMENDED ACTIONS — Clear, actionable next steps with suggested timelines.
-
-Keep the tone professional, consistent, and concise. Do not use markdown headers (#) or asterisks.`;
-
-      const res = await base44.integrations.Core.InvokeLLM({ prompt });
-      setSummary(typeof res === 'string' ? res : JSON.stringify(res));
+      const res = await base44.functions.invoke('generateSecurityInsight', {
+        kind: 'executive_summary',
+        meeting_id: meeting.id
+      });
+      setSummary(res.data.text);
       toast.success('Executive summary generated!');
     } catch (err) {
       toast.error('Failed to generate: ' + err.message);

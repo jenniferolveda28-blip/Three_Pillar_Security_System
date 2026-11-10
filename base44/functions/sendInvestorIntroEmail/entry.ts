@@ -1,5 +1,6 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
 import { MimeBuilder } from 'npm:emailjs-mime-builder@2.0.5';
+import { escapeHtml } from '../../shared/escapeHtml.ts';
 
 Deno.serve(async (req) => {
   try {
@@ -78,14 +79,19 @@ ${user.full_name || 'The Reclaim Me Team'}
 Reclaim Me
 Texas, USA`;
 
+    const safeName = escapeHtml(investorName);
+    const safeCompany = escapeHtml(company);
+    const safePillars = escapeHtml(pillars);
+    const safeSender = escapeHtml(user.full_name || 'The Reclaim Me Team');
+
     const htmlBody = `<div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; color: #1e293b;">
   <div style="background: #0f172a; padding: 24px; border-radius: 8px 8px 0 0; border-left: 4px solid #06b6d4;">
     <h1 style="color: #06b6d4; margin: 0; font-size: 22px;">Reclaim Me</h1>
     <p style="color: #94a3b8; margin: 4px 0 0; font-size: 13px;">Technical Overview &amp; Next Steps</p>
   </div>
   <div style="padding: 28px; background: #ffffff; border: 1px solid #e2e8f0; border-top: none;">
-    <p style="font-size: 15px;">Dear ${investorName},</p>
-    <p style="font-size: 15px;">Thank you for your interest in Reclaim Me. Following our recent discussion${company}, I wanted to share a comprehensive technical overview of our platform and outline the next steps for our engagement.</p>
+    <p style="font-size: 15px;">Dear ${safeName},</p>
+    <p style="font-size: 15px;">Thank you for your interest in Reclaim Me. Following our recent discussion${safeCompany}, I wanted to share a comprehensive technical overview of our platform and outline the next steps for our engagement.</p>
 
     <h2 style="color: #06b6d4; font-size: 18px; margin-top: 28px;">Platform Overview</h2>
     <p style="font-size: 15px;">Reclaim Me is a next-generation authentication platform built on three interlocking layers:</p>
@@ -131,7 +137,7 @@ Texas, USA`;
 
     <div style="background: #ecfdf5; border: 1px solid #10b981; padding: 16px; margin: 24px 0; border-radius: 8px;">
       <h3 style="color: #10b981; margin: 0 0 8px; font-size: 15px;">Pillars of Interest</h3>
-      <p style="margin: 0; font-size: 14px;">During our discussion, you indicated interest in: <strong>${pillars}</strong>. I would be happy to arrange a deeper technical dive into any of these areas, including a live demonstration.</p>
+      <p style="margin: 0; font-size: 14px;">During our discussion, you indicated interest in: <strong>${safePillars}</strong>. I would be happy to arrange a deeper technical dive into any of these areas, including a live demonstration.</p>
     </div>
 
     <h2 style="color: #06b6d4; font-size: 18px; margin-top: 28px;">Next Steps</h2>
@@ -144,7 +150,7 @@ Texas, USA`;
     <p style="font-size: 15px; margin-top: 28px;">Please don't hesitate to reach out with any questions. I look forward to continuing our conversation.</p>
 
     <p style="font-size: 15px; margin-top: 24px;">Best regards,<br>
-    <strong>${user.full_name || 'The Reclaim Me Team'}</strong><br>
+    <strong>${safeSender}</strong><br>
     Reclaim Me<br>
     Texas, USA</p>
   </div>
