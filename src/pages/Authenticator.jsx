@@ -39,12 +39,12 @@ export default function Authenticator() {
       <div className="max-w-6xl mx-auto p-6">
         {/* Header */}
         <div className="mb-8">
-          <Link to={createPageUrl('Dashboard')}>
-            <Button variant="ghost" className="mb-4">
+          <Button asChild variant="ghost" className="mb-4">
+            <Link to={createPageUrl('Dashboard')}>
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Dashboard
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-purple-600 rounded-xl">

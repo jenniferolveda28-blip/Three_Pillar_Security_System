@@ -108,16 +108,16 @@ export default function InvestorOverview() {
             </div>
           </div>
           <div className="flex gap-2 flex-wrap">
-            <Link to="/InvestorCRM">
-              <Button variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10">
+            <Button asChild variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10">
+              <Link to="/InvestorCRM">
                 <Users className="w-4 h-4 mr-2" /> Investor CRM
-              </Button>
-            </Link>
-            <Link to="/TexasNDA">
-              <Button variant="outline" className="border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10">
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10">
+              <Link to="/TexasNDA">
                 <FileText className="w-4 h-4 mr-2" /> NDA Generator
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             <PrintReportButton
               reportTitle="Investor System Overview"
               subtitle="Reclaim Me — Live Status & Threat History"
@@ -299,8 +299,8 @@ export default function InvestorOverview() {
               </div>
             </div>
             <div className="flex gap-2">
-              <Link to="/TexasNDA"><Button className="bg-cyan-600 hover:bg-cyan-500"><FileText className="w-4 h-4 mr-2" />Generate NDA</Button></Link>
-              <Link to="/InvestorCRM"><Button variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10"><Users className="w-4 h-4 mr-2" />Log Meeting</Button></Link>
+              <Button asChild className="bg-cyan-600 hover:bg-cyan-500"><Link to="/TexasNDA"><FileText className="w-4 h-4 mr-2" />Generate NDA</Link></Button>
+              <Button asChild variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10"><Link to="/InvestorCRM"><Users className="w-4 h-4 mr-2" />Log Meeting</Link></Button>
             </div>
           </CardContent>
         </Card>

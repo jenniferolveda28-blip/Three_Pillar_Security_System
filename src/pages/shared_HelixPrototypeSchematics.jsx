@@ -62,21 +62,21 @@ export default function SharedHelixPrototypeSchematics() {
       {/* Top Navigation & Actions */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2 flex-wrap">
-          <Link to="/SeekingPartners">
-            <Button variant="outline" size="sm" className="border-slate-700 text-slate-300">
+          <Button asChild variant="outline" size="sm" className="border-slate-700 text-slate-300">
+            <Link to="/SeekingPartners">
               <ArrowLeft className="w-4 h-4 mr-1" /> Seeking Partners
-            </Button>
-          </Link>
-          <Link to="/bioverify-blueprint">
-            <Button variant="outline" size="sm" className="border-slate-700 text-slate-300">
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="sm" className="border-slate-700 text-slate-300">
+            <Link to="/bioverify-blueprint">
               <FileText className="w-4 h-4 mr-1" /> System Architecture
-            </Button>
-          </Link>
-          <Link to="/helix-token-production-brief">
-            <Button variant="outline" size="sm" className="border-slate-700 text-slate-300">
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="sm" className="border-slate-700 text-slate-300">
+            <Link to="/helix-token-production-brief">
               <Wrench className="w-4 h-4 mr-1" /> Production Brief
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
 
         <div className="flex items-center gap-2">
@@ -248,21 +248,21 @@ export default function SharedHelixPrototypeSchematics() {
             </p>
           </div>
           <div className="flex flex-wrap gap-2 shrink-0">
-            <Link to="/TexasNDA">
-              <Button className="bg-cyan-600 hover:bg-cyan-500 text-white">
+            <Button asChild className="bg-cyan-600 hover:bg-cyan-500 text-white">
+              <Link to="/TexasNDA">
                 <ShieldCheck className="w-4 h-4 mr-1.5" /> Execute Mutual NDA
-              </Button>
-            </Link>
-            <Link to="/helix-token-requirements">
-              <Button variant="outline" className="border-purple-500/50 text-purple-300 hover:bg-purple-500/10">
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="border-purple-500/50 text-purple-300 hover:bg-purple-500/10">
+              <Link to="/helix-token-requirements">
                 Full Requirements Spec
-              </Button>
-            </Link>
-            <Link to="/SeekingPartners">
-              <Button variant="outline" className="border-slate-600 text-slate-200 hover:bg-slate-800">
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="border-slate-600 text-slate-200 hover:bg-slate-800">
+              <Link to="/SeekingPartners">
                 Partner Inquiry Form
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </CardContent>
       </Card>

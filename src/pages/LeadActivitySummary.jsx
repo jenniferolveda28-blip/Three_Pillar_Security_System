@@ -59,7 +59,7 @@ export default function LeadActivitySummary() {
           </div>
           <div className="flex gap-2">
             <ExportAllPagesButton />
-            <Link to="/InvestorCRM"><Button variant="outline" className="border-slate-600 text-slate-300"><Users className="w-4 h-4 mr-2" />Open CRM</Button></Link>
+            <Button asChild variant="outline" className="border-slate-600 text-slate-300"><Link to="/InvestorCRM"><Users className="w-4 h-4 mr-2" />Open CRM</Link></Button>
           </div>
         </div>
 

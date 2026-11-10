@@ -18,12 +18,12 @@ export default function AccessRestricted({ feature }) {
         <p className="text-sm text-slate-400 mb-6">
           {feature} is not available for Guest Auditor accounts. This feature is locked for demonstration safety.
         </p>
-        <Link to="/">
-          <Button variant="outline" className="border-slate-600 text-slate-300 hover:bg-slate-800">
+        <Button asChild variant="outline" className="border-slate-600 text-slate-300 hover:bg-slate-800">
+          <Link to="/">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Dashboard
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </div>
   );

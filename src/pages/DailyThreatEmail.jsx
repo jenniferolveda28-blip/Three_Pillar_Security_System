@@ -164,9 +164,9 @@ export default function DailyThreatEmail() {
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <Link to={createPageUrl('Dashboard')}>
-              <Button variant="outline" size="icon"><ArrowLeft className="w-4 h-4" /></Button>
-            </Link>
+            <Button asChild variant="outline" size="icon">
+              <Link to={createPageUrl('Dashboard')}><ArrowLeft className="w-4 h-4" /></Link>
+            </Button>
             <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl">
               <Mail className="w-7 h-7 text-white" />
             </div>

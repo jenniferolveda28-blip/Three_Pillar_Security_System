@@ -124,12 +124,12 @@ export default function SecurityConfiguration() {
             Configure your current Device Type, scan frequencies, alert thresholds, and CipherPass rotation intervals.
           </p>
         </div>
-        <Link to="/Dashboard">
-          <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800">
+        <Button asChild variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800">
+          <Link to="/Dashboard">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Dashboard
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
 
       {isLoading ? (

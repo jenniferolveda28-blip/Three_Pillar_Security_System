@@ -32,11 +32,11 @@ export default function AIThreatAnalysis() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-4">
-            <Link to={createPageUrl('Dashboard')}>
-              <Button variant="outline" size="icon">
+            <Button asChild variant="outline" size="icon">
+              <Link to={createPageUrl('Dashboard')}>
                 <ArrowLeft className="w-4 h-4" />
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             <div className="flex items-center gap-3">
               <div className="p-3 bg-gradient-to-br from-pink-500 to-violet-600 rounded-xl shadow-lg shadow-pink-500/50">
                 <Brain className="w-8 h-8 text-white" />

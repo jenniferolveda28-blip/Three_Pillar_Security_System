@@ -148,16 +148,14 @@ export default function UserHelixTokenStatusView() {
             <Watch className="w-3.5 h-3.5 mr-1.5" />
             {filterActiveOnly ? `Showing Active Tokens (${activeCount})` : `View All Active Tokens (${activeCount})`}
           </Button>
-          <Link to="/token-management">
-            <Button
-              type="button"
-              size="sm"
-              variant="outline"
-              className="h-7 px-3 text-xs border-slate-700 text-slate-200 hover:bg-slate-800"
-            >
-              Open Token Directory
-            </Button>
-          </Link>
+          <Button
+            asChild
+            size="sm"
+            variant="outline"
+            className="h-7 px-3 text-xs border-slate-700 text-slate-200 hover:bg-slate-800"
+          >
+            <Link to="/token-management">Open Token Directory</Link>
+          </Button>
           <button
             type="button"
             onClick={() => refetch()}

@@ -98,12 +98,12 @@ export default function SecurityAnalytics() {
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-6">
-          <Link to="/Dashboard">
-            <Button variant="outline" className="mb-4">
+          <Button asChild variant="outline" className="mb-4">
+            <Link to="/Dashboard">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Dashboard
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-gradient-to-br from-blue-500 to-violet-600 rounded-xl shadow-lg shadow-blue-500/50">

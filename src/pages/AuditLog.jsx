@@ -69,11 +69,11 @@ export default function AuditLog() {
         {/* Header */}
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div className="flex items-center gap-4">
-            <Link to="/">
-              <Button variant="outline" size="icon">
+            <Button asChild variant="outline" size="icon">
+              <Link to="/">
                 <ArrowLeft className="w-4 h-4" />
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             <div>
               <h1 className="text-2xl font-bold gradient-text flex items-center gap-2">
                 <ScrollText className="w-6 h-6" />

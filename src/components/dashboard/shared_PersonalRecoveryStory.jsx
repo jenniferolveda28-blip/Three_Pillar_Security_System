@@ -129,16 +129,16 @@ export default function SharedPersonalRecoveryStory() {
                 Lose your phone. Wait a year. Break every device you own. With Reclaim Me, you are still you—and your memories stay yours.
               </p>
               <div className="flex flex-wrap gap-2">
-                <Link to="/Authenticator">
-                  <Button size="sm" className="bg-cyan-600 hover:bg-cyan-500 text-white">
+                <Button asChild size="sm" className="bg-cyan-600 hover:bg-cyan-500 text-white">
+                  <Link to="/Authenticator">
                     Explore HelixVerify Recovery <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                  </Button>
-                </Link>
-                <Link to="/exposure-shield">
-                  <Button size="sm" variant="outline" className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10">
+                  </Link>
+                </Button>
+                <Button asChild size="sm" variant="outline" className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10">
+                  <Link to="/exposure-shield">
                     Open Exposure Shield ("Find Me")
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>

@@ -123,18 +123,18 @@ export default function OwnersUserManagementSection() {
           </p>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
-          <Link to="/UserPermissions">
-            <Button variant="outline" size="sm" className="border-violet-500/40 text-violet-300 hover:bg-violet-500/10">
+          <Button asChild variant="outline" size="sm" className="border-violet-500/40 text-violet-300 hover:bg-violet-500/10">
+            <Link to="/UserPermissions">
               <KeyRound className="w-3.5 h-3.5 mr-1.5" />
               Role Matrix
-            </Button>
-          </Link>
-          <Link to="/AccountManagement">
-            <Button variant="outline" size="sm" className="border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/10">
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="sm" className="border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/10">
+            <Link to="/AccountManagement">
               <ShieldCheck className="w-3.5 h-3.5 mr-1.5" />
               Linked Accounts ({linkedAccounts.length})
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <Button
             variant="outline"
             size="sm"

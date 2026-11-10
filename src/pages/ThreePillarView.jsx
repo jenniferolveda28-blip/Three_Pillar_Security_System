@@ -11,12 +11,12 @@ export default function ThreePillarView() {
         <div className="min-h-screen p-6">
             <div className="max-w-7xl mx-auto">
                 <div className="flex items-center justify-between mb-6">
-                    <Link to={createPageUrl('Dashboard')}>
-                        <Button variant="outline">
+                    <Button asChild variant="outline">
+                        <Link to={createPageUrl('Dashboard')}>
                             <ArrowLeft className="w-4 h-4 mr-2" />
                             Back to Dashboard
-                        </Button>
-                    </Link>
+                        </Link>
+                    </Button>
                     <PrintReportButton
                         reportTitle="Reclaim Me Authentication Architecture"
                         subtitle="Overview of the three interlocking authentication layers: HelixVerify, CipherPass, and Dynamic Scrambler"

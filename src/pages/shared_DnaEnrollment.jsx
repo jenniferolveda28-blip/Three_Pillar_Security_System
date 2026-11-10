@@ -99,8 +99,8 @@ export default function SharedDnaEnrollment() {
               <span className="text-slate-300">{data.enroll_email}</span>.
             </p>
             <div className="mt-6 flex gap-2 justify-center">
-              <Link to="/destruction-policy"><Button variant="outline" className="border-slate-700 text-slate-300">View Destruction Policy</Button></Link>
-              <Link to="/"><Button className="bg-cyan-600 hover:bg-cyan-500">Back to Dashboard</Button></Link>
+              <Button asChild variant="outline" className="border-slate-700 text-slate-300"><Link to="/destruction-policy">View Destruction Policy</Link></Button>
+              <Button asChild className="bg-cyan-600 hover:bg-cyan-500"><Link to="/">Back to Dashboard</Link></Button>
             </div>
           </CardContent>
         </Card>

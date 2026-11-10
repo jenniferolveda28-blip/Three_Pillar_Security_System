@@ -84,12 +84,12 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="flex gap-2 flex-wrap">
-            <Link to="/token-management">
-              <Button className="bg-cyan-600 hover:bg-cyan-500 text-white">
+            <Button asChild className="bg-cyan-600 hover:bg-cyan-500 text-white">
+              <Link to="/token-management">
                 <Key className="w-4 h-4 mr-2" />
                 View All Active Tokens ({hardwareTokens.length})
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             <ComprehensiveAuditButton daysBack={7} />
             <ExportAllPagesButton />
             <BatchDownloadButton
@@ -329,16 +329,16 @@ export default function Dashboard() {
                 <p className="text-slate-400 text-sm">30-day threat neutralization trends and scrambler performance — ready to show investors</p>
               </div>
               <div className="flex gap-2">
-                <Link to="/InvestorCRM">
-                  <Button variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10">
+                <Button asChild variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10">
+                  <Link to="/InvestorCRM">
                     <Users className="w-4 h-4 mr-2" /> Investor CRM
-                  </Button>
-                </Link>
-                <Link to="/TexasNDA">
-                  <Button variant="outline" className="border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10">
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" className="border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10">
+                  <Link to="/TexasNDA">
                     <FileText className="w-4 h-4 mr-2" /> Generate NDA
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
             <ThreatNeutralizationChart />

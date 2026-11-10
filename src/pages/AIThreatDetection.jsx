@@ -46,12 +46,12 @@ export default function AIThreatDetection() {
         <div className="min-h-screen p-6">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-6">
-                    <Link to={createPageUrl('Dashboard')}>
-                        <Button variant="outline" className="mb-4">
+                    <Button asChild variant="outline" className="mb-4">
+                        <Link to={createPageUrl('Dashboard')}>
                             <ArrowLeft className="w-4 h-4 mr-2" />
                             Back to Dashboard
-                        </Button>
-                    </Link>
+                        </Link>
+                    </Button>
 
                     <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-3">

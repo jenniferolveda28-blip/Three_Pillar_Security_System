@@ -52,11 +52,11 @@ export default function ScramblingReports() {
                 {/* Header */}
                 <div className="flex items-center justify-between flex-wrap gap-4">
                     <div className="flex items-center gap-4">
-                        <Link to="/">
-                            <Button variant="outline" size="icon">
+                        <Button asChild variant="outline" size="icon">
+                            <Link to="/">
                                 <ArrowLeft className="w-4 h-4" />
-                            </Button>
-                        </Link>
+                            </Link>
+                        </Button>
                         <div>
                             <h1 className="text-2xl font-bold gradient-text flex items-center gap-2">
                                 <Gauge className="w-6 h-6" />
@@ -161,12 +161,12 @@ export default function ScramblingReports() {
                                                     {isPass ? 'PASS' : isFail ? 'FAIL' : '—'}
                                                 </Badge>
                                                 {report.file_url && (
-                                                    <a href={report.file_url} target="_blank" rel="noopener noreferrer">
-                                                        <Button size="sm" variant="outline">
+                                                    <Button asChild size="sm" variant="outline">
+                                                        <a href={report.file_url} target="_blank" rel="noopener noreferrer">
                                                             <Download className="w-3 h-3" />
                                                             PDF
-                                                        </Button>
-                                                    </a>
+                                                        </a>
+                                                    </Button>
                                                 )}
                                             </div>
                                         </div>
